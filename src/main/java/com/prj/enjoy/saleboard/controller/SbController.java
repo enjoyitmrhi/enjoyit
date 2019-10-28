@@ -53,7 +53,7 @@ public class SbController {
 	@RequestMapping(value = "/sbcontent_view")
 	public String sbcontent_view(HttpServletRequest request, Model model) {
 		String wid = request.getParameter("wid");
-		String sbcode=request.getParameter("sbcode");
+		String sbcode = request.getParameter("sbcode");
 
 		model.addAttribute("wid", wid);
 		model.addAttribute("sbcode", sbcode);
