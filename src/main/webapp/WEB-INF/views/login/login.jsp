@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>Insert title here</title>
+<%@include file="/WEB-INF/include/header.jsp" %>
+
 </head>
 <body>
 <script language="javascript" type="text/javascript">

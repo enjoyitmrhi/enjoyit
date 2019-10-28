@@ -5,8 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/bootstrap/css/sb-admin.min.css" >
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.css" >
+<%@include file="/WEB-INF/include/header.jsp" %>
 
 
 </head>

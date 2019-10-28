@@ -10,10 +10,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href= "<c:url value= "/resources/bootstrap/css/sb-admin.min.css" />"  >
 
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.css" > 
-</head>
+<%@include file="/WEB-INF/include/header.jsp" %>
+
+<!-- <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.css" > 
+ --></head>
 <body> 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
