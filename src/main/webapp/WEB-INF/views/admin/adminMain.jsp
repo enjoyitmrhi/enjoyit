@@ -2,10 +2,17 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href= "<c:url value= "/resources/bootstrap/css/sb-admin.min.css" />"  >
+
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap-theme.css" > 
 </head>
 <body> 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
