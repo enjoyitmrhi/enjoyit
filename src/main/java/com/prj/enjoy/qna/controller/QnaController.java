@@ -26,13 +26,11 @@ public class QnaController {
 
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 	
-		//�������� �α��� ó���ؾ��� 
 		String sbcode = request.getParameter("sbcode");
 		String wid= request.getParameter("wid");
 		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("wid",wid);
 
-		// list���� �˻� �ɼ� ��������
 		String qatitle = "";
 		String qacontent = "";
 
