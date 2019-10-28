@@ -71,7 +71,6 @@ public class QnaController {
 		String strPage = request.getParameter("page");
 		model.addAttribute("searchKeyword", searchKeyword);
 
-		// strPage�� ������ ���� 1�� ���ִ� ����
 		if (strPage == null || strPage.equals("")) {
 			strPage = "1";
 		}
@@ -84,13 +83,6 @@ public class QnaController {
 		int rowStart = searchVO.getRowStart();
 		int rowEnd = searchVO.getRowEnd();
 
-		System.out.println("���ڵ� �� �� : " + dao.selectBoardCount(searchKeyword, "0"));
-		System.out.println("Ŭ�� ������  : " + page);
-		System.out.println("������ start : " + searchVO.getPageStart());
-		System.out.println("������ end : " + searchVO.getPageEnd());
-		System.out.println("������ total : " + searchVO.getTotPage());
-		System.out.println("RowStart : " + searchVO.getRowStart());
-		System.out.println("RowEnd : " + searchVO.getRowEnd());
 
 		model.addAttribute("searchVO", searchVO);
 		

@@ -24,15 +24,7 @@ public class ReviewController {
 
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
 
-//		String rvtitle = request.getParameter("rvtitle");
-//		String cunum = request.getParameter("cunum");
-//		String sbcode = request.getParameter("sbcode");
-//		String rvdate = request.getParameter("rvdate");
-//		String rvcontent = request.getParameter("rvcontent");
-//		String rvpic = request.getParameter("rvpic");
-//		String rvstar = request.getParameter("rvstar");
 
-//		model.addAttribute("review_list", dao.review_list(rvtitle, cunum, sbcode, rvdate, rvcontent, rvpic, rvstar));
 		model.addAttribute("review_list", dao.review_list());
 
 		return "review/review_list";
