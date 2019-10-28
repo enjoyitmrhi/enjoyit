@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp" %>
+<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
@@ -29,7 +29,8 @@
 
 				<td>${dto.sbcode }</td>
 				<td>${dto.sbtitle }</td>
-				<td><a href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}">${dto.sbpic }</a></td>
+				<td><a
+					href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}">${dto.sbpic }</a></td>
 				<td>${dto.buid}</td>
 				<td>${dto.sbloc}</td>
 				<td>${dto.sbprice}</td>

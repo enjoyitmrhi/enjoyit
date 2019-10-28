@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp" %>
+<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
@@ -16,17 +16,19 @@
 				type="hidden" name="rvgroup" value="${reply_write.rvgroup }" /> <input
 				type="hidden" name="rvstep" value="${reply_write.rvstep }" /> <input
 				type="hidden" name="rvindent" value="${reply_write.rvindent }" />
-		<tr>
-			<td><input type="text" name="bunum" value="${reply_write.bunum}" /></td>
-			<td><input type="text" name="rvdate" value="${reply_write.rvdate}" /></td>
-		</tr>
-		<tr>
-			<td colspan="2"><textarea type="text" name="rvcontent" rows="10"
-					value="${reply_write.rvcontent }"></textarea></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="reply" /></td>
-		</tr>
+			<tr>
+				<td><input type="text" name="bunum"
+					value="${reply_write.bunum}" /></td>
+				<td><input type="text" name="rvdate"
+					value="${reply_write.rvdate}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><textarea type="text" name="rvcontent"
+						rows="10" value="${reply_write.rvcontent }"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="reply" /></td>
+			</tr>
 		</form>
 	</table>
 </body>

@@ -5,13 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp" %>
+<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
-<h3>write_view.jsp</h3>
+	<h3>write_view.jsp</h3>
 	<table>
-		<form action="review_write" method="post" enctype="multipart/form-data">
+		<form action="review_write" method="post"
+			enctype="multipart/form-data">
 			<tr>
 				<td class="left">이름</td>
 				<td>${dto.cuid }</td>

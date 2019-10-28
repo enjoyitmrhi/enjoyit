@@ -23,11 +23,11 @@ public class QnaController {
 	public String qnaList(HttpServletRequest request, SearchVO searchVO, Model model) {
 
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
-	
+
 		String sbcode = request.getParameter("sbcode");
-		String wid= request.getParameter("wid");
+		String wid = request.getParameter("wid");
 		model.addAttribute("sbcode", sbcode);
-		model.addAttribute("wid",wid);
+		model.addAttribute("wid", wid);
 
 		String qatitle = "";
 		String qacontent = "";
@@ -79,13 +79,11 @@ public class QnaController {
 
 		searchVO.setPage(page);
 		searchVO.pageCalculate(total);
-		
+
 		int rowStart = searchVO.getRowStart();
 		int rowEnd = searchVO.getRowEnd();
 
-
 		model.addAttribute("searchVO", searchVO);
-		
 
 		if (qatitle.equals("qatitle") && qacontent.equals("")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "1"));
@@ -145,8 +143,6 @@ public class QnaController {
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		QnaDto dto = dao.qacontview(strNum);
 
-
-		
 		model.addAttribute("content_view", dto);
 
 		return "/qna/qna_content_view";
@@ -206,8 +202,7 @@ public class QnaController {
 
 		return "redirect:qna_list";
 	}
-	
-	
+
 	private void replyShape(int group, int step) {
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		dao.replyShape(group, step);

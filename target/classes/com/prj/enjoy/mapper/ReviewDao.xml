@@ -17,7 +17,8 @@
 	</insert>
 	<insert id="reply">
 		INSERT INTO REVIEW(BUID, RVCONTENT, RVGROUP,
-		RVSTEP, RVINDENT)
+		RVSTEP,
+		RVINDENT)
 		VALUES('b001', #{param2}, #{param3},
 		#{param4}+1, #{param5}+1)
 	</insert>

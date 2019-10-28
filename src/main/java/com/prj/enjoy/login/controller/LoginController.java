@@ -34,22 +34,22 @@ public class LoginController {
 	public String login() {
 		return "login/login";
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		//세션 삭제
+		// 세션 삭제
 		session.invalidate();
-		
+
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/loginProc")
 	public String loginProc(HttpServletRequest request, Model model, HttpSession session) throws Exception {
 
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
 		String cuid = request.getParameter("cuid");
 		String cupw = request.getParameter("cupw");
-		Customer dto= dao.getCustomer(cuid);
+		Customer dto = dao.getCustomer(cuid);
 		if (dto == null) {
 			System.out.println("check id");
 			return "login/login";
@@ -73,7 +73,7 @@ public class LoginController {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
 		String buid = request.getParameter("buid");
 		String bupw = request.getParameter("bupw");
-		Business dto =dao.getBusiness(buid);
+		Business dto = dao.getBusiness(buid);
 		if (dto == null) {
 			System.out.println("check id");
 			return "login/login";
@@ -129,7 +129,7 @@ public class LoginController {
 			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuemail, cugender, cubirth, cutel);
 			return "redirect:login";
 		}
-	
+
 	}
 
 	private int chkCid(String cuid) {
@@ -147,7 +147,7 @@ public class LoginController {
 	@RequestMapping("/bJoinProc")
 	public String bJoinProc(HttpServletRequest request) throws Exception {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		
+
 		String buid = request.getParameter("buid");
 		String bupw = request.getParameter("bupw");
 		String bupw2 = request.getParameter("bupw2");
@@ -169,18 +169,17 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "blogin/bJoin";
 		} else {
-			dao.createBusiness(buid, bupw, buname, buemail,burenum, butel,buaddr);
+			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr);
 			return "redirect: login";
 		}
-		
-		
+
 	}
 
 	private int chkBid(String bid) {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
 		int result = dao.chkBid(bid);
 		System.out.println(result);
-		
+
 		return result;
 	}
 }

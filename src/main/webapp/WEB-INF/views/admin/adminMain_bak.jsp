@@ -7,27 +7,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body> 
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	function selectCId(){
-	var chkcid = $('input:radio[name="selectcid"]:checked').val();
-	return chkid; 
-	}
-</script>
+<body>
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		function selectCId() {
+			var chkcid = $('input:radio[name="selectcid"]:checked').val();
+			return chkid;
+		}
+	</script>
 
-	 <form action="adminMain" name="form1" method="post">
-		<select name="sort" onchange="chsort()" >
+	<form action="adminMain" name="form1" method="post">
+		<select name="sort" onchange="chsort()">
 			<option value="">정렬방법</option>
 			<option value="num">회원번호</option>
 			<option value="name">이름순</option>
 			<option value="date">가입일</option>
 		</select> <input type="submit" value="정렬">
 	</form>
-	
+
 	<form action="../del_cu" method="post">
 		<h3>일반회원 목록</h3>
-		<input type="submit" value="회원삭제" >
+		<input type="submit" value="회원삭제">
 		<table border="1">
 			<tr>
 				<td>선택</td>
@@ -39,7 +40,7 @@
 				<td>생년월일</td>
 				<td>성별</td>
 				<td>연락처</td>
-				<td>가입일</td>	
+				<td>가입일</td>
 
 			</tr>
 			<c:forEach items="${clist}" var="cu">
@@ -73,13 +74,13 @@
 				<td>연락처</td>
 				<td>가입일</td>
 			</tr>
-			
-			
+
+
 			<c:forEach items="${blist}" var="bu">
 				<tr>
-					
+
 					<td><input type="radio" name="bunum" value="${bu.bunum }"></td>
-					
+
 					<td>${bu.bunum}</td>
 					<td><a href="buManagement?bunum=${bu.bunum}">${bu.buid }</a></td>
 					<td>${bu.buname}</td>

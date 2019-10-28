@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp" %>
+<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
@@ -44,7 +44,7 @@
 				<c:if test="${cnt eq endIndent }">
 								<a>[re]</a>
 							</c:if>
-					</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a></td>
+						</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a></td>
 					<td>${dto.cuid }</td>
 
 				</tr>

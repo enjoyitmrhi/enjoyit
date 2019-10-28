@@ -13,13 +13,14 @@
 	</select>
 
 	<insert id="board_write">
-		INSERT INTO SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,BUID)
+		INSERT INTO
+		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,BUID)
 		VALUES(SBCODE_SEQ.NEXTVAL+1,(SELECT BUNUM FROM BUSINESS WHERE BUID =
 		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param1} )
 
 	</insert>
-	
+
 	<select id="checkBid" resultType="Integer">
-	SELECT COUNT(*) FROM BUSINESS WHERE BUID = #{param1}
+		SELECT COUNT(*) FROM BUSINESS WHERE BUID = #{param1}
 	</select>
 </mapper>

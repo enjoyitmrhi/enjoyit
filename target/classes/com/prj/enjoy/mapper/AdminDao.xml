@@ -3,32 +3,39 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prj.enjoy.login.dao.AdminDao">
-	 <sql id="sort">
+	<sql id="sort">
 		<choose>
-			<when test="value == null" >
-			</when>		
-			<otherwise>			
-			ORDER BY CONVERT (${value}, 'US8ICL') ASC
+			<when test="value == null">
+			</when>
+			<otherwise>
+				ORDER BY CONVERT (${value}, 'US8ICL') ASC
 			</otherwise>
 		</choose>
-	</sql> 
-	
+	</sql>
+
 	<select id="getAdmin" resultType="com.prj.enjoy.login.dto.Administrator">
-		SELECT * FROM ADMINISTRATOR WHERE ADID= #{param1}
+		SELECT * FROM ADMINISTRATOR
+		WHERE ADID= #{param1}
 	</select>
-	
-	<select id="getCustomer" parameterType="string" resultType="com.prj.enjoy.login.dto.Customer">
-		 SELECT * FROM CUSTOMER <include refid="sort"/>
+
+	<select id="getCustomer" parameterType="string"
+		resultType="com.prj.enjoy.login.dto.Customer">
+		SELECT * FROM CUSTOMER
+		<include refid="sort" />
 	</select>
-	<select id="getBusiness" parameterType="string" resultType="com.prj.enjoy.login.dto.Business">
-		SELECT * FROM BUSINESS <include refid="sort"/>
+	<select id="getBusiness" parameterType="string"
+		resultType="com.prj.enjoy.login.dto.Business">
+		SELECT * FROM BUSINESS
+		<include refid="sort" />
 	</select>
-	
-	<select id="getCuInfo"  resultType="com.prj.enjoy.login.dto.Customer">
-		SELECT * FROM CUSTOMER WHERE CUNUM=#{param1} 
+
+	<select id="getCuInfo" resultType="com.prj.enjoy.login.dto.Customer">
+		SELECT * FROM CUSTOMER WHERE
+		CUNUM=#{param1}
 	</select>
-	<select id="getBuInfo"  resultType="com.prj.enjoy.login.dto.Business">
-		SELECT * FROM BUSINESS WHERE BUNUM=#{param1} 
+	<select id="getBuInfo" resultType="com.prj.enjoy.login.dto.Business">
+		SELECT * FROM BUSINESS WHERE
+		BUNUM=#{param1}
 	</select>
 	<delete id="del_cu">
 		DELETE FROM CUSTOMER WHERE CUNUM = #{param1}
@@ -36,12 +43,16 @@
 	<delete id="del_bu">
 		DELETE FROM BUSINESS WHERE BUNUM = #{param1}
 	</delete>
-	<update id="editProc_cu" >
-		UPDATE CUSTOMER SET CUID=#{param1},CUNAME =#{param2},CUADDR =#{param3},CUEMAIL =#{param4},CUBIRTH =#{param5},CUGENDER =#{param6},CUTEL =#{param7}
+	<update id="editProc_cu">
+		UPDATE CUSTOMER SET
+		CUID=#{param1},CUNAME =#{param2},CUADDR =#{param3},CUEMAIL
+		=#{param4},CUBIRTH =#{param5},CUGENDER =#{param6},CUTEL =#{param7}
 		WHERE CUNUM=#{param8}
 	</update>
-	<update id="editProc_bu" >
-		UPDATE BUSINESS SET BUID=#{param1},BUNAME =#{param2},BUADDR =#{param3},BUEMAIL =#{param4},BURENUM =#{param5},BUTEL =#{param6}
+	<update id="editProc_bu">
+		UPDATE BUSINESS SET
+		BUID=#{param1},BUNAME =#{param2},BUADDR =#{param3},BUEMAIL
+		=#{param4},BURENUM =#{param5},BUTEL =#{param6}
 		WHERE BUNUM=#{param7}
 	</update>
 </mapper>

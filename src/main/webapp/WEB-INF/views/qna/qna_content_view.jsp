@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp" %>
+<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
-<script>		
+	<script>		
 		function del_auth() {
 		var delnum=${num};
 		if (${content_view.cuid == session_cid}) {			
@@ -36,32 +36,34 @@
 				}
 			};
 	</script>
-<h3>content_view</h3>
-상품판매자 :${wid }
-<form action="qnaanswerview" method="post">
-<input type="hidden" name="num" value="${num }">
-	<table border="1 solid #fff" width="300">
-		<tr>
-			<td>글번호</td>
-			<td>${num }</td>
+	<h3>content_view</h3>
+	상품판매자 :${wid }
+	<form action="qnaanswerview" method="post">
+		<input type="hidden" name="num" value="${num }">
+		<table border="1 solid #fff" width="300">
+			<tr>
+				<td>글번호</td>
+				<td>${num }</td>
 
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td><textarea rows="10" cols="20" name="content">${content_view.qacontent }</textarea> </td>
-		</tr>
-		<tr>
-			<td>작성자</td>
-			<td>${content_view.cuid }</td>
-		</tr>
-		
-	</table>
-	<button onclick="javascript:reply_auth()" >답글달기</button>
-	<input type="submit" style="display:none;">
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea rows="10" cols="20" name="content">${content_view.qacontent }</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td>${content_view.cuid }</td>
+			</tr>
 
-</form>
-<a href="qna_list"> 목록가기</a>
-<button  onclick="javascript:del_auth()">삭제하기</button> &nbsp;&nbsp;
-<button  onclick="javascript:modify_auth()">수정하기</button>
+		</table>
+		<button onclick="javascript:reply_auth()">답글달기</button>
+		<input type="submit" style="display: none;">
+
+	</form>
+	<a href="qna_list"> 목록가기</a>
+	<button onclick="javascript:del_auth()">삭제하기</button>
+	&nbsp;&nbsp;
+	<button onclick="javascript:modify_auth()">수정하기</button>
 </body>
 </html>

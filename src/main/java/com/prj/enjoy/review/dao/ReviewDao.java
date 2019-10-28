@@ -9,7 +9,8 @@ public interface ReviewDao {
 	public ArrayList<ReviewDto> review_list(String rvtitle, String cunum, String sbcode, String rvdate,
 			String rvcontent, String rvpic, String rvstar);
 
-	public void write(String rvtitle, String rvcontent, String rvpic, String sbcode, Timestamp rvdate,String cunum, String cuid);
+	public void write(String rvtitle, String rvcontent, String rvpic, String sbcode, Timestamp rvdate, String cunum,
+			String cuid);
 
 	public ArrayList<ReviewDto> review_list();
 

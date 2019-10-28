@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp" %>
+<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
@@ -26,7 +26,7 @@
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text"  name="title"
+				<td><input type="text" name="title"
 					value="${answerview.qatitle }"></td>
 			</tr>
 			<tr>
@@ -36,7 +36,8 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="id" value="${session_bid }${session_cid }" readonly="readonly"></td>
+				<td><input type="text" name="id"
+					value="${session_bid }${session_cid }" readonly="readonly"></td>
 			</tr>
 
 		</table>
@@ -45,4 +46,4 @@
 	</form>
 
 </body>
-</html> 
+</html>

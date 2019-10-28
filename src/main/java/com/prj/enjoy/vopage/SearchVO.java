@@ -34,5 +34,4 @@ public class SearchVO extends PageVO {
 		return searchType.split(",");
 	}
 
-	
 }

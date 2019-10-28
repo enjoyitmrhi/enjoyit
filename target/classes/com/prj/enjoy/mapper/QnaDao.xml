@@ -31,7 +31,8 @@
 			</when>
 			<when test="param4==3">
 				WHERE (QATITLE LIKE '%' || #{param3} || '%'
-				OR QACONTENT LIKE '%' || #{param3} || '%')
+				OR
+				QACONTENT LIKE '%' || #{param3} || '%')
 			</when>
 			<otherwise></otherwise>
 		</choose>

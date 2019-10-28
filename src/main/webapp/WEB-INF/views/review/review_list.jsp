@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp" %>
+<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
@@ -57,15 +57,15 @@
 					<td colspan="2"><a href="#">더보기</a></td>
 				</tr> -->
 				<tr>
-					<td colspan="2"><a href="review_reply_write?bunum=b001">답변 달기 |</a><a
-						href="review_reply_view?bunum=b001"> 답변 보기</a></td>
+					<td colspan="2"><a href="review_reply_write?bunum=b001">답변
+							달기 |</a><a href="review_reply_view?bunum=b001"> 답변 보기</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</form>
 
-	<div><a href="qna_list">QnA보기</a>
-	<a href="board_list">게시글로 가기</a>
+	<div>
+		<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
 	</div>
 </body>
 </html>

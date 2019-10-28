@@ -24,7 +24,6 @@ public class ReviewController {
 
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
 
-
 		model.addAttribute("review_list", dao.review_list());
 
 		return "review/review_list";
@@ -53,8 +52,8 @@ public class ReviewController {
 		String rvstar = req.getParameter("rvstar");
 		String rvcontent = req.getParameter("rvcontent");
 		String rvpic = req.getFilesystemName("rvpic");
-		
-		dao.review_write(rvtitle,rvstar,rvcontent,rvpic);
+
+		dao.review_write(rvtitle, rvstar, rvcontent, rvpic);
 
 		return "redirect:review_list";
 	}
@@ -69,6 +68,7 @@ public class ReviewController {
 		return "review/review_reply_view";
 
 	}
+
 	@RequestMapping("/review_reply_write")
 	public String reply_write(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
@@ -78,6 +78,7 @@ public class ReviewController {
 
 		return "review/review_reply_write";
 	}
+
 	@RequestMapping("/review_reply")
 	public String reply(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);

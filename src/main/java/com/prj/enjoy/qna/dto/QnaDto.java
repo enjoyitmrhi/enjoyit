@@ -9,14 +9,12 @@ public class QnaDto {
 	private int qastep;
 	private int qaindent;
 	private Timestamp qadate;
-	private String  qacontent;
+	private String qacontent;
 	private int sbcode;
 	private String bunum;
-	private String  buid;
+	private String buid;
 	private String cunum;
-	private String  cuid;
-	
-	
+	private String cuid;
 
 	public int getQanum() {
 		return qanum;
@@ -113,7 +111,5 @@ public class QnaDto {
 	public void setCuid(String cuid) {
 		this.cuid = cuid;
 	}
-	
-	
-	
+
 }
