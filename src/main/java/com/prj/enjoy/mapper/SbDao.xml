@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper
+	    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prj.enjoy.saleboard.dao.SbDao">
+
+	<select id="board_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+		SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID FROM SALE_BOARD
+		ORDER BY SBCODE DESC
+
+	</select>
+
+	<insert id="board_write">
+		INSERT INTO SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,BUID)
+		VALUES(SBCODE_SEQ.NEXTVAL+1,(SELECT BUNUM FROM BUSINESS WHERE BUID =
+		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param1} )
+
+	</insert>
+	
+	<select id="checkBid" resultType="Integer">
+	SELECT COUNT(*) FROM BUSINESS WHERE BUID = #{param1}
+	</select>
+</mapper>

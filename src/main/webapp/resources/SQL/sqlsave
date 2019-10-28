@@ -1,0 +1,318 @@
+drop table qna;
+drop table review;
+drop table reservation;
+drop table sale_board;
+drop table business;
+drop table customer;
+drop table administrator;
+drop sequence sbcode_seq;
+drop SEQUENCE qna_seq;
+drop sequence bu_seq;
+drop sequence cu_seq;
+
+-- customer
+CREATE TABLE  customer  (
+    cuNum     VARCHAR2(10) NOT NULL, -- cuNum
+    cuId      VARCHAR2(20)  NOT NULL, -- cuId
+    cuName    VARCHAR2(20)  NOT NULL, -- cuName
+    cuPw      VARCHAR2(20)  NULL,     -- cuPw
+    cuAddr    VARCHAR2(100) NULL,     -- cuAddr
+    cuEmail   VARCHAR2(50)  NULL,     -- cuEmail
+    cuBirth   VARCHAR2(20)  NULL,     -- cuBirth
+    cuGender  VARCHAR2(5)   NULL,     -- cuGender
+    cuTel     VARCHAR2(20) NULL,     -- cuTel
+    cuDate    DATE   DEFAULT sysdate      -- cuDate
+);
+
+-- customer 기본키
+CREATE UNIQUE INDEX  PK_customer 
+   ON  customer  ( -- customer
+       cuNum  ASC, -- cuNum
+       cuId   ASC  -- cuId
+   );
+
+-- customer
+ALTER TABLE  customer 
+   ADD
+      CONSTRAINT  PK_customer  -- customer 기본키
+      PRIMARY KEY (
+          cuNum , -- cuNum
+          cuId    -- cuId
+      );
+
+
+-- business
+CREATE TABLE  business  (
+    buNum    VARCHAR2(10) NOT NULL, -- buNum
+    buId     VARCHAR2(50)  NOT NULL, -- buId
+    buPw     VARCHAR2(50)  NULL,     -- buPw
+    buName   VARCHAR2(50)  NULL,     -- buName
+    buEmail  VARCHAR2(50)  NULL,     -- buEmail
+    buReNum  VARCHAR2(20) NULL,     -- buReNum
+    buTel    VARCHAR2(50)  NULL,     -- buTel
+    buAddr   VARCHAR2(100) NULL,     -- buAddr
+    buDate   DATE  DEFAULT sysdate      -- buDate
+);
+
+-- business 기본키
+CREATE UNIQUE INDEX  PK_business 
+   ON  business  ( -- business
+       buNum  ASC, -- buNum
+       buId   ASC  -- buId
+   );
+
+-- business
+ALTER TABLE  business
+   ADD
+      CONSTRAINT  PK_business  -- business 기본키
+      PRIMARY KEY (
+          buNum , -- buNum
+          buId    -- buId
+      );
+
+
+
+-- sale_Board
+CREATE TABLE  sale_Board  (
+    sbCode   NUMBER      NOT NULL, -- sbCode
+    buNum    VARCHAR2(10) NULL,     -- buNum
+    sbPic    VARCHAR2(50)  NULL,     -- sbPic
+    sbTitle  VARCHAR2(100) NULL,     -- sbTitle
+    sbPrice  NUMBER      NULL,     -- sbPrice
+    sbLoc    VARCHAR2(500) NULL,     -- sbLoc
+    sbDate   date         DEFAULT sysdate,     -- sbDate
+    buId     VARCHAR2(50)  NULL      -- buId
+);
+
+-- sale_Board 기본키
+CREATE UNIQUE INDEX  PK_sale_Board 
+   ON  sale_Board  ( -- sale_Board
+       sbCode  ASC -- sbCode
+   );
+
+-- sale_Board
+ALTER TABLE  sale_Board 
+   ADD
+      CONSTRAINT  PK_sale_Board  -- sale_Board 기본키
+      PRIMARY KEY (
+          sbCode  -- sbCode
+      );
+
+
+-- qna
+CREATE TABLE  qna  (
+    qaTitle    VARCHAR2(50)  NULL, -- qaTitle
+    qaGroup    NUMBER       NULL, -- qaGroup
+    qaStep     NUMBER       NULL, -- qaStep
+    qaIndent   NUMBER       NULL, -- qaIndent
+    qaDate     date          DEFAULT sysdate, -- qaDate
+    qaContent  VARCHAR2(500) NULL, -- qaContent
+    sbCode     NUMBER      NULL, -- sbCode
+    buNum      VARCHAR2(10) NULL, -- buNum
+    buId       VARCHAR2(50)  NULL, -- buId
+    cuNum      VARCHAR2(10) NULL, -- cuNum
+    cuId       VARCHAR2(20)  NULL,  -- cuId
+    qanum      NUMBER       NULL 
+);
+
+
+
+-- review
+CREATE TABLE  review  (
+    rvTitle    VARCHAR2(50)  NULL, -- rvTitle
+    rvContent  VARCHAR2(500) NULL, -- rvContent
+    rvDate     DATE  default sysdate, -- rvDate
+    rvPic      VARCHAR2(500) NULL, -- rvPic
+    rvGroup    NUMBER       NULL, -- rvGroup
+    rvStep     NUMBER       NULL, -- rvStep
+    rvIndent   NUMBER       NULL, -- rvIndent
+    rvStar     varchar2(50) null,
+    sbCode     NUMBER       NULL, -- sbCode
+    cuNum      VARCHAR2(10) NULL, -- cuNum
+    cuId       VARCHAR2(20)  NULL, -- cuId
+    buNum      VARCHAR2(10) NULL, -- buNum
+    buId       VARCHAR2(50)  NULL  -- buId
+);
+
+
+-- reservation
+CREATE TABLE  reservation  (
+    rtNum    NUMBER     NULL, -- rtNum
+    rtSDate  DATE        NULL, -- rtSDate
+    rtEDate  DATE        NULL, -- rtEDate
+    sbCode   NUMBER     NULL, -- sbCode
+    cuNum    VARCHAR2(10)NULL, -- cuNum
+    cuId     VARCHAR2(20) NULL  -- cuId
+);
+
+create table administrator(
+adid VARCHAR2(10),
+adpw VARCHAR2(10)
+);
+-- sale_Board
+ALTER TABLE  sale_Board 
+   ADD
+      CONSTRAINT  FK_business_TO_sale_Board  -- business -> sale_Board
+      FOREIGN KEY (
+          buNum , -- buNum
+          buId    -- buId
+      )
+      REFERENCES  business  ( -- business
+          buNum , -- buNum
+          buId    -- buId
+      );
+
+
+-- qna
+ALTER TABLE  qna 
+   ADD
+      CONSTRAINT  FK_sale_Board_TO_qna  -- sale_Board -> qna
+      FOREIGN KEY (
+          sbCode  -- sbCode
+      )
+      REFERENCES  sale_Board  ( -- sale_Board
+          sbCode  -- sbCode
+      );
+
+
+-- qna
+ALTER TABLE  qna 
+   ADD
+      CONSTRAINT  FK_business_TO_qna  -- business -> qna
+      FOREIGN KEY (
+          buNum , -- buNum
+          buId    -- buId
+      )
+      REFERENCES  business  ( -- business
+          buNum , -- buNum
+          buId    -- buId
+      );
+
+
+-- qna
+ALTER TABLE  qna 
+   ADD
+      CONSTRAINT  FK_customer_TO_qna  -- customer -> qna
+      FOREIGN KEY (
+          cuNum , -- cuNum
+          cuId    -- cuId
+      )
+      REFERENCES  customer  ( -- customer
+          cuNum , -- cuNum
+          cuId    -- cuId
+      );
+
+
+-- review
+ALTER TABLE  review 
+   ADD
+      CONSTRAINT  FK_sale_Board_TO_review  -- sale_Board -> review
+      FOREIGN KEY (
+          sbCode  -- sbCode
+      )
+      REFERENCES  sale_Board  ( -- sale_Board
+          sbCode  -- sbCode
+      );
+
+
+-- review
+ALTER TABLE  review 
+   ADD
+      CONSTRAINT  FK_customer_TO_review  -- customer -> review
+      FOREIGN KEY (
+          cuNum , -- cuNum
+          cuId    -- cuId
+      )
+      REFERENCES  customer  ( -- customer
+          cuNum , -- cuNum
+          cuId    -- cuId
+      );
+
+
+-- review
+ALTER TABLE  review 
+   ADD
+      CONSTRAINT  FK_business_TO_review  -- business -> review
+      FOREIGN KEY (
+          buNum , -- buNum
+          buId    -- buId
+      )
+      REFERENCES  business  ( -- business
+          buNum , -- buNum
+          buId    -- buId
+      );
+
+-- reservation
+ALTER TABLE  reservation 
+   ADD
+      CONSTRAINT  FK_sale_Board_TO_reservation  -- sale_Board -> reservation
+      FOREIGN KEY (
+          sbCode  -- sbCode
+      )
+      REFERENCES  sale_Board  ( -- sale_Board
+          sbCode  -- sbCode
+      );
+
+
+-- reservation
+ALTER TABLE  reservation 
+   ADD
+      CONSTRAINT  FK_customer_TO_reservation  -- customer -> reservation
+      FOREIGN KEY (
+          cuNum , -- cuNum
+          cuId    -- cuId
+      )
+      REFERENCES  customer  ( -- customer
+          cuNum , -- cuNum
+          cuId    -- cuId
+      );
+
+
+
+create sequence bu_seq ;
+
+
+
+insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr)
+values('b001','bguest1','1234','사업자1','email@email','사업자번호','010-3245-1363','강남한복판');
+insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr)
+values(lpad(lpad(BU_SEQ.nextval+1,3,0),4,'b'),'bguest2','1234','사업자2','email@email','사업자번호','010-3245-1363','강남한복판');
+
+
+create sequence cu_seq ;
+
+
+insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel) 
+values ('c001','cguest1','손님1','1234','부산','email@email','890505','남자','010-0000-1111');
+
+insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel) 
+values ('c'||(lpad(cU_SEQ.nextval+1,3,0)),'cguest2','손님2','1234','부산','email@email','960207','여자','010-1111-1111');
+
+
+create sequence sbcode_seq ;
+insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbprice,sbloc,buid)
+values(1,'b001','게시판사진1','게시판제목1','1000000','제일비싼곳','bguest1');
+
+insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbprice,sbloc,buid)
+values(sbcode_seq.nextval+1,'b002','게시판사진2','게시판제목2','5000000','더비싼곳','bguest2');
+
+
+
+create sequence qna_seq;
+insert into qna(qatitle,qacontent,sbcode,bunum,buid,cunum,cuid,qanum,qagroup,qastep,qaindent)
+values('QnA제목','QnA내용',1,'b001','bguest1','c001','cguest1',1,1,0,0);
+insert into qna(qatitle,qacontent,sbcode,bunum,buid,cunum,cuid,qanum,qagroup,qastep,qaindent)
+values('QnA제목','QnA내용',2,'b002','bguest2','c002','cguest2',qna_seq.nextval+1,2,0,0);
+
+
+insert into reservation(rtnum,rtsdate,rtedate,sbcode,cunum,cuid)
+values(1,'19-10-17','19-11-15',2,'c001','cguest1');
+
+insert into review(rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,bunum,buid) 
+values('배송 빨라요','리뷰내용1','리뷰사진1','☆☆☆☆★',2,'c001','cguest1','b001','bguest1');
+insert into review(rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,bunum,buid) 
+values('예뻐요~','리뷰내용2','리뷰사진2','☆☆☆★★',2,'c002','cguest2','b002','bguest2');
+
+insert into administrator values('enjoy','1234');
+
+ commit;

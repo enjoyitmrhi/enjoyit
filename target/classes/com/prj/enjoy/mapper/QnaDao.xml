@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper
+	    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prj.enjoy.qna.dao.QnaDao">
+
+	<sql id="includeBoard">
+		<choose>
+			<when test="param2==1">
+				WHERE (QATITLE LIKE '%' || #{param1} || '%')
+			</when>
+			<when test="param2==2">
+				WHERE (QACONTENT LIKE '%' || #{param1} || '%')
+			</when>
+			<when test="param2==3">
+				WHERE (QATITLE LIKE '%' || #{param1} || '%'
+				OR
+				QACONTENT LIKE '%' || #{param1} || '%')
+			</when>
+			<otherwise></otherwise>
+		</choose>
+	</sql>
+	<sql id="includeList">
+		<choose>
+			<when test="param4==1">
+				WHERE (QATITLE LIKE '%' || #{param3} || '%')
+			</when>
+			<when test="param4==2">
+				WHERE (QACONTENT LIKE '%' || #{param3} || '%')
+			</when>
+			<when test="param4==3">
+				WHERE (QATITLE LIKE '%' || #{param3} || '%'
+				OR QACONTENT LIKE '%' || #{param3} || '%')
+			</when>
+			<otherwise></otherwise>
+		</choose>
+
+	</sql>
+	<select id="qnalist" resultType="com.prj.enjoy.qna.dto.QnaDto">
+		SELECT
+		QANUM,QATITLE,QAGROUP,QASTEP,QAINDENT,QADATE,QACONTENT,SBCODE,BUNUM,BUID,CUNUM,CUID
+		FROM (
+		SELECT
+		QANUM,QATITLE,QAGROUP,QASTEP,QAINDENT,QADATE,QACONTENT,SBCODE,BUNUM,BUID,CUNUM,CUID
+		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA
+		<include refid="includeList"></include>
+		)
+		WHERE B_SEQ BETWEEN #{param1} AND #{param2}
+
+
+
+	</select>
+	<select id="selectBoardCount" resultType="Integer">
+		SELECT COUNT(*) FROM QNA
+		<include refid="includeBoard" />
+	</select>
+
+
+	<insert id="qnawrite">
+		INSERT INTO
+		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID)
+		VALUES
+		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3})
+
+	</insert>
+	<select id="qacontview" resultType="com.prj.enjoy.qna.dto.QnaDto">
+		SELECT *FROM QNA WHERE QANUM=
+		#{param1}
+	</select>
+
+	<delete id="qnadelete">
+		DELETE FROM QNA WHERE QANUM = #{param1}
+	</delete>
+
+	<update id="qnamodify">
+		UPDATE QNA SET QACONTENT = #{param2} WHERE QANUM =
+		#{param1}
+
+	</update>
+
+	<select id="qnaanswer" resultType="com.prj.enjoy.qna.dto.QnaDto">
+		SELECT * FROM QNA WHERE QANUM
+		= #{param1}
+
+
+
+
+	</select>
+
+	<insert id="qnaAnswerWrite">
+		INSERT INTO QNA
+		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID)
+
+		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1}
+		)
+
+	</insert>
+
+	<update id="replyShape">
+		UPDATE QNA SET QASTEP=QASTEP+1 WHERE QAGROUP =
+		#{param1} AND QASTEP >
+		#{param2}
+	</update>
+
+
+</mapper>
