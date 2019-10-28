@@ -26,20 +26,20 @@
 	href="<c:url value="/resources/bootstrap/vendor/datatables/dataTables.bootstrap4.css" />"
 	rel="stylesheet">
 <!-- Bootstrap core JavaScript-->
-<script src="resources/bootstrap/vendor/jquery/jquery.min.js"></script>
-<script src="resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/bootstrap/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="resources/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="resources/bootstrap/vendor/chart.js/Chart.min.js"></script>
-<script src="resources/bootstrap/vendor/datatables/jquery.dataTables.js"></script>
+<script src="/resources/bootstrap/vendor/chart.js/Chart.min.js"></script>
+<script src="/resources/bootstrap/vendor/datatables/jquery.dataTables.js"></script>
 <script
-	src="resources/bootstrap/vendor/datatables/dataTables.bootstrap4.js"></script>
+	src="/resources/bootstrap/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="resources/bootstrap/js/sb-admin.min.js"></script>
+<script src="/resources/bootstrap/js/sb-admin.min.js"></script>
 
 
 
