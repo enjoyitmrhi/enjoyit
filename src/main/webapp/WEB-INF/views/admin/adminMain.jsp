@@ -36,9 +36,9 @@
 
 
 
-	
+	<div class="container">
 
-		<div class="form-group">
+		<div style="width: 20px; display: inline;" >
 			<form action="adminMain" name="form1" method="post">
 				<select class="form-control" name="sort" onchange="chsort()">
 					<option value="">정렬방법</option>
@@ -68,8 +68,7 @@
 				</tr>
 				<c:forEach items="${clist}" var="cu">
 					<tr>
-						<td><input type="radio" name="cunum" value="${cu.cunum }  "
-							></td>
+						<td><input type="radio" name="cunum" value="${cu.cunum }  "></td>
 						<td>${cu.cunum }</td>
 						<td><a href="cuManagement?cunum=${cu.cunum}">${cu.cuid }</a></td>
 						<td>${cu.cuname  }</td>
@@ -104,8 +103,7 @@
 				<c:forEach items="${blist}" var="bu">
 					<tr>
 
-						<td><input type="radio" name="bunum" value="${bu.bunum }"
-							></td>
+						<td><input type="radio" name="bunum" value="${bu.bunum }"></td>
 
 						<td>${bu.bunum}</td>
 						<td><a href="buManagement?bunum=${bu.bunum}">${bu.buid }</a></td>
@@ -120,7 +118,8 @@
 
 			</table>
 		</form>
-	
+	</div>
+
 
 	<%@include file="/WEB-INF/include/footer.jsp"%>
 

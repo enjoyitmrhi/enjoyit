@@ -11,6 +11,7 @@
 
 </head>
 <body>
+	<br>
 	<script language="javascript" type="text/javascript">
 		function change_cuMod() {
 
@@ -22,60 +23,65 @@
 			$('#buType').css('display', 'block');
 		};
 	</script>
+	<div class="container">
+		<div id="cuType">
+			<h3>
+				<strong>회원 로그인</strong>
+			</h3>
+			<form action="loginProc" method="post">
+				<table>
+					<tr>
+						<td>아이디</td>
+						<td><input class="form-control" type="text" name="cuid"></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="password" class="form-control" 
+							name="cupw"></td>
 
-	<div id="cuType">
-		<h3>
-			<strong>회원 로그인</strong>
-		</h3>
-		<form action="loginProc" method="post">
-			<table>
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="cuid"></td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="cupw"></td>
-				</tr>
-			</table>
-			<input type="submit" value="로그인">
+					</tr>
+				</table>
 
-		</form>
+				<input type="submit" value="로그인">
+
+			</form>
+		</div>
+
+		<div id="buType" style="display: none;">
+			<h3>
+				<strong>가맹점 로그인</strong>
+			</h3>
+			<form action="bLoginProc" method="post">
+				<table>
+					<tr>
+						<td>아이디</td>
+						<td><input class="form-control" type="text" name="buid"></td>
+
+
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input class="form-control" type="password" name="bupw"></td>
+
+					</tr>
+				</table>
+				<input type="submit" value="로그인">
+
+			</form>
+		</div>
+		<input type="radio" name="login" id="cu"
+			onclick="javascript:change_cuMod()" checked="checked" /> <span
+			class="up">회원로그인</span>&nbsp;&nbsp; <input type="radio" name="login"
+			id="bu" onclick="javascript:change_buMod()" /> <span class="up">가맹점로그인</span>
+
+
+		<ul>
+			<li><a href="index">index</a>
+			<li><a href="join">고객회원가입</a></li>
+			<li><a href="bJoin">가맹점회원가입</a></li>
+			<li><a href="findId">findId</a></li>
+			<li><a href="findPw">findPw</a></li>
+		</ul>
 	</div>
-
-	<div id="buType" style="display: none;">
-		<h3>
-			<strong>가맹점 로그인</strong>
-		</h3>
-		<form action="bLoginProc" method="post">
-			<table>
-				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="buid"></td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="bupw"></td>
-				</tr>
-			</table>
-			<input type="submit" value="로그인">
-
-		</form>
-	</div>
-	<input type="radio" name="login" id="cu"
-		onclick="javascript:change_cuMod()" checked="checked" />
-	<span class="up">회원로그인</span>&nbsp;&nbsp;
-	<input type="radio" name="login" id="bu"
-		onclick="javascript:change_buMod()" />
-	<span class="up">가맹점로그인</span>
-
-
-	<ul>
-		<li><a href="index">index</a>
-		<li><a href="join">고객회원가입</a></li>
-		<li><a href="bJoin">가맹점회원가입</a></li>
-		<li><a href="findId">findId</a></li>
-		<li><a href="findPw">findPw</a></li>
-	</ul>
 </body>
 </html>
