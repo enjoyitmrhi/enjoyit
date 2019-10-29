@@ -1,0 +1,32 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	화면의 기초가 되는 base
+	<definition name="base" template="/WEB-INF/include/template.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/include/navbar.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/include/sidebar.jsp" />
+		<put-attribute name="header" value="/WEB-INF/include/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/include/footer.jsp" />
+	</definition>
+
+	base를 상속받은 base/index
+	<definition name="base/index" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+	</definition>
+
+	동적 매핑. 만약 /user/login의 경로라면 /WEB-INF/views/user/login.jsp 뷰를 가져온다.
+	<definition name="*.test" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+
+	<definition name="*/*.test" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+
+	<definition name="*/*/*.test" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+</tiles-definitions> -->

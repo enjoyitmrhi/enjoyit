@@ -20,7 +20,7 @@
 			}
 		}; 
 		function modify_auth() {
-			if (${content_view.cuid == session_cid}) {			
+			if (${content_view.cuid ==session_cid}) {			
 				alert("수정가능합니다.");
 			 	location.href="qnamodify?num="+delnum;	 	
 			}else {
