@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<br>
+	<br>
 	<div class="container">
 		<table class="table table-hover">
 
@@ -30,7 +30,9 @@
 					<td>${dto.sbcode }</td>
 					<td>${dto.sbtitle }</td>
 					<td><a
-						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}">${dto.sbpic }</a></td>
+						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}">${dto.sbpic }</a>
+						<img alt="no image" src="resources/upload/${dto.sbpic }">
+						</td>
 					<td>${dto.buid}</td>
 					<td>${dto.sbloc}</td>
 					<td>${dto.sbprice}</td>

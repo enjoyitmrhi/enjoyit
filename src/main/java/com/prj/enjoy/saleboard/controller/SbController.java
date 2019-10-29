@@ -1,5 +1,7 @@
 package com.prj.enjoy.saleboard.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.saleboard.dao.SbDao;
 
 @Controller
@@ -68,14 +72,25 @@ public class SbController {
 	}
 
 	@RequestMapping(value = "/board_write")
-	public String board_write(HttpServletRequest request, Model model) {
+	public String board_write(HttpServletRequest request, Model model) throws Exception {
 
-		String buid = request.getParameter("buid");
-		String sbpic = request.getParameter("sbpic");
-		String sbtitle = request.getParameter("sbtitle");
-		String sbprice = request.getParameter("sbprice");
-		String sbloc = request.getParameter("sbloc");
+		String attachPath = "resources\\upload\\";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/");
+		String path = uploadPath + attachPath;
+		System.out.println("path >>> " + path);
 
+		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
+				new DefaultFileRenamePolicy());
+		
+		
+		String buid = req.getParameter("buid");
+		String sbpic = req.getFilesystemName("sbpic");
+		String sbtitle = req.getParameter("sbtitle");
+		String sbprice = req.getParameter("sbprice");
+		String sbloc = req.getParameter("sbloc");
+
+		
+		
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc);
 

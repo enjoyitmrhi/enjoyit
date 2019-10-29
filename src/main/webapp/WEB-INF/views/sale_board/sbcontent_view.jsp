@@ -9,6 +9,8 @@
 
 </head>
 <body>
+	<div class="container">
+
 	<h3>sbcontent_view</h3>
 
 	작성자 = ${wid }
@@ -19,6 +21,10 @@
 	<br />
 	<a href="qna_list?wid=${wid }">QnA</a>
 	<br />
+</div>
+<div>
+						<img alt="no image" src="resources/upload/git2.PNG">
+</div>
 
 </body>
 </html>

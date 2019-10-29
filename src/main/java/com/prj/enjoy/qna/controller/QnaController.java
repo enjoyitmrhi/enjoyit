@@ -1,5 +1,7 @@
 package com.prj.enjoy.qna.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.qna.dao.QnaDao;
 import com.prj.enjoy.qna.dto.QnaDto;
 import com.prj.enjoy.vopage.SearchVO;
@@ -116,13 +120,21 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "/qna_write")
-	public String write(HttpServletRequest request, Model model) {
+	public String write(HttpServletRequest request, Model model) throws IOException {
+		String attachPath = "resources\\upload\\";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/");
+		String path = uploadPath + attachPath;
+		System.out.println("path >>> " + path);
+
+		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
+				new DefaultFileRenamePolicy());
 
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 
-		String strContent = request.getParameter("qcontent");
-		String strTitle = request.getParameter("qtitle");
-		String strId = request.getParameter("qid");
+		String strContent = req.getParameter("qcontent");
+		String strTitle = req.getParameter("qtitle");
+		String strId = req.getParameter("qid");
+		
 
 		System.out.println("strContent = " + strContent);
 		System.out.println("strTitle = " + strTitle);

@@ -10,23 +10,28 @@
 
 </head>
 <body>
-	<form action="qna_list" method="post" name="form1">
+	<div class="container">
 
-		<script type="text/javascript">
-			function fnSubmitForm(page) {
-				document.form1.page.value = page;
-				document.form1.submit();
-			}
-		</script>
+		<form action="qna_list" method="post" name="form1">
+
+			<script type="text/javascript">
+				function fnSubmitForm(page) {
+					document.form1.page.value = page;
+					document.form1.submit();
+				}
+			</script>
+		</form>
+
+
 		<h3>qnalist</h3>
 		qaTitle : ${qatitle } &nbsp;&nbsp; qaContent : ${qacontent }
 		&nbsp;&nbsp; searchKeyword : ${searchKeyword } <input type="hidden"
 			name="page">
 
 
-		<table border="1 solid #333">
+		<table class= "table table-hover" >
 
-			<tr>
+			<tr class="table-success">
 				<td>글번호</td>
 				<td>제목</td>
 				<td>작성자</td>
@@ -83,9 +88,6 @@
 			</c:if>
 		</div>
 		<div>
-
-
-
 			<c:choose>
 				<c:when test="${qatitle}">
 					<input type="checkbox" name="searchType" checked="checked"
@@ -113,9 +115,9 @@
 		</div>
 
 
-	</form>
-	<div>
-		<a href="review_list">리뷰보기</a> <a href="board_list">게시글로 가기</a>
+		<div>
+			<a href="review_list">리뷰보기</a> <a href="board_list">게시글로 가기</a>
+		</div>
 	</div>
 </body>
 </html>

@@ -8,9 +8,10 @@
 <%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
-<body>
+<body>	<div class="container">
+
 	<h3>board_write_view</h3>
-	<form action="board_write" method="post">
+	<form action="board_write" method="post" enctype="multipart/form-data">
 		<table border="1 solid #fff">
 			<tr>
 				<td>아이디</td>
@@ -20,8 +21,7 @@
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td><input type="text" size="50" name="sbpic"
-					value="첨부파일로 올리는 사진"></td>
+				<td><input type="file" name="sbpic"></td>
 
 			</tr>
 			<tr>
@@ -46,5 +46,6 @@
 		<input type="submit" value="완료">
 	</form>
 	<a href="board_list"> 취소</a>
+	</div>
 </body>
 </html>
