@@ -9,47 +9,30 @@
 
 </head>
 <body>
-	<h3>write_view.jsp</h3>
-	<table>
-		<form action="review_write" method="post"
-			enctype="multipart/form-data">
+	<h3>review_write_view.jsp</h3>
+	<form action="review_write" method="post" enctype="multipart/form-data">
+		<table border="1">
 			<tr>
-				<td class="left">이름</td>
-				<td>${dto.cuid }</td>
+				<td colspan="2">${dto.sbcode }|${dto.cuid }</td>
 			</tr>
 			<tr>
-				<td class="left">제목</td>
-				<td><select name="rvtitle">
-						<option value="배송 빨라요!">배송 빨라요!</option>
-						<option value="아주 좋아요!">아주 좋아요!</option>
-						<option value="예뻐요 잘쓸게요~">예뻐요 잘쓸게요~</option>
-				</select></td>
-			<tr>
-				<td class="left">별점</td>
-				<td><select name="rvstar">
-						<option value="☆☆☆☆★">☆☆☆☆★</option>
-						<option value="☆☆☆★★">☆☆☆★★</option>
-						<option value="☆☆★★★">☆☆★★★</option>
-						<option value="☆★★★★">☆★★★★</option>
-						<option value="★★★★★" selected>★★★★★</option>
-				</select></td>
+				<td>${dto.rvdate }|${dto.rvnum }</td>
+				<th><input type="text" name="rvtitle" /></th>
 			</tr>
 			<tr>
-				<td class="left">내용</td>
-				<td><textarea type="text" name="rvcontent" rows="10"></textarea></td>
+				<td>내용</td>
+				<td><textarea name="rvcontent" rows="10"></textarea></td>
 			</tr>
 			<tr>
-				<td class="left">사진</td>
+				<td>첨부파일</td>
 				<td><input type="file" name="rvpic" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="write" />&nbsp;&nbsp;
 					<a href="review_list">목록보기</a></td>
 			</tr>
-
-		</form>
-	</table>
-
+		</table>
+	</form>
 
 </body>
 </html>

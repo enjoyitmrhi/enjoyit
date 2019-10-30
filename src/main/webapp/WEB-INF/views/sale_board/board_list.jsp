@@ -30,8 +30,8 @@
 					<td>${dto.sbcode }</td>
 					<td>${dto.sbtitle }</td>
 					<td><a
-						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}">${dto.sbpic }</a>
-						<img alt="no image" src="resources/upload/${dto.sbpic }">
+						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}"><img alt="no image" src="resources/upload/${dto.sbpic }" width="80px" height="80px"></a>
+						
 						</td>
 					<td>${dto.buid}</td>
 					<td>${dto.sbloc}</td>

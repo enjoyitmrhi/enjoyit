@@ -36,11 +36,12 @@
 				}
 			};
 	</script>
+	<div class="container">
 	<h3>content_view</h3>
 	상품판매자 :${wid }
 	<form action="qnaanswerview" method="post">
 		<input type="hidden" name="num" value="${num }">
-		<table border="1 solid #fff" width="300">
+		<table class="table table-hover">
 			<tr>
 				<td>글번호</td>
 				<td>${num }</td>
@@ -48,7 +49,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="10" cols="20" name="content">${content_view.qacontent }</textarea>
+				<td><textarea class="form-control" rows="10" name="content">${content_view.qacontent }</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -65,5 +66,6 @@
 	<button onclick="javascript:del_auth()">삭제하기</button>
 	&nbsp;&nbsp;
 	<button onclick="javascript:modify_auth()">수정하기</button>
+	</div>
 </body>
 </html>

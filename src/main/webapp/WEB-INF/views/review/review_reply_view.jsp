@@ -9,18 +9,33 @@
 
 </head>
 <body>
-	<h3>reply_view.jsp</h3>
-	<form action="review_list">
-		<table border="1">
+	<h3>review_reply_view.jsp</h3>
+	<form action="review_reply" method="post">
+		<input type="hidden" name="rvnum" value="${reply_view.rvnum }" /> <input
+			type="hidden" name="rvgroup" value="${reply_view.rvgroup }" /> <input
+			type="hidden" name="rvstep" value="${reply_view.rvstep }" /> <input
+			type="hidden" name="rvindent" value="${reply_view.rvindent }" />
+		<table width="500" cellpadding="0" cellspacing="0" border="1">
+
 			<tr>
-				<td>${reply_view.bunum }</td>
-				<td>${reply_view.rvdate }</td>
+				<td colspan="2">${reply_view.rvnum }|${reply_view.bunum }</td>
 			</tr>
 			<tr>
-				<td colspan="2">${reply_view.rvcontent }</td>
+				<td colspan="2">${reply_view.rvdate }</td>
+			</tr>
+			<tr>
+				<td>제목</td>
+				<td><input type="text" name="rvtitle" /></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea name="rvcontent" rows="10">
+			</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="reply" /></td>
 			</tr>
 		</table>
-		<input type="submit" value="뒤로가기" />
 	</form>
 </body>
 </html>

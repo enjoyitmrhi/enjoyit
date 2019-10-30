@@ -10,62 +10,96 @@
 
 </head>
 <body>
-	<h3>review_list</h3>
-	<form action="review_write" method="post">
-		<table border="1">
+	<div class="container">
+		<h3>review_list.jsp</h3>
+		<table class="table table-hover">
 			<tr>
-				<td colspan="2"><a href="review_write_view">리뷰 작성</a></td>
+				<th>상품번호</th>
+				<th>고객성함</th>
+				<th>제목</th>
+				<th>날짜</th>
+				<th>조회수</th>
+				<th>리뷰번호</th>
 			</tr>
-			<c:forEach items="${review_list}" var="dto">
+			<c:forEach items="${review_list }" var="dto">
 				<tr>
-					<th>${dto.rvtitle }</th>
-					<th>${dto.rvstar}</th>
-					<%-- <th><c:set var="rvstar" value="${dto.rvstar }" />
-							<c:if test="${dto.rvstar}">
-								<c:choose>
-									<c:when test="${dto.rvstar eq '1' }">
-										<img src="../../image/star1.png" alt="${rvstar }" />
-									</c:when>
-									<c:when test="${dto.rvstar eq '2' }">
-										<img src="../../image/star2.png" alt="${rvstar }" />
-									</c:when>
-									<c:when test="${dto.rvstar eq '3' }">
-										<img src="../../image/star3.png" alt="${rvstar }" />
-									</c:when>
-									<c:when test="${dto.rvstar eq '4' }">
-										<img src="../../image/star4.png" alt="${rvstar }" />
-									</c:when>
-									<c:when test="${dto.rvstar eq '5' }">
-										<img src="../../image/star5.png" alt="${rvstar }" />
-									</c:when>
-								</c:choose>
-							</c:if></th> --%>
-				</tr>
-
-				<tr>
-					<th>${dto.cunum }|${dto.sbcode }</th>
-					<th>${dto.rvdate }</th>
-				</tr>
-				<tr>
-					<th colspan="2">${dto.rvcontent}</th>
-				</tr>
-				<tr>
-					<th colspan="2">${dto.rvpic }</th>
-				</tr>
-
-				<!-- <tr>
-					<td colspan="2"><a href="#">더보기</a></td>
-				</tr> -->
-				<tr>
-					<td colspan="2"><a href="review_reply_write?bunum=b001">답변
-							달기 |</a><a href="review_reply_view?bunum=b001"> 답변 보기</a></td>
+					<td>${dto.sbcode }</td>
+					<td>${dto.cuid }</td>
+					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
+							begin="1" end="${dto.rvindent }" var="cnt">
+							<c:if test="${cnt eq endIndent }">
+								<img alt="" src="resources/imgs/reply.gif">[re]
+				</c:if>
+				&nbsp;
+			</c:forEach> <a href="review_content_view?rvnum=${dto.rvnum }">${dto.rvtitle }</a></td>
+					<td>${dto.rvdate }</td>
+					<td>${dto.rvhit }</td>
+					<td>${dto.rvnum }</td>
 				</tr>
 			</c:forEach>
+			<tr>
+				<td colspan="6"><a href="review_write_view">리뷰 작성</a></td>
+			</tr>
 		</table>
-	</form>
-
-	<div>
-		<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
+		<form action="review_list" method="post" id="form1" name="form1">
+			<input type="hidden" name="page" value="" />
+			TotRow:${searchVO.totRow }&nbsp; page/totPage:${searchVO.page }/${searchVO.totPage }
+			<script type="text/javascript">
+				function fnSubmitForm(page) {
+					document.form1.page.value = page;
+					document.form1.submit();
+				}
+			</script>
+			<div>
+				<c:if test="${searchVO.totPage>1}">
+					<c:if test="${searchVO.page>1}">
+						<a href="review_list?page=1">[처음]</a>
+						<a href="review_list?page=${searchVO.page-1 }">[이전]</a>
+					</c:if>
+					<c:forEach begin="${searchVO.pageStart}" end="${searchVO.pageEnd}"
+						var="i">
+						<c:choose>
+							<c:when test="${i eq searchVO.page }">
+								<c:out value="${i }"></c:out>
+							</c:when>
+							<c:otherwise>
+								<a href="javascript:fnSubmitForm(${i })"><c:out
+										value="${i }"></c:out></a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${searchVO.totPage>searchVO.page}">
+						<a href="review_list?page=${searchVO.page+1 }">[다음]</a>
+						<a href="review_list?page=${searchVO.totPage }">[마지막]</a>
+					</c:if>
+				</c:if>
+			</div>
+			<div>
+				<c:choose>
+					<c:when test="${rvtitle}">
+						<input type="checkbox" name="searchType" value="rvtitle"
+							checked="checked" />
+					</c:when>
+					<c:otherwise>
+						<input type="checkbox" name="searchType" value="rvtitle" />
+					</c:otherwise>
+				</c:choose>
+				<label>제목</label>
+				<c:choose>
+					<c:when test="${rvcontent}">
+						<input type="checkbox" name="searchType" value="rvcontent"
+							checked="checked" />
+					</c:when>
+					<c:otherwise>
+						<input type="checkbox" name="searchType" value="rvcontent" />
+					</c:otherwise>
+				</c:choose>
+				<label>내용</label> <input type="text" name="sk" style="width: 150px;"
+					maxlength="50" value="${serachKeyword }" /> <input type="submit"
+					name="btn_search" value="검색" />
+			</div>
+		</form>
 	</div>
+
 </body>
 </html>

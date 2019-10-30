@@ -12,7 +12,7 @@
 
 	<script>
 		function cancle() {
-			location.href="qna_list"
+			location.href = "qna_list"
 		}
 	</script>
 	<div class="container">
