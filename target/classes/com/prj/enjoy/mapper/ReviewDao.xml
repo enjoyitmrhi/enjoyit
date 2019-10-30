@@ -68,6 +68,16 @@
 		VALUES
 		(REVIEW_SEQ.NEXTVAL,1,'cguest1',SYSDATE,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3})
 	</insert>
+	<update id="modify">
+		UPDATE REVIEW SET CUID='cguest1',RVTITLE=#{param1 },RVCONTENT=#{param2 }, RVPIC=#{param3 }
+		WHERE
+		RVNUM=#{param4 }
+	</update>
+	<delete id="delete">
+		DELETE FROM REVIEW WHERE RVNUM=#{param1}
+	
+	</delete>
+
 	<insert id="reply">
 		INSERT INTO
 		REVIEW(RVNUM,BUNUM,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT)
@@ -94,5 +104,9 @@
 		SELECT * FROM REVIEW
 		WHERE
 		RVNUM=#{param1}
+	</select>
+	<select id="getRvpic" resultType="String">
+		SELECT RVPIC FROM REVIEW
+		WHERE RVTITLE=#{param1 }	
 	</select>
 </mapper>

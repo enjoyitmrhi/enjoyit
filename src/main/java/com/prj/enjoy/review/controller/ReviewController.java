@@ -174,8 +174,11 @@ public class ReviewController {
 		String strnum = req.getParameter("rvnum");
 		int rvnum = Integer.parseInt(strnum);
 
-		String rvpic = req.getFilesystemName("rvpic");
+		String rvpic = dao.getRvpic(rvtitle);
 
+		if (rvpic == null) {
+			rvpic = "";
+		}
 		dao.modify(rvtitle, rvcontent, rvpic, rvnum);
 		return "redirect:review_list";
 	}
