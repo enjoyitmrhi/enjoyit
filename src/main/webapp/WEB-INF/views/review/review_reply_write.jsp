@@ -5,17 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp"%>
 
 </head>
 <body>
 	<h3>reply_write.jsp</h3>
-	<table border="1">
-		<form action="review_reply" method="post">
-			<input type="hidden" name="buid" value="${reply_write.buid }" /> <input
-				type="hidden" name="rvgroup" value="${reply_write.rvgroup }" /> <input
-				type="hidden" name="rvstep" value="${reply_write.rvstep }" /> <input
-				type="hidden" name="rvindent" value="${reply_write.rvindent }" />
+	<form action="review_reply" method="post">
+			<input type="hidden" name="buid" value="${reply_write.buid }" />
+			<input type="hidden" name="rvgroup" value="${reply_write.rvgroup }" />
+			<input type="hidden" name="rvstep" value="${reply_write.rvstep }" />
+			<input type="hidden" name="rvindent" value="${reply_write.rvindent }" />
+		<table border="1">
 			<tr>
 				<td><input type="text" name="bunum"
 					value="${reply_write.bunum}" /></td>
@@ -29,7 +28,7 @@
 			<tr>
 				<td colspan="2"><input type="submit" value="reply" /></td>
 			</tr>
-		</form>
-	</table>
+		</table>
+	</form>
 </body>
 </html>

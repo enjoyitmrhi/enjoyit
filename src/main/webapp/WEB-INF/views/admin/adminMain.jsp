@@ -12,7 +12,6 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp"%>
 
 
 
@@ -121,7 +120,6 @@
 	</div>
 
 
-	<%@include file="/WEB-INF/include/footer.jsp"%>
 
 
 </body>
