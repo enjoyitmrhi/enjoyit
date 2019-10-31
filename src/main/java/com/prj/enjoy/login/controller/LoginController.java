@@ -1,7 +1,9 @@
 package com.prj.enjoy.login.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,8 +12,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.prj.enjoy.login.dao.LoginDao;
@@ -112,7 +117,7 @@ public class LoginController {
 		String cutel = request.getParameter("cutel");
 		String cuemail = request.getParameter("cuemail");
 
-		int result = chkCid(cuid);
+		int result =0;/*dao.chkCid(cuid);*/ ;
 
 		List<String> errors = new ArrayList();
 		if (result > 0) {
@@ -131,17 +136,19 @@ public class LoginController {
 		}
 
 	}
-
-	private int chkCid(String cuid) {
+	@RequestMapping("/chk_cid.do")
+	private @ResponseBody String chkCid(@RequestParam("userid") String cuid) {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		int result = dao.chkCid(cuid);
+		System.out.println("cuid >>>>>>"+cuid);
+		String result=dao.chkCid(cuid);
 		System.out.println(result);
+
 		return result;
 	}
 
 	@RequestMapping("/bJoin")
 	public String bJoin() {
-		return "blogin/bJoin";
+		return "login/bJoin";
 	}
 
 	@RequestMapping("/bJoinProc")
@@ -157,8 +164,8 @@ public class LoginController {
 		String butel = request.getParameter("butel");
 		String buaddr = request.getParameter("buaddr");
 
-		int result = chkBid(buid);
-		List<String> errors = new ArrayList();
+		int result = 0;
+		ArrayList<String> errors = new ArrayList();
 		if (result > 0) {
 			errors.add("check ID");
 		}
@@ -174,10 +181,11 @@ public class LoginController {
 		}
 
 	}
-
-	private int chkBid(String bid) {
+	@RequestMapping("/chk_bid.do")
+	private @ResponseBody String chkBid(@RequestParam("userid") String buid) {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		int result = dao.chkBid(bid);
+		System.out.println("buid >>>>>>"+buid);
+		String result=dao.chkBid(buid);
 		System.out.println(result);
 
 		return result;

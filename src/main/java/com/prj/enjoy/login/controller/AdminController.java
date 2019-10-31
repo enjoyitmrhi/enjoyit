@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.prj.enjoy.login.dao.AdminDao;
+import com.prj.enjoy.login.dto.bSearchVO;
+import com.prj.enjoy.login.dto.cSearchVO;
 
 @Controller
 public class AdminController {
@@ -40,27 +42,67 @@ public class AdminController {
 	}
 
 	@RequestMapping("/admin/adminMain")
-	public String adminMain(HttpServletRequest request, Model model) {
+	public String adminMain(HttpServletRequest request, cSearchVO csearchVO, bSearchVO bsearchVO, Model model) {
 		System.out.println("passing adminMain");
-		String cusort = request.getParameter("sort");
-		String busort = request.getParameter("sort");
+//		Map<String, String> map =new HashMap<String, String>();
+		String cusort = "";
+		String busort = "";
+		String sort= request.getParameter("sort");
+		if(sort != null) {
+		if (sort.equals("num")) {
+			model.addAttribute("num","true");
+		}else if (sort.equals("name")) {
+			model.addAttribute("name","true");
+		}else if (sort.equals("date")) {
+			model.addAttribute("date","true");
+		}
+	}
+			
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		if (cusort == null) {
-			System.out.println(busort);
+		int ctotal = 0 ; 
+		ctotal = dao.selectCuCount();
+		String strPage = request.getParameter("cpage");
+		if (strPage == null || strPage.equals("")) {
+			strPage = "1";
 		}
-		if (cusort != null && busort != null) {
-			cusort = "cu" + cusort;
+		int cpage =Integer.parseInt(strPage);
+		csearchVO.setPage(cpage);
+		csearchVO.pageCalculate(ctotal);
+		
+		int rowStart = csearchVO.getRowStart();
+		int rowEnd = csearchVO.getRowEnd();
+		if (sort==null || sort.equals("")) {
+			cusort=null;
+			busort=null;
+		}
+		else if (sort !=null ) {
+			cusort = "cu" + sort;
 			System.out.println(cusort);
-			busort = "bu" + busort;
+			busort = "bu" + sort;
 			System.out.println(busort);
-			model.addAttribute("clist", dao.getCustomer(cusort));
-			model.addAttribute("blist", dao.getBusiness(busort));
-		} else {
-			model.addAttribute("clist", dao.getCustomer());
-			model.addAttribute("blist", dao.getBusiness());
-
 		}
-
+		
+		
+		System.out.println(cusort);
+		model.addAttribute("clist", dao.getCustomer(cusort, rowStart, rowEnd));
+		model.addAttribute("cSearchVO",csearchVO);
+		
+		int btotal = 0 ; 
+		btotal = dao.selectBuCount();
+		strPage = request.getParameter("bpage");
+		if (strPage == null || strPage.equals("")) {
+			strPage = "1";
+		}
+		
+		int bpage =Integer.parseInt(strPage);
+		bsearchVO.setPage(bpage);
+		bsearchVO.pageCalculate(btotal);
+		
+		rowStart = bsearchVO.getRowStart();
+		rowEnd = bsearchVO.getRowEnd();
+		
+		model.addAttribute("blist", dao.getBusiness(busort, rowStart, rowEnd));
+		model.addAttribute("bSearchVO",bsearchVO);
 		return "admin/adminMain";
 	}
 
