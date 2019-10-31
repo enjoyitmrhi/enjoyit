@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< Updated upstream
 Built-By: m003
-=======
-Built-By: Avitus
->>>>>>> Stashed changes
 Build-Jdk: 1.8.0_201
 Created-By: Maven Integration for Eclipse
 

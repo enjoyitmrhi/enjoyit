@@ -15,6 +15,7 @@
 	작성자 = ${wid }
 	<br /> 상품코드 = ${sbcode }
 	<br /> 로그인 한 유저 = ${session_bid }${session_cid }
+	<br /> 상품 리뷰 평균 = 
 	<br />
 	<a href="review_list"> 리뷰보기</a>
 	<br />
