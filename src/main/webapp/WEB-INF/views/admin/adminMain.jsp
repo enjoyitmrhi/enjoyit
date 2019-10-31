@@ -4,15 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp"%>
 
 
 
@@ -20,48 +17,48 @@
 <body>
 
 	<script>
-	function fnSubmitcForm(page) {
-		document.form1.cpage.value=page;
-		document.form1.submit();
-	}
-	function fnSubmitbForm(page) {
-		document.form1.bpage.value=page;
-		document.form1.submit();
-	}
+		function fnSubmitcForm(page) {
+			document.form1.cpage.value = page;
+			document.form1.submit();
+		}
+		function fnSubmitbForm(page) {
+			document.form1.bpage.value = page;
+			document.form1.submit();
+		}
 	</script>
 
 
 	<div class="container">
 
-		<div style="width: 20px; display: inline;" >
+		<div style="width: 20px; display: inline;">
 			<form action="adminMain" name="form1" id="form1" method="post">
-			<input type="hidden" name="cpage" value="">
-			<input type="hidden" name="bpage" value="">
-				<select class="form-control" name="sort" onchange="chsort()">
-					<option >정렬방법</option>
+				<input type="hidden" name="cpage" value=""> <input
+					type="hidden" name="bpage" value=""> <select
+					class="form-control" name="sort" onchange="chsort()">
+					<option>정렬방법</option>
 					<c:choose>
-					<c:when test="${num }">
-						<option value="num" selected="selected">회원번호</option>
-					</c:when>
-					<c:otherwise>
-						<option value="num" >회원번호</option>
-					</c:otherwise>
+						<c:when test="${num }">
+							<option value="num" selected="selected">회원번호</option>
+						</c:when>
+						<c:otherwise>
+							<option value="num">회원번호</option>
+						</c:otherwise>
 					</c:choose>
 					<c:choose>
-					<c:when test="${name }">
-						<option value="name" selected="selected">회원명</option>
-					</c:when>
-					<c:otherwise>
-						<option value="name" >회원명</option>
-					</c:otherwise>
+						<c:when test="${name }">
+							<option value="name" selected="selected">회원명</option>
+						</c:when>
+						<c:otherwise>
+							<option value="name">회원명</option>
+						</c:otherwise>
 					</c:choose>
 					<c:choose>
-					<c:when test="${date }">
-						<option value="date" selected="selected">가입일</option>
-					</c:when>
-					<c:otherwise>
-						<option value="date" >가입일</option>
-					</c:otherwise>
+						<c:when test="${date }">
+							<option value="date" selected="selected">가입일</option>
+						</c:when>
+						<c:otherwise>
+							<option value="date">가입일</option>
+						</c:otherwise>
 					</c:choose>
 					<!-- <option value="num">회원번호</option>
 					<option value="name">이름순</option>
@@ -103,36 +100,38 @@
 				</c:forEach>
 			</table>
 		</form>
-		
+
 		<!-- paging -->
-	TotRow: ${cSearchVO.totRow }&nbsp; page/totPage:${cSearchVO.page }/${cSearchVO.totPage }<br>
-	<form action="list" method="post">
-	<input type="hidden" name="cpage" value="">
-	<div>
-	<c:if test="${cSearchVO.totPage > 1 }">	
-	<c:if test="${cSearchVO.page>1 }">
-		<a href="adminMain?cpage=1">[처음]</a>
-		<a href="adminMain?cpage=${cSearchVO.page-1 }">[이전]</a>
-	</c:if>
-	<c:forEach begin="${cSearchVO.pageStart }" end="${cSearchVO.pageEnd }" var="i">
-		<c:choose>
-		<c:when test="${i eq cSearchVO.page }">
-			<c:out value="${i }" />
-		</c:when>
-		<c:otherwise>
-			<%-- <a href="list?page=${i }"><c:out value="${i }" /></a> --%>
-			<a href="javascript:fnSubmitcForm(${i })"><c:out value="${i }"/></a>
-		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:if test="${cSearchVO.totPage>cSearchVO.page }">
-		<a href="adminMain?cpage=${cSearchVO.page+1 }">[다음]</a>
-		<a href="adminMain?cpage=${cSearchVO.totPage }">[마지막]</a>
-	</c:if>
-	</c:if>
-	</div>
-	</form>
-		
+		TotRow: ${cSearchVO.totRow }&nbsp; page/totPage:${cSearchVO.page }/${cSearchVO.totPage }<br>
+		<form action="list" method="post">
+			<input type="hidden" name="cpage" value="">
+			<div>
+				<c:if test="${cSearchVO.totPage > 1 }">
+					<c:if test="${cSearchVO.page>1 }">
+						<a href="adminMain?cpage=1">[처음]</a>
+						<a href="adminMain?cpage=${cSearchVO.page-1 }">[이전]</a>
+					</c:if>
+					<c:forEach begin="${cSearchVO.pageStart }"
+						end="${cSearchVO.pageEnd }" var="i">
+						<c:choose>
+							<c:when test="${i eq cSearchVO.page }">
+								<c:out value="${i }" />
+							</c:when>
+							<c:otherwise>
+								<%-- <a href="list?page=${i }"><c:out value="${i }" /></a> --%>
+								<a href="javascript:fnSubmitcForm(${i })"><c:out
+										value="${i }" /></a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${cSearchVO.totPage>cSearchVO.page }">
+						<a href="adminMain?cpage=${cSearchVO.page+1 }">[다음]</a>
+						<a href="adminMain?cpage=${cSearchVO.totPage }">[마지막]</a>
+					</c:if>
+				</c:if>
+			</div>
+		</form>
+
 		<br>
 		<form action="../del_bu" method="post">
 			<h3>가맹회원 목록</h3>
@@ -169,40 +168,41 @@
 
 			</table>
 		</form>
-		
+
 		<!-- paging -->
-	TotRow: ${bSearchVO.totRow }&nbsp; page/totPage:${bSearchVO.page }/${bSearchVO.totPage }<br>
-	<form action="list" method="post" >
-	<input type="hidden" name="bpage" value="">
-	<div>
-	<c:if test="${bSearchVO.totPage > 1 }">	
-	<c:if test="${bSearchVO.page>1 }">
-		<a href="adminMain?bpage=1">[처음]</a>
-		<a href="adminMain?bpage=${bSearchVO.page-1 }">[이전]</a>
-	</c:if>
-	<c:forEach begin="${bSearchVO.pageStart }" end="${bSearchVO.pageEnd }" var="i">
-		<c:choose>
-		<c:when test="${i eq bSearchVO.page }">
-			<c:out value="${i }" />
-		</c:when>
-		<c:otherwise>
-			<%-- <a href="list?page=${i }"><c:out value="${i }" /></a> --%>
-			<a href="javascript:fnSubmitbForm(${i })"><c:out value="${i }"/></a>
-		</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:if test="${bSearchVO.totPage>bSearchVO.page }">
-		<a href="adminMain?bpage=${bSearchVO.page+1 }">[다음]</a>
-		<a href="adminMain?bpage=${bSearchVO.totPage }">[마지막]</a>
-	</c:if>
-	</c:if>
-	</div>
-	</form>
-	
+		TotRow: ${bSearchVO.totRow }&nbsp; page/totPage:${bSearchVO.page }/${bSearchVO.totPage }<br>
+		<form action="list" method="post">
+			<input type="hidden" name="bpage" value="">
+			<div>
+				<c:if test="${bSearchVO.totPage > 1 }">
+					<c:if test="${bSearchVO.page>1 }">
+						<a href="adminMain?bpage=1">[처음]</a>
+						<a href="adminMain?bpage=${bSearchVO.page-1 }">[이전]</a>
+					</c:if>
+					<c:forEach begin="${bSearchVO.pageStart }"
+						end="${bSearchVO.pageEnd }" var="i">
+						<c:choose>
+							<c:when test="${i eq bSearchVO.page }">
+								<c:out value="${i }" />
+							</c:when>
+							<c:otherwise>
+								<%-- <a href="list?page=${i }"><c:out value="${i }" /></a> --%>
+								<a href="javascript:fnSubmitbForm(${i })"><c:out
+										value="${i }" /></a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${bSearchVO.totPage>bSearchVO.page }">
+						<a href="adminMain?bpage=${bSearchVO.page+1 }">[다음]</a>
+						<a href="adminMain?bpage=${bSearchVO.totPage }">[마지막]</a>
+					</c:if>
+				</c:if>
+			</div>
+		</form>
+
 	</div>
 
 
-	<%@include file="/WEB-INF/include/footer.jsp"%>
 
 
 </body>

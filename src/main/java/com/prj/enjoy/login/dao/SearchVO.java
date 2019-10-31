@@ -1,6 +1,6 @@
 package com.prj.enjoy.login.dao;
 
-public class SearchVO extends PageVO {
+public class SearchVO  {
 	private String bgno;
 	private String searchKeyword = "";
 	private String searchType = "";

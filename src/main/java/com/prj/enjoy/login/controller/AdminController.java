@@ -18,7 +18,7 @@ public class AdminController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping("admin")
+	@RequestMapping("/admin")
 	public String admin() {
 		return "admin";
 	}
