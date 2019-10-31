@@ -1,7 +1,5 @@
 package com.prj.enjoy.saleboard.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
