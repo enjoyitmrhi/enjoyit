@@ -3,32 +3,68 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prj.enjoy.login.dao.AdminDao">
-	<sql id="sort">
+	  <sql id="csort">
 		<choose>
-			<when test="value == null">
+			<when test="cusort==null">
 			</when>
-			<otherwise>
-				ORDER BY CONVERT (${value}, 'US8ICL') ASC
-			</otherwise>
-		</choose>
+    		<when test="cusort.equals('cunum')">
+    		ORDER BY CONVERT (CUNUM, 'US8ICL') ASC
+			</when>	
+			<when test="cusort.equals('cuname')">
+    		ORDER BY CONVERT (CUNAME, 'US8ICL') ASC
+			</when>	
+			<when test="cusort.equals('cudate')">
+    		ORDER BY CONVERT (CUDATE, 'US8ICL') ASC
+			</when>	
+		
+  		</choose>
 	</sql>
+	<sql id="bsort">
+		<choose>
+			<when test="busort==null">
+			</when>
+    		<when test="busort.equals('bunum')">
+    		ORDER BY CONVERT (BUNUM, 'US8ICL') ASC
+			</when>	
+			<when test="busort.equals('buname')">
+    		ORDER BY CONVERT (BUNAME, 'US8ICL') ASC
+			</when>	
+			<when test="busort.equals('budate')">
+    		ORDER BY CONVERT (BUDATE, 'US8ICL') ASC
+			</when>	
+		
+  		</choose>
+	</sql> 
 
 	<select id="getAdmin" resultType="com.prj.enjoy.login.dto.Administrator">
 		SELECT * FROM ADMINISTRATOR
 		WHERE ADID= #{param1}
 	</select>
 
-	<select id="getCustomer" parameterType="string"
+	<select id="getCustomer" 
 		resultType="com.prj.enjoy.login.dto.Customer">
-		SELECT * FROM CUSTOMER
-		<include refid="sort" />
+		SELECT CUNUM,CUID,CUNAME,CUPW,CUADDR,CUEMAIL,CUBIRTH,CUGENDER,CUTEL,CUDATE 
+		FROM ( SELECT CUNUM,CUID,CUNAME,CUPW,CUADDR,CUEMAIL,CUBIRTH,CUGENDER,CUTEL,CUDATE , ROW_NUMBER() OVER (ORDER BY CUNUM )C_SEQ FROM CUSTOMER)
+		WHERE C_SEQ BETWEEN #{rowStart} AND #{rowEnd}
+		<include refid="csort" />
 	</select>
-	<select id="getBusiness" parameterType="string"
+		
+	<select id="getBusiness"
 		resultType="com.prj.enjoy.login.dto.Business">
-		SELECT * FROM BUSINESS
-		<include refid="sort" />
+		SELECT BUNUM,BUID,BUNAME,BUPW,BUADDR,BUEMAIL,BURENUM,BUTEL,BUDATE 
+		FROM ( SELECT BUNUM,BUID,BUNAME,BUPW,BUADDR,BUEMAIL,BURENUM,BUTEL,BUDATE , ROW_NUMBER() OVER (ORDER BY BUNUM )B_SEQ FROM BUSINESS)
+		WHERE B_SEQ BETWEEN #{rowStart} AND #{rowEnd}
+		<include refid="bsort" />
 	</select>
-
+	
+	<select id="selectCuCount" resultType="Integer">
+		SELECT COUNT(*) FROM CUSTOMER
+	</select>
+	
+	<select id="selectBuCount" resultType="Integer">
+		SELECT COUNT(*) FROM BUSINESS
+	</select>
+	
 	<select id="getCuInfo" resultType="com.prj.enjoy.login.dto.Customer">
 		SELECT * FROM CUSTOMER WHERE
 		CUNUM=#{param1}
