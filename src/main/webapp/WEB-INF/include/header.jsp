@@ -37,7 +37,12 @@
 		<c:if test="${session_bid != null || session_cid != null  }">
 			<form class="form-inline my-2 my-lg-0" action="logout">
 
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+				<button class="btn btn-secondary" type="submit">Logout</button>
+
+			</form>
+				<form class="form-inline my-2 my-lg-0" action="cuMypage">
+
+				<button class="btn btn-active" type="submit">MyPage</button>
 
 			</form>
 
@@ -45,6 +50,9 @@
 		<c:if test="${session_bid == null && session_cid == null  }">
 			<form class="form-inline my-2 my-lg-0" action="login">
 				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
+			</form>
+			<form class="form-inline my-2 my-lg-0" action="join">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">join</button>
 			</form>
 
 		</c:if>
