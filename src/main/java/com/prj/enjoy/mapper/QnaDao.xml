@@ -104,5 +104,11 @@
 		#{param2}
 	</update>
 
-
+	<select id="answer_view" resultType="String">
+		SELECT QACONTENT FROM QNA WHERE QAGROUP = #{param1} AND QAINDENT = 1
+	</select>
+	
+	<select id="qnaboardcount" resultType="Integer">
+		SELECT COUNT(*) FROM QNA WHERE CUID = #{param1}
+	</select>
 </mapper>

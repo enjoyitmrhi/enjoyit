@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.qna.dao.QnaDao;
 import com.prj.enjoy.qna.dto.QnaDto;
 import com.prj.enjoy.vopage.SearchVO;
@@ -109,6 +110,17 @@ public class QnaController {
 		return "qna/qna_list";
 
 	}
+	
+	@RequestMapping(value = "answer_view.do")
+	public @ResponseBody ModelAndView answer_view(@RequestParam("qnum") String qanum) {
+		System.out.println(qanum);
+		QnaDao dao=sqlSession.getMapper(QnaDao.class);
+		ModelAndView mav= new ModelAndView();
+		System.out.println("뭔내용인교>>>"+ dao.answer_view(qanum));
+		mav.addObject("content", dao.answer_view(qanum));
+		return mav;
+	}
+	
 
 	@RequestMapping(value = "/qna_write_view")
 	public String qna_write_view(HttpServletRequest request, Model model) {
@@ -121,19 +133,19 @@ public class QnaController {
 
 	@RequestMapping(value = "/qna_write")
 	public String write(HttpServletRequest request, Model model) throws IOException {
-		String attachPath = "resources\\upload\\";
+		/*String attachPath = "resources\\upload\\";
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
 		String path = uploadPath + attachPath;
 		System.out.println("path >>> " + path);
 
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
 				new DefaultFileRenamePolicy());
-
+*/
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 
-		String strContent = req.getParameter("qcontent");
-		String strTitle = req.getParameter("qtitle");
-		String strId = req.getParameter("qid");
+		String strContent = request.getParameter("qcontent");
+		String strTitle = request.getParameter("qtitle");
+		String strId = request.getParameter("qid");
 		
 
 		System.out.println("strContent = " + strContent);

@@ -39,7 +39,12 @@
 			<c:if test="${session_cid != null }">
 				<li><a href="board_list">BOARD</a></li>
 			</c:if>
-
+			<c:if test="${session_bid != null }">
+				<li><a href="buMypage">My Page</a></li>
+			</c:if>
+			<c:if test="${session_cid != null }">
+				<li><a href="cuMypage">My Page</a></li>
+			</c:if>
 
 		</ul>
 	</div>

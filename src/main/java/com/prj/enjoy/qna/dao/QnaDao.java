@@ -2,6 +2,8 @@ package com.prj.enjoy.qna.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.prj.enjoy.qna.dto.QnaDto;
 
 public interface QnaDao {
@@ -23,4 +25,9 @@ public interface QnaDao {
 	void replyShape(int group, int step);
 
 	int selectBoardCount(String searchKeyword, String selNum);
+	
+	ModelAndView answer_view(String qanum);
+	
+	int qnaboardcount(String cuid);
+	
 }
