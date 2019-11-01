@@ -5,10 +5,68 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="resources/js/jQueryRotateCompressed.js"></script>
 <title>Insert title here</title>
 
 </head>
 <body>
+<script type="text/javascript">
+//<![CDATA[
+function show_block(elem,ID) {
+	var menu = document.getElementById(ID);
+	if (elem.className !='opened') {
+	    elem.className ='opened';
+	    menu.style.display ="block";
+	    /* alert(ID); */
+	    /* $.ajax({
+	    	async: false,
+	    	type : "POST",
+			url : "answer_view.do",
+			data : {"qnum" : ID},
+			dataType : "XML",
+			contentType : "text",
+            success: function(data){
+            	alert(data.content);
+            },error : function name() {
+            	alert(fail);
+			}
+	    }); */ 
+	    $.load("/answer_view.do",{"qnum" : ID}, function(){alert(data);});
+	    
+	}  else {
+		elem.className = 'closed';
+	    menu.style.display = "none";
+	}
+}
+//]]>
+</script>
+
+<!-- 
+<script type="text/javascript">
+//<![CDATA[
+function clickshow(elem,ID) {
+ var menu = document.getElementById(ID);
+ if (elem.className !='closed') {
+    elem.className = 'closed';
+    menu.style.display = "none";
+ } else {
+    elem.className ='opened';
+    menu.style.display ="block";
+}}
+//]]>
+</script>
+<h3 class="closed" onclick="clickshow(this,'categories')">처음에는 닫힌 폴더</h3>
+<div id="categories" style="display: none;">
+<ol>
+<li>첫번째 요소</li>
+<li>두번째 요소</li>
+<li>그럼 안녕</li>
+</ol>
+</div>
+<br>
+ -->
+
 	<div class="container">
 
 		<form action="qna_list" method="post" name="form1">
@@ -38,6 +96,7 @@
 			</tr>
 
 			<c:forEach items="${qnalist }" var="dto">
+			<c:if test="${dto.qaindent ==0}">
 				<tr>
 
 					<td>${dto.qanum }</td>
@@ -48,10 +107,19 @@
 				<c:if test="${cnt eq endIndent }">
 								<a>[re]</a>
 							</c:if>
-						</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a></td>
-					<td>${dto.cuid }</td>
+						</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a>
+						<a class="closed" href="javascript:show_block(this,${dto.qanum })"><img id="image" src="resources/imgs/tri_edit.png" style="width: 30px; height: 30px;"></a></td>
+					
+					<c:if test="${dto.qaindent==0 }"><td>${dto.cuid }</td></c:if>
+					<c:if test="${dto.qaindent==1 }"><td>${dto.buid }</td></c:if>
 
 				</tr>
+				
+				<tr id="${dto.qanum }" style="display: none;">
+					<td colspan="3">${dto.qanum }</td>
+				</tr>
+				
+			</c:if>
 			</c:forEach>
 
 			<tr>
@@ -118,5 +186,6 @@
 			<a href="review_list">리뷰보기</a> <a href="board_list">게시글로 가기</a>
 		</div>
 	</div>
+
 </body>
 </html>

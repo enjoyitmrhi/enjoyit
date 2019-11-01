@@ -26,6 +26,7 @@ public interface ReviewDao {
 	public void modify(String rvtitle, String rvcontent, String rvpic, int rvnum);
 
 	public void delete(int rvnum);
-
+	
+	int rvboardcount (String cuid);
 
 }

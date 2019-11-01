@@ -29,7 +29,8 @@
 		function reply_auth() {
 			if (${wid == session_bid}) {			
 				alert("답글가능합니다.");
-			 	location.href="qnaanswerview?num="+delnum;	 	
+			 	/* location.href="qnaanswerview?num="+delnum; */
+				document.ansform.submit();
 			}else {
 				alert("상품판매자가 아닙니다.");
 				}
@@ -38,7 +39,7 @@
 	<div class="container">
 	<h3>content_view</h3>
 	상품판매자 :${wid }
-	<form action="qnaanswerview" method="post">
+	<form action="qnaanswerview" method="post" name="ansform" id="ansform">
 		<input type="hidden" name="num" value="${num }">
 		<table class="table table-hover">
 			<tr>
@@ -57,7 +58,8 @@
 			</tr>
 
 		</table>
-		<button onclick="javascript:reply_auth()">답글달기</button>
+		<input type="button" value="답글달기" onclick="javascript:reply_auth()">
+		<!-- <button onclick="javascript:reply_auth()">답글달기</button> -->
 		<input type="submit" style="display: none;">
 
 	</form>

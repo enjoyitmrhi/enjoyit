@@ -28,7 +28,6 @@ public class AdminController {
 		String adid = request.getParameter("adid");
 		String adpw = request.getParameter("adpw");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-
 		if (dao.getAdmin(adid) == null) {
 			System.out.println("no id");
 			return "/admin";
@@ -39,6 +38,7 @@ public class AdminController {
 			System.out.println("login success");
 			return "redirect:admin/adminMain";
 		}
+		
 	}
 
 	@RequestMapping("/admin/adminMain")
