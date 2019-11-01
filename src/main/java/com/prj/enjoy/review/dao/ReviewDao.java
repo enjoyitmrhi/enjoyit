@@ -29,8 +29,8 @@ public interface ReviewDao {
 	public void delete(int rvnum);
 	
 	public String getRvpic(String rvtitle);
-
-
+	
+	int rvboardcount (String cuid);
 
 }
 

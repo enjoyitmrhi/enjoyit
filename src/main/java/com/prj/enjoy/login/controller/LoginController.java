@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.prj.enjoy.login.dao.AdminDao;
 import com.prj.enjoy.login.dao.LoginDao;
 import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.login.dto.Customer;
+import com.prj.enjoy.qna.dao.QnaDao;
+import com.prj.enjoy.review.dao.ReviewDao;
 
 @Controller
 public class LoginController {
@@ -176,7 +179,7 @@ public class LoginController {
 		}
 		System.out.println("errors :" + errors.size());
 		if (errors.size() > 0) {
-			return "blogin/bJoin";
+			return "login/bJoin";
 		} else {
 			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr);
 			return "redirect:board_list";
@@ -192,5 +195,39 @@ public class LoginController {
 		System.out.println(result);
 
 		return result;
+	}
+	
+	@RequestMapping("/cuMypage")
+	public String cuMypage(HttpSession session, Model model) {
+		String cuid=(String) session.getAttribute("session_cid");
+		System.out.println(cuid);
+		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
+		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
+		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
+		model.addAttribute("cu",logdao.getCustomer(cuid));
+		model.addAttribute("qnacnt",qnadao.qnaboardcount(cuid));
+		model.addAttribute("rvcnt",rvdao.rvboardcount(cuid));
+		
+		return "login/cuMypage";
+	}
+	
+	@RequestMapping("/del_cuself")
+	public String del_cuself(HttpServletRequest request, HttpSession session) {
+		System.out.println("passing del_cu");
+		String cunum = request.getParameter("cunum");
+		System.out.println("cunum : " + cunum);
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		dao.del_cu(cunum);
+		logout(session);
+		return "redirect:index";
+
+	}
+	
+	@RequestMapping("/buMypage")
+	public String buMypage(HttpSession session, Model model) {
+		String buid=(String) session.getAttribute("session_bid");
+		LoginDao dao = sqlSession.getMapper(LoginDao.class);
+		model.addAttribute("bu",dao.getBusiness(buid));
+		return "login/buMypage";
 	}
 }
