@@ -23,34 +23,14 @@ public class SbController {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 
-		String id = null;
-		id = request.getParameter("id");
-		System.out.println(id);
-		int result = checkid(id);
-		System.out.println("result : " + result);
-
-		if (result == 1) {
-
-			model.addAttribute("checkid", 1);
-		} else {
-			model.addAttribute("checkid", "");
-		}
+	
 
 		model.addAttribute("boardlist", dao.board_list());
-		model.addAttribute("id", id);
+	
 		return "sale_board/board_list";
 	}
 
-	private int checkid(String id) {
-		SbDao dao = sqlSession.getMapper(SbDao.class);
-		String strId = id;
-		int result = 0;
-		if (strId != null) {
-			result = dao.checkBid(strId);
-
-		}
-		return result;
-	}
+	
 
 	@RequestMapping(value = "/sbcontent_view")
 	public String sbcontent_view(HttpServletRequest request, Model model) {

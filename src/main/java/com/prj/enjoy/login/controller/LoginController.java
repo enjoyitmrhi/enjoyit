@@ -45,7 +45,7 @@ public class LoginController {
 		// 세션 삭제
 		session.invalidate();
 
-		return "redirect:/index";
+		return "redirect:/login";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/loginProc")
@@ -67,7 +67,7 @@ public class LoginController {
 			System.out.println("로그인 성공");
 			session.setAttribute("session_cid", cuid);
 			session.setAttribute("session_cname", dto.getCuname());
-			return "index";
+			return "redirect:board_list";
 		}
 
 	}
@@ -117,7 +117,8 @@ public class LoginController {
 		String cutel = request.getParameter("cutel");
 		String cuemail = request.getParameter("cuemail");
 
-		int result =0;/*dao.chkCid(cuid);*/ ;
+		int result = 0;
+		/* dao.chkCid(cuid); */ ;
 
 		List<String> errors = new ArrayList();
 		if (result > 0) {
@@ -136,11 +137,12 @@ public class LoginController {
 		}
 
 	}
+
 	@RequestMapping("/chk_cid.do")
 	private @ResponseBody String chkCid(@RequestParam("userid") String cuid) {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		System.out.println("cuid >>>>>>"+cuid);
-		String result=dao.chkCid(cuid);
+		System.out.println("cuid >>>>>>" + cuid);
+		String result = dao.chkCid(cuid);
 		System.out.println(result);
 
 		return result;
@@ -181,11 +183,12 @@ public class LoginController {
 		}
 
 	}
+
 	@RequestMapping("/chk_bid.do")
 	private @ResponseBody String chkBid(@RequestParam("userid") String buid) {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		System.out.println("buid >>>>>>"+buid);
-		String result=dao.chkBid(buid);
+		System.out.println("buid >>>>>>" + buid);
+		String result = dao.chkBid(buid);
 		System.out.println(result);
 
 		return result;

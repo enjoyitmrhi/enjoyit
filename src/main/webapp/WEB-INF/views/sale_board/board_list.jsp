@@ -29,9 +29,9 @@
 					<td>${dto.sbcode }</td>
 					<td>${dto.sbtitle }</td>
 					<td><a
-						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}"><img alt="no image" src="resources/upload/${dto.sbpic }" width="80px" height="80px"></a>
-						
-						</td>
+						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
+							alt="no image" src="resources/upload/${dto.sbpic }" width="80px"
+							height="80px"></a></td>
 					<td>${dto.buid}</td>
 					<td>${dto.sbloc}</td>
 					<td>${dto.sbprice}</td>
@@ -39,21 +39,30 @@
 
 				</tr>
 			</c:forEach>
-
-
-			<c:if test="${session_bid != null}">
-				<tr>
-					<td colspan="7"><a
-						href="board_write_view?buid=${session_bid }">writing!!</a></td>
-				</tr>
-			</c:if>
-			<c:if test="${session_bid == null}">
-				<tr>
-					<td colspan="7"><a>writing!! only for business</a></td>
-				</tr>
-			</c:if>
-
 		</table>
+		<div >
+			<ul>
+				<c:forEach items="${boardlist }" var="dto">
+					<li><a
+						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }">
+							<img alt="no image" src="resources/upload/${dto.sbpic }"
+							width="80px" height="80px">
+					</a></li>
+
+				</c:forEach>
+			</ul>
+		</div>
+		
+		<c:if test="${session_bid != null}">
+			<a href="board_write_view?buid=${session_bid }">writing!!</a>
+
+		</c:if>
+		<c:if test="${session_bid == null}">
+
+			<a>writing!! only for business</a>
+		</c:if>
+
+
 
 
 	</div>

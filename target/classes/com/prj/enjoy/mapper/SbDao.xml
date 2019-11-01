@@ -19,8 +19,4 @@
 		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param1} )
 
 	</insert>
-
-	<select id="checkBid" resultType="Integer">
-		SELECT COUNT(*) FROM BUSINESS WHERE BUID = #{param1}
-	</select>
 </mapper>

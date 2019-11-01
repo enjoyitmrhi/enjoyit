@@ -8,6 +8,7 @@
 	<definition name="base" template="/WEB-INF/include/template.jsp">
 		<put-attribute name="header" value="/WEB-INF/include/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/include/footer.jsp" />
+		
 	</definition>
 
 	<!-- base를 상속받은 base/index -->
@@ -27,4 +28,7 @@
 	<definition name="*/*/*" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
+	
+	
+	
 </tiles-definitions> 

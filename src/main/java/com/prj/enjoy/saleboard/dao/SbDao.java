@@ -9,6 +9,6 @@ public interface SbDao {
 
 	void board_write(String buid, String sbpic, String sbtitle, String sbprice, String sbloc);
 
-	int checkBid(String id);
+
 
 }
