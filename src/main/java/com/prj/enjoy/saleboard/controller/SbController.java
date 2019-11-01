@@ -23,22 +23,20 @@ public class SbController {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 
-	
-
 		model.addAttribute("boardlist", dao.board_list());
-	
+
 		return "sale_board/board_list";
 	}
-
-	
 
 	@RequestMapping(value = "/sbcontent_view")
 	public String sbcontent_view(HttpServletRequest request, Model model) {
 		String wid = request.getParameter("wid");
 		String sbcode = request.getParameter("sbcode");
 
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+
 		model.addAttribute("wid", wid);
-		model.addAttribute("sbcode", sbcode);
+		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
 		return "sale_board/sbcontent_view";
 	}
 
@@ -59,19 +57,37 @@ public class SbController {
 
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
 				new DefaultFileRenamePolicy());
-		
-		
+
 		String buid = req.getParameter("buid");
 		String sbpic = req.getFilesystemName("sbpic");
 		String sbtitle = req.getParameter("sbtitle");
 		String sbprice = req.getParameter("sbprice");
 		String sbloc = req.getParameter("sbloc");
 
-		
-		
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc);
 
 		return "redirect:board_list";
 	}
+
+	@RequestMapping(value = "/sbdelete")
+	public String sbdelete(HttpServletRequest request, Model model) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		String sbcode = request.getParameter("sbcode");
+
+		dao.delete(sbcode);
+		return "redirect:board_list";
+
+	}
+	
+	@RequestMapping(value = "/sbmodify")
+	public String sbmodify(HttpServletRequest request, Model model) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		String sbcode = request.getParameter("sbcode");
+
+		dao.sbmodify(sbcode);
+		return "redirect:board_list";
+
+	}
+
 }

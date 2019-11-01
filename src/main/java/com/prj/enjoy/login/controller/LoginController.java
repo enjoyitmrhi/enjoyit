@@ -179,7 +179,7 @@ public class LoginController {
 			return "blogin/bJoin";
 		} else {
 			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr);
-			return "redirect: login";
+			return "redirect:board_list";
 		}
 
 	}

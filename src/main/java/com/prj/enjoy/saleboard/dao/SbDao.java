@@ -9,6 +9,12 @@ public interface SbDao {
 
 	void board_write(String buid, String sbpic, String sbtitle, String sbprice, String sbloc);
 
+	SbDto sb_content(String sbcode);
+
+	void delete(String sbcode);
+
+	void sbmodify(String sbcode);
+
 
 
 }
