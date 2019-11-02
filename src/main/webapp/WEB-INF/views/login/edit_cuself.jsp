@@ -17,7 +17,7 @@
 			<tr>
 				<td>회원아이디</td>
 				<td><input type="text" name="cuid" value="${cu.cuid }" readonly></td>
-			</tr>
+			</tr>	
 			<tr>
 				<td>회원명</td>
 				<td><input type="text" name="cuname" value="${cu.cuname }"></td>

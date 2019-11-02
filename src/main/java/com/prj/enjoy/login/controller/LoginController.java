@@ -290,4 +290,14 @@ public class LoginController {
 		model.addAttribute("bunum", bunum);
 		return "redirect:buMypage";
 	}
+	
+	@RequestMapping("/ch_cupw")
+	public String ch_cupw() {
+		return "ch_cupw";
+	}
+	
+	@RequestMapping("/ch_bupw")
+	public String ch_bupw() {
+		return "ch_bupw";
+	}
 }

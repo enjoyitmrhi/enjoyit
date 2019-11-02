@@ -16,10 +16,6 @@
 			<td>${cu.cuid }</td>
 		</tr>
 		<tr>
-			<td>비밀번호변경</td>
-			<td><button>변경</button></td>
-		</tr>
-		<tr>
 			<td>회원명</td>
 			<td>${cu.cuname }</td>
 		</tr>
@@ -58,6 +54,7 @@
 		
 	</table>
 		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a>
+		<a href="ch_cupw"><button>비밀번호변경</button></a>	
 		<a href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
 
 </div>
