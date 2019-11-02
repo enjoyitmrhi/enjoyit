@@ -33,7 +33,18 @@
 			<li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 		</ul>
-
+		
+		<c:if test="${session_cid !=null }">
+			<form class="form-inline my-2 my-lg-0" action="cuMypage">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">MyPage</button>
+			</form>
+		</c:if>
+		<c:if test="${session_bid !=null }">
+			<form class="form-inline my-2 my-lg-0" action="buMypage">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">MyPage</button>
+			</form>
+		</c:if>
+		&nbsp;&nbsp;
 		<c:if test="${session_bid != null || session_cid != null  }">
 			<form class="form-inline my-2 my-lg-0" action="logout">
 

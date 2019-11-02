@@ -26,7 +26,7 @@ public interface QnaDao {
 
 	int selectBoardCount(String searchKeyword, String selNum);
 	
-	ModelAndView answer_view(String qanum);
+	String answer_view(String qanum);
 	
 	int qnaboardcount(String cuid);
 	

@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
-	<h3>this is edit_cu page</h3>
+<h3>this is cuModify page</h3>
 	<form action="editProc_cu" method="post">
 		<table>
 			<tr>
 				<td>회원번호</td>
-				<td><input type="text" name="cunum" value="${cu.cunum }"></td>
+				<td><input type="text" name="cunum" value="${cu.cunum }" readonly></td>
 			</tr>
 			<tr>
 				<td>회원아이디</td>
-				<td><input type="text" name="cuid" value="${cu.cuid }"></td>
+				<td><input type="text" name="cuid" value="${cu.cuid }" readonly></td>
 			</tr>
 			<tr>
 				<td>회원명</td>
@@ -49,7 +48,7 @@
 			</tr>
 		</table>
 		<input type="submit" value="정보수정"> <a
-			href="cuManagement?cunum=${cu.cunum }"><input type="button"
+			href="cuMypage"><input type="button"
 			value="취소"></a>
 	</form>
 </body>

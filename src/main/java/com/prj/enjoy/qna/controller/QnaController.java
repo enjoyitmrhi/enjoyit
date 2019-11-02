@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -112,15 +113,13 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody ModelAndView answer_view(@RequestParam("qnum") String qanum) {
+	public @ResponseBody String answer_view(@RequestParam("ID") String qanum) {
 		System.out.println(qanum);
 		QnaDao dao=sqlSession.getMapper(QnaDao.class);
-		ModelAndView mav= new ModelAndView();
-		System.out.println("뭔내용인교>>>"+ dao.answer_view(qanum));
-		mav.addObject("content", dao.answer_view(qanum));
-		return mav;
+		String data = dao.answer_view(qanum);
+		System.out.println(data);	
+		return data;
 	}
-	
 
 	@RequestMapping(value = "/qna_write_view")
 	public String qna_write_view(HttpServletRequest request, Model model) {

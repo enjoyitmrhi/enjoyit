@@ -57,7 +57,8 @@
 		</tr>
 		
 	</table>
-		<button onclick="">정보수정</button><a href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
+		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a>
+		<a href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
 
 </div>
 </body>

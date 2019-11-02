@@ -43,7 +43,8 @@
 			<td>${bu.budate }</td>
 		</tr>
 	</table>
-	<button onclick="">정보수정</button><button>회원탈퇴</button>
+	<a href="edit_buself?bunum=${bu.bunum }"><button>정보수정</button></a>
+	<a href="del_buself?bunum=${bu.bunum }"><button>회원탈퇴</button></a>
 	</div>
 </body>
 </html>

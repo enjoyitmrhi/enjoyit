@@ -171,7 +171,7 @@ public class AdminController {
 		String cubirth = request.getParameter("cubirth");
 		String cugender = request.getParameter("cugender");
 		String cutel = request.getParameter("cutel");
-
+		System.out.println(cugender);
 		dao.editProc_cu(cuid, cuname, cuaddr, cuemail, cubirth, cugender, cutel, cunum);
 		model.addAttribute("cunum", cunum);
 		return "redirect:cuManagement";
