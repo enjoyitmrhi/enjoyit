@@ -87,6 +87,7 @@ function checkfield() {
 }
 </script>
 <div class="container">
+
 	<h3>this is join page</h3>
 	<form action="bJoinProc" method="post" name="addjoin">
 		<label>아이디*</label> <input type="text" name="buid" id="buid"> 
@@ -101,6 +102,6 @@ function checkfield() {
 		<input type="button" value="회원가입" onclick="checkfield()">
 	</form>
 	<a href="login"><button>취소</button></a>
-</div>
+	</div>
 </body>
 </html>
