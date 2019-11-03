@@ -9,7 +9,7 @@
 
 </head>
 <body>
-
+<div class="container">
 	<h3>this is administrator page</h3>
 	<div>
 		관리자로그인
@@ -28,5 +28,6 @@
 
 		</form>
 	</div>
+</div>
 </body>
 </html>

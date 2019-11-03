@@ -104,7 +104,7 @@
 		#{param2}
 	</update>
 
-	<select id="answer_view" resultType="String">
+	<select id="answer_view"  resultType="String">
 		SELECT QACONTENT FROM QNA WHERE QAGROUP = #{param1} AND QAINDENT = 1
 	</select>
 	

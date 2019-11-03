@@ -227,4 +227,74 @@ public class LoginController {
 		model.addAttribute("bu",dao.getBusiness(buid));
 		return "login/buMypage";
 	}
+	
+	@RequestMapping("/del_buself")
+	public String del_buself(HttpServletRequest request, HttpSession session) {
+		System.out.println("passing del_bu");
+		String bunum = request.getParameter("bunum");
+		System.out.println("cunum : " + bunum);
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		dao.del_bu(bunum);
+		logout(session);
+		return "redirect:index";
+
+	}
+	
+	@RequestMapping("/edit_cuself")
+	public String edit_cu(HttpServletRequest request, Model model) {
+		String cunum = request.getParameter("cunum");
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		model.addAttribute("cu", dao.getCuInfo(cunum));
+		return "login/edit_cuself";
+	}
+
+	@RequestMapping("/edit_buself")
+	public String edit_bu(HttpServletRequest request, Model model) {
+		String bunum = request.getParameter("bunum");
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		model.addAttribute("bu", dao.getBuInfo(bunum));
+		return "login/edit_buself";
+	}
+	
+	@RequestMapping("/editProc_cu")
+	public String editProc_cu(HttpServletRequest request, Model model) {
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		String cunum = request.getParameter("cunum");
+		String cuid = request.getParameter("cuid");
+		String cuname = request.getParameter("cuname");
+		String cuaddr = request.getParameter("cuaddr");
+		String cuemail = request.getParameter("cuemail");
+		String cubirth = request.getParameter("cubirth");
+		String cugender = request.getParameter("cugender");
+		String cutel = request.getParameter("cutel");
+		dao.editProc_cu(cuid, cuname, cuaddr, cuemail, cubirth, cugender, cutel, cunum);
+		model.addAttribute("cunum", cunum);
+		return "redirect:cuMypage";
+	}
+
+	@RequestMapping("/editProc_bu")
+	public String editProc_bu(HttpServletRequest request, Model model) {
+		System.out.println("editProc_bu passing");
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		String bunum = request.getParameter("bunum");
+		String buid = request.getParameter("buid");
+		String buname = request.getParameter("buname");
+		String buaddr = request.getParameter("buaddr");
+		String buemail = request.getParameter("buemail");
+		String burenum = request.getParameter("burenum");
+		String butel = request.getParameter("butel");
+		dao.editProc_bu(buid, buname, buaddr, buemail, burenum, butel, bunum);
+		model.addAttribute("bunum", bunum);
+		return "redirect:buMypage";
+	}
+	
+	@RequestMapping("/ch_cupw")
+	public String ch_cupw() {
+		return "ch_cupw";
+	}
+	
+	@RequestMapping("/ch_bupw")
+	public String ch_bupw() {
+		return "ch_bupw";
+	}
 }
