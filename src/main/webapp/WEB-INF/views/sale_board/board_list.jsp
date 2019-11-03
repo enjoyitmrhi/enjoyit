@@ -11,7 +11,7 @@
 <body>
 	<br>
 	<div class="container">
-		<table class="table table-hover">
+	<%-- 	<table class="table table-hover">
 
 			<tr class="table-active">
 				<td>SBCODE</td>
@@ -39,20 +39,30 @@
 
 				</tr>
 			</c:forEach>
-		</table>
-		<div >
-			<ul>
-				<c:forEach items="${boardlist }" var="dto">
-					<li><a
-						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }">
-							<img alt="no image" src="resources/upload/${dto.sbpic }"
-							width="80px" height="80px">
-					</a></li>
+		</table> --%>
 
-				</c:forEach>
-			</ul>
-		</div>
+
 		
+		<div class="row">
+		<c:forEach items="${boardlist }" var="dto">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<a
+						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img src="resources/upload/${dto.sbpic }" alt="no image"  width="200px"
+							height="200px"></a>
+					<div class="caption">
+						<h3>제목 : ${dto.sbtitle }</h3>
+						<p>가격 : ${dto.sbprice}</p>
+						<p>
+							<a href="#" class="btn btn-primary" role="button">Button</a> <a
+								href="#" class="btn btn-default" role="button">Button</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+		</div>
+
 		<c:if test="${session_bid != null}">
 			<a href="board_write_view?buid=${session_bid }">writing!!</a>
 
