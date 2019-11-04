@@ -36,6 +36,7 @@ public class SbController {
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 
 		model.addAttribute("wid", wid);
+		model.addAttribute("avgstar", dao.avgstar(sbcode));
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
 		return "sale_board/sbcontent_view";
 	}
@@ -79,7 +80,7 @@ public class SbController {
 		return "redirect:board_list";
 
 	}
-	
+
 	@RequestMapping(value = "/sbmodify")
 	public String sbmodify(HttpServletRequest request, Model model) {
 		SbDao dao = sqlSession.getMapper(SbDao.class);

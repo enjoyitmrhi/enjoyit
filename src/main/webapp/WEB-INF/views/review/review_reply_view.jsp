@@ -8,13 +8,14 @@
 
 </head>
 <body>
+<div class="container">
 	<h3>review_reply_view.jsp</h3>
 	<form action="review_reply" method="post">
 		<input type="hidden" name="rvnum" value="${reply_view.rvnum }" /> <input
 			type="hidden" name="rvgroup" value="${reply_view.rvgroup }" /> <input
 			type="hidden" name="rvstep" value="${reply_view.rvstep }" /> <input
 			type="hidden" name="rvindent" value="${reply_view.rvindent }" />
-		<table width="500" cellpadding="0" cellspacing="0" border="1">
+		<table class="table">
 
 			<tr>
 				<td colspan="2">${reply_view.rvnum }|${reply_view.bunum }</td>
@@ -24,11 +25,11 @@
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="rvtitle" /></td>
+				<td><input type="text" name="rvtitle"  class="form-control" /></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="rvcontent" rows="10">
+				<td><textarea name="rvcontent" rows="10" class="form-control">
 			</textarea></td>
 			</tr>
 			<tr>
@@ -36,5 +37,7 @@
 			</tr>
 		</table>
 	</form>
+	</div>
+	
 </body>
 </html>

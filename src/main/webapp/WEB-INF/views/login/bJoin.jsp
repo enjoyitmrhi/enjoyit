@@ -90,16 +90,22 @@ function checkfield() {
 
 	<h3>this is join page</h3>
 	<form action="bJoinProc" method="post" name="addjoin">
-		<label>아이디*</label> <input type="text" name="buid" id="buid"> 
-		<input type="button" id="chk_bid" onclick="javascript:chk_id()" value="중복확인"><br> 
-		<label>비밀번호*</label> <input type="text" name="bupw" id="bupw"><br> 
-		<label>비밀번호 확인*</label> <input type="text" name="bupw2" id="bupw2"><br> 
-		<label>사업자명*</label> <input type="text" name="buname" id="buname"><br> 
-		<label>주소*</label> <input type="text" name="buaddr" id="buaddr"><br> 
-		<label>사업자등록번호*</label> <input type="text" name="burenum" id="burenum"><br> 
-		<label>연락처*</label> <input type="tel" name="butel" id="butel"><br> 
-		<label>이메일*</label> <input type="email" name="buemail" id="buemail"><br> 
+	<table>
+		<tr><td><label>아이디*</label></td>
+		 <td><input type="text" name="buid" id="buid"> 
+		<input type="button" id="chk_bid" onclick="javascript:chk_id()" value="중복확인"></td> 
+		</tr>
+		<tr><td><label>비밀번호*</label> </td><td><input type="text" name="bupw" id="bupw"></td></tr> 
+		<tr><td><label>비밀번호 확인*</label> </td><td><input type="text" name="bupw2" id="bupw2"></td></tr> 
+		<tr><td><label>사업자명*</label> </td><td><input type="text" name="buname" id="buname"></td></tr> 
+		<tr><td><label>주소*</label></td><td> <input type="text" name="buaddr" id="buaddr"></td></tr> 
+		<tr><td><label>사업자등록번호*</label> </td><td><input type="text" name="burenum" id="burenum"></td></tr> 
+		<tr><td><label>연락처*</label></td><td> <input type="tel" name="butel" id="butel"></td></tr>
+		<tr><td><label>이메일*</label></td><td> <input type="email" name="buemail" id="buemail"></td></tr> 
 		<input type="button" value="회원가입" onclick="checkfield()">
+
+
+	</table>
 	</form>
 	<a href="login"><button>취소</button></a>
 	</div>
