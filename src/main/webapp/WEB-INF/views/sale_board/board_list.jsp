@@ -9,9 +9,39 @@
 
 </head>
 <body>
+<!-- <script >
+function moreList(){
+    $.ajax({
+        url :"",
+        type :"POST",
+        cache : false,
+        dataType:'json',
+        data :"""
+        success :function(data){
+            //console.log(data);
+            var content="";
+            for(var i=0; i<data.hashMapList.length; i++){
+                content +=
+                "<tr>"+
+                    "<td>"+data.hashMapList[i].area+"</td>"+
+                    "<td>"+data.hashMapList[i].name+"</td>"+
+                    "<td>"+data.hashMapList[i].gubun+"</td>"+
+                    "<td>"+data.hashMapList[i].cnt+"</td>"+
+                "</tr>";
+            }
+            content+="<div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div> ";
+            $(content).appendTo("#addplus");
+        }, error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+           }
+    });
+};
+</script> -->
+
+
 	<br>
 	<div class="container">
-	<%-- 	<table class="table table-hover">
+		<%-- 	<table class="table table-hover">
 
 			<tr class="table-active">
 				<td>SBCODE</td>
@@ -42,35 +72,41 @@
 		</table> --%>
 
 
-		
-		<div class="row">
-		<c:forEach items="${boardlist }" var="dto">
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<a
-						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img src="resources/upload/${dto.sbpic }" alt="no image"  width="200px"
+
+		<div class="row" id ="addplus">
+			<c:forEach items="${boardlist }" var="dto">
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<a
+							href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
+							src="resources/upload/${dto.sbpic }" alt="no image" width="200px"
 							height="200px"></a>
-					<div class="caption">
-						<h3>제목 : ${dto.sbtitle }</h3>
-						<p>가격 : ${dto.sbprice}</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
+						<div class="caption">
+							<h3>제목 : ${dto.sbtitle }</h3>
+							<p>가격 : ${dto.sbprice}</p>
+							<p>
+								<a href="#" class="btn btn-primary" role="button">예약하기</a> <a
+									href="#" class="btn btn-default" role="button">리뷰보기</a>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
 			</c:forEach>
+			
+			<div class="btns">
+			<a href="javascript:moreList();" class="btn btn-primary">더보기</a>
 		</div>
 
-		<c:if test="${session_bid != null}">
-			<a href="board_write_view?buid=${session_bid }">writing!!</a>
+	</div>
 
-		</c:if>
-		<c:if test="${session_bid == null}">
+	<c:if test="${session_bid != null}">
+		<a href="board_write_view?buid=${session_bid }">writing!!</a>
 
-			<a>writing!! only for business</a>
-		</c:if>
+	</c:if>
+	<c:if test="${session_bid == null}">
+
+		<a>writing!! only for business</a>
+	</c:if>
 
 
 
