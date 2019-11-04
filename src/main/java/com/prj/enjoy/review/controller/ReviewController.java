@@ -117,7 +117,7 @@ public class ReviewController {
 		String rvpic = req.getFilesystemName("rvpic");
 
 		if (rvpic == null) {
-			rvpic = "»çÁø ¾øÀ½";
+			rvpic = "ë“±ë¡ëœ ì‚¬ì§„ ì—†ìŒ";
 		}
 
 		dao.review_write(rvtitle, rvcontent, rvpic, rvstar);

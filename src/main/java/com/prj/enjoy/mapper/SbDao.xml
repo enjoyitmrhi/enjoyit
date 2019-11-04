@@ -33,4 +33,12 @@
 	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = '2000',SBTITLE='CHANGEDTITLE' WHERE SBCODE = #{param1}
 	
 	</update>
+	
+	<select id="avgstar" resultType="Integer">
+	SELECT AVG(RVSTAR) FROM REVIEW WHERE SBCODE = #{param1}
+	</select> 
+	
+	
+	
+	
 </mapper>
