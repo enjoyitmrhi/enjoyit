@@ -112,9 +112,16 @@ public class ReviewController {
 
 		String rvtitle = req.getParameter("rvtitle");
 		String rvcontent = req.getParameter("rvcontent");
+		String rvstar = req.getParameter("rvstar");
+
 		String rvpic = req.getFilesystemName("rvpic");
 
-		dao.review_write(rvtitle, rvcontent, rvpic);
+		if (rvpic == null) {
+			rvpic = "사진 없음";
+		}
+
+		dao.review_write(rvtitle, rvcontent, rvpic, rvstar);
+
 
 		return "redirect:review_list";
 	}

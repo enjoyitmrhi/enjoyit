@@ -16,6 +16,7 @@
 				<th>상품번호</th>
 				<th>고객성함</th>
 				<th>제목</th>
+				<th>별점</th>
 				<th>날짜</th>
 				<th>조회수</th>
 				<th>리뷰번호</th>
@@ -23,21 +24,29 @@
 			<c:forEach items="${review_list }" var="dto">
 				<tr>
 					<td>${dto.sbcode }</td>
-					<td>${dto.cuid }</td>
-					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
-							begin="1" end="${dto.rvindent }" var="cnt">
-							<c:if test="${cnt eq endIndent }">
-								<img alt="" src="resources/imgs/reply.gif">[re]
+				<td>${dto.cuid }</td>
+				<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
+						begin="1" end="${dto.rvindent }" var="cnt">
+						<c:if test="${cnt eq endIndent }">
+							<img alt="" src="resources/img/reply.gif">[re]
 				</c:if>
 				&nbsp;
-			</c:forEach> <a href="review_content_view?rvnum=${dto.rvnum }">${dto.rvtitle }</a></td>
-					<td>${dto.rvdate }</td>
-					<td>${dto.rvhit }</td>
-					<td>${dto.rvnum }</td>
+			</c:forEach> <a
+					href="review_content_view?rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}">${dto.rvtitle }</a></td>
+				<td><c:choose>
+						<c:when test="${dto.rvstar eq '1' }">☆☆☆☆★</c:when>
+						<c:when test="${dto.rvstar eq '2' }">☆☆☆★★</c:when>
+						<c:when test="${dto.rvstar eq '3' }">☆☆★★★</c:when>
+						<c:when test="${dto.rvstar eq '4' }">☆★★★★</c:when>
+						<c:when test="${dto.rvstar eq '5' }">★★★★★</c:when>
+					</c:choose></td>
+				<td>${dto.rvdate }</td>
+				<td>${dto.rvhit }</td>
+				<td>${dto.rvnum }</td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="6"><a href="review_write_view">리뷰 작성</a></td>
+			<td colspan="7"><a href="review_write_view">리뷰 작성</a></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">

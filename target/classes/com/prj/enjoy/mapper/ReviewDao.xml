@@ -64,10 +64,10 @@
 
 	<insert id="review_write">
 		INSERT INTO REVIEW
-		(RVNUM,SBCODE,CUID,RVDATE,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC)
+		(RVNUM,SBCODE,CUID,RVHIT,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC,RVSTAR)
 		VALUES
-		(REVIEW_SEQ.NEXTVAL,1,'cguest1',SYSDATE,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3})
-	</insert>
+		(REVIEW_SEQ.NEXTVAL,1,'cguest1',0,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3},#{param4})
+		</insert>
 	<update id="modify">
 		UPDATE REVIEW SET CUID='cguest1',RVTITLE=#{param1 },RVCONTENT=#{param2 }, RVPIC=#{param3 }
 		WHERE
