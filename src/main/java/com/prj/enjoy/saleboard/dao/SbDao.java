@@ -2,6 +2,8 @@ package com.prj.enjoy.saleboard.dao;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+
 import com.prj.enjoy.saleboard.dto.SbDto;
 import com.prj.enjoy.review.dto.ReviewDto;
 
@@ -18,5 +20,9 @@ public interface SbDao {
 	void sbmodify(String sbcode);
 
 	int avgstar(String sbcode);
+	
+	ArrayList<SbDto> add_list();
+
+	long addCnt();
 
 }

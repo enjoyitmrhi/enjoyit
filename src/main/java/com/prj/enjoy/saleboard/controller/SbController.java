@@ -1,16 +1,24 @@
 package com.prj.enjoy.saleboard.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.saleboard.dao.SbDao;
+import com.prj.enjoy.saleboard.dto.SbDto;
 
 @Controller
 public class SbController {
@@ -26,6 +34,18 @@ public class SbController {
 		model.addAttribute("boardlist", dao.board_list());
 
 		return "sale_board/board_list";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/board_list.do")
+	public Object jsonBoardList(HttpServletRequest request, HttpServletResponse response, HttpSession session,RedirectAttributes rd,
+			Model model) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+
+		ArrayList<SbDto> addDto = dao.add_list();
+
+		return addDto;
+
 	}
 
 	@RequestMapping(value = "/sbcontent_view")

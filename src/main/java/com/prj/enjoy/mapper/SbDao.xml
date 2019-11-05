@@ -11,6 +11,12 @@
 		ORDER BY SBCODE DESC
 
 	</select>
+	<select id="add_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+	SELECT * FROM SALE_BOARD
+	
+	</select>
+
+	
 
 	<insert id="board_write">
 		INSERT INTO
