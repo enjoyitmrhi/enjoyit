@@ -1,7 +1,9 @@
 package com.prj.enjoy.login.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -110,13 +113,25 @@ public class LoginController {
 		String cuname = request.getParameter("cuname");
 		String cugender = request.getParameter("cugender");
 		String cuyear = request.getParameter("cuyear");
-		String cuaddr = request.getParameter("cuaddr");
+//		String cuaddr = request.getParameter("cuaddr");
 		String cumonth = request.getParameter("cumonth");
 		String cuday = request.getParameter("cuday");
 		String cubirth = String.format("%s-%s-%s", cuyear, cumonth, cuday);
 		String cutel = request.getParameter("cutel");
 		String cuemail = request.getParameter("cuemail");
+		
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
+		String addr3 = request.getParameter("addr3");
+		String cuaddr = String.format("%s %s %s", addr1, addr2, addr3); 
+		
+		String cuentX = request.getParameter("entX");
+		String cuentY = request.getParameter("entY");
+		System.out.println("cuaddr2 >>>> "+ cuaddr);
+		System.out.println("entX>>>>"+cuentX);
+		System.out.println("entY>>>>"+cuentY);
 
+		
 		int result = 0;
 		/* dao.chkCid(cuid); */ ;
 
@@ -132,7 +147,7 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "login/join";
 		} else {
-			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuemail, cugender, cubirth, cutel);
+			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuentX, cuentY, cuemail, cugender, cubirth, cutel);
 			return "redirect:login";
 		}
 
@@ -164,8 +179,19 @@ public class LoginController {
 		String buemail = request.getParameter("buemail");
 		String burenum = request.getParameter("burenum");
 		String butel = request.getParameter("butel");
-		String buaddr = request.getParameter("buaddr");
+//		String buaddr = request.getParameter("buaddr");
 
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
+		String addr3 = request.getParameter("addr3");
+		String buaddr = String.format("%s %s %s", addr1, addr2, addr3); 
+		
+		String buentX = request.getParameter("entX");
+		String buentY = request.getParameter("entY");
+		System.out.println("buaddr2 >>>> "+ buaddr);
+		System.out.println("entX>>>>"+buentX);
+		System.out.println("entY>>>>"+buentY);
+		
 		int result = 0;
 		ArrayList<String> errors = new ArrayList();
 		if (result > 0) {
@@ -178,8 +204,8 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "login/bJoin";
 		} else {
-			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr);
-			return "redirect:board_list";
+			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr, buentX, buentY);
+			return "redirect:login";
 		}
 
 	}
@@ -296,5 +322,10 @@ public class LoginController {
 	@RequestMapping("/ch_bupw")
 	public String ch_bupw() {
 		return "ch_bupw";
+	}
+	
+	@RequestMapping("/jusoPopup")
+	public String jusoPopup(Model model) {		
+		return "login/jusoPopup";
 	}
 }

@@ -46,8 +46,8 @@
 		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
 	</beans:bean>
 	
-	
- 	<!-- Tiles View Resolver -->
+	<!-- 
+ 	Tiles View Resolver
 
 	<beans:bean id="tielsViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -55,8 +55,8 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
 	</beans:bean> 
-<!-- 	Tiles Configurer
- -->	<beans:bean id="tilesConfigurer"
+	Tiles Configurer
+	<beans:bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
@@ -64,7 +64,7 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean> 
-
+ -->
 
 
 
