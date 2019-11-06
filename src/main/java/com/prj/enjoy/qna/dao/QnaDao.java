@@ -8,7 +8,7 @@ import com.prj.enjoy.qna.dto.QnaDto;
 
 public interface QnaDao {
 
-	ArrayList<QnaDto> qnalist(int rowStart, int rowEnd, String searchKeyword, String selNum);
+	ArrayList<QnaDto> qnalist(int rowStart, int rowEnd, String searchKeyword, String selNum, String sbcode);
 
 	void qnawrite(String strTitle, String strContent, String strId);
 

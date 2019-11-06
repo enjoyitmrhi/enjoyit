@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +11,6 @@
 
 </head>
 <body>
-
 	<script type="text/javascript">
 		var idchk = 0;
 		function chk_id() {
@@ -24,8 +22,20 @@
 				data : {
 					userid : userid
 				},
-				success : function(data) {
-
+				success : function(data) {if (data == 'false') {
+					alert("이미 사용중인 아이디입니다.");
+					idchk=0;
+				} else {
+					alert("사용가능한 아이디입니다.");
+					idchk=1;
+				} 
+	        },
+			error : function(data) {
+				alert("fail..");
+			} 
+		}); 
+	}
+		
 function checkfield() {
 	if(document.addjoin.cuid.value==""){
 		alert("아이디를 입력하세요");
@@ -44,6 +54,21 @@ function checkfield() {
 	}else if(document.addjoin.cuname.value==""){
 		alert("이름을 입력하세요");
 		document.addjoin.cuname.focus();
+		exit;
+		
+	}else if(document.addjoin.cuyear.value==""){
+		alert("생년월일을 입력하세요");
+		document.addjoin.cuyear.focus();
+		exit;
+		
+	}else if(document.addjoin.cumonth.value==""){
+		alert("생년월일을 입력하세요");
+		document.addjoin.cumonth.focus();
+		exit;
+		
+	}else if(document.addjoin.cuday.value==""){
+		alert("생년월일을 입력하세요");
+		document.addjoin.cuday.focus();
 		exit;
 		
 	}else if(document.addjoin.cutel.value==""){
@@ -85,25 +110,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	document.addjoin.entX.value = entX;
 	document.addjoin.entY.value = entY;
 }
-
-//rest API 적용중
-HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-{
-  "meta": {
-    "total_count": 1
-  },
-  "documents": [
-    {
-      "x": document.addjoin.entX.value,
-      "y": document.addjoin.entY.value
-    }
-  ]
-}
-
 </script>
-curl -v -X GET "https://dapi.kakao.com/v2/local/geo/transcoord.json?x=entX&y=entY&input_coord=UTM&output_coord=WGS84" \
--H "Authorization: KakaoAK d9f988784bcf669672703478f771d37e"
+
 <div class="container">
 	<h3>this is join page</h3>
 	<form action="joinProc" method="post" name="addjoin" id="addjoin">
@@ -118,8 +126,8 @@ curl -v -X GET "https://dapi.kakao.com/v2/local/geo/transcoord.json?x=entX&y=ent
 			<option value="male">남자</option>
 			<option value="female">여자</option>
 		</select><br>
-		<label>생년월일</label> 
-		<select name="cuyear">
+		<label>생년월일*</label> 
+		<select name="cuyear" id="cuyear">
 			<option value="" selected>년도</option>
 			<c:forEach begin="0" end="50" var="i">
 				<c:forEach begin="99" end="99" var="j">
@@ -127,13 +135,13 @@ curl -v -X GET "https://dapi.kakao.com/v2/local/geo/transcoord.json?x=entX&y=ent
 				</c:forEach>
 			</c:forEach>
 		</select> 
-		<select name="cumonth"> 
+		<select name="cumonth" id="cumonth"> 
 			<option value="" selected>월</option>
 				<c:forEach var="i" begin="1" end="12">
 					<option value="${i }">${i }</option>
 				</c:forEach>
 		</select> 
-		<select name="cuday">
+		<select name="cuday" id="cuday">
 			<option value="" selected>일</option>
 			<c:forEach var="i" begin="1" end="31">
 				<option value="${i }">${i }</option>

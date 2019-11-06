@@ -92,19 +92,19 @@ public class QnaController {
 		model.addAttribute("searchVO", searchVO);
 
 		if (qatitle.equals("qatitle") && qacontent.equals("")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "1"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "1", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
 
 		} else if (qatitle.equals("") && qacontent.equals("qacontent")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "2"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "2", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2"));
 
 		} else if (qatitle.equals("qatitle") && qacontent.equals("qacontent")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "3"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "3", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3"));
 
 		} else if (qatitle.equals("") && qacontent.equals("")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "0"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "0", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
 
 		}

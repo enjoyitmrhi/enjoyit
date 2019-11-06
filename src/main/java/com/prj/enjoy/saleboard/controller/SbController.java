@@ -36,7 +36,7 @@ public class SbController {
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 
 		model.addAttribute("wid", wid);
-		model.addAttribute("avgstar", dao.avgstar(sbcode));
+//		model.addAttribute("avgstar", dao.avgstar(sbcode));
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
 		return "sale_board/sbcontent_view";
 	}
