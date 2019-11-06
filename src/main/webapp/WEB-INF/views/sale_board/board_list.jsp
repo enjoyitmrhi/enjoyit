@@ -26,23 +26,32 @@
 		});
 	}
 	function getNumber() {
-		var num = $("#num").val()-0; // -0을 하지 않으면 문자로 인식하기 때문에 일부로 붙였다.
+		var num = $("#num").val() - 0; // -0을 하지 않으면 문자로 인식하기 때문에 일부로 붙였다.
 		num = num + 6;
 		$("#num").val(num);
 		return num
 
 	}
 
-	function renderMoreContents(list) {
+	/* function renderMoreContents(list) {
 		var rows = [];
 		$.each(list, function(index, item) {
 			rows.push(getRowContentByData(item));
 		})
 
 		$("#more_list tbody").append(rows.join(""));
+	} */
+	function renderMoreContents(list) {
+		var rows = [];
+		$.each(list, function(index, item) {
+			rows.push(getRowContentByData(item));
+		})
+
+		$("#more_list2").append(rows.join(""));
 	}
 
-	function getRowContentByData(item) {
+
+	/* function getRowContentByData(item) {
 		var content = "";
 		content += "<tr>";
 		content += "<td>" + item.sbcode + "</td>";
@@ -60,6 +69,32 @@
 		content += "<td>" + item.sbdate + "</td>";
 		content += "</tr>";
 		return content
+	} */
+	
+	function getRowContentByData(item){
+		var content = "";
+		content +="<div class='col-sm-6 col-md-4'>";
+		content +="<div class='thumbnail'>";
+		content +="<a href='sbcontent_view?wid="
+				+ item.buid
+				+ "&sbcode="
+				+ item.sbcode
+				+ "&sbpic="
+				+ item.sbpic
+				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' width='200px' height='200px'></a>";
+				
+		content += "<div class='caption'>";
+			
+		content +="<h3>제목 : "+item.sbtitle+" </h3>";
+
+				
+		content += "<p>가격 : "+item.sbprice+"</p>";
+				
+		content += "<p>	<a href='#' class='btn btn-primary' role='button'>예약하기</a> <a	href='#' class='btn btn-default' role='button'>상세보기</a> </p>";
+		content += "</div>";
+		content += "</div>";
+		content += "</div>";
+	return content
 	}
 </script>
 
@@ -80,7 +115,7 @@
 			</form>
 
 
-			<div class="tableList">
+			<%-- <div class="tableList">
 
 
 				<table id="more_list" class="table table-hover">
@@ -113,12 +148,36 @@
 						</c:forEach>
 					</tbody>
 				</table>
+ --%>
 
+				<div >
+					<div class="row" id="more_list2">
+						<c:forEach items="${boardlist }" var="dto">
+							<div class="col-sm-6 col-md-4">
+								<div class="thumbnail">
+									<a
+										href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
+										src="resources/upload/${dto.sbpic }" alt="no image"
+										width="200px" height="200px"></a>
+									<div class="caption">
+										<h3>제목 : ${dto.sbtitle }</h3>
+										<p>가격 : ${dto.sbprice}</p>
+										<p>
+											<a href="#" class="btn btn-primary" role="button">예약하기</a> <a
+												href="#" class="btn btn-default" role="button">상세보기</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				
 				<div id="more_btn_div" align="center">
 
 					<hr>
-					<a id="more_btn_a" href="javascript:moreContent(${endlist});">
-						더보기(More) </a>
+					<a id="more_btn_a" href="javascript:moreContent();"> 더보기(More)
+					</a>
 					<hr>
 				</div>
 			</div>
@@ -140,7 +199,7 @@
 		</div>
 
 
-	</div>
+<!-- 	</div> -->
 </body>
 
 </html>
