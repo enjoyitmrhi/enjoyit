@@ -7,12 +7,28 @@
 
 	<select id="board_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
 		SELECT
-		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID FROM SALE_BOARD
-		ORDER BY SBCODE DESC
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID ,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN '1' AND '6'
+		
+		
+		
+
+
+	
+
+
 
 	</select>
 	<select id="add_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
-	SELECT * FROM SALE_BOARD
+	SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID ,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN #{param1} AND #{param2}
 	
 	</select>
 
@@ -40,8 +56,10 @@
 	
 	</update>
 	
-	<select id="avgstar" resultType="Integer">
+	<select id="avgstar" resultType="String">
+	 
 	SELECT AVG(RVSTAR) FROM REVIEW WHERE SBCODE = #{param1}
+	 
 	</select> 
 	
 	
