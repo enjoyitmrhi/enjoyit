@@ -1,3 +1,4 @@
+
 package com.prj.enjoy.review.dao;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public interface ReviewDao {
 
 	public int selectBoardCount(String searchKeyword, String selNum);
 
-	public void review_write(String rvtitle, String rvstar, String rvcontent);
+	public void review_write( String rvtitle,  String rvcontent, String rvpic, String rvstar);
 
 	public ReviewDto reply_view(int rvnum);
 
@@ -27,6 +28,9 @@ public interface ReviewDao {
 
 	public void delete(int rvnum);
 	
+	public String getRvpic(String rvtitle);
+	
 	int rvboardcount (String cuid);
 
 }
+

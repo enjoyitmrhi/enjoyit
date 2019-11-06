@@ -112,9 +112,16 @@ public class ReviewController {
 
 		String rvtitle = req.getParameter("rvtitle");
 		String rvcontent = req.getParameter("rvcontent");
+		String rvstar = req.getParameter("rvstar");
+
 		String rvpic = req.getFilesystemName("rvpic");
 
-		dao.review_write(rvtitle, rvcontent, rvpic);
+		if (rvpic == null) {
+			rvpic = "등록된 사진 없음";
+		}
+
+		dao.review_write(rvtitle, rvcontent, rvpic, rvstar);
+
 
 		return "redirect:review_list";
 	}
@@ -174,8 +181,11 @@ public class ReviewController {
 		String strnum = req.getParameter("rvnum");
 		int rvnum = Integer.parseInt(strnum);
 
-		String rvpic = req.getFilesystemName("rvpic");
+		String rvpic = dao.getRvpic(rvtitle);
 
+		if (rvpic == null) {
+			rvpic = "";
+		}
 		dao.modify(rvtitle, rvcontent, rvpic, rvnum);
 		return "redirect:review_list";
 	}

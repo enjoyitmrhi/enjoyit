@@ -14,7 +14,7 @@
 		<table border="1 solid #fff">
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" size="50" name="buid" value="${id }"
+				<td><input type="text" size="50" name="buid" value="${session_bid  }"
 					readonly="readonly"></td>
 
 			</tr>

@@ -11,7 +11,7 @@
 <body>
 	<br>
 	<div class="container">
-		<table class="table table-hover">
+	<%-- 	<table class="table table-hover">
 
 			<tr class="table-active">
 				<td>SBCODE</td>
@@ -29,9 +29,9 @@
 					<td>${dto.sbcode }</td>
 					<td>${dto.sbtitle }</td>
 					<td><a
-						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}"><img alt="no image" src="resources/upload/${dto.sbpic }" width="80px" height="80px"></a>
-						
-						</td>
+						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
+							alt="no image" src="resources/upload/${dto.sbpic }" width="80px"
+							height="80px"></a></td>
 					<td>${dto.buid}</td>
 					<td>${dto.sbloc}</td>
 					<td>${dto.sbprice}</td>
@@ -39,21 +39,40 @@
 
 				</tr>
 			</c:forEach>
+		</table> --%>
 
 
-			<c:if test="${session_bid != null}">
-				<tr>
-					<td colspan="7"><a
-						href="board_write_view?buid=${session_bid }">writing!!</a></td>
-				</tr>
-			</c:if>
-			<c:if test="${session_bid == null}">
-				<tr>
-					<td colspan="7"><a>writing!! only for business</a></td>
-				</tr>
-			</c:if>
+		
+		<div class="row">
+		<c:forEach items="${boardlist }" var="dto">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<a
+						href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img src="resources/upload/${dto.sbpic }" alt="no image"  width="200px"
+							height="200px"></a>
+					<div class="caption">
+						<h3>제목 : ${dto.sbtitle }</h3>
+						<p>가격 : ${dto.sbprice}</p>
+						<p>
+							<a href="#" class="btn btn-primary" role="button">Button</a> <a
+								href="#" class="btn btn-default" role="button">Button</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+		</div>
 
-		</table>
+		<c:if test="${session_bid != null}">
+			<a href="board_write_view?buid=${session_bid }">writing!!</a>
+
+		</c:if>
+		<c:if test="${session_bid == null}">
+
+			<a>writing!! only for business</a>
+		</c:if>
+
+
 
 
 	</div>

@@ -15,10 +15,6 @@
 			<td>${bu.buid }</td>
 		</tr>
 		<tr>
-			<td>비밀번호변경</td>
-			<td><button>변경</button></td>
-		</tr>
-		<tr>
 			<td>사업자명</td>
 			<td>${bu.buname }</td>
 		</tr>
@@ -43,7 +39,9 @@
 			<td>${bu.budate }</td>
 		</tr>
 	</table>
-	<button onclick="">정보수정</button><button>회원탈퇴</button>
+	<a href="edit_buself?bunum=${bu.bunum }"><button>정보수정</button></a>
+	<a href="ch_bupw"><button>비밀번호변경</button></a>
+	<a href="del_buself?bunum=${bu.bunum }"><button>회원탈퇴</button></a>
 	</div>
 </body>
 </html>
