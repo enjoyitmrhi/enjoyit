@@ -23,7 +23,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-	 <beans:property name="order" value="2" /> 
+		<beans:property name="order" value="2" />
 	</beans:bean>
 
 	<context:component-scan base-package="com.prj.enjoy" />
@@ -45,17 +45,16 @@
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
 	</beans:bean>
-	
-	<!-- 
- 	Tiles View Resolver
+
+	<!-- Tiles View Resolver -->
 
 	<beans:bean id="tielsViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
-	</beans:bean> 
-	Tiles Configurer
+	</beans:bean>
+	<!--Tiles Configurer-->
 	<beans:bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
@@ -63,8 +62,8 @@
 				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
 			</beans:list>
 		</beans:property>
-	</beans:bean> 
- -->
+	</beans:bean>
+
 
 
 
