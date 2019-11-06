@@ -410,6 +410,7 @@ public class LoginController {
 			String ranPw = setRanChar();
 			if (cntpw ==1) {
 //				dao.chgbpw(buid, ranPw);
+//				mypage에서 비밀번호 수정 구현 후 주석해제
 				sendMail(buid,ranPw);
 				model.addAttribute("result","임시비밀번호가 등록된 메일로 전송되었습니다.");
 			}
