@@ -44,10 +44,10 @@
 		FROM (
 		SELECT
 		QANUM,QATITLE,QAGROUP,QASTEP,QAINDENT,QADATE,QACONTENT,SBCODE,BUNUM,BUID,CUNUM,CUID
-		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA
+		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA WHERE SBCODE = #{param5}
 		<include refid="includeList"></include>
 		)
-		WHERE SBCODE = #{param5} AND B_SEQ BETWEEN #{param1} AND #{param2}
+		WHERE B_SEQ BETWEEN #{param1} AND #{param2}
 
 
 
@@ -60,9 +60,9 @@
 
 	<insert id="qnawrite">
 		INSERT INTO
-		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID)
+		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID,SBCODE)
 		VALUES
-		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3})
+		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},#{param4})
 
 	</insert>
 	<select id="qacontview" resultType="com.prj.enjoy.qna.dto.QnaDto">

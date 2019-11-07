@@ -107,9 +107,9 @@
 					name="btn_search" value="검색" />
 			</div>
 		</form>
-	</div>
 	<div>
 		<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
 	</div>
+	</div> <!-- end container -->
 </body>
 </html>

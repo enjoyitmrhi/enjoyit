@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
+	<script>
 		function fnSubmitcForm(page) {
 			document.form1.cpage.value = page;
 			document.form1.submit();
@@ -25,7 +25,7 @@
 	<div class="container">
 
 		<div style="width: 20px; display: inline;">
-			<form action="adminMain" name="form1" id="form1" method="post">
+			<form action="admin_buMember" name="form1" id="form1" method="post">
 				<input type="hidden" name="cpage" value=""> <input
 					type="hidden" name="bpage" value=""> <select
 					class="form-control" name="sort" onchange="chsort()">
@@ -61,13 +61,12 @@
 			</form>
 		</div>
 
-		
+
 
 		<br>
-		
 
-	</div>
-<form action="../del_bu" method="post">
+
+		<form action="../del_bu" method="post">
 			<h3>가맹회원 목록</h3>
 			<input type="submit" value="가맹회원삭제">
 			<table class="table table-hover">
@@ -104,7 +103,8 @@
 		</form>
 
 		<!-- paging -->
-		TotRow: ${bSearchVO.totRow }&nbsp; page/totPage:${bSearchVO.page }/${bSearchVO.totPage }<br>
+		TotRow: ${bSearchVO.totRow }&nbsp; page/totPage:${bSearchVO.page }/${bSearchVO.totPage }
+		<br>
 		<form action="list" method="post">
 			<input type="hidden" name="bpage" value="">
 			<div>
@@ -133,5 +133,8 @@
 				</c:if>
 			</div>
 		</form>
+	</div>
+	<!-- end container -->
+
 </body>
 </html>

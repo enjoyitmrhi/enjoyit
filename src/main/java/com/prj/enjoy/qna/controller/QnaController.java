@@ -109,21 +109,22 @@ public class QnaController {
 		return "qna/qna_list";
 
 	}
-	
+
 	@RequestMapping(value = "answer_view.do")
 	public @ResponseBody String answer_view(@RequestParam("ID") String qanum) {
 		System.out.println(qanum);
-		QnaDao dao=sqlSession.getMapper(QnaDao.class);
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		String data = dao.answer_view(qanum);
-		System.out.println(data);	
+		System.out.println(data);
 		return data;
-	
+
 	}
 
 	@RequestMapping(value = "/qna_write_view")
 	public String qna_write_view(HttpServletRequest request, Model model) {
-
+		String sbcode = request.getParameter("sbcode");
 		String strId = request.getParameter("id");
+		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("id", strId);
 
 		return "qna/qna_write_view";
@@ -131,29 +132,22 @@ public class QnaController {
 
 	@RequestMapping(value = "/qna_write")
 	public String write(HttpServletRequest request, Model model) throws IOException {
-		/*String attachPath = "resources\\upload\\";
-		String uploadPath = request.getSession().getServletContext().getRealPath("/");
-		String path = uploadPath + attachPath;
-		System.out.println("path >>> " + path);
 
-		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
-				new DefaultFileRenamePolicy());
-*/
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
-
+		
+		String sbcode = request.getParameter("sbcode");
 		String strContent = request.getParameter("qcontent");
 		String strTitle = request.getParameter("qtitle");
 		String strId = request.getParameter("qid");
-		
 
 		System.out.println("strContent = " + strContent);
 		System.out.println("strTitle = " + strTitle);
 		System.out.println("strId = " + strId);
 
-		dao.qnawrite(strTitle, strContent, strId);
+		dao.qnawrite(strTitle, strContent, strId,sbcode);
 		model.addAttribute("id", strId);
 
-		return "redirect:qna_list";
+		return "redirect:qna_list?sbcode="+sbcode;
 	}
 
 	@RequestMapping("/qnacontent_view")

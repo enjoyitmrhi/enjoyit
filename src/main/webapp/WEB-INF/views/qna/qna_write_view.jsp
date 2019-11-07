@@ -11,14 +11,14 @@
 
 	<script>
 		function cancle() {
-			location.href = "qna_list"
+			location.href = "qna_list?sbcode=${sbcode}"
 		}
 	</script>
 	<div class="container">
 
 		<h3>qna_write_view</h3>
 		<form action="qna_write" method="post">
-
+			<input type="hidden" value="${sbcode}" name="sbcode">
 			<table class="table table-hover">
 				<tr>
 					<td>아이디</td>

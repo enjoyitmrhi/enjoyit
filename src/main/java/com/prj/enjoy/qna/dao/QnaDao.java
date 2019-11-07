@@ -10,7 +10,7 @@ public interface QnaDao {
 
 	ArrayList<QnaDto> qnalist(int rowStart, int rowEnd, String searchKeyword, String selNum, String sbcode);
 
-	void qnawrite(String strTitle, String strContent, String strId);
+	void qnawrite(String strTitle, String strContent, String strId, String sbcode);
 
 	QnaDto qacontview(String strNum);
 
