@@ -7,6 +7,7 @@ public class SbDto {
 	private String bunum;
 	private String sbpic;
 	private String sbtitle;
+	private String sbcontent;
 	private int sbprice;
 	private String sbloc;
 	private Timestamp sbdate;
@@ -74,6 +75,14 @@ public class SbDto {
 
 	public void setBuid(String buid) {
 		this.buid = buid;
+	}
+
+	public String getSbcontent() {
+		return sbcontent;
+	}
+
+	public void setSbcontent(String sbcontent) {
+		this.sbcontent = sbcontent;
 	}
 
 }

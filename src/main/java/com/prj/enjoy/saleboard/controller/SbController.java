@@ -1,5 +1,6 @@
 package com.prj.enjoy.saleboard.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,8 +39,8 @@ public class SbController {
 	public ArrayList<SbDto> jsonBoardList(HttpServletRequest request, HttpServletResponse response) {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		int sNum = Integer.parseInt(request.getParameter("num")) +1;
-		int eNum = Integer.parseInt(request.getParameter("num")) +6;
+		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
 
 		ArrayList<SbDto> addDto = dao.add_list(sNum, eNum);
 
@@ -106,11 +107,27 @@ public class SbController {
 	}
 
 	@RequestMapping(value = "/sbmodify")
-	public String sbmodify(HttpServletRequest request, Model model) {
-		SbDao dao = sqlSession.getMapper(SbDao.class);
-		String sbcode = request.getParameter("sbcode");
+	public String sbmodify(HttpServletRequest request, Model model) throws Exception {
+		String attachPath = "resources\\upload\\";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/");
+		String path = uploadPath + attachPath;
+		
+		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
+				new DefaultFileRenamePolicy());
 
-		dao.sbmodify(sbcode);
+		
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		String sbcode = req.getParameter("sbcode");
+		String sbprice = req.getParameter("sbprice");
+		String sbtitle = req.getParameter("sbtitle");
+		String sbcontent = req.getParameter("sbcontent");
+
+		String sbpic = dao.getSbPic(sbcode);
+		if (sbpic == null) {
+			sbpic = "";
+		}
+		
+		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic);
 		return "redirect:board_list";
 
 	}

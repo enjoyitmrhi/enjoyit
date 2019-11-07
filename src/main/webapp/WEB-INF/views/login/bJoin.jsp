@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,12 +55,12 @@ function checkfield() {
 		document.addjoin.buname.focus();
 		exit;
 		
-	}else if(document.addjoin.buaddr.value==""){
+	}/* else if(document.addjoin.buaddr.value==""){
 		alert("주소를 입력하세요");
 		document.addjoin.buaddr.focus();
 		exit;
 		
-	}else if(document.addjoin.burenum.value==""){
+	} */else if(document.addjoin.burenum.value==""){
 		alert("사업자등록번호를 입력하세요");
 		document.addjoin.burenum.focus();
 		exit;
@@ -85,23 +87,69 @@ function checkfield() {
 	}
 	document.addjoin.submit();
 }
+
+function goPopup(){
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+    var pop = window.open("jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+}
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+						, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno
+						, emdNo, entX, entY){
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	document.addjoin.roadAddrPart1.value = roadAddrPart1;
+	document.addjoin.roadAddrPart2.value = roadAddrPart2;
+	document.addjoin.addrDetail.value = addrDetail;
+	document.addjoin.zipNo.value = zipNo;
+	document.addjoin.entX.value = entX;
+	document.addjoin.entY.value = entY;
+}
 </script>
 <div class="container">
 
 	<h3>this is join page</h3>
 	<form action="bJoinProc" method="post" name="addjoin">
-	<table>
-		<tr><td><label>아이디*</label></td>
-		 <td><input type="text" name="buid" id="buid"> 
-		<input type="button" id="chk_bid" onclick="javascript:chk_id()" value="중복확인"></td> 
-		</tr>
-		<tr><td><label>비밀번호*</label> </td><td><input type="text" name="bupw" id="bupw"></td></tr> 
-		<tr><td><label>비밀번호 확인*</label> </td><td><input type="text" name="bupw2" id="bupw2"></td></tr> 
-		<tr><td><label>사업자명*</label> </td><td><input type="text" name="buname" id="buname"></td></tr> 
-		<tr><td><label>주소*</label></td><td> <input type="text" name="buaddr" id="buaddr"></td></tr> 
-		<tr><td><label>사업자등록번호*</label> </td><td><input type="text" name="burenum" id="burenum"></td></tr> 
-		<tr><td><label>연락처*</label></td><td> <input type="tel" name="butel" id="butel"></td></tr>
-		<tr><td><label>이메일*</label></td><td> <input type="email" name="buemail" id="buemail"></td></tr> 
+		<label>아이디*</label> <input type="text" name="buid" id="buid"> 
+		<input type="button" id="chk_bid" onclick="javascript:chk_id()" value="중복확인"><br> 
+		<label>비밀번호*</label> <input type="text" name="bupw" id="bupw"><br> 
+		<label>비밀번호 확인*</label> <input type="text" name="bupw2" id="bupw2"><br> 
+		<label>사업자명*</label> <input type="text" name="buname" id="buname"><br> 
+		<!-- <label>주소*</label> <input type="text" name="buaddr" id="buaddr"><br>  -->
+		<table >
+			<colgroup>
+				<col style="width:20%"><col>
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>우편번호</th>
+					<td>
+					    <input type="hidden" id="confmKey" name="confmKey" value=""  >
+						<input type="text" id="zipNo" name="zipNo" readonly style="width:100px">
+						<input type="button"  value="주소검색" onclick="goPopup();">
+					</td>
+				</tr>
+				<tr>
+					<th><label>도로명주소</label></th>
+					<td><input type="text" id="roadAddrPart1" name="addr1" style="width:85%"></td>
+				</tr>
+				<tr>
+					<th>상세주소</th>
+					<td>
+						<input type="text" id="addrDetail" name="addr2" style="width:40%" value="">
+						<input type="text" id="roadAddrPart2"  name="addr3" style="width:40%" value="">
+					</td>
+				</tr>
+				<tr>
+					<th>좌표정보</th>
+					<td>
+						<input type="text" id="entX" name="entX" style="width:40%" value="">
+						<input type="text" id="entY"  name="entY" style="width:40%" value="">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<label>사업자등록번호*</label> <input type="text" name="burenum" id="burenum"><br> 
+		<label>연락처*</label> <input type="tel" name="butel" id="butel"><br> 
+		<label>이메일*</label> <input type="email" name="buemail" id="buemail"><br> 
 		<input type="button" value="회원가입" onclick="checkfield()">
 
 
