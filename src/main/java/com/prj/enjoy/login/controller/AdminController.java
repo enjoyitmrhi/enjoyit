@@ -43,66 +43,7 @@ public class AdminController {
 
 	@RequestMapping("/admin/adminMain")
 	public String adminMain(HttpServletRequest request, cSearchVO csearchVO, bSearchVO bsearchVO, Model model) {
-		System.out.println("passing adminMain");
-//		Map<String, String> map =new HashMap<String, String>();
-		String cusort = "";
-		String busort = "";
-		String sort= request.getParameter("sort");
-		if(sort != null) {
-		if (sort.equals("num")) {
-			model.addAttribute("num","true");
-		}else if (sort.equals("name")) {
-			model.addAttribute("name","true");
-		}else if (sort.equals("date")) {
-			model.addAttribute("date","true");
-		}
-	}
-			
-		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		int ctotal = 0 ; 
-		ctotal = dao.selectCuCount();
-		String strPage = request.getParameter("cpage");
-		if (strPage == null || strPage.equals("")) {
-			strPage = "1";
-		}
-		int cpage =Integer.parseInt(strPage);
-		csearchVO.setPage(cpage);
-		csearchVO.pageCalculate(ctotal);
 		
-		int rowStart = csearchVO.getRowStart();
-		int rowEnd = csearchVO.getRowEnd();
-		if (sort==null || sort.equals("")) {
-			cusort=null;
-			busort=null;
-		}
-		else if (sort !=null ) {
-			cusort = "cu" + sort;
-			System.out.println(cusort);
-			busort = "bu" + sort;
-			System.out.println(busort);
-		}
-		
-		
-		System.out.println(cusort);
-		model.addAttribute("clist", dao.getCustomer(cusort, rowStart, rowEnd));
-		model.addAttribute("cSearchVO",csearchVO);
-		
-		int btotal = 0 ; 
-		btotal = dao.selectBuCount();
-		strPage = request.getParameter("bpage");
-		if (strPage == null || strPage.equals("")) {
-			strPage = "1";
-		}
-		
-		int bpage =Integer.parseInt(strPage);
-		bsearchVO.setPage(bpage);
-		bsearchVO.pageCalculate(btotal);
-		
-		rowStart = bsearchVO.getRowStart();
-		rowEnd = bsearchVO.getRowEnd();
-		
-		model.addAttribute("blist", dao.getBusiness(busort, rowStart, rowEnd));
-		model.addAttribute("bSearchVO",bsearchVO);
 		return "admin/adminMain";
 	}
 
@@ -171,7 +112,7 @@ public class AdminController {
 		String cubirth = request.getParameter("cubirth");
 		String cugender = request.getParameter("cugender");
 		String cutel = request.getParameter("cutel");
-
+		System.out.println(cugender);
 		dao.editProc_cu(cuid, cuname, cuaddr, cuemail, cubirth, cugender, cutel, cunum);
 		model.addAttribute("cunum", cunum);
 		return "redirect:cuManagement";
@@ -191,5 +132,139 @@ public class AdminController {
 		dao.editProc_bu(buid, buname, buaddr, buemail, burenum, butel, bunum);
 		model.addAttribute("bunum", bunum);
 		return "redirect:buManagement";
+	}
+	@RequestMapping("/admin/admin_cuMember")
+	public String admin_cuMember(HttpServletRequest request, cSearchVO csearchVO, bSearchVO bsearchVO, Model model) {
+		System.out.println("passing adminMain");
+//		Map<String, String> map =new HashMap<String, String>();
+		String cusort = "";
+		String busort = "";
+		String sort= request.getParameter("sort");
+		if(sort != null) {
+		if (sort.equals("num")) {
+			model.addAttribute("num","true");
+		}else if (sort.equals("name")) {
+			model.addAttribute("name","true");
+		}else if (sort.equals("date")) {
+			model.addAttribute("date","true");
+		}
+	}
+			
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		int ctotal = 0 ; 
+		ctotal = dao.selectCuCount();
+		String strPage = request.getParameter("cpage");
+		if (strPage == null || strPage.equals("")) {
+			strPage = "1";
+		}
+		int cpage =Integer.parseInt(strPage);
+		csearchVO.setPage(cpage);
+		csearchVO.pageCalculate(ctotal);
+		
+		int rowStart = csearchVO.getRowStart();
+		int rowEnd = csearchVO.getRowEnd();
+		if (sort==null || sort.equals("")) {
+			cusort=null;
+			busort=null;
+		}
+		else if (sort !=null ) {
+			cusort = "cu" + sort;
+			System.out.println(cusort);
+			busort = "bu" + sort;
+			System.out.println(busort);
+		}
+		
+		
+		System.out.println(cusort);
+		model.addAttribute("clist", dao.getCustomer(cusort, rowStart, rowEnd));
+		model.addAttribute("cSearchVO",csearchVO);
+		
+		int btotal = 0 ; 
+		btotal = dao.selectBuCount();
+		strPage = request.getParameter("bpage");
+		if (strPage == null || strPage.equals("")) {
+			strPage = "1";
+		}
+		
+		int bpage =Integer.parseInt(strPage);
+		bsearchVO.setPage(bpage);
+		bsearchVO.pageCalculate(btotal);
+		
+		rowStart = bsearchVO.getRowStart();
+		rowEnd = bsearchVO.getRowEnd();
+		
+		model.addAttribute("blist", dao.getBusiness(busort, rowStart, rowEnd));
+		model.addAttribute("bSearchVO",bsearchVO);
+		
+		return"admin/admin_cuMember";
+	}
+	@RequestMapping("/admin/admin_buMember")
+	public String admin_buMember(HttpServletRequest request, cSearchVO csearchVO, bSearchVO bsearchVO, Model model) {
+		System.out.println("passing adminMain");
+//		Map<String, String> map =new HashMap<String, String>();
+		String cusort = "";
+		String busort = "";
+		String sort= request.getParameter("sort");
+		if(sort != null) {
+		if (sort.equals("num")) {
+			model.addAttribute("num","true");
+		}else if (sort.equals("name")) {
+			model.addAttribute("name","true");
+		}else if (sort.equals("date")) {
+			model.addAttribute("date","true");
+		}
+	}
+			
+		AdminDao dao = sqlSession.getMapper(AdminDao.class);
+		int ctotal = 0 ; 
+		ctotal = dao.selectCuCount();
+		String strPage = request.getParameter("cpage");
+		if (strPage == null || strPage.equals("")) {
+			strPage = "1";
+		}
+		int cpage =Integer.parseInt(strPage);
+		csearchVO.setPage(cpage);
+		csearchVO.pageCalculate(ctotal);
+		
+		int rowStart = csearchVO.getRowStart();
+		int rowEnd = csearchVO.getRowEnd();
+		if (sort==null || sort.equals("")) {
+			cusort=null;
+			busort=null;
+		}
+		else if (sort !=null ) {
+			cusort = "cu" + sort;
+			System.out.println(cusort);
+			busort = "bu" + sort;
+			System.out.println(busort);
+		}
+		
+		
+		System.out.println(cusort);
+		model.addAttribute("clist", dao.getCustomer(cusort, rowStart, rowEnd));
+		model.addAttribute("cSearchVO",csearchVO);
+		
+		int btotal = 0 ; 
+		btotal = dao.selectBuCount();
+		strPage = request.getParameter("bpage");
+		if (strPage == null || strPage.equals("")) {
+			strPage = "1";
+		}
+		
+		int bpage =Integer.parseInt(strPage);
+		bsearchVO.setPage(bpage);
+		bsearchVO.pageCalculate(btotal);
+		
+		rowStart = bsearchVO.getRowStart();
+		rowEnd = bsearchVO.getRowEnd();
+		
+		model.addAttribute("blist", dao.getBusiness(busort, rowStart, rowEnd));
+		model.addAttribute("bSearchVO",bsearchVO);
+		return"admin/admin_buMember";
+	}
+	@RequestMapping("/adminMain")
+	public String main(HttpServletRequest request) {
+		
+		return"adminMain";
 	}
 }

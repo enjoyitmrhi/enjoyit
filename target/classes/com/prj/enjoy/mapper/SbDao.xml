@@ -7,10 +7,32 @@
 
 	<select id="board_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
 		SELECT
-		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID FROM SALE_BOARD
-		ORDER BY SBCODE DESC
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID ,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN '1' AND '6'
+		
+		
+		
+
+
+	
+
+
 
 	</select>
+	<select id="add_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+	SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID ,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN #{param1} AND #{param2}
+	
+	</select>
+
+	
 
 	<insert id="board_write">
 		INSERT INTO
@@ -30,7 +52,21 @@
 	</delete>
 	
 	<update id="sbmodify">
-	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = '2000',SBTITLE='CHANGEDTITLE' WHERE SBCODE = #{param1}
+	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5} WHERE SBCODE = #{param1}
 	
 	</update>
+	
+	<select id="avgstar" resultType="String">
+	 
+	SELECT AVG(RVSTAR) FROM REVIEW WHERE SBCODE = #{param1}
+	 
+	</select> 
+	
+	<select id="getSbPic" resultType="String">
+		SELECT SBPIC FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
+	
+	
 </mapper>

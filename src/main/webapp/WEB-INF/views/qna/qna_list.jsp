@@ -18,26 +18,23 @@ function show_block(elem,ID) {
 	if (elem.className !='opened') {
 	    elem.className ='opened';
 	    menu.style.display ="block";
-	    /* alert(ID); */
-	    /* $.ajax({
-	    	async: false,
-	    	type : "POST",
-			url : "answer_view.do",
-			data : {"qnum" : ID},
-			dataType : "XML",
-			contentType : "text",
-            success: function(data){
-            	alert(data.content);
-            },error : function name() {
-            	alert(fail);
+	    $.ajax({
+	    	type:"POST",
+			url:"answer_view.do",
+			data : {ID},
+			success : function(data) {
+				alert("success"+data);
+				document.getElementById("answer_view"+ID).value = data; 
+			}, error : function(data) {
+				alert("전송실패" + data);
 			}
-	    }); */ 
-	    $.load("/answer_view.do",{"qnum" : ID}, function(){alert(data);});
+	    });
 	    
 	}  else {
 		elem.className = 'closed';
 	    menu.style.display = "none";
 	}
+	
 }
 //]]>
 </script>
@@ -117,6 +114,7 @@ function clickshow(elem,ID) {
 				
 				<tr id="${dto.qanum }" style="display: none;">
 					<td colspan="3">${dto.qanum }</td>
+					<td ><input type="text" id="answer_view${dto.qanum }" value="" readonly></td>
 				</tr>
 				
 			</c:if>

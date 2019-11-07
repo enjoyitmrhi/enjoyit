@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.prj.enjoy.qna.dao.QnaDao;
 import com.prj.enjoy.qna.dto.QnaDto;
@@ -91,19 +90,19 @@ public class QnaController {
 		model.addAttribute("searchVO", searchVO);
 
 		if (qatitle.equals("qatitle") && qacontent.equals("")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "1"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "1", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
 
 		} else if (qatitle.equals("") && qacontent.equals("qacontent")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "2"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "2", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2"));
 
 		} else if (qatitle.equals("qatitle") && qacontent.equals("qacontent")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "3"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "3", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3"));
 
 		} else if (qatitle.equals("") && qacontent.equals("")) {
-			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "0"));
+			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "0", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
 
 		}
@@ -112,15 +111,14 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody ModelAndView answer_view(@RequestParam("qnum") String qanum) {
+	public @ResponseBody String answer_view(@RequestParam("ID") String qanum) {
 		System.out.println(qanum);
 		QnaDao dao=sqlSession.getMapper(QnaDao.class);
-		ModelAndView mav= new ModelAndView();
-		System.out.println("뭔내용인교>>>"+ dao.answer_view(qanum));
-		mav.addObject("content", dao.answer_view(qanum));
-		return mav;
-	}
+		String data = dao.answer_view(qanum);
+		System.out.println(data);	
+		return data;
 	
+	}
 
 	@RequestMapping(value = "/qna_write_view")
 	public String qna_write_view(HttpServletRequest request, Model model) {

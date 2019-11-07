@@ -6,13 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <link rel="stylesheet"	href="<c:url value= "/resources/bootstrap/css/bootstrap.css" />"> 
+<link rel="stylesheet"	href="<c:url value= "/resources/bootstrap/css/bootstrap.min.css" />">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet"
-	href="<c:url value= "/resources/bootstrap/css/bootstrap.css" />">
 
 
-<link rel="stylesheet"
-	href="<c:url value= "/resources/bootstrap/css/bootstrap.min.css" />">
+
+
 </head>
 <body>
 
@@ -34,18 +35,52 @@
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 		</ul>
 
+		<c:if test="${session_cid !=null }">
+			<form class="form-inline my-2 my-lg-0" action="cuMypage">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">MyPage</button>
+			</form>
+		</c:if>
+		<c:if test="${session_bid !=null }">
+			<form class="form-inline my-2 my-lg-0" action="buMypage">
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">MyPage</button>
+			</form>
+		</c:if>
+		&nbsp;&nbsp;
 		<c:if test="${session_bid != null || session_cid != null  }">
 			<form class="form-inline my-2 my-lg-0" action="logout">
 
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+				<button class="btn btn-secondary" type="submit">Logout</button>
 
 			</form>
+
 
 		</c:if>
 		<c:if test="${session_bid == null && session_cid == null  }">
 			<form class="form-inline my-2 my-lg-0" action="login">
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
+				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Sign in</button>
 			</form>
+					&nbsp;&nbsp;
+			
+			
+				<form>
+				<div class="btn-group" role="group"
+					aria-label="Button group with nested dropdown">
+					<button type="button" class="btn btn-secondary my-2 my-sm-0">Sign up</button>
+					<div class="btn-group" role="group">
+						<button id="btnGroupDrop1" type="button"
+							class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"></button>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+							<a class="dropdown-item" href="join">고객회원가입</a> <a
+								class="dropdown-item" href="bJoin">기업회원가입</a>
+						</div>
+					</div>
+				</div>
+			</form>
+
+
+
+
 
 		</c:if>
 

@@ -1,27 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+
 </head>
 <body>
 	<div class="container">
 		<h3>review_content_view.jsp</h3>
-		<form action="review_modify" method="post" enctype="multipart/form-data">
+		<form action="review_modify" method="post"
+			enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
-			<table class="table table-hover">
+			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
+
+			<table class="table ">
 				<tr>
-					<td  >제목 : </td>
-					<td colspan="2"><input type="text" name="rvtitle"
+					<td>제목 :</td>
+					<td colspan="3"><input type="text" name="rvtitle"
 						value="${content_view.rvtitle }" size="50" /></td>
 				</tr>
 				<tr>
-					<td>${content_view.cuid }|${content_view.sbcode } </td>
+					<td>별점</td>
+					<td colspan="2"><c:choose>
+							<c:when test="${content_view.rvstar eq '1' }">☆☆☆☆★</c:when>
+							<c:when test="${content_view.rvstar eq '2' }">☆☆☆★★</c:when>
+							<c:when test="${content_view.rvstar eq '3' }">☆☆★★★</c:when>
+							<c:when test="${content_view.rvstar eq '4' }">☆★★★★</c:when>
+							<c:when test="${content_view.rvstar eq '5' }">★★★★★</c:when>
+						</c:choose></td>
+				</tr>
+				<tr>
+					<td>${content_view.cuid }|${content_view.sbcode }</td>
 					<td>${content_view.rvdate }</td>
-					<td>조회수 : ${content_view.rvhit } | 번호 : ${content_view.rvnum }	</td>
+					<td>조회수 : ${content_view.rvhit } | 번호 : ${content_view.rvnum }
+					</td>
 				</tr>
 				<tr>
 					<td>내용</td>

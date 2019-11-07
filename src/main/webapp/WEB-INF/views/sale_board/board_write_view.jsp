@@ -7,44 +7,48 @@
 <title>Insert title here</title>
 
 </head>
-<body>	<div class="container">
+<body><div id = "wrap">
+	<div class="container">
 
-	<h3>board_write_view</h3>
-	<form action="board_write" method="post" enctype="multipart/form-data">
-		<table border="1 solid #fff">
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" size="50" name="buid" value="${session_bid  }"
-					readonly="readonly"></td>
+		<h3>board_write_view</h3>
+		<form action="board_write" method="post" enctype="multipart/form-data">
+			<table class="table">
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" size="50" name="buid"
+						value="${session_bid  }" readonly="readonly" class="form-control"></td>
 
-			</tr>
-			<tr>
-				<td>사진</td>
-				<td><input type="file" name="sbpic"></td>
+				</tr>
+				<tr>
+					<td>사진</td>
+					<td><input type="file" name="sbpic" class="form-control"></td>
 
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td><input type="text" size="50" name="sbtitle"></td>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td><input type="text" size="50" name="sbtitle"
+						class="form-control"></td>
 
-			</tr>
-			<tr>
-				<td>가격</td>
-				<td><input type="text" size="50" name="sbprice"></td>
+				</tr>
+				<tr>
+					<td>가격</td>
+					<td><input type="text" size="50" name="sbprice"
+						class="form-control"></td>
 
-			</tr>
-			<tr>
-				<td>위치</td>
-				<td><input type="text" size="50" name="sbloc"></td>
+				</tr>
+				<tr>
+					<td>위치</td>
+					<td><input type="text" size="50" name="sbloc"
+						class="form-control"></td>
 
-			</tr>
+				</tr>
 
 
 
-		</table>
-		<input type="submit" value="완료">
-	</form>
-	<a href="board_list"> 취소</a>
-	</div>
+			</table>
+			<input type="submit" value="완료">
+		</form>
+		<a href="board_list"> 취소</a>
+	</div></div>
 </body>
 </html>
