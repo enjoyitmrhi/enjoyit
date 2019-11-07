@@ -20,7 +20,7 @@ public interface QnaDao {
 
 	QnaDto qnaanswer(String number);
 
-	void qnaAnswerWrite(String cuid, int group, int step, int indent, String content, String title);
+	void qnaAnswerWrite(String cuid, int group, int step, int indent, String content, String title, String sbcode);
 
 	void replyShape(int group, int step);
 

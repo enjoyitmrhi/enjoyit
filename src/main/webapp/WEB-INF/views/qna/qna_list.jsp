@@ -121,16 +121,20 @@ function clickshow(elem,ID) {
 
 					<tr id="${dto.qanum }" style="display: none;">
 						<td colspan="3">${dto.qanum }</td>
-						<td><input type="text" id="answer_view${dto.qanum }"
-							value="" readonly></td>
+						<td><input type="text" id="answer_view${dto.qanum }" value=""
+							readonly></td>
 					</tr>
 
 				</c:if>
 			</c:forEach>
+			<c:if test="${session_cid != null}">
+			
 
-			<tr>
-				<td colspan="3"><a href="qna_write_view?sbcode=${sbcode }">QnA 작성하기</a></td>
-			</tr>
+				<tr>
+					<td colspan="3"><a
+						href="qna_write_view?sbcode=${sbcode }&wid=${wid}">QnA 작성하기</a></td>
+				</tr>
+			</c:if>
 		</table>
 
 		TotRow : ${searchVO.totRow }&nbsp; page /totPage : ${searchVO.page }/${searchVO.totPage }

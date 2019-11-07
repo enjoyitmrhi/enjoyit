@@ -12,6 +12,7 @@
 	<form action="qnaanswer_write">
 
 		<input type="hidden" name="num" value="${answerview.qanum }">
+		<input type="hidden" name="sbcode" value="${answerview.sbcode }">
 		<input type="hidden" name="group" value="${answerview.qagroup }">
 		<input type="hidden" name="step" value="${answerview.qastep }">
 		<input type="hidden" name="indent" value="${answerview.qaindent }">
@@ -36,7 +37,7 @@
 			<tr>
 				<td>작성자</td>
 				<td><input type="text" name="id"
-					value="${session_bid }${session_cid }" readonly="readonly"></td>
+					value="${session_bid }" readonly="readonly"></td>
 			</tr>
 
 		</table>

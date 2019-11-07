@@ -124,6 +124,9 @@ public class QnaController {
 	public String qna_write_view(HttpServletRequest request, Model model) {
 		String sbcode = request.getParameter("sbcode");
 		String strId = request.getParameter("id");
+		String wid = request.getParameter("wid");
+		
+		model.addAttribute("wid", wid);
 		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("id", strId);
 
@@ -167,31 +170,35 @@ public class QnaController {
 
 	@RequestMapping("/qnadelete")
 	public String qnadelete(HttpServletRequest request, Model model) {
-		String strNum = request.getParameter("num");
+		String strNum = request.getParameter("qanum");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
+		String wid = request.getParameter("wid");
+		String sbcode = request.getParameter("sbcode");
 
 		dao.qnadelete(strNum);
 
-		return "redirect:qna_list";
+		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
 	}
 
 	@RequestMapping("/qnamodify")
 	public String qnamodify(HttpServletRequest request, Model model) {
-		String strNum = request.getParameter("num");
+		String strNum = request.getParameter("qanum");
 		String content = request.getParameter("content");
+		String wid = request.getParameter("wid");
+		String sbcode = request.getParameter("sbcode");
 
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 
 		dao.qnamodify(strNum, content);
 
-		return "redirect:qna_list";
+		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
 	}
 
 	@RequestMapping("/qnaanswerview")
 	public String qnaAnswer(HttpServletRequest request, Model model) {
-		String number = request.getParameter("num");
+		String qanum = request.getParameter("qanum");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
-		QnaDto dto = dao.qnaanswer(number);
+		QnaDto dto = dao.qnaanswer(qanum);
 
 		model.addAttribute("answerview", dto);
 
@@ -202,6 +209,8 @@ public class QnaController {
 	public String qnaanswer_write(HttpServletRequest request, Model model) {
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 
+		String sbcode = request.getParameter("sbcode");
+		String id = request.getParameter("id");
 		String num = request.getParameter("num");
 		int group = Integer.parseInt(request.getParameter("group"));
 		int step = Integer.parseInt(request.getParameter("step"));
@@ -212,11 +221,11 @@ public class QnaController {
 
 		replyShape(group, step);
 
-		System.out.println(group + " " + step + " " + indent);
+		
 
-		dao.qnaAnswerWrite(buid, group, step, indent, content, title);
+		dao.qnaAnswerWrite(buid, group, step, indent, content, title,sbcode);
 
-		return "redirect:qna_list";
+		return "redirect:qna_list?wid="+id+"&sbcode="+sbcode;
 	}
 
 	private void replyShape(int group, int step) {
