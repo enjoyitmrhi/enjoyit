@@ -1,16 +1,21 @@
 package com.prj.enjoy.saleboard.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.saleboard.dao.SbDao;
+import com.prj.enjoy.saleboard.dto.SbDto;
 
 @Controller
 public class SbController {
@@ -28,6 +33,20 @@ public class SbController {
 		return "sale_board/board_list";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/add_list")
+	public ArrayList<SbDto> jsonBoardList(HttpServletRequest request, HttpServletResponse response) {
+
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		int sNum = Integer.parseInt(request.getParameter("num")) +1;
+		int eNum = Integer.parseInt(request.getParameter("num")) +6;
+
+		ArrayList<SbDto> addDto = dao.add_list(sNum, eNum);
+
+		return addDto;
+
+	}
+
 	@RequestMapping(value = "/sbcontent_view")
 	public String sbcontent_view(HttpServletRequest request, Model model) {
 		String wid = request.getParameter("wid");
@@ -35,8 +54,13 @@ public class SbController {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 
+		String avgstar;
+		avgstar = dao.avgstar(sbcode);
+		if (avgstar == null || avgstar.equals("0")) {
+			avgstar = "1";
+		}
 		model.addAttribute("wid", wid);
-//		model.addAttribute("avgstar", dao.avgstar(sbcode));
+		model.addAttribute("avgstar", avgstar);
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
 		return "sale_board/sbcontent_view";
 	}

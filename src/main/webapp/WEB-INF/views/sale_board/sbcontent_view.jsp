@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,16 +50,18 @@
 				</tr>
 				<tr>
 					<td>상품 리뷰 평균</td>
-					<%-- <td> ${avgstar } </td> --%>
-					<td>
-					<c:choose>
-							<c:when test="${avgstar eq 1 }">☆☆☆☆★</c:when>
-							<c:when test="${avgstar eq 2 }">☆☆☆★★</c:when>
-							<c:when test="${avgstar eq 3 }">☆☆★★★</c:when>
-							<c:when test="${avgstar eq 4 }">☆★★★★</c:when>
-							<c:when test="${avgstar eq 5 }">★★★★★</c:when>
-						</c:choose>
-					</td>
+				
+					<td><c:set var="avg" value="${avgstar}"></c:set>
+					 <c:if
+							test="${avg != null }">
+							<c:choose>
+								<c:when test="${avg eq '1' }">☆☆☆☆★</c:when>
+								<c:when test="${avg eq '2' }">☆☆☆★★</c:when>
+								<c:when test="${avg eq '3' }">☆☆★★★</c:when>
+								<c:when test="${avg eq '4' }">☆★★★★</c:when>
+								<c:when test="${avg eq '5' }">★★★★★</c:when>
+							</c:choose>
+						</c:if></td>
 				</tr>
 
 			</table>
