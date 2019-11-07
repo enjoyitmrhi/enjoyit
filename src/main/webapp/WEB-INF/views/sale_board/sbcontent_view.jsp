@@ -65,7 +65,7 @@
 			</table>
 		</div>
 
-		<a href="review_list"> 리뷰보기</a> &nbsp;&nbsp;<a
+		<a href="review_list?sbcode=${sbcontent_view.sbcode }"> 리뷰보기</a> &nbsp;&nbsp;<a
 			href="qna_list?wid=${wid }">QnA보기</a> <br />
 		<button onclick="javascript:del_sbCont()">삭제하기</button>
 		&nbsp;&nbsp;

@@ -47,10 +47,12 @@
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td colspan="2"><a
+					<td colspan="2"><%-- <a
 						href="review_download?p=resources/upload/&f=${content_view.rvpic }
 			&sbcode=${content_view.sbcode }">
-							${content_view.rvpic }</a></td>
+							${content_view.rvpic }</a> --%>
+							<img alt="" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
+							</td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="modify" />

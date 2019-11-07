@@ -35,7 +35,7 @@
 			<otherwise></otherwise>
 		</choose>
 	</sql>
-	<select id="review_list" resultType="com.prj.enjoy.review.dto.ReviewDto">
+	<select id="review_list" parameterType="map" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT SBCODE, CUID, RVTITLE,RVCONTENT, RVDATE, RVHIT, RVGROUP,
 		RVSTEP, RVINDENT, RVNUM, RVSTAR
 		FROM (SELECT SBCODE, CUID, RVTITLE,
@@ -47,8 +47,7 @@
 		REVIEW
 		<include refid="includeList" />
 		)
-		WHERE REVIEW_SEQ
-		BETWEEN #{param1} AND #{param2}
+		WHERE SBCODE=#{param5} AND REVIEW_SEQ BETWEEN #{param1} AND #{param2}
 	</select>
 
 	<!-- total count -->

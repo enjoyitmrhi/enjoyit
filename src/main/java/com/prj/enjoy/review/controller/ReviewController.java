@@ -28,6 +28,11 @@ public class ReviewController {
 	public String review_list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		String rvtitle = "";
 		String rvcontent = "";
+		
+		String sbcode = request.getParameter("sbcode");
+
+		model.addAttribute("sbcode", sbcode);
+		
 		String[] brdtitle = request.getParameterValues("searchType");
 		if (brdtitle != null) {
 			for (String val : brdtitle) {
@@ -72,17 +77,19 @@ public class ReviewController {
 		int rowStrat = searchVO.getRowStart();
 		int rowEnd = searchVO.getRowEnd();
 
+		
+		
 		if (rvtitle.equals("rvtitle") && rvcontent.equals("")) {
-			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "1"));
+			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "1", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
 		} else if (rvtitle.equals("") && rvcontent.equals("rvcontent")) {
-			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "2"));
+			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "2", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2"));
 		} else if (rvtitle.equals("rvtitle") && rvcontent.equals("rvcontent")) {
-			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "3"));
+			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "3", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3"));
 		} else if (rvtitle.equals("") && rvcontent.equals("")) {
-			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "0"));
+			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "0", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
 		}
 		model.addAttribute("searchVO", searchVO);
@@ -128,11 +135,18 @@ public class ReviewController {
 
 	@RequestMapping("/review_content_view")
 	public String content_view(HttpServletRequest request, Model model) {
+		
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+		
 		String strnum = request.getParameter("rvnum");
+		String scode = request.getParameter("scode");
 		int rvnum = Integer.parseInt(strnum);
+		
 		hitUp(rvnum);
+		
 		model.addAttribute("content_view", dao.contentView(rvnum));
+		model.addAttribute("scode", scode);
+		
 		return "review/review_content_view";
 	}
 
