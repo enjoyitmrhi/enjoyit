@@ -52,7 +52,7 @@
 	</delete>
 	
 	<update id="sbmodify">
-	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = '2000',SBTITLE='CHANGEDTITLE' WHERE SBCODE = #{param1}
+	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5} WHERE SBCODE = #{param1}
 	
 	</update>
 	
@@ -62,7 +62,11 @@
 	 
 	</select> 
 	
-	
+	<select id="getSbPic" resultType="String">
+		SELECT SBPIC FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
 	
 	
 </mapper>
