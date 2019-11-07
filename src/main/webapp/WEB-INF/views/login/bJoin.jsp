@@ -108,11 +108,11 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 
 	<h3>this is join page</h3>
 	<form action="bJoinProc" method="post" name="addjoin">
-		<label>아이디*</label> <input type="text" name="buid" id="buid"> 
+		<label><strong>아이디*</strong></label> <input type="text" name="buid" id="buid"> 
 		<input type="button" id="chk_bid" onclick="javascript:chk_id()" value="중복확인"><br> 
-		<label>비밀번호*</label> <input type="text" name="bupw" id="bupw"><br> 
-		<label>비밀번호 확인*</label> <input type="text" name="bupw2" id="bupw2"><br> 
-		<label>사업자명*</label> <input type="text" name="buname" id="buname"><br> 
+		<label><strong>비밀번호*</strong></label> <input type="password" name="bupw" id="bupw"><br> 
+		<label><strong>비밀번호 확인*</strong></label> <input type="password" name="bupw2" id="bupw2"><br> 
+		<label><strong>사업자명*</strong></label> <input type="text" name="buname" id="buname"><br> 
 		<!-- <label>주소*</label> <input type="text" name="buaddr" id="buaddr"><br>  -->
 		<table >
 			<colgroup>
@@ -138,7 +138,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 						<input type="text" id="roadAddrPart2"  name="addr3" style="width:40%" value="">
 					</td>
 				</tr>
-				<tr>
+				<tr style="display:none;">
 					<th>좌표정보</th>
 					<td>
 						<input type="text" id="entX" name="entX" style="width:40%" value="">
@@ -147,9 +147,9 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 				</tr>
 			</tbody>
 		</table>
-		<label>사업자등록번호*</label> <input type="text" name="burenum" id="burenum"><br> 
-		<label>연락처*</label> <input type="tel" name="butel" id="butel"><br> 
-		<label>이메일*</label> <input type="email" name="buemail" id="buemail"><br> 
+		<label><strong>사업자등록번호*</strong></label> <input type="text" name="burenum" id="burenum"><br> 
+		<label><strong>연락처*</strong></label> <input type="tel" name="butel" id="butel"><br> 
+		<label><strong>이메일*</strong></label> <input type="email" name="buemail" id="buemail"><br> 
 		<input type="button" value="회원가입" onclick="checkfield()">
 
 

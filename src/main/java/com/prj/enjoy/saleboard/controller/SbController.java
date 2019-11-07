@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.prj.enjoy.login.dao.LoginDao;
+import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.saleboard.dao.SbDao;
 
 @Controller
@@ -34,10 +36,15 @@ public class SbController {
 		String sbcode = request.getParameter("sbcode");
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-
+		LoginDao loginDao =sqlSession.getMapper(LoginDao.class);
+		Business dto= loginDao.getBusiness(wid);
+		String longitude = dto.getBulongitude();
+		String latitude= dto.getBulatitude();
 		model.addAttribute("wid", wid);
 //		model.addAttribute("avgstar", dao.avgstar(sbcode));
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
+		model.addAttribute("sblong",longitude);
+		model.addAttribute("sblat",latitude);
 		return "sale_board/sbcontent_view";
 	}
 

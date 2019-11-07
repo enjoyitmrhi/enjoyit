@@ -115,39 +115,48 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 <div class="container">
 	<h3>this is join page</h3>
 	<form action="joinProc" method="post" name="addjoin" id="addjoin">
-		<label>아이디*</label> <input type="text" name="cuid" id="cuid"> 
+		<label><strong>아이디*</strong></label> <input type="text" name="cuid" id="cuid"> 
 		<input type="button" id="chk_cid" onclick="javascript:chk_id()" value="중복확인"><br> 
-		<label>비밀번호*</label> <input type="text" name="cupw" id="cupw"><br> 
-		<label>비밀번호 확인*</label> <input type="text" name="cupw2" id="cupw2"><br> 
-		<label>이름*</label> <input type="text" name="cuname" id="cuname"><br> 
+		<label><strong>비밀번호*</strong></label> <input type="password" name="cupw" id="cupw"><br> 
+		<label><strong>비밀번호 확인*</strong></label> <input type="password" name="cupw2" id="cupw2"><br> 
+		<label><strong>이름*</strong></label> <input type="text" name="cuname" id="cuname"><br> 
 		<label>성별</label> 
 		<select name="cugender">
 			<option value="" selected>성별</option>
 			<option value="male">남자</option>
 			<option value="female">여자</option>
 		</select><br>
-		<label>생년월일*</label> 
+		<label><strong>생년월일*</strong></label>
 		<select name="cuyear" id="cuyear">
 			<option value="" selected>년도</option>
 			<c:forEach begin="0" end="50" var="i">
 				<c:forEach begin="99" end="99" var="j">
-					<option value="${j - i }">${j - i }</option>
+					<option value="19${j - i }">${j - i }</option>
 				</c:forEach>
 			</c:forEach>
 		</select> 
 		<select name="cumonth" id="cumonth"> 
 			<option value="" selected>월</option>
 				<c:forEach var="i" begin="1" end="12">
-					<option value="${i }">${i }</option>
+					<c:if test="${i < 10 }">
+						<option value="0${i }">0${i }</option>
+					</c:if>
+					<c:if test="${i >= 10 }">
+						<option value="${i }">${i }</option>
+					</c:if>
 				</c:forEach>
 		</select> 
 		<select name="cuday" id="cuday">
 			<option value="" selected>일</option>
 			<c:forEach var="i" begin="1" end="31">
-				<option value="${i }">${i }</option>
+				<c:if test="${i <10}">
+					<option value="0${i }">0${i }</option>
+				</c:if>
+				<c:if test="${i >=10 }">
+					<option value="${i }">${i }</option>
+				</c:if>
 			</c:forEach>			
 		</select><br> 
-		<!-- <label>주소</label> <input type="text" name="cuaddr"><br> -->
 		<table >
 			<colgroup>
 				<col style="width:20%"><col>
@@ -172,7 +181,7 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 						<input type="text" id="roadAddrPart2"  name="addr3" style="width:40%" value="">
 					</td>
 				</tr>
-				<tr>
+				<tr style="display:none;">
 					<th>좌표정보</th>
 					<td>
 						<input type="text" id="entX" name="entX" style="width:40%" value="">
@@ -181,8 +190,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 				</tr>
 			</tbody>
 		</table>
-		<label>연락처*</label> <input type="tel" name="cutel" id="cutel"><br> 
-		<label>이메일*</label> <input type="email" name="cuemail" id="cuemail"><br> 
+		<label><strong>연락처*</strong></label> <input type="tel" name="cutel" id="cutel"><br> 
+		<label><strong>이메일*</strong></label> <input type="email" name="cuemail" id="cuemail"><br> 
 		<input type="button" value="회원가입" onclick="checkfield()"> 
 	</form><a href="login"><button>취소</button></a>
 </div>

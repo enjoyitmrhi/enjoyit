@@ -66,7 +66,7 @@
 		</div>
 
 		<a href="review_list"> 리뷰보기</a> &nbsp;&nbsp;<a
-			href="qna_list?wid=${wid }">QnA보기</a> <br />
+			href="qna_list?sbcode=${sbcontent_view.sbcode }&wid=${wid }">QnA보기</a> <br />
 		<button onclick="javascript:del_sbCont()">삭제하기</button>
 		&nbsp;&nbsp;
 		<button onclick="javascript:modify_sbCont()">수정하기</button>
@@ -84,14 +84,14 @@
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     		mapOption = { 
-      		  center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+      		  center: new kakao.maps.LatLng(${sblong}, ${sblat}), // 지도의 중심좌표
        		 level: 3 // 지도의 확대 레벨
     		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+		var markerPosition  = new kakao.maps.LatLng(${sblong}, ${sblat}); 
 
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({

@@ -156,7 +156,7 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "login/join";
 		} else {
-			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuentX, cuentY, cuemail, cugender, cubirth, cutel);
+			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuemail, cugender, cubirth, cutel);
 			return "redirect:login";
 		}
 
@@ -213,7 +213,7 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "login/bJoin";
 		} else {
-			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr, buentX, buentY);
+			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr);
 			return "redirect:login";
 		}
 
@@ -325,12 +325,56 @@ public class LoginController {
 	
 	@RequestMapping("/ch_cupw")
 	public String ch_cupw() {
-		return "ch_cupw";
+		return "login/ch_cupw";
 	}
 	
 	@RequestMapping("/ch_bupw")
 	public String ch_bupw() {
-		return "ch_bupw";
+		return "login/ch_bupw";
+	}
+	
+	@RequestMapping("/ch_cupwProc")
+	public String ch_cupwProc(HttpServletRequest request, HttpSession session, Model model) {
+		String cupw= request.getParameter("cupw");
+		String chpw= request.getParameter("chpw");
+		String cuid= (String) session.getAttribute("session_cid");
+		System.out.println("cuid >>>>>>"+cuid);
+		LoginDao dao = sqlSession.getMapper(LoginDao.class);
+		String bfpw = dao.getCustomer(cuid).getCupw();
+		System.out.println(bfpw);
+		System.out.println();
+		if (bfpw.equals(cupw)) {
+			dao.chgcpw(cuid,chpw);
+			model.addAttribute("result","비밀번호가 성공적으로 변경되었습니다.");
+			System.out.println("성공");
+			return "redirect:/cuMypage";
+		}else {
+			model.addAttribute("error","비밀번호를 잘못입력하였습니다.");
+			System.out.println("실패");
+			return "login/ch_cupw";
+		}
+	}
+	
+	@RequestMapping("/ch_bupwProc")
+	public String ch_bupwProc(HttpServletRequest request, HttpSession session, Model model) {
+		String bupw= request.getParameter("bupw");
+		String chpw= request.getParameter("chpw");
+		String buid= (String) session.getAttribute("session_bid");
+		System.out.println("buid >>>>>>"+buid);
+		LoginDao dao = sqlSession.getMapper(LoginDao.class);
+		String bfpw = dao.getBusiness(buid).getBupw();
+		System.out.println(bfpw);
+		System.out.println();
+		if (bfpw.equals(bupw)) {
+			dao.chgbpw(buid,chpw);
+			model.addAttribute("result","비밀번호가 성공적으로 변경되었습니다.");
+			System.out.println("성공");
+			return "redirect:/buMypage";
+		}else {
+			model.addAttribute("error","비밀번호를 잘못입력하였습니다.");
+			System.out.println("실패");
+			return "login/ch_bupw";
+		}
 	}
 	
 	@RequestMapping("/jusoPopup")
@@ -339,14 +383,15 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/findId")
-	public String findId(HttpServletRequest request) {
+	public String findId() {
 		
 		return "login/findId";
 	}
 	@RequestMapping("/findPw")
-	public String findPw(HttpServletRequest request) {
+	public String findPw() {
 		return "login/findPw";
 	}
+	
 	
 	@RequestMapping("/popup_findId")
 	public String popup_findId(HttpServletRequest request, Model model) {
@@ -396,8 +441,10 @@ public class LoginController {
 			System.out.println(ranPw);
 			if (cntpw ==1) {
 			//검색비밀번호가 하나일 시 임시비밀번호로 변경
-//				dao.chgcpw(cuid, ranPw);
-				sendMail(cuid,ranPw);
+				dao.chgcpw(cuid, ranPw);
+				String cuemail=dao.getCustomer(cuid).getCuemail();
+				System.out.println(cuemail);
+				sendMail(cuemail,ranPw);
 				model.addAttribute("result","임시비밀번호가 등록된 메일로 전송되었습니다.");
 			}
 			else {
@@ -409,8 +456,9 @@ public class LoginController {
 			setRanChar();
 			String ranPw = setRanChar();
 			if (cntpw ==1) {
-//				dao.chgbpw(buid, ranPw);
-				sendMail(buid,ranPw);
+				dao.chgbpw(buid, ranPw);
+				String buemail=dao.getBusiness(buid).getBuemail();
+				sendMail(buemail,ranPw);
 				model.addAttribute("result","임시비밀번호가 등록된 메일로 전송되었습니다.");
 			}
 			else {
@@ -454,10 +502,10 @@ public class LoginController {
 			@Override 
 			public void prepare(MimeMessage mimeMessage) throws Exception { 
 				final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); 
-				helper.setFrom("YourName <goodboyssw@gmail.com>"); 
-				helper.setTo("ssw1363@naver.com"); 
+				helper.setFrom("enjoy It <goodboyssw@gmail.com>"); 
+				helper.setTo(setTo); 
 				helper.setSubject("Enjoy It 임시비밀번호"); 
-				helper.setText(ranPw, true); 
+				helper.setText("변경된 임시비밀번호입니다. 변경 부탁드립니다. "+ranPw, true); 
 				} 
 			}; 
 			
