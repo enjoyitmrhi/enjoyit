@@ -8,9 +8,9 @@ import com.prj.enjoy.qna.dto.QnaDto;
 
 public interface QnaDao {
 
-	ArrayList<QnaDto> qnalist(int rowStart, int rowEnd, String searchKeyword, String selNum);
+	ArrayList<QnaDto> qnalist(int rowStart, int rowEnd, String searchKeyword, String selNum, String sbcode);
 
-	void qnawrite(String strTitle, String strContent, String strId);
+	void qnawrite(String strTitle, String strContent, String strId, String sbcode);
 
 	QnaDto qacontview(String strNum);
 
@@ -20,7 +20,7 @@ public interface QnaDao {
 
 	QnaDto qnaanswer(String number);
 
-	void qnaAnswerWrite(String cuid, int group, int step, int indent, String content, String title);
+	void qnaAnswerWrite(String cuid, int group, int step, int indent, String content, String title, String sbcode);
 
 	void replyShape(int group, int step);
 

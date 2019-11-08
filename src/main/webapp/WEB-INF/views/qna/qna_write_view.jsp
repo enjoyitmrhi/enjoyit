@@ -11,31 +11,27 @@
 
 	<script>
 		function cancle() {
-			location.href = "qna_list"
+			location.href = "qna_list?sbcode=${sbcode}&wid=${wid}"
 		}
 	</script>
 	<div class="container">
 
 		<h3>qna_write_view</h3>
 		<form action="qna_write" method="post">
-
+			<input type="hidden" value="${sbcode}" name="sbcode">
+			<input type="hidden" value="${wid}" name="wid">
 			<table class="table table-hover">
 				<tr>
 					<td>아이디</td>
 					<td><input type="text" size="50" name="qid"
-						value="${session_bid }${session_cid }" readonly="readonly"
+						value="${session_cid }" readonly="readonly"
 						class="form-control"></td>
 
 				</tr>
+				
 				<tr>
 					<td>제목</td>
-					<td><input type="text" size="50" name="qtitle"
-						class="form-control"></td>
-
-				</tr>
-				<tr>
-					<td>선택</td>
-					<td><select class="form-control">
+					<td><select class="form-control" name="qtitle">
 							<option>상품을 문의합니다</option>
 							<option>배송을 문의합니다</option>
 					</select></td>

@@ -110,6 +110,9 @@
 				<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
 			</div>
 		</form>
+	<div>
+		<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
 	</div>
+	</div> <!-- end container -->
 </body>
 </html>

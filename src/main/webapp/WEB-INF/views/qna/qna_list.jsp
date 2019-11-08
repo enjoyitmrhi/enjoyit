@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 //<![CDATA[
 function show_block(elem,ID) {
 	var menu = document.getElementById(ID);
@@ -39,7 +39,7 @@ function show_block(elem,ID) {
 //]]>
 </script>
 
-<!-- 
+	<!-- 
 <script type="text/javascript">
 //<![CDATA[
 function clickshow(elem,ID) {
@@ -76,14 +76,14 @@ function clickshow(elem,ID) {
 			</script>
 		</form>
 
-
+		<input type="hidden" value="${sbcode }" name="abcode">
 		<h3>qnalist</h3>
 		qaTitle : ${qatitle } &nbsp;&nbsp; qaContent : ${qacontent }
 		&nbsp;&nbsp; searchKeyword : ${searchKeyword } <input type="hidden"
 			name="page">
 
 
-		<table class= "table table-hover" >
+		<table class="table table-hover">
 
 			<tr class="table-success">
 				<td>글번호</td>
@@ -93,36 +93,48 @@ function clickshow(elem,ID) {
 			</tr>
 
 			<c:forEach items="${qnalist }" var="dto">
-			<c:if test="${dto.qaindent ==0}">
-				<tr>
+				<c:if test="${dto.qaindent ==0}">
+					<tr>
 
-					<td>${dto.qanum }</td>
-					<c:set value="${dto.qaindent }" var="endIndent" />
+						<td>${dto.qanum }</td>
+						<c:set value="${dto.qaindent }" var="endIndent" />
 
-					<td><c:forEach begin="1" end="${dto.qaindent }" var="cnt">
+						<td><c:forEach begin="1" end="${dto.qaindent }" var="cnt">
 				&nbsp;
 				<c:if test="${cnt eq endIndent }">
-								<a>[re]</a>
-							</c:if>
-						</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a>
-						<a class="closed" href="javascript:show_block(this,${dto.qanum })"><img id="image" src="resources/imgs/tri_edit.png" style="width: 30px; height: 30px;"></a></td>
-					
-					<c:if test="${dto.qaindent==0 }"><td>${dto.cuid }</td></c:if>
-					<c:if test="${dto.qaindent==1 }"><td>${dto.buid }</td></c:if>
+									<a>[re]</a>
+								</c:if>
+							</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a>
+							<a class="closed"
+							href="javascript:show_block(this,${dto.qanum })"><img
+								id="image" src="resources/imgs/tri_edit.png"
+								style="width: 30px; height: 30px;"></a></td>
 
-				</tr>
-				
-				<tr id="${dto.qanum }" style="display: none;">
-					<td colspan="3">${dto.qanum }</td>
-					<td ><input type="text" id="answer_view${dto.qanum }" value="" readonly></td>
-				</tr>
-				
-			</c:if>
+						<c:if test="${dto.qaindent==0 }">
+							<td>${dto.cuid }</td>
+						</c:if>
+						<c:if test="${dto.qaindent==1 }">
+							<td>${dto.buid }</td>
+						</c:if>
+
+					</tr>
+
+					<tr id="${dto.qanum }" style="display: none;">
+						<td colspan="3">${dto.qanum }</td>
+						<td><input type="text" id="answer_view${dto.qanum }" value=""
+							readonly></td>
+					</tr>
+
+				</c:if>
 			</c:forEach>
+			<c:if test="${session_cid != null}">
+			
 
-			<tr>
-				<td colspan="3"><a href="qna_write_view">QnA 작성하기</a></td>
-			</tr>
+				<tr>
+					<td colspan="3"><a
+						href="qna_write_view?sbcode=${sbcode }&wid=${wid}">QnA 작성하기</a></td>
+				</tr>
+			</c:if>
 		</table>
 
 		TotRow : ${searchVO.totRow }&nbsp; page /totPage : ${searchVO.page }/${searchVO.totPage }

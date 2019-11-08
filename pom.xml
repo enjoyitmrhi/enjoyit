@@ -144,7 +144,7 @@
 			<version>05Nov2002</version>
 		</dependency>
 		<!-- tiles -->
-		 <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
@@ -160,9 +160,43 @@
 			<artifactId>tiles-core</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
 		
+		<dependency> 
+			<groupId>org.springframework</groupId> 
+			<artifactId>spring-context-support</artifactId> 
+			<version>${org.springframework-version}</version> 
+		</dependency>
 
+		<dependency> 
+			<groupId>com.sun.mail</groupId> 
+			<artifactId>javax.mail</artifactId> 
+			<version>1.5.6</version> 
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.1</version>
+		</dependency>
 
 
 	</dependencies>
