@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<% request.setCharacterEncoding("utf-8"); %>
+
+<% response.setContentType("text/html; charset=utf-8"); %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -22,8 +26,9 @@ function show_block(elem,ID) {
 	    	type:"POST",
 			url:"answer_view.do",
 			data : {ID},
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 			success : function(data) {
-				alert("success"+data);
+				/* alert("success"+data); */
 				document.getElementById("answer_view"+ID).value = data; 
 			}, error : function(data) {
 				alert("전송실패" + data);
@@ -89,7 +94,6 @@ function clickshow(elem,ID) {
 				<td>글번호</td>
 				<td>제목</td>
 				<td>작성자</td>
-
 			</tr>
 
 			<c:forEach items="${qnalist }" var="dto">
@@ -112,9 +116,10 @@ function clickshow(elem,ID) {
 
 				</tr>
 				
-				<tr id="${dto.qanum }" style="display: none;">
-					<td colspan="3">${dto.qanum }</td>
-					<td ><input type="text" id="answer_view${dto.qanum }" value="" readonly></td>
+				<tr  id="${dto.qanum }" style="display: none;">
+					<td width="500px;">${dto.qanum }</td>
+					<td colspan="15"><textarea rows="7" cols="100" id="answer_view${dto.qanum }" readonly ></textarea>
+					</td>
 				</tr>
 				
 			</c:if>

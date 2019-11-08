@@ -71,7 +71,6 @@
 		&nbsp;&nbsp;
 		<button onclick="javascript:modify_sbCont()">수정하기</button>
 
-	</div>
 	<!-- <div>
 						<img alt="no image" src="resources/upload/git2.PNG">
 </div>
@@ -105,5 +104,6 @@
 		// marker.setMap(null);    
 		</script>
  	
+	</div>
 </body>
 </html>

@@ -1,8 +1,11 @@
 package com.prj.enjoy.qna.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -113,7 +116,7 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody String answer_view(@RequestParam("ID") String qanum) {
+	public @ResponseBody String answer_view(@RequestParam("ID") String qanum){
 		System.out.println(qanum);
 		QnaDao dao=sqlSession.getMapper(QnaDao.class);
 		String data = dao.answer_view(qanum);
