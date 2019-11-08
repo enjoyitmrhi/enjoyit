@@ -193,7 +193,7 @@ function clickshow(elem,ID) {
 
 
 		<div>
-			<a href="review_list">리뷰보기</a> <a href="board_list">게시글로 가기</a>
+			<a href="review_list?sbcode=${sbcode }">리뷰보기</a> <a href="board_list">게시글로 가기</a>
 		</div>
 	</div>
 

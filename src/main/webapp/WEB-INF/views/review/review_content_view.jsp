@@ -16,6 +16,7 @@
 			enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
+			<input type="hidden" value="${sbcode}" name="sbcode">
 
 			<table class="table ">
 				<tr>
@@ -56,14 +57,15 @@
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="modify" />
-						&nbsp;&nbsp;<a href="review_list">목록보기</a> &nbsp;&nbsp;<a
+						&nbsp;&nbsp;<a href="review_list?sbcode=${content_view.sbcode }">목록보기</a> &nbsp;&nbsp;<a
 						href="review_delete?rvnum=${content_view.rvnum }
 				&rvgroup=${content_view.rvgroup }
 				&rvstep=${content_view.rvstep }
 				&rvindent=${content_view.rvindent }
+				&sbcode=${content_view.sbcode }
 				">삭제</a>
 						&nbsp;&nbsp;<a
-						href="review_reply_view?rvnum=${content_view.rvnum }">답변</a></td>
+						href="review_reply_view?rvnum=${content_view.rvnum }&sbcode=${sbcode}">답변</a></td>
 				</tr>
 			</table>
 		</form>

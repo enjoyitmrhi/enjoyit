@@ -18,7 +18,7 @@ public interface ReviewDao {
 
 	public Object reply_write(String strId);
 
-	public void reply(String buid, String rvcontent, String rvgroup, String rvstep, String rvindent);
+	public void reply(String buid, String rvtitle, String rvcontent, String rvgroup, String rvstep, String rvindent, int sbcode);
 
 	public void replyShape(String rvgroup, String rvstep);
 
@@ -26,7 +26,7 @@ public interface ReviewDao {
 
 	public void hitUp(int rvnum);
 
-	public void modify(String rvtitle, String rvcontent, String rvpic, int rvnum);
+	public void modify(String rvtitle, String rvcontent, String rvpic, int rvnum, int sbcode, String cuid);
 
 	public void delete(int rvnum);
 

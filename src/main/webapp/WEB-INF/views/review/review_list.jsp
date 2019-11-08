@@ -11,6 +11,7 @@
 <body>
 	<div class="container">
 		<h3>review_list.jsp</h3>
+		<input type="hidden" value="${sbcode }" name="abcode">
 		<table class="table table-hover">
 			<tr>
 				<th>상품번호</th>
@@ -32,7 +33,7 @@
 				</c:if>
 				&nbsp;
 			</c:forEach> <a
-						href="review_content_view?rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}">${dto.rvtitle }</a></td>
+						href="review_content_view?rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
 					<td><c:choose>
 							<c:when test="${dto.rvstar eq '1' }">☆☆☆☆★</c:when>
 							<c:when test="${dto.rvstar eq '2' }">☆☆☆★★</c:when>
@@ -107,12 +108,9 @@
 					name="btn_search" value="검색" />
 			</div>
 			<div>
-				<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
+				<a href="qna_list?sbcode=${sbcode }">QnA보기</a> <a href="board_list">게시글로 가기</a>
 			</div>
 		</form>
-	<div>
-		<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
-	</div>
 	</div> <!-- end container -->
 </body>
 </html>
