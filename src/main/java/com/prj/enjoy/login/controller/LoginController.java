@@ -156,7 +156,7 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "login/join";
 		} else {
-			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuentX, cuentY, cuemail, cugender, cubirth, cutel);
+			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuemail, cugender, cubirth, cutel);
 			return "redirect:login";
 		}
 

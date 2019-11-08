@@ -42,7 +42,6 @@ public class SbController {
 		int result = 0;
 		if (strId != null) {
 			result = dao.checkBid(strId);
-
 		}
 		return result;
 	}
@@ -73,15 +72,7 @@ public class SbController {
 		System.out.println("path >>> " + path);
 
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
-				new DefaultFileRenamePolicy());
-
-		String buid = req.getParameter("buid");
-		String sbpic = req.getFilesystemName("sbpic");
-		String sbtitle = req.getParameter("sbtitle");
-		String sbprice = req.getParameter("sbprice");
-		String sbloc = req.getParameter("sbloc");
-
-		
+				new DefaultFileRenamePolicy());		
 		
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		String sbcode = req.getParameter("sbcode");
@@ -95,7 +86,7 @@ public class SbController {
 		}
 		
 		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic);
+		
 		return "redirect:board_list";
-
 	}
 }
