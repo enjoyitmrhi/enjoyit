@@ -248,8 +248,12 @@ public class LoginController {
 		System.out.println("passing del_cu");
 		String cunum = request.getParameter("cunum");
 		System.out.println("cunum : " + cunum);
+		String cuid=(String) session.getAttribute("session_cid");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		dao.del_cu(cunum);
+		dao.del_reserv(cuid);
+		dao.del_cReview(cuid);
+		dao.del_cQna(cuid);
+		dao.del_cu(cuid);
 		logout(session);
 		return "redirect:index";
 
@@ -268,8 +272,13 @@ public class LoginController {
 		System.out.println("passing del_bu");
 		String bunum = request.getParameter("bunum");
 		System.out.println("cunum : " + bunum);
+		String buid=(String) session.getAttribute("session_bid");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		dao.del_bu(bunum);
+		dao.del_bReview(buid);
+		dao.del_bQna(buid);
+		dao.del_sb(buid);
+		dao.del_cu(buid);
+		
 		logout(session);
 		return "redirect:index";
 
