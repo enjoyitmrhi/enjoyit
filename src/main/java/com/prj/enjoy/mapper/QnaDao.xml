@@ -44,7 +44,7 @@
 		FROM (
 		SELECT
 		QANUM,QATITLE,QAGROUP,QASTEP,QAINDENT,QADATE,QACONTENT,SBCODE,BUNUM,BUID,CUNUM,CUID
-		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA
+		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA WHERE SBCODE = #{param5}
 		<include refid="includeList"></include>
 		)
 		WHERE B_SEQ BETWEEN #{param1} AND #{param2}
@@ -104,7 +104,7 @@
 		#{param2}
 	</update>
 
-	<select id="answer_view" resultType="String">
+	<select id="answer_view"  resultType="String">
 		SELECT QACONTENT FROM QNA WHERE QAGROUP = #{param1} AND QAINDENT = 1
 	</select>
 	

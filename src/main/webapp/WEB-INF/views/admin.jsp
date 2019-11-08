@@ -5,12 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/include/header.jsp"%>
 
 
 </head>
 <body>
-
+<div class="container">
 	<h3>this is administrator page</h3>
 	<div>
 		관리자로그인
@@ -29,5 +28,6 @@
 
 		</form>
 	</div>
+</div>
 </body>
 </html>

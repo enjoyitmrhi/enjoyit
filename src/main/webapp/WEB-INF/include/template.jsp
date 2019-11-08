@@ -15,13 +15,13 @@
 		<div id="header">
 			<tiles:insertAttribute name="header" />
 		</div>
-		
 		<div id="main">
 			<tiles:insertAttribute name="body" />
 		</div>
 		<div id="footer">
 			<tiles:insertAttribute name="footer" />
 		</div>
+	
 	</div>
 
 	<script type="text/javascript">

@@ -9,6 +9,8 @@ drop sequence sbcode_seq;
 drop SEQUENCE qna_seq;
 drop sequence bu_seq;
 drop sequence cu_seq;
+drop sequence REVIEW_SEQ ;
+
 
 -- customer
 CREATE TABLE  customer  (
@@ -126,7 +128,9 @@ CREATE TABLE  review  (
     rvGroup    NUMBER       NULL, -- rvGroup
     rvStep     NUMBER       NULL, -- rvStep
     rvIndent   NUMBER       NULL, -- rvIndent
-    rvStar     varchar2(50) null,
+    rvStar     NUMBER       null,
+    rvnum      number      primary key,
+    rvhit     number(4)    null,
     sbCode     NUMBER       NULL, -- sbCode
     cuNum      VARCHAR2(10) NULL, -- cuNum
     cuId       VARCHAR2(20)  NULL, -- cuId
@@ -308,10 +312,12 @@ values('QnAÁ¦¸ñ','QnA³»¿ë',2,'b002','bguest2','c002','cguest2',qna_seq.nextval+1
 insert into reservation(rtnum,rtsdate,rtedate,sbcode,cunum,cuid)
 values(1,'19-10-17','19-11-15',2,'c001','cguest1');
 
-insert into review(rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,bunum,buid) 
-values('¹è¼Û »¡¶ó¿ä','¸®ºä³»¿ë1','¸®ºä»çÁø1','¡Ù¡Ù¡Ù¡Ù¡Ú',2,'c001','cguest1','b001','bguest1');
-insert into review(rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,bunum,buid) 
-values('¿¹»µ¿ä~','¸®ºä³»¿ë2','¸®ºä»çÁø2','¡Ù¡Ù¡Ù¡Ú¡Ú',2,'c002','cguest2','b002','bguest2');
+create sequence REVIEW_SEQ ;
+
+insert into review(rvtitle,rvcontent,rvpic,rvstar,rvnum,rvhit ,sbcode,cunum,cuid,bunum,buid,rvgroup,rvstep,rvindent) 
+values('¹è¼Û »¡¶ó¿ä','¸®ºä³»¿ë1','¸®ºä»çÁø1',1,1,0,2,'c001','cguest1','b001','bguest1',1,0,0);
+insert into review(rvtitle,rvcontent,rvpic,rvstar,rvnum,rvhit ,sbcode,cunum,cuid,bunum,buid,rvgroup,rvstep,rvindent) 
+values('¹è¼Û »¡¶ó¿ä','¸®ºä³»¿ë1','¸®ºä»çÁø1',2,review_seq.nextval+1,0,2,'c002','cguest2','b002','bguest2',2,0,0);
 
 insert into administrator values('enjoy','1234');
 

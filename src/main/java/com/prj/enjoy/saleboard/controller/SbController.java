@@ -1,7 +1,5 @@
 package com.prj.enjoy.saleboard.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.prj.enjoy.login.dao.LoginDao;
+import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.saleboard.dao.SbDao;
 
 @Controller
@@ -25,33 +25,9 @@ public class SbController {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 
-		String id = null;
-		id = request.getParameter("id");
-		System.out.println(id);
-		int result = checkid(id);
-		System.out.println("result : " + result);
-
-		if (result == 1) {
-
-			model.addAttribute("checkid", 1);
-		} else {
-			model.addAttribute("checkid", "");
-		}
-
 		model.addAttribute("boardlist", dao.board_list());
-		model.addAttribute("id", id);
+
 		return "sale_board/board_list";
-	}
-
-	private int checkid(String id) {
-		SbDao dao = sqlSession.getMapper(SbDao.class);
-		String strId = id;
-		int result = 0;
-		if (strId != null) {
-			result = dao.checkBid(strId);
-
-		}
-		return result;
 	}
 
 	@RequestMapping(value = "/sbcontent_view")
@@ -59,8 +35,16 @@ public class SbController {
 		String wid = request.getParameter("wid");
 		String sbcode = request.getParameter("sbcode");
 
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		LoginDao loginDao =sqlSession.getMapper(LoginDao.class);
+		Business dto= loginDao.getBusiness(wid);
+		String longitude = dto.getBulongitude();
+		String latitude= dto.getBulatitude();
 		model.addAttribute("wid", wid);
-		model.addAttribute("sbcode", sbcode);
+//		model.addAttribute("avgstar", dao.avgstar(sbcode));
+		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
+		model.addAttribute("sblong",longitude);
+		model.addAttribute("sblat",latitude);
 		return "sale_board/sbcontent_view";
 	}
 
@@ -81,19 +65,37 @@ public class SbController {
 
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
 				new DefaultFileRenamePolicy());
-		
-		
+
 		String buid = req.getParameter("buid");
 		String sbpic = req.getFilesystemName("sbpic");
 		String sbtitle = req.getParameter("sbtitle");
 		String sbprice = req.getParameter("sbprice");
 		String sbloc = req.getParameter("sbloc");
 
-		
-		
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc);
 
 		return "redirect:board_list";
 	}
+
+	@RequestMapping(value = "/sbdelete")
+	public String sbdelete(HttpServletRequest request, Model model) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		String sbcode = request.getParameter("sbcode");
+
+		dao.delete(sbcode);
+		return "redirect:board_list";
+
+	}
+
+	@RequestMapping(value = "/sbmodify")
+	public String sbmodify(HttpServletRequest request, Model model) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		String sbcode = request.getParameter("sbcode");
+
+		dao.sbmodify(sbcode);
+		return "redirect:board_list";
+
+	}
+
 }

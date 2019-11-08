@@ -1,5 +1,7 @@
 package com.prj.enjoy.login.dao;
 
+import java.util.ArrayList;
+
 import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.login.dto.Customer;
 
@@ -17,5 +19,16 @@ public interface LoginDao {
 			String buaddr);
 
 	public String chkBid(String buid);
+	
+	public ArrayList<String> popupfindCuid(String cuname, String cutel, String cubirth);
+	
+	public ArrayList<String> popupfindBuid(String Buname, String Butel, String burenum);
 
+	public int popupfindCupw(String cuname, String cutel, String cubirth, String cuid);
+
+	public int popupfindBupw(String buname, String butel, String burenum, String buid);
+
+	public void chgcpw(String cuid, String chpw);
+	
+	public void chgbpw(String buid, String chpw);
 }

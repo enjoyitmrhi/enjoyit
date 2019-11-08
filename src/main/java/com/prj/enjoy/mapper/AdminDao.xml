@@ -74,10 +74,28 @@
 		BUNUM=#{param1}
 	</select>
 	<delete id="del_cu">
-		DELETE FROM CUSTOMER WHERE CUNUM = #{param1}
+		DELETE FROM CUSTOMER WHERE CUID = #{param1}
+	</delete>
+	<delete id="del_reserv">
+		DELETE FROM RESERVATION WHERE CUID = #{param1}
+	</delete>
+	<delete id="del_cReview">
+		DELETE FROM REVIEW WHERE CUID = #{param1}
+	</delete>
+	<delete id="del_cQna">
+		DELETE FROM QNA WHERE CUID = #{param1}
 	</delete>
 	<delete id="del_bu">
 		DELETE FROM BUSINESS WHERE BUNUM = #{param1}
+	</delete>
+	<delete id="del_sb">
+		DELETE FROM SALE_BOARD WHERE BUID = #{param1}
+	</delete>
+	<delete id="del_bReview">
+		DELETE FROM REVIEW WHERE BUID = #{param1}
+	</delete>
+	<delete id="del_bQna">
+		DELETE FROM QNA WHERE BUID = #{param1}
 	</delete>
 	<update id="editProc_cu">
 		UPDATE CUSTOMER SET

@@ -19,8 +19,26 @@
 		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param1} )
 
 	</insert>
-
-	<select id="checkBid" resultType="Integer">
-		SELECT COUNT(*) FROM BUSINESS WHERE BUID = #{param1}
+	
+	<select id="sb_content" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+	SELECT * FROM SALE_BOARD WHERE SBCODE = #{param1}
+	
 	</select>
+	
+	<delete id="delete">
+	DELETE FROM SALE_BOARD WHERE SBCODE = #{param1}
+	</delete>
+	
+	<update id="sbmodify">
+	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = '2000',SBTITLE='CHANGEDTITLE' WHERE SBCODE = #{param1}
+	
+	</update>
+	
+	<select id="avgstar" resultType="Integer">
+	SELECT AVG(RVSTAR) FROM REVIEW WHERE SBCODE = #{param1}
+	</select> 
+	
+	
+	
+	
 </mapper>

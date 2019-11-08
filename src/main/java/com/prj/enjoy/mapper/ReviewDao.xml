@@ -36,16 +36,12 @@
 		</choose>
 	</sql>
 	<select id="review_list" resultType="com.prj.enjoy.review.dto.ReviewDto">
-		SELECT SBCODE, CUID, RVTITLE,RVCONTENT,
-		RVDATE, RVHIT, RVGROUP, RVSTEP,
-		RVINDENT, RVNUM
-		FROM (
-		SELECT SBCODE, CUID,
-		RVTITLE, RVCONTENT, RVDATE,
-		RVHIT,
-		RVGROUP, RVSTEP, RVINDENT, RVNUM,
-		ROW_NUMBER()
-		OVER(ORDER BY
+		SELECT SBCODE, CUID, RVTITLE,RVCONTENT, RVDATE, RVHIT, RVGROUP,
+		RVSTEP, RVINDENT, RVNUM, RVSTAR
+		FROM (SELECT SBCODE, CUID, RVTITLE,
+		RVCONTENT, RVDATE, RVHIT, RVGROUP,
+		RVSTEP, RVINDENT, RVNUM, RVSTAR,
+		ROW_NUMBER() OVER(ORDER BY
 		RVGROUP DESC,
 		RVSTEP ASC) REVIEW_SEQ FROM
 		REVIEW
@@ -64,10 +60,21 @@
 
 	<insert id="review_write">
 		INSERT INTO REVIEW
-		(RVNUM,SBCODE,CUID,RVDATE,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC)
+		(RVNUM,SBCODE,CUID,RVHIT,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC,RVSTAR)
 		VALUES
-		(REVIEW_SEQ.NEXTVAL,1,'cguest1',SYSDATE,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3})
+		(REVIEW_SEQ.NEXTVAL,1,'cguest1',0,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3},#{param4})
 	</insert>
+	<update id="modify">
+		UPDATE REVIEW SET CUID='cguest1',RVTITLE=#{param1
+		},RVCONTENT=#{param2 }, RVPIC=#{param3 }
+		WHERE
+		RVNUM=#{param4 }
+	</update>
+	<delete id="delete">
+		DELETE FROM REVIEW WHERE RVNUM=#{param1}
+
+	</delete>
+
 	<insert id="reply">
 		INSERT INTO
 		REVIEW(RVNUM,BUNUM,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT)
@@ -95,8 +102,14 @@
 		WHERE
 		RVNUM=#{param1}
 	</select>
-	
+	<select id="getRvpic" resultType="String">
+		SELECT RVPIC FROM REVIEW
+		WHERE
+		RVTITLE=#{param1 }
+	</select>
+
 	<select id="rvboardcount" resultType="Integer">
-		SELECT COUNT(*) FROM REVIEW WHERE CUID = #{param1}
+		SELECT COUNT(*) FROM REVIEW
+		WHERE CUID = #{param1}
 	</select>
 </mapper>
