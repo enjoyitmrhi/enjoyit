@@ -15,8 +15,12 @@ public interface SbDao {
 
 	void delete(String sbcode);
 
-	void sbmodify(String sbcode);
+	void sbmodify(String sbcode, String sbprice, String sbtitle, String sbcontent, String sbpic);
 
-	int avgstar(String sbcode);
+	String avgstar(String sbcode);
+	
+	ArrayList<SbDto> add_list(int sNum, int eNum);
+	
+	String getSbPic(String sbcode);
 
 }

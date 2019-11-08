@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.prj.enjoy.qna.dao.QnaDao;
 import com.prj.enjoy.qna.dto.QnaDto;
@@ -116,7 +115,7 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody String answer_view(@RequestParam("ID") String qanum){
+	public @ResponseBody String answer_view(@RequestParam("ID") String qanum) {
 		System.out.println(qanum);
 		QnaDao dao=sqlSession.getMapper(QnaDao.class);
 		String data = dao.answer_view(qanum);
