@@ -119,18 +119,21 @@ public class ReviewController {
 
 		String rvtitle = req.getParameter("rvtitle");
 		String rvcontent = req.getParameter("rvcontent");
-		String rvstar = req.getParameter("rvstar");
-
+		String strstar = req.getParameter("rvstar");
+		int rvstar = Integer.parseInt(strstar);
+		String strcode = req.getParameter("sbcode");
+		int sbcode = Integer.parseInt(strcode);
 		String rvpic = req.getFilesystemName("rvpic");
+		String cuid = req.getParameter("cuid");
 
 		if (rvpic == null) {
 			rvpic = "등록된 사진 없음";
 		}
 
-		dao.review_write(rvtitle, rvcontent, rvpic, rvstar);
+		dao.review_write(rvtitle, rvcontent, rvpic, rvstar, sbcode, cuid);
 
 
-		return "redirect:review_list";
+		return "redirect:review_list?sbcode="+sbcode;
 	}
 
 	@RequestMapping("/review_content_view")

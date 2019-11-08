@@ -61,7 +61,7 @@
 		INSERT INTO REVIEW
 		(RVNUM,SBCODE,CUID,RVHIT,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC,RVSTAR)
 		VALUES
-		(REVIEW_SEQ.NEXTVAL,1,'cguest1',0,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3},#{param4})
+		(REVIEW_SEQ.NEXTVAL,#{param5},#{param6} ,0,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3},#{param4})
 	</insert>
 	<update id="modify">
 		UPDATE REVIEW SET CUID='cguest1',RVTITLE=#{param1
