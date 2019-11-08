@@ -11,58 +11,36 @@
 
 </head>
 <body>
-<script type="text/javascript">
-//<![CDATA[
-function show_block(elem,ID) {
-	var menu = document.getElementById(ID);
-	if (elem.className !='opened') {
-	    elem.className ='opened';
-	    menu.style.display ="block";
-	    $.ajax({
-	    	type:"POST",
-			url:"answer_view.do",
-			data : {ID},
-			success : function(data) {
-				alert("success"+data);
-				document.getElementById("answer_view"+ID).value = data; 
-			}, error : function(data) {
-				alert("전송실패" + data);
-			}
-	    });
-	    
-	}  else {
-		elem.className = 'closed';
-	    menu.style.display = "none";
-	}
-	
-}
-//]]>
-</script>
+	<script type="text/javascript">
+		//<![CDATA[
+		function show_block(elem, ID) {
+			var menu = document.getElementById(ID);
+			if (elem.className != 'opened') {
+				elem.className = 'opened';
+				menu.style.display = "block";
+				$
+						.ajax({
+							type : "POST",
+							url : "answer_view.do",
+							data : ID,
+							success : function(data) {
+								alert("success" + data);
+								document.getElementById("answer_view" + ID).value = data;
+							},
+							error : function(data) {
+								alert("전송실패" + data);
+							}
+						});
 
-<!-- 
-<script type="text/javascript">
-//<![CDATA[
-function clickshow(elem,ID) {
- var menu = document.getElementById(ID);
- if (elem.className !='closed') {
-    elem.className = 'closed';
-    menu.style.display = "none";
- } else {
-    elem.className ='opened';
-    menu.style.display ="block";
-}}
-//]]>
-</script>
-<h3 class="closed" onclick="clickshow(this,'categories')">처음에는 닫힌 폴더</h3>
-<div id="categories" style="display: none;">
-<ol>
-<li>첫번째 요소</li>
-<li>두번째 요소</li>
-<li>그럼 안녕</li>
-</ol>
-</div>
-<br>
- -->
+			} else {
+				elem.className = 'closed';
+				menu.style.display = "none";
+			}
+
+		}
+		//]]>
+	</script>
+
 
 	<div class="container">
 
@@ -83,41 +61,49 @@ function clickshow(elem,ID) {
 			name="page">
 
 
-		<table class= "table table-hover" >
+		<table class="table table-hover">
+			<thead>
+				<tr class="table-success">
+					<td>글번호</td>
+					<td>제목</td>
+					<td>작성자</td>
 
-			<tr class="table-success">
-				<td>글번호</td>
-				<td>제목</td>
-				<td>작성자</td>
-
-			</tr>
+				</tr>
+			</thead>
 
 			<c:forEach items="${qnalist }" var="dto">
-			<c:if test="${dto.qaindent ==0}">
-				<tr>
+				<c:if test="${dto.qaindent ==0}">
+					<tr>
 
-					<td>${dto.qanum }</td>
-					<c:set value="${dto.qaindent }" var="endIndent" />
+						<td>${dto.qanum }</td>
+						<c:set value="${dto.qaindent }" var="endIndent" />
 
-					<td><c:forEach begin="1" end="${dto.qaindent }" var="cnt">
-				&nbsp;
+						<td><c:forEach begin="1" end="${dto.qaindent }" var="cnt">		&nbsp;
 				<c:if test="${cnt eq endIndent }">
-								<a>[re]</a>
-							</c:if>
-						</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a>
-						<a class="closed" href="javascript:show_block(this,${dto.qanum })"><img id="image" src="resources/imgs/tri_edit.png" style="width: 30px; height: 30px;"></a></td>
-					
-					<c:if test="${dto.qaindent==0 }"><td>${dto.cuid }</td></c:if>
-					<c:if test="${dto.qaindent==1 }"><td>${dto.buid }</td></c:if>
+									<a>[re]</a>
+								</c:if>
+							</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a>
+							<a class="closed"
+							href="javascript:show_block(this,${dto.qanum })"><img
+								id="image" src="resources/imgs/tri_edit.png"
+								style="width: 30px; height: 30px;"></a></td>
 
-				</tr>
-				
-				<tr id="${dto.qanum }" style="display: none;">
-					<td colspan="3">${dto.qanum }</td>
-					<td ><input type="text" id="answer_view${dto.qanum }" value="" readonly></td>
-				</tr>
-				
-			</c:if>
+						<c:if test="${dto.qaindent==0 }">
+							<td>${dto.cuid }</td>
+						</c:if>
+						<c:if test="${dto.qaindent==1 }">
+							<td>${dto.buid }</td>
+						</c:if>
+
+					</tr>
+
+					<tr id="${dto.qanum }" style="display: none;">
+						<td>${dto.qanum }</td>
+						<td><input type="text" id="answer_view${dto.qanum }"
+							value="" readonly></td>
+					</tr>
+
+				</c:if>
 			</c:forEach>
 
 			<tr>
