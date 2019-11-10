@@ -518,9 +518,30 @@ public class LoginController {
 		String cuid = (String) session.getAttribute("session_cid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		
-		
 		model.addAttribute("qnalist",dao.myqnalist(cuid));
 		return "login//myQuestion";
 	}
 	
+	@RequestMapping("/myReview")
+	public String myReview(HttpSession session, Model model) {
+		String cuid = (String) session.getAttribute("session_cid");
+		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+		
+		model.addAttribute("reviewlist",dao.myreviewlist(cuid));
+		return "login/myReview";
+	}
+	
+	@RequestMapping("/myAnswer")
+	public String myAnswer(HttpSession session, Model model) {
+		String buid = (String) session.getAttribute("session_bid");
+		
+		return "login/myAnswer";
+	}
+	
+	@RequestMapping("/myReply")
+	public String myReply(HttpSession session, Model model) {
+		String buid = (String) session.getAttribute("session_bid");
+		
+		return "login/myReply";
+	}
 }

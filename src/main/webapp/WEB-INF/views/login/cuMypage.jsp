@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<td>작성한 리뷰수</td>
-			<td><a href="myreview">${rvcnt }개</a> <-보러가기</td>
+			<td><a href="myReview">${rvcnt }개</a> <-보러가기</td>
 		</tr>
 		
 	</table>

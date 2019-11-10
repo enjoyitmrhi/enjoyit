@@ -39,12 +39,12 @@
 			<td>${bu.budate }</td>
 		</tr>
 		<tr>
-			<td>문의한 글</td>
+			<td>상품에 달린 문의 </td>
 			<td><a href="myAnswer">${qnacnt }개</a> <-보러가기</td>
 		</tr>
 		<tr>
-			<td>달린 리뷰</td>
-			<td><a href="myreply">${rvcnt }개</a> <-보러가기</td>
+			<td>상품에 달린 리뷰 </td>
+			<td><a href="myReply">${rvcnt }개</a> <-보러가기</td>
 		</tr>
 	</table>
 	<a href="edit_buself?bunum=${bu.bunum }"><button>정보수정</button></a>

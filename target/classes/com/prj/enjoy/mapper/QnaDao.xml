@@ -112,7 +112,7 @@
 	</select>
 	
 	<select id="qnaboardAcount" resultType="Integer">
-		SELECT COUNT(*) FROM QNA WHERE BUID = #{param1}
+		SELECT COUNT(*) FROM QNA WHERE SBCODE = (SELECT SBCODE FROM SALE_BOARD WHERE BUID=#{param1}) AND QAINDENT = 0 
 	</select>
 	
 	<select id="myqnalist" resultType="com.prj.enjoy.qna.dto.QnaDto">

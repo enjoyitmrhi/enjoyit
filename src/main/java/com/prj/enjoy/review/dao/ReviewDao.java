@@ -33,6 +33,8 @@ public interface ReviewDao {
 	int reviewcount (String cuid);
 	
 	int replycount (String buid);
+	
+	ArrayList<ReviewDto> myreviewlist (String cuid);
 
 }
 

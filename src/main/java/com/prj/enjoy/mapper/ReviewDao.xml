@@ -114,7 +114,12 @@
 	</select>
 	
 	<select id="replycount" resultType="Integer">
-		SELECT COUNT(*) FROM REVIEW
-		WHERE BUID = #{param1}
+		SELECT COUNT(*) FROM REVIEW WHERE SBCODE = (SELECT SBCODE FROM SALE_BOARD WHERE BUID=#{param1})
+	</select>
+	
+	<select id="myreviewlist" resultType="com.prj.enjoy.review.dto.ReviewDto">
+		SELECT BUID SBPRODUCT, SBTITLE SBNAME, SBCODE, RVTITLE, RVCONTENT  FROM 
+		(SELECT SB.BUID, SB.SBTITLE, RV.SBCODE, RV.RVTITLE, RV.RVCONTENT ,RV.CUID FROM REVIEW RV, SALE_BOARD SB WHERE RV.SBCODE=SB.SBCODE) 
+		WHERE CUID= #{param1}
 	</select>
 </mapper>
