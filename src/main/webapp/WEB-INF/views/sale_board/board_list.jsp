@@ -180,7 +180,6 @@
 					</a>
 					<hr>
 				</div>
-			</div>
 
 
 
@@ -194,14 +193,13 @@
 			</c:if>
 
 
-		</c:if>
 		<c:if test="${session_bid == null}">
+		</c:if>
 
+			</div>
 
 		</div>
 
-
-<!-- 	</div> -->
 </body>
 
 </html>
