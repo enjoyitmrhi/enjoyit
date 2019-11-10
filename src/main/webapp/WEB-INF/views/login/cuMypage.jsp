@@ -45,11 +45,11 @@
 		</tr>
 		<tr>
 			<td>작성한 질문수</td>
-			<td>${qnacnt }</td>
+			<td><a href="myQuestion">${qnacnt }개</a> <-보러가기</td>
 		</tr>
 		<tr>
 			<td>작성한 리뷰수</td>
-			<td>${rvcnt }</td>
+			<td><a href="myreview">${rvcnt }개</a> <-보러가기</td>
 		</tr>
 		
 	</table>

@@ -55,6 +55,7 @@ function show_block(elem,ID) {
 		</form>
 
 		<input type="hidden" value="${sbcode }" name="sbcode">
+		<input type="hidden" value="${wid }" name="wid">
 		<h3>qnalist</h3>
 		qaTitle : ${qatitle } &nbsp;&nbsp; qaContent : ${qacontent }
 		&nbsp;&nbsp; searchKeyword : ${searchKeyword } <input type="hidden"
@@ -174,7 +175,7 @@ function show_block(elem,ID) {
 
 
 		<div>
-			<a href="review_list">리뷰보기</a> <a href="board_list">게시글로 가기</a>
+			<a href="review_list?wid=${wid }&sbcode=${sbcode }">리뷰보기</a> <a href="board_list">게시글로 가기</a>
 		</div>
 	</div>
 

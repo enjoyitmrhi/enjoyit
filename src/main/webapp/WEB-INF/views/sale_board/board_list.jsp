@@ -150,36 +150,36 @@
 				</table>
  --%>
 
-				<div >
-					<div class="row" id="more_list2">
-						<c:forEach items="${boardlist }" var="dto">
-							<div class="col-sm-6 col-md-4">
-								<div class="thumbnail">
-									<a
-										href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
-										src="resources/upload/${dto.sbpic }" alt="no image"
-										width="200px" height="200px"></a>
-									<div class="caption">
-										<h3>제목 : ${dto.sbtitle }</h3>
-										<p>가격 : ${dto.sbprice}</p>
-										<p>
-											<a href="#" class="btn btn-primary" role="button">예약하기</a> <a
-												href="#" class="btn btn-default" role="button">상세보기</a>
-										</p>
-									</div>
+			<div>
+				<div class="row" id="more_list2">
+					<c:forEach items="${boardlist }" var="dto">
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<a
+									href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
+									src="resources/upload/${dto.sbpic }" alt="no image"
+									width="200px" height="200px"></a>
+								<div class="caption">
+									<h3>제목 : ${dto.sbtitle }</h3>
+									<p>가격 : ${dto.sbprice}</p>
+									<p>
+										<a href="#" class="btn btn-primary" role="button">예약하기</a> <a
+											href="#" class="btn btn-default" role="button">상세보기</a>
+									</p>
 								</div>
 							</div>
-						</c:forEach>
-					</div>
+						</div>
+					</c:forEach>
 				</div>
-				
-				<div id="more_btn_div" align="center">
+			</div>
 
-					<hr>
-					<a id="more_btn_a" href="javascript:moreContent();"> 더보기(More)
-					</a>
-					<hr>
-				</div>
+			<div id="more_btn_div" align="center">
+
+				<hr>
+				<a id="more_btn_a" href="javascript:moreContent();"> 더보기(More) </a>
+				<hr>
+			</div>
+
 
 
 
@@ -193,13 +193,13 @@
 			</c:if>
 
 
-		<c:if test="${session_bid == null}">
-		</c:if>
 
-			</div>
 
-		</div>
+		</div> <!-- end container -->
 
+	</div> <!-- end wrap -->
+
+	<!-- 	</div> -->
 </body>
 
 </html>

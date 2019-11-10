@@ -239,8 +239,8 @@ public class LoginController {
 		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
 		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
 		model.addAttribute("cu",logdao.getCustomer(cuid));
-		model.addAttribute("qnacnt",qnadao.qnaboardcount(cuid));
-		model.addAttribute("rvcnt",rvdao.rvboardcount(cuid));
+		model.addAttribute("qnacnt",qnadao.qnaboardQcount(cuid));
+		model.addAttribute("rvcnt",rvdao.reviewcount(cuid));
 		
 		return "login/cuMypage";
 	}
@@ -280,8 +280,12 @@ public class LoginController {
 	@RequestMapping("/buMypage")
 	public String buMypage(HttpSession session, Model model) {
 		String buid=(String) session.getAttribute("session_bid");
-		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		model.addAttribute("bu",dao.getBusiness(buid));
+		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
+		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
+		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
+		model.addAttribute("bu",logdao.getBusiness(buid));
+		model.addAttribute("qnacnt",qnadao.qnaboardAcount(buid));
+		model.addAttribute("rvcnt",rvdao.replycount(buid));
 		return "login/buMypage";
 	}
 	@RequestMapping("/findId")
@@ -508,4 +512,15 @@ public class LoginController {
 		model.addAttribute("bunum", bunum);
 		return "redirect:buMypage";
 	}
+	
+	@RequestMapping("/myQuestion")
+	public String myQuestion(HttpSession session, Model model) {
+		String cuid = (String) session.getAttribute("session_cid");
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
+		
+		
+		model.addAttribute("qnalist",dao.myqnalist(cuid));
+		return "login//myQuestion";
+	}
+	
 }
