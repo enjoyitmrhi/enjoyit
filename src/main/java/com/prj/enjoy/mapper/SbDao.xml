@@ -13,13 +13,6 @@
 		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
 		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN '1' AND '6'
 		
-		
-		
-
-
-	
-
-
 
 	</select>
 	<select id="add_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">

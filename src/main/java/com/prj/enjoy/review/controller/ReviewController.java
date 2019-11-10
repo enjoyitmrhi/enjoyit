@@ -28,6 +28,7 @@ public class ReviewController {
 	public String review_list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		String rvtitle = "";
 		String rvcontent = "";
+		String sbcode= "";
 		String[] brdtitle = request.getParameterValues("searchType");
 		if (brdtitle != null) {
 			for (String val : brdtitle) {
@@ -86,6 +87,7 @@ public class ReviewController {
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
 		}
 		model.addAttribute("searchVO", searchVO);
+		model.addAttribute("sbcode",sbcode);
 
 		// model.addAttribute("review_list", dao.review_list());
 

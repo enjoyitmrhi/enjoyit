@@ -36,18 +36,18 @@ public class AdminController {
 			return "/admin";
 		} else {
 			System.out.println("login success");
-			return "redirect:admin/adminMain";
+			return "redirect:/adminMain";
 		}
 		
 	}
 
-	@RequestMapping("/admin/adminMain")
-	public String adminMain(HttpServletRequest request, cSearchVO csearchVO, bSearchVO bsearchVO, Model model) {
+	@RequestMapping("/adminMain")
+	public String adminMain() {
 		
 		return "admin/adminMain";
 	}
 
-	@RequestMapping("/admin/cuManagement")
+	@RequestMapping("/cuManagement")
 	public String cuManagement(HttpServletRequest request, Model model) {
 		String cunum = request.getParameter("cunum");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
@@ -56,7 +56,7 @@ public class AdminController {
 		return "admin/cuManagement";
 	}
 
-	@RequestMapping("/admin/buManagement")
+	@RequestMapping("/buManagement")
 	public String buManagement(HttpServletRequest request, Model model) {
 		String bunum = request.getParameter("bunum");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
@@ -68,24 +68,31 @@ public class AdminController {
 	@RequestMapping("/del_cu")
 	public String del_cu(HttpServletRequest request) {
 		System.out.println("passing del_cu");
-		String cunum = request.getParameter("cunum");
-		System.out.println("cunum : " + cunum);
+		String cuid = request.getParameter("cuid");
+		System.out.println("cuid : " + cuid);
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		dao.del_cu(cunum);
-		return "redirect:admin/adminMain";
+		dao.del_reserv(cuid);
+		dao.del_cReview(cuid);
+		dao.del_cQna(cuid);
+		dao.del_cu(cuid);
+		return "redirect:/admin_cuMember";
 
 	}
 
 	@RequestMapping("/del_bu")
 	public String del_bu(HttpServletRequest request) {
-		String bunum = request.getParameter("bunum");
+		System.out.println("passing del_bu");
+		String buid = request.getParameter("buid");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		dao.del_bu(bunum);
-		return "redirect:admin/adminMain";
+		dao.del_bQna(buid);
+		dao.del_bReview(buid);
+		dao.del_sb(buid);
+		dao.del_bu(buid);
+		return "redirect:/admin_buMember";
 
 	}
 
-	@RequestMapping("admin/edit_cu")
+	@RequestMapping("/edit_cu")
 	public String edit_cu(HttpServletRequest request, Model model) {
 		String cunum = request.getParameter("cunum");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
@@ -93,7 +100,7 @@ public class AdminController {
 		return "admin/edit_cu";
 	}
 
-	@RequestMapping("admin/edit_bu")
+	@RequestMapping("/edit_bu")
 	public String edit_bu(HttpServletRequest request, Model model) {
 		String bunum = request.getParameter("bunum");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
@@ -101,7 +108,7 @@ public class AdminController {
 		return "admin/edit_bu";
 	}
 
-	@RequestMapping("/admin/editProc_cu")
+	@RequestMapping("/cu_editProc")
 	public String editProc_cu(HttpServletRequest request, Model model) {
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
 		String cunum = request.getParameter("cunum");
@@ -112,13 +119,24 @@ public class AdminController {
 		String cubirth = request.getParameter("cubirth");
 		String cugender = request.getParameter("cugender");
 		String cutel = request.getParameter("cutel");
-		System.out.println(cugender);
+		System.out.println("cunum >>>> "+ cunum);
+		System.out.println("cuid >>>> "+ cuid);
+		System.out.println("cuname >>>> "+ cuname);
+		System.out.println("cuaddr >>>> "+ cuaddr);
+		System.out.println("cuemail >>>> "+ cuemail);
+		System.out.println("cubirth >>>> "+ cubirth);
+		System.out.println("cugender >>>> "+ cugender);
+		System.out.println("cutel >>>> "+ cutel);
+		
+		
+		
+		
 		dao.editProc_cu(cuid, cuname, cuaddr, cuemail, cubirth, cugender, cutel, cunum);
 		model.addAttribute("cunum", cunum);
 		return "redirect:cuManagement";
 	}
 
-	@RequestMapping("/admin/editProc_bu")
+	@RequestMapping("/bu_editProc")
 	public String editProc_bu(HttpServletRequest request, Model model) {
 		System.out.println("editProc_bu passing");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
@@ -133,7 +151,7 @@ public class AdminController {
 		model.addAttribute("bunum", bunum);
 		return "redirect:buManagement";
 	}
-	@RequestMapping("/admin/admin_cuMember")
+	@RequestMapping("/admin_cuMember")
 	public String admin_cuMember(HttpServletRequest request, cSearchVO csearchVO, bSearchVO bsearchVO, Model model) {
 		System.out.println("passing adminMain");
 //		Map<String, String> map =new HashMap<String, String>();
@@ -198,7 +216,7 @@ public class AdminController {
 		
 		return"admin/admin_cuMember";
 	}
-	@RequestMapping("/admin/admin_buMember")
+	@RequestMapping("/admin_buMember")
 	public String admin_buMember(HttpServletRequest request, cSearchVO csearchVO, bSearchVO bsearchVO, Model model) {
 		System.out.println("passing adminMain");
 //		Map<String, String> map =new HashMap<String, String>();
@@ -262,9 +280,5 @@ public class AdminController {
 		model.addAttribute("bSearchVO",bsearchVO);
 		return"admin/admin_buMember";
 	}
-	@RequestMapping("/adminMain")
-	public String main(HttpServletRequest request) {
-		
-		return"adminMain";
-	}
+	
 }

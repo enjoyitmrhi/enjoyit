@@ -86,7 +86,7 @@
 		DELETE FROM QNA WHERE CUID = #{param1}
 	</delete>
 	<delete id="del_bu">
-		DELETE FROM BUSINESS WHERE BUNUM = #{param1}
+		DELETE FROM BUSINESS WHERE BUID = #{param1}
 	</delete>
 	<delete id="del_sb">
 		DELETE FROM SALE_BOARD WHERE BUID = #{param1}

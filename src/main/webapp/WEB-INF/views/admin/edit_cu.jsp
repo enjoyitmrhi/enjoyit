@@ -9,15 +9,15 @@
 </head>
 <body>
 	<h3>this is edit_cu page</h3>
-	<form action="editProc_cu" method="post">
+	<form action="cu_editProc" method="post">
 		<table>
 			<tr>
 				<td>회원번호</td>
-				<td><input type="text" name="cunum" value="${cu.cunum }"></td>
+				<td><input type="text" name="cunum" value="${cu.cunum }" readonly></td>
 			</tr>
 			<tr>
 				<td>회원아이디</td>
-				<td><input type="text" name="cuid" value="${cu.cuid }"></td>
+				<td><input type="text" name="cuid" value="${cu.cuid }" readonly></td>
 			</tr>
 			<tr>
 				<td>회원명</td>

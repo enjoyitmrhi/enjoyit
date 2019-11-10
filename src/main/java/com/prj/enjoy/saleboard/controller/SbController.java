@@ -36,14 +36,18 @@ public class SbController {
 		return "sale_board/board_list";
 	}
 
-	private int checkid(String id) {
+	@ResponseBody
+	@RequestMapping(value = "/add_list")
+	public ArrayList<SbDto> jsonBoardList(HttpServletRequest request, HttpServletResponse response) {
+
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		String strId = id;
-		int result = 0;
-		if (strId != null) {
-			result = dao.checkBid(strId);
-		}
-		return result;
+		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+
+		ArrayList<SbDto> addDto = dao.add_list(sNum, eNum);
+
+		return addDto;
+
 	}
 
 	@RequestMapping(value = "/sbcontent_view")
@@ -51,8 +55,20 @@ public class SbController {
 		String wid = request.getParameter("wid");
 		String sbcode = request.getParameter("sbcode");
 
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		LoginDao logindao =sqlSession.getMapper(LoginDao.class);
+		String avgstar;
+		avgstar = dao.avgstar(sbcode);
+		if (avgstar == null || avgstar.equals("0")) {
+			avgstar = "1";
+		}
+		
+		Business dto = logindao.getBusiness(wid);
 		model.addAttribute("wid", wid);
-		model.addAttribute("sbcode", sbcode);
+		model.addAttribute("avgstar", avgstar);
+		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
+		model.addAttribute("longY",dto.getBulongitude());
+		model.addAttribute("latX",dto.getBulatitude());
 		return "sale_board/sbcontent_view";
 	}
 
@@ -72,7 +88,39 @@ public class SbController {
 		System.out.println("path >>> " + path);
 
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
-				new DefaultFileRenamePolicy());		
+				new DefaultFileRenamePolicy());
+
+		String buid = req.getParameter("buid");
+		String sbpic = req.getFilesystemName("sbpic");
+		String sbtitle = req.getParameter("sbtitle");
+		String sbprice = req.getParameter("sbprice");
+		String sbloc = req.getParameter("sbloc");
+
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc);
+
+		return "redirect:board_list";
+	}
+
+	@RequestMapping(value = "/sbdelete")
+	public String sbdelete(HttpServletRequest request, Model model) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		String sbcode = request.getParameter("sbcode");
+
+		dao.delete(sbcode);
+		return "redirect:board_list";
+
+	}
+
+	@RequestMapping(value = "/sbmodify")
+	public String sbmodify(HttpServletRequest request, Model model) throws Exception {
+		String attachPath = "resources\\upload\\";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/");
+		String path = uploadPath + attachPath;
+		
+		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
+				new DefaultFileRenamePolicy());
+
 		
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		String sbcode = req.getParameter("sbcode");
@@ -86,7 +134,8 @@ public class SbController {
 		}
 		
 		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic);
-		
 		return "redirect:board_list";
+
 	}
+
 }

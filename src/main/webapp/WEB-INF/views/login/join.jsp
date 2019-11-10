@@ -21,9 +21,7 @@
 			$.ajax({
 				type : "POST",
 				url : "chk_cid.do",
-				data : {
-					userid : userid
-				},
+				data : {userid : userid},
 				success : function(data) {if (data == 'false') {
 					alert("이미 사용중인 아이디입니다.");
 					idchk=0;

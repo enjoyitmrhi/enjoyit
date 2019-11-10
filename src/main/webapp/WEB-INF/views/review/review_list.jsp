@@ -46,7 +46,7 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a href="review_write_view">리뷰 작성</a></td>
+				<td colspan="7"><a href="review_write_view?sbcode=${sbcode }">리뷰 작성</a></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">
@@ -61,8 +61,8 @@
 			<div>
 				<c:if test="${searchVO.totPage>1}">
 					<c:if test="${searchVO.page>1}">
-						<a href="review_list?page=1">[처음]</a>
-						<a href="review_list?page=${searchVO.page-1 }">[이전]</a>
+						<a href="review_list?sbcode=${sbcode }&page=1">[처음]</a>
+						<a href="review_list?sbcode=${sbcode }&page=${searchVO.page-1 }">[이전]</a>
 					</c:if>
 					<c:forEach begin="${searchVO.pageStart}" end="${searchVO.pageEnd}"
 						var="i">
@@ -77,8 +77,8 @@
 						</c:choose>
 					</c:forEach>
 					<c:if test="${searchVO.totPage>searchVO.page}">
-						<a href="review_list?page=${searchVO.page+1 }">[다음]</a>
-						<a href="review_list?page=${searchVO.totPage }">[마지막]</a>
+						<a href="review_list?sbcode=${sbcode }&page=${searchVO.page+1 }">[다음]</a>
+						<a href="review_list?sbcode=${sbcode }&page=${searchVO.totPage }">[마지막]</a>
 					</c:if>
 				</c:if>
 			</div>
@@ -106,10 +106,10 @@
 					maxlength="50" value="${serachKeyword }" /> <input type="submit"
 					name="btn_search" value="검색" />
 			</div>
+			<div>
+				<a href="qna_list?sbcode=${sbcode }">QnA보기</a> <a href="board_list">게시글로 가기</a>
+			</div>
 		</form>
-	</div>
-	<div>
-		<a href="qna_list">QnA보기</a> <a href="board_list">게시글로 가기</a>
-	</div>
+	</div> <!-- end container -->
 </body>
 </html>

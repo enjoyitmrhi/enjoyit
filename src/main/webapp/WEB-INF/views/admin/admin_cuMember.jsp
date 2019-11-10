@@ -25,7 +25,7 @@
 	<div class="container">
 
 		<div style="width: 20px; display: inline;">
-			<form action="adminMain" name="form1" id="form1" method="post">
+			<form action="admin_cuMember" name="form1" id="form1" method="post">
 				<input type="hidden" name="cpage" value=""> <input
 					type="hidden" name="bpage" value=""> <select
 					class="form-control" name="sort" onchange="chsort()">
@@ -67,7 +67,7 @@
 		
 
 	</div>
-<form action="../del_cu" method="post">
+<form action="del_cu" method="post">
 			<h3>일반회원 목록</h3>
 			<input type="submit" value="회원삭제">
 			<table class="table table-hover">
@@ -86,7 +86,7 @@
 				</tr>
 				<c:forEach items="${clist}" var="cu">
 					<tr>
-						<td><input type="radio" name="cunum" value="${cu.cunum }  "></td>
+						<td><input type="radio" name="cuid" value="${cu.cuid }"></td>
 						<td>${cu.cunum }</td>
 						<td><a href="cuManagement?cunum=${cu.cunum}">${cu.cuid }</a></td>
 						<td>${cu.cuname  }</td>
@@ -108,8 +108,8 @@
 			<div>
 				<c:if test="${cSearchVO.totPage > 1 }">
 					<c:if test="${cSearchVO.page>1 }">
-						<a href="adminMain?cpage=1">[처음]</a>
-						<a href="adminMain?cpage=${cSearchVO.page-1 }">[이전]</a>
+						<a href="admin_cuMember?cpage=1">[처음]</a>
+						<a href="admin_cuMember?cpage=${cSearchVO.page-1 }">[이전]</a>
 					</c:if>
 					<c:forEach begin="${cSearchVO.pageStart }"
 						end="${cSearchVO.pageEnd }" var="i">
@@ -125,11 +125,12 @@
 						</c:choose>
 					</c:forEach>
 					<c:if test="${cSearchVO.totPage>cSearchVO.page }">
-						<a href="adminMain?cpage=${cSearchVO.page+1 }">[다음]</a>
-						<a href="adminMain?cpage=${cSearchVO.totPage }">[마지막]</a>
+						<a href="admin_cuMember?cpage=${cSearchVO.page+1 }">[다음]</a>
+						<a href="admin_cuMember?cpage=${cSearchVO.totPage }">[마지막]</a>
 					</c:if>
 				</c:if>
 			</div>
+			<a href="admin_buMember"><input type="button" value="가맹회원보기"></a>
 		</form>
 </body>
 </html>

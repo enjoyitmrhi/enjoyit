@@ -14,6 +14,7 @@
 	<form action="qnaanswer_write">
 
 		<input type="hidden" name="num" value="${answerview.qanum }">
+		<input type="hidden" name="sbcode" value="${answerview.sbcode }">
 		<input type="hidden" name="group" value="${answerview.qagroup }">
 		<input type="hidden" name="step" value="${answerview.qastep }">
 		<input type="hidden" name="indent" value="${answerview.qaindent }">
@@ -32,15 +33,15 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td>
-				<textarea rows="10" cols="20" style="white-space:pre;" name="content">
-				<c:out value="${answerview.qacontent}" />
-				ㄴ[re]</textarea></td>
+				<td><pre><textarea rows="10" cols="20" name="content">
+				${answerview.qacontent }
+				└[re]
+			</textarea></pre></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
 				<td><input type="text" name="id"
-					value="${session_bid }${session_cid }" readonly="readonly"></td>
+					value="${session_bid }" readonly="readonly"></td>
 			</tr>
 
 		</table>
