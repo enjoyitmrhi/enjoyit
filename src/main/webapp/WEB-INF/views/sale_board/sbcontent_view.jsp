@@ -17,8 +17,10 @@
 
 	};
 </script>
+
 </head>
 <body>
+
 	<div class="container">
 		<h3>sbcontent_view</h3>
 		<form action="sbmodify" method="post" enctype="multipart/form-data">
@@ -71,8 +73,8 @@
 					</tr>
 				</table>
 			</div>
-			<a href="board_list"> 목록</a> &nbsp;&nbsp; 
-			<a href="review_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }">
+			<a href="board_list"> 목록</a> &nbsp;&nbsp; <a
+				href="review_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }">
 				리뷰보기</a> &nbsp;&nbsp;<a
 				href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }">QnA보기</a>
 			<br />
@@ -84,15 +86,19 @@
 		</form>
 
 
-	
-	<div id="map" style="width:60%;height:350px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c152ea050e4105950daf9c520e328d4c"></script>
-<script>
+		<div id="map" style="width: 60%; height: 350px;"></div>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4157b36000ee9578ae4cf69de3cda42"></script>
+		<script>
+
+
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(${longY}, ${latX}), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
+       
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -137,7 +143,7 @@ function makeOutListener(infowindow) {
         infowindow.close();
     };
 }
-
+ 
 /* 아래와 같이도 할 수 있습니다 */
 /*
 for (var i = 0; i < positions.length; i ++) {
@@ -168,7 +174,8 @@ for (var i = 0; i < positions.length; i ++) {
 }
 */
 </script>
-	
+
+
 	</div>
 </body>
 </html>

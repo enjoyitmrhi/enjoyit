@@ -200,10 +200,12 @@ public class QnaController {
 	@RequestMapping("/qnaanswerview")
 	public String qnaAnswer(HttpServletRequest request, Model model) {
 		String qanum = request.getParameter("qanum");
+		String wid = request.getParameter("wid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		QnaDto dto = dao.qnaanswer(qanum);
 
 		model.addAttribute("answerview", dto);
+		model.addAttribute("wid",wid);
 
 		return "qna/qnaans_view";
 	}
