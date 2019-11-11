@@ -125,7 +125,7 @@ public class QnaController {
 		String sbcode = request.getParameter("sbcode");
 		String strId = request.getParameter("id");
 		String wid = request.getParameter("wid");
-		
+		 System.out.println(wid);
 		model.addAttribute("wid", wid);
 		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("id", strId);
@@ -142,6 +142,7 @@ public class QnaController {
 		String strContent = request.getParameter("qcontent");
 		String strTitle = request.getParameter("qtitle");
 		String strId = request.getParameter("qid");
+		String wid = request.getParameter("wid");
 
 		System.out.println("strContent = " + strContent);
 		System.out.println("strTitle = " + strTitle);
@@ -149,8 +150,10 @@ public class QnaController {
 
 		dao.qnawrite(strTitle, strContent, strId,sbcode);
 		model.addAttribute("id", strId);
+		model.addAttribute("wid",wid);
+		model.addAttribute("sbcode",sbcode);
 
-		return "redirect:qna_list?sbcode="+sbcode;
+		return "redirect:qna_list";
 	}
 
 	@RequestMapping("/qnacontent_view")
