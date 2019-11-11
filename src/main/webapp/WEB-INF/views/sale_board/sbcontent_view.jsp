@@ -58,6 +58,10 @@
 								class="form-control" rows="15" name="sbcontent" id="sbcontent"> ${sbcontent_view.sbcontent } </textarea></td>
 					</tr>
 					<tr>
+						<td>위치</td>
+						<td><div id="map" style="width: 60%; height: 350px;"></div></td>
+					</tr>
+					<tr>
 						<td>상품 리뷰 평균</td>
 
 						<td><c:set var="avg" value="${avgstar}"></c:set> <c:if
@@ -71,25 +75,34 @@
 								</c:choose>
 							</c:if></td>
 					</tr>
+
 				</table>
+
+
 			</div>
-			<a href="board_list"> 목록</a> &nbsp;&nbsp; <a
-				href="review_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }">
-				리뷰보기</a> &nbsp;&nbsp;<a
-				href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }">QnA보기</a>
-			<br />
-			<c:if test="${sbcontent_view.buid == session_bid}">
-				<button onclick="javascript:del_sbCont()">삭제하기</button>
+			<div>
+				<a href="board_list" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a> &nbsp;&nbsp; <a
+					href="review_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
+					class="btn btn-outline-primary btn-sm" role="btn"> 리뷰보기</a>
+				&nbsp;&nbsp;<a
+					href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
+					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>
+				<div style="float: right;">
+					<c:if test="${sbcontent_view.buid == session_bid}">
+						<button onclick="javascript:del_sbCont()"
+							class="btn btn-outline-info btn-sm">삭제하기</button>
 		&nbsp;&nbsp;
-		<input type="submit" value="수정하기">
-			</c:if>
+		<input type="submit" class="btn btn-outline-info btn-sm" value="수정하기">
+					</c:if>
+				</div>
+			</div>
 		</form>
 
 
 
-		<div id="map" style="width: 60%; height: 350px;"></div>
 		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f4157b36000ee9578ae4cf69de3cda42"></script>
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c152ea050e4105950daf9c520e328d4c"></script>
 		<script>
 
 

@@ -5,8 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<% request.setCharacterEncoding("utf-8"); %>
-<% response.setContentType("text/html; charset=utf-8"); %>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<%
+	response.setContentType("text/html; charset=utf-8");
+%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="resources/js/jQueryRotateCompressed.js"></script>
 <title>Insert title here</title>
@@ -14,33 +18,37 @@
 </head>
 <body>
 	<script type="text/javascript">
-//<![CDATA[
-function show_block(elem,ID) {
-	var menu = document.getElementById(ID);
-	if (elem.className !='opened') {
-	    elem.className ='opened';
-	    menu.style.display ="block"; 
-	   $.ajax({
-	    	type:"POST",
-			url:"answer_view.do",
-			data : {ID:ID},
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-			success : function(data) {
-				/* alert("success"+data); */
-				document.getElementById("answer_view"+ID).value = data; 
-			}, error : function(data) {
-				alert("전송실패" + data);
+		//<![CDATA[
+		function show_block(elem, ID) {
+			var menu = document.getElementById(ID);
+			if (elem.className != 'opened') {
+				elem.className = 'opened';
+				menu.style.display = "block";
+				$
+						.ajax({
+							type : "POST",
+							url : "answer_view.do",
+							data : {
+								ID : ID
+							},
+							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+							success : function(data) {
+								/* alert("success"+data); */
+								document.getElementById("answer_view" + ID).value = data;
+							},
+							error : function(data) {
+								alert("전송실패" + data);
+							}
+						});
+
+			} else {
+				elem.className = 'closed';
+				menu.style.display = "none";
 			}
-	    });
-	    
-	}  else {
-		elem.className = 'closed';
-	    menu.style.display = "none";   
-	}
-	
-}
-//]]>
-</script>
+
+		}
+		//]]>
+	</script>
 
 	<div class="container">
 
@@ -54,8 +62,8 @@ function show_block(elem,ID) {
 			</script>
 		</form>
 
-		<input type="hidden" value="${sbcode }" name="sbcode">
-		<input type="hidden" value="${wid }" name="wid">
+		<input type="hidden" value="${sbcode }" name="sbcode"> <input
+			type="hidden" value="${wid }" name="wid">
 		<h3>qnalist</h3>
 		qaTitle : ${qatitle } &nbsp;&nbsp; qaContent : ${qacontent }
 		&nbsp;&nbsp; searchKeyword : ${searchKeyword } <input type="hidden"
@@ -98,19 +106,17 @@ function show_block(elem,ID) {
 
 					</tr>
 
-					
-					
+
+
 					<td></td>
-					<td id="${dto.qanum }" style="display: none;" colspan="3">
-					
-					<textarea rows="7" cols="40" id="answer_view${dto.qanum }" readonly>
-					</textarea>
-					</td >
+					<td id="${dto.qanum }" style="display: none;" colspan="3"><textarea
+							rows="7" cols="40" id="answer_view${dto.qanum }" readonly>
+					</textarea></td>
 					<td></td>
 				</c:if>
 			</c:forEach>
 			<c:if test="${session_cid != null}">
-			
+
 
 				<tr>
 					<td colspan="3"><a
@@ -175,7 +181,8 @@ function show_block(elem,ID) {
 
 
 		<div>
-			<a href="review_list?wid=${wid }&sbcode=${sbcode }">리뷰보기</a> <a href="board_list">게시글로 가기</a>
+			<a href="review_list?wid=${wid }&sbcode=${sbcode }">리뷰보기</a> <a
+				href="board_list">게시글로 가기</a>
 		</div>
 	</div>
 
