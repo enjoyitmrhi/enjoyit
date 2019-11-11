@@ -16,11 +16,11 @@
 			type="hidden" name="rvgroup" value="${reply_view.rvgroup }" /> <input
 			type="hidden" name="rvstep" value="${reply_view.rvstep }" /> <input
 			type="hidden" name="rvindent" value="${reply_view.rvindent }" /><input
-			type="hidden" name="sbcode" value="${sbcode}" />
+			type="hidden" name="sbcode" value="${reply_view.sbcode}" />
 		<table class="table">
 
 			<tr>
-				<td colspan="2">${reply_view.rvnum }|${reply_view.buid }</td>
+				<td colspan="2">${reply_view.rvnum }|${session_bid }</td>
 			</tr>
 			<tr>
 				<td colspan="2">${reply_view.rvdate }|${reply_view.sbcode }</td>

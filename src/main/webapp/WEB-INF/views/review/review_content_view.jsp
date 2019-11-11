@@ -35,7 +35,7 @@
 						</c:choose></td>
 				</tr>
 				<tr>
-					<td>${content_view.cuid }|${content_view.sbcode }</td>
+					<td>${content_view.cuid }|상품 코드 : ${content_view.sbcode }</td>
 					<td>${content_view.rvdate }</td>
 					<td>조회수 : ${content_view.rvhit } | 번호 : ${content_view.rvnum }
 					</td>
@@ -65,7 +65,7 @@
 				&sbcode=${content_view.sbcode }
 				">삭제</a>
 						&nbsp;&nbsp;<a
-						href="review_reply_view?rvnum=${content_view.rvnum }&sbcode=${sbcode}">답변</a></td>
+						href="review_reply_view?rvnum=${content_view.rvnum }&sbcode=${content_view.sbcode}">답변</a></td>
 				</tr>
 			</table>
 		</form>

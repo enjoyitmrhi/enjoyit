@@ -28,11 +28,11 @@ public class ReviewController {
 	public String review_list(HttpServletRequest request, SearchVO searchVO, Model model) {
 		String rvtitle = "";
 		String rvcontent = "";
-		
+
 		String sbcode = request.getParameter("sbcode");
 
 		model.addAttribute("sbcode", sbcode);
-		
+
 		String[] brdtitle = request.getParameterValues("searchType");
 		if (brdtitle != null) {
 			for (String val : brdtitle) {
@@ -77,8 +77,6 @@ public class ReviewController {
 		int rowStrat = searchVO.getRowStart();
 		int rowEnd = searchVO.getRowEnd();
 
-		
-		
 		if (rvtitle.equals("rvtitle") && rvcontent.equals("")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "1", sbcode));
 			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
@@ -102,9 +100,9 @@ public class ReviewController {
 	@RequestMapping(value = "/review_write_view")
 	public String write_view(HttpServletRequest request, Model model) {
 
-		String sbcode=request.getParameter("sbcode");
-		model.addAttribute("sbcode",sbcode);
-		
+		String sbcode = request.getParameter("sbcode");
+		model.addAttribute("sbcode", sbcode);
+
 		return "review/review_write_view";
 
 	}
@@ -135,25 +133,24 @@ public class ReviewController {
 
 		dao.review_write(rvtitle, rvcontent, rvpic, rvstar, sbcode, cuid);
 
-
-		return "redirect:review_list?sbcode="+sbcode;
+		return "redirect:review_list?sbcode=" + sbcode;
 	}
 
 	@RequestMapping("/review_content_view")
 	public String content_view(HttpServletRequest request, Model model) {
-		
+
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
-		
+
 		String strnum = request.getParameter("rvnum");
 		int rvnum = Integer.parseInt(strnum);
 		String strcode = request.getParameter("sbcode");
 		int sbcode = Integer.parseInt(strcode);
-		
+
 		hitUp(rvnum);
-		
+
 		model.addAttribute("content_view", dao.contentView(rvnum));
 		model.addAttribute("sbcode", sbcode);
-		
+
 		return "review/review_content_view";
 	}
 
@@ -203,7 +200,7 @@ public class ReviewController {
 		int rvnum = Integer.parseInt(strnum);
 		String strcode = req.getParameter("sbcode");
 		int sbcode = Integer.parseInt(strcode);
-		String cuid =  req.getParameter("cuid");
+		String cuid = req.getParameter("cuid");
 
 		String rvpic = dao.getRvpic(rvtitle);
 
@@ -211,7 +208,7 @@ public class ReviewController {
 			rvpic = "";
 		}
 		dao.modify(rvtitle, rvcontent, rvpic, rvnum, sbcode, cuid);
-		
+
 		return "redirect:review_list?sbcode=" + sbcode;
 	}
 
@@ -225,7 +222,7 @@ public class ReviewController {
 		int rvnum = Integer.parseInt(strnum);
 		String sbcode = request.getParameter("sbcode");
 		model.addAttribute("sbcode", sbcode);
-		
+
 		dao.delete(rvnum);
 		return "redirect:review_list?sbcode=" + sbcode;
 	}
@@ -234,19 +231,17 @@ public class ReviewController {
 	public String reply_view(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
 		String strId = request.getParameter("rvnum");
-		if(strId ==null || strId.equals("")) {
+		if (strId == null || strId.equals("")) {
 			strId = "0";
 		}
 		int rvnum = Integer.parseInt(strId);
 		String strcode = request.getParameter("sbcode");
 		int sbcode = Integer.parseInt(strcode);
-		
+
+		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("reply_view", dao.reply_view(rvnum));
-		model.addAttribute("sbcode",  dao.reply_view(sbcode));
-		
+
 		return "review/review_reply_view";
-	
-	
 
 	}
 
@@ -254,8 +249,10 @@ public class ReviewController {
 	public String reply_write(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
 		String strId = request.getParameter("buid");
+		String strcode = request.getParameter("sbcode");
+		int sbcode = Integer.parseInt(strcode);
 
-		model.addAttribute("reply_write", dao.reply_write(strId));
+		model.addAttribute("reply_write", dao.reply_write(strId, sbcode));
 
 		return "review/review_reply_write";
 	}
@@ -274,9 +271,9 @@ public class ReviewController {
 
 		replyShape(rvgroup, rvstep);
 
-		dao.reply(buid,rvtitle, rvcontent, rvgroup, rvstep, rvindent, sbcode);
+		dao.reply(buid, rvtitle, rvcontent, rvgroup, rvstep, rvindent, sbcode);
 
-		return "redirect:review_list?sbcode=" + sbcode;
+		return "redirect:review_list?sbcode="+sbcode;
 	}
 
 	private void replyShape(String rvgroup, String rvstep) {

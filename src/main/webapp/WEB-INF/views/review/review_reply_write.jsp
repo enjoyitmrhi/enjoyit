@@ -17,8 +17,7 @@
 			<input type="hidden" name="rvindent" value="${reply_write.rvindent }" />
 		<table border="1">
 			<tr>
-				<td><input type="text" name="buid"
-					value="${reply_write.buid}" /></td>
+				<td>${reply_write.buid }</td>
 				<td><input type="text" name="rvdate"
 					value="${reply_write.rvdate}" /></td>
 			</tr>

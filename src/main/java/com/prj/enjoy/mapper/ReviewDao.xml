@@ -83,7 +83,7 @@
 	</insert>
 	<select id="reply_write" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT * FROM REVIEW WHERE
-		BUNUM = #{param1}
+		BUID = #{param1}
 	</select>
 	<select id="reply_view" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT * FROM REVIEW WHERE

@@ -16,7 +16,7 @@ public interface ReviewDao {
 
 	public ReviewDto reply_view(int rvnum);
 
-	public Object reply_write(String strId);
+	public Object reply_write(String strId, int sbcode);
 
 	public void reply(String buid, String rvtitle, String rvcontent, String rvgroup, String rvstep, String rvindent, int sbcode);
 
