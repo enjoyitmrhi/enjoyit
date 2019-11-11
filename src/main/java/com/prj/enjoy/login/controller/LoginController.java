@@ -49,11 +49,6 @@ public class LoginController {
 		return mav;
 	}
 
-	@RequestMapping("/")
-	public String root() {
-		return "index";
-	}
-
 	@RequestMapping("/login")
 	public String login(HttpSession session) {
 		// 세션 삭제
