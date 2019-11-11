@@ -154,8 +154,8 @@ CREATE TABLE  review  (
 -- reservation
 CREATE TABLE  reservation  (
     rtNum    NUMBER     NULL, -- rtNum
-    rtSDate  DATE        NULL, -- rtSDate
-    rtEDate  DATE        NULL, -- rtEDate
+    rtSDate  DATE         NULL, -- rtSDate
+    rtEDate  DATE         NULL, -- rtEDate
     sbCode   NUMBER     NULL, -- sbCode
     cuNum    VARCHAR2(10)NULL, -- cuNum
     cuId     VARCHAR2(20) NULL  -- cuId
