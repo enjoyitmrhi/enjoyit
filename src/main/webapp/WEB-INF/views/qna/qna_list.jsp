@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setContentType("text/html; charset=utf-8"); %>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="resources/js/jQueryRotateCompressed.js"></script>
 <title>Insert title here</title>
@@ -17,13 +19,14 @@ function show_block(elem,ID) {
 	var menu = document.getElementById(ID);
 	if (elem.className !='opened') {
 	    elem.className ='opened';
-	    menu.style.display ="block";
-	    $.ajax({
+	    menu.style.display ="block"; 
+	   $.ajax({
 	    	type:"POST",
 			url:"answer_view.do",
-			data : {ID},
+			data : {ID:ID},
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 			success : function(data) {
-				alert("success"+data);
+				/* alert("success"+data); */
 				document.getElementById("answer_view"+ID).value = data; 
 			}, error : function(data) {
 				alert("전송실패" + data);
@@ -32,37 +35,12 @@ function show_block(elem,ID) {
 	    
 	}  else {
 		elem.className = 'closed';
-	    menu.style.display = "none";
+	    menu.style.display = "none";   
 	}
 	
 }
 //]]>
 </script>
-
-	<!-- 
-<script type="text/javascript">
-//<![CDATA[
-function clickshow(elem,ID) {
- var menu = document.getElementById(ID);
- if (elem.className !='closed') {
-    elem.className = 'closed';
-    menu.style.display = "none";
- } else {
-    elem.className ='opened';
-    menu.style.display ="block";
-}}
-//]]>
-</script>
-<h3 class="closed" onclick="clickshow(this,'categories')">처음에는 닫힌 폴더</h3>
-<div id="categories" style="display: none;">
-<ol>
-<li>첫번째 요소</li>
-<li>두번째 요소</li>
-<li>그럼 안녕</li>
-</ol>
-</div>
-<br>
- -->
 
 	<div class="container">
 
@@ -76,7 +54,8 @@ function clickshow(elem,ID) {
 			</script>
 		</form>
 
-		<input type="hidden" value="${sbcode }" name="abcode">
+		<input type="hidden" value="${sbcode }" name="sbcode">
+		<input type="hidden" value="${wid }" name="wid">
 		<h3>qnalist</h3>
 		qaTitle : ${qatitle } &nbsp;&nbsp; qaContent : ${qacontent }
 		&nbsp;&nbsp; searchKeyword : ${searchKeyword } <input type="hidden"
@@ -119,12 +98,15 @@ function clickshow(elem,ID) {
 
 					</tr>
 
-					<tr id="${dto.qanum }" style="display: none;">
-						<td colspan="3">${dto.qanum }</td>
-						<td><input type="text" id="answer_view${dto.qanum }" value=""
-							readonly></td>
-					</tr>
-
+					
+					
+					<td></td>
+					<td id="${dto.qanum }" style="display: none;" colspan="3">
+					
+					<textarea rows="7" cols="40" id="answer_view${dto.qanum }" readonly>
+					</textarea>
+					</td >
+					<td></td>
 				</c:if>
 			</c:forEach>
 			<c:if test="${session_cid != null}">
@@ -193,7 +175,7 @@ function clickshow(elem,ID) {
 
 
 		<div>
-			<a href="review_list">리뷰보기</a> <a href="board_list">게시글로 가기</a>
+			<a href="review_list?wid=${wid }&sbcode=${sbcode }">리뷰보기</a> <a href="board_list">게시글로 가기</a>
 		</div>
 	</div>
 

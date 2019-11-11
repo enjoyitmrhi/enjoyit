@@ -28,6 +28,10 @@ public interface QnaDao {
 	
 	String answer_view(String qanum);
 	
-	int qnaboardcount(String cuid);
+	int qnaboardQcount(String cuid);
+	
+	int qnaboardAcount(String buid);
+
+	ArrayList<QnaDto> myqnalist(String cuid);
 	
 }

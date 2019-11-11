@@ -24,9 +24,21 @@ public interface AdminDao {
 
 	public Business getBuInfo(String bunum);
 
-	public void del_cu(String cunum);
+	public void del_cu(String cuid);
 
-	public void del_bu(String bunum);
+	public void del_reserv(String cuid);
+
+	public void del_cReview(String cuid);
+	
+	public void del_cQna(String cuid);
+	
+	public void del_bu(String buid);
+	
+	public void del_sb(String buid);
+
+	public void del_bReview(String buid);
+	
+	public void del_bQna(String bsuid);
 
 	public int editProc_cu(String cuid, String cuname, String cuaddr, String cuemail, String cubirth, String cugender,
 			String cutel, String cunum);

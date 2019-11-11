@@ -111,8 +111,8 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody String answer_view(@RequestParam("ID") String qanum) {
-		System.out.println(qanum);
+	public @ResponseBody String answer_view(@RequestParam("ID")String qanum) {
+		System.out.println("ID >>>"+qanum);
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		String data = dao.answer_view(qanum);
 		System.out.println(data);
@@ -125,7 +125,7 @@ public class QnaController {
 		String sbcode = request.getParameter("sbcode");
 		String strId = request.getParameter("id");
 		String wid = request.getParameter("wid");
-		 System.out.println(wid);
+		
 		model.addAttribute("wid", wid);
 		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("id", strId);
@@ -153,7 +153,7 @@ public class QnaController {
 		model.addAttribute("wid",wid);
 		model.addAttribute("sbcode",sbcode);
 
-		return "redirect:qna_list";
+		return "redirect:qna_list?sbcode="+sbcode;
 	}
 
 	@RequestMapping("/qnacontent_view")
