@@ -47,8 +47,8 @@
 
 			</table>
 			<c:if test="${wid == session_bid}">
-				<a
-					href="qnaanswerview?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}">답글달기</a>
+				<a  class="btn btn-success" role="button"
+					href="qnaanswerview?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}">답글달기</a><br/>
 			</c:if>
 
 			<input type="submit" style="display: none;">

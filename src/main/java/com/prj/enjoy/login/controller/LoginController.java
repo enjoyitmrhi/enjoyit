@@ -35,6 +35,12 @@ public class LoginController {
 
 	@Autowired
 	private JavaMailSender mailSender;
+	@RequestMapping("/")
+	public ModelAndView indexpage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
+	}
 
 	@RequestMapping("/index")
 	public ModelAndView index() {

@@ -142,6 +142,7 @@ public class QnaController {
 		String strContent = request.getParameter("qcontent");
 		String strTitle = request.getParameter("qtitle");
 		String strId = request.getParameter("qid");
+		String wid = request.getParameter("wid");
 
 		System.out.println("strContent = " + strContent);
 		System.out.println("strTitle = " + strTitle);
@@ -149,6 +150,8 @@ public class QnaController {
 
 		dao.qnawrite(strTitle, strContent, strId,sbcode);
 		model.addAttribute("id", strId);
+		model.addAttribute("wid",wid);
+		model.addAttribute("sbcode",sbcode);
 
 		return "redirect:qna_list?sbcode="+sbcode;
 	}
@@ -197,10 +200,12 @@ public class QnaController {
 	@RequestMapping("/qnaanswerview")
 	public String qnaAnswer(HttpServletRequest request, Model model) {
 		String qanum = request.getParameter("qanum");
+		String wid = request.getParameter("wid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		QnaDto dto = dao.qnaanswer(qanum);
 
 		model.addAttribute("answerview", dto);
+		model.addAttribute("wid",wid);
 
 		return "qna/qnaans_view";
 	}
