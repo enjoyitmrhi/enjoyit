@@ -104,8 +104,8 @@ public class ReviewController {
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
 
-		String sbcode = request.getParameter("sbcode");
-		model.addAttribute("sbcode", sbcode);
+		
+		
 
 		return "review/review_write_view";
 
@@ -113,8 +113,7 @@ public class ReviewController {
 
 	@RequestMapping("/review_write")
 	public String write(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-		String sbcode= request.getParameter("sbcode");
-		String wid= request.getParameter("wid");
+		
 		String cuid=(String) session.getAttribute("session_cid");
 		String attachPath = "resources\\upload\\";
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
@@ -122,23 +121,25 @@ public class ReviewController {
 
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
 				new DefaultFileRenamePolicy());
-
+		String sbcode= req.getParameter("sbcode");
+		String wid= req.getParameter("wid");
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
 		System.out.println("sbcode >>>>>>>"+sbcode);
 		String rvtitle = req.getParameter("rvtitle");
 		String rvcontent = req.getParameter("rvcontent");
 		String strstar = req.getParameter("rvstar");
+		if (strstar == null || strstar.equals("")) {
+			strstar ="0";
+		}
 		int rvstar = Integer.parseInt(strstar);
-		String strcode = req.getParameter("sbcode");
-		int sbcode = Integer.parseInt(strcode);
 		String rvpic = req.getFilesystemName("rvpic");
-		String cuid = req.getParameter("cuid");
 
 		if (rvpic == null) {
-			rvpic = "등록된 사진 없음";
+			rvpic = "no pic";
 		}
 
-		dao.review_write(sbcode,cuid,rvtitle, rvcontent, rvpic, rvstar);
+		dao.review_write(rvtitle, rvcontent, rvpic, rvstar, sbcode, cuid);
+		
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
 
@@ -154,8 +155,8 @@ public class ReviewController {
 		String sbcode= request.getParameter("sbcode");
 		String wid= request.getParameter("wid");
 		int rvnum = Integer.parseInt(strnum);
-		String strcode = request.getParameter("sbcode");
-		int sbcode = Integer.parseInt(strcode);
+		
+
 
 		hitUp(rvnum);
 
@@ -211,19 +212,20 @@ public class ReviewController {
 		String rvcontent = req.getParameter("rvcontent");
 		String strnum = req.getParameter("rvnum");
 		int rvnum = Integer.parseInt(strnum);
-		String strcode = req.getParameter("sbcode");
-		int sbcode = Integer.parseInt(strcode);
-		String cuid = req.getParameter("cuid");
+	
+		
 
 		String rvpic = dao.getRvpic(rvtitle);
 
 		if (rvpic == null) {
 			rvpic = "";
 		}
-		dao.modify(rvtitle, rvcontent, rvpic, rvnum, sbcode, cuid);
-
-		return "redirect:review_list?sbcode=" + sbcode;
 		dao.modify(rvtitle, rvcontent, rvpic, rvnum);
+
+
+		
+		
+
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
 		return "redirect:review_list";
@@ -239,9 +241,7 @@ public class ReviewController {
 		String sbcode= request.getParameter("sbcode");
 		String strnum = request.getParameter("rvnum");
 		int rvnum = Integer.parseInt(strnum);
-		String sbcode = request.getParameter("sbcode");
-		model.addAttribute("sbcode", sbcode);
-
+		
 		dao.delete(rvnum);
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
@@ -258,10 +258,8 @@ public class ReviewController {
 			strId = "0";
 		}
 		int rvnum = Integer.parseInt(strId);
-		String strcode = request.getParameter("sbcode");
-		int sbcode = Integer.parseInt(strcode);
+		
 
-		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("reply_view", dao.reply_view(rvnum));
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);

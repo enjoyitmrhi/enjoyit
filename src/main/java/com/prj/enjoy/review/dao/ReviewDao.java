@@ -8,12 +8,10 @@ import com.prj.enjoy.review.dto.ReviewDto;
 public interface ReviewDao {
 	public ArrayList<ReviewDto> review_list(int rowStrat, int rowEnd, String searchKeyword, String selNum, String sbcode);
 
-	public ArrayList<ReviewDto> review_list(int rowStrat, int rowEnd, String searchKeyword, String selNum,
-			String sbcode);
 
 	public int selectBoardCount(String searchKeyword, String selNum);
 
-	public void review_write(String sbcode,String cuid, String rvtitle,  String rvcontent, String rvpic, String rvstar);
+	public void review_write(String sbcode,String cuid, String rvtitle,  int rvstar, String rvpic, String rvcontent);
 
 	public ReviewDto reply_view(int rvnum);
 
@@ -27,7 +25,7 @@ public interface ReviewDao {
 
 	public void hitUp(int rvnum);
 
-	public void modify(String rvtitle, String rvcontent, String rvpic, int rvnum, int sbcode, String cuid);
+	public void modify(String rvtitle, String rvcontent, String rvpic, int rvnum);
 
 	public void delete(int rvnum);
 
