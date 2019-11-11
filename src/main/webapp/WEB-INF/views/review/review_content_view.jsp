@@ -27,10 +27,10 @@
 				<tr>
 					<td>별점</td>
 					<td colspan="2"><c:choose>
-							<c:when test="${content_view.rvstar eq '1' }">☆☆☆☆★</c:when>
-							<c:when test="${content_view.rvstar eq '2' }">☆☆☆★★</c:when>
-							<c:when test="${content_view.rvstar eq '3' }">☆☆★★★</c:when>
-							<c:when test="${content_view.rvstar eq '4' }">☆★★★★</c:when>
+							<c:when test="${content_view.rvstar eq '1' }">★</c:when>
+							<c:when test="${content_view.rvstar eq '2' }">★★</c:when>
+							<c:when test="${content_view.rvstar eq '3' }">★★★</c:when>
+							<c:when test="${content_view.rvstar eq '4' }">★★★★</c:when>
 							<c:when test="${content_view.rvstar eq '5' }">★★★★★</c:when>
 						</c:choose></td>
 				</tr>

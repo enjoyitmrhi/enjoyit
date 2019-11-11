@@ -30,16 +30,16 @@
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
 							begin="1" end="${dto.rvindent }" var="cnt">
 							<c:if test="${cnt eq endIndent }">
-								<img alt="" src="resources/img/reply.gif">[re]
+								<img alt="" src="resources/imgs/reply.gif">[re]
 				</c:if>
 				&nbsp;
 			</c:forEach> <a
 						href="review_content_view?rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
 					<td><c:choose>
-							<c:when test="${dto.rvstar eq '1' }">☆☆☆☆★</c:when>
-							<c:when test="${dto.rvstar eq '2' }">☆☆☆★★</c:when>
-							<c:when test="${dto.rvstar eq '3' }">☆☆★★★</c:when>
-							<c:when test="${dto.rvstar eq '4' }">☆★★★★</c:when>
+							<c:when test="${dto.rvstar eq '1' }">★</c:when>
+							<c:when test="${dto.rvstar eq '2' }">★★</c:when>
+							<c:when test="${dto.rvstar eq '3' }">★★★</c:when>
+							<c:when test="${dto.rvstar eq '4' }">★★★★</c:when>
 							<c:when test="${dto.rvstar eq '5' }">★★★★★</c:when>
 						</c:choose></td>
 					<td>${dto.rvdate }</td>
