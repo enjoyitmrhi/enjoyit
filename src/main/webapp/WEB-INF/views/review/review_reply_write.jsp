@@ -11,13 +11,13 @@
 	<h3>reply_write.jsp</h3>
 	<form action="review_reply" method="post">
 			<input type="hidden" name="buid" value="${reply_write.buid }" />
+			<input type="hidden" name="sbcode" value="${sbcode }" />
 			<input type="hidden" name="rvgroup" value="${reply_write.rvgroup }" />
 			<input type="hidden" name="rvstep" value="${reply_write.rvstep }" />
 			<input type="hidden" name="rvindent" value="${reply_write.rvindent }" />
 		<table border="1">
 			<tr>
-				<td><input type="text" name="bunum"
-					value="${reply_write.bunum}" /></td>
+				<td>${reply_write.buid }</td>
 				<td><input type="text" name="rvdate"
 					value="${reply_write.rvdate}" /></td>
 			</tr>

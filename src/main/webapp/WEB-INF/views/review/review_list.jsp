@@ -16,16 +16,17 @@
 		<input type="hidden" value="${wid }" name="wid">
 		<table class="table table-hover">
 			<tr>
+				<th>리뷰번호</th>
 				<th>상품번호</th>
 				<th>고객성함</th>
 				<th>제목</th>
 				<th>별점</th>
 				<th>날짜</th>
 				<th>조회수</th>
-				<th>리뷰번호</th>
 			</tr>
 			<c:forEach items="${review_list }" var="dto">
 				<tr>
+					<td>${dto.rvnum }</td>
 					<td>${dto.sbcode }</td>
 					<td>${dto.cuid }</td>
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
@@ -36,6 +37,7 @@
 				&nbsp;
 			</c:forEach> <a
 						href="review_content_view?rvnum=${dto.rvnum }&wid=${wid }&sbcode=${sbcode }">${dto.rvtitle }</a></td>
+						href="review_content_view?rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
 					<td><c:choose>
 							<c:when test="${dto.rvstar eq '1' }">☆☆☆☆★</c:when>
 							<c:when test="${dto.rvstar eq '2' }">☆☆☆★★</c:when>
@@ -45,7 +47,6 @@
 						</c:choose></td>
 					<td>${dto.rvdate }</td>
 					<td>${dto.rvhit }</td>
-					<td>${dto.rvnum }</td>
 				</tr>
 			</c:forEach>
 			<tr>

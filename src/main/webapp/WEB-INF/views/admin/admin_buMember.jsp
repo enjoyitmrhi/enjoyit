@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
+	<script>
 		function fnSubmitcForm(page) {
 			document.form1.cpage.value = page;
 			document.form1.submit();
@@ -61,10 +61,9 @@
 			</form>
 		</div>
 
-		
+
 
 		<br>
-		
 
 	</div>
 <form action="del_bu" method="post">
@@ -104,7 +103,8 @@
 		</form>
 
 		<!-- paging -->
-		TotRow: ${bSearchVO.totRow }&nbsp; page/totPage:${bSearchVO.page }/${bSearchVO.totPage }<br>
+		TotRow: ${bSearchVO.totRow }&nbsp; page/totPage:${bSearchVO.page }/${bSearchVO.totPage }
+		<br>
 		<form action="list" method="post">
 			<input type="hidden" name="bpage" value="">
 			<div>
@@ -134,5 +134,8 @@
 			</div>
 			<a href="admin_cuMember"><input type="button" value="일반회원보기"></a>
 		</form>
+	</div>
+	<!-- end container -->
+
 </body>
 </html>

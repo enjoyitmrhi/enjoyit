@@ -35,7 +35,8 @@
 			<otherwise></otherwise>
 		</choose>
 	</sql>
-	<select id="review_list" resultType="com.prj.enjoy.review.dto.ReviewDto">
+	<select id="review_list" parameterType="map"
+		resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT SBCODE, CUID, RVTITLE,RVCONTENT, RVDATE, RVHIT, RVGROUP,
 		RVSTEP, RVINDENT, RVNUM, RVSTAR
 		FROM (SELECT SBCODE, CUID, RVTITLE,
@@ -47,8 +48,7 @@
 		REVIEW WHERE SBCODE = #{param5}
 		<include refid="includeList" />
 		)
-		WHERE REVIEW_SEQ
-		BETWEEN #{param1} AND #{param2}
+		WHERE SBCODE=#{param5} AND REVIEW_SEQ BETWEEN #{param1} AND #{param2}
 	</select>
 
 	<!-- total count -->
@@ -60,12 +60,14 @@
 
 	<insert id="review_write">
 		INSERT INTO REVIEW
-		(RVNUM,SBCODE,CUID,RVHIT,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC,RVSTAR)
+		(RVNUM,RVHIT,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC,RVSTAR,SBCODE,CUID)
 		VALUES
 		(REVIEW_SEQ.NEXTVAL,#{param1},#{param2},0,REVIEW_SEQ.CURRVAL,0,0,#{param3},#{param4},#{param5},#{param6})
+		(REVIEW_SEQ.NEXTVAL
+		,0,REVIEW_SEQ.NEXTVAL,0,0,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
 	</insert>
 	<update id="modify">
-		UPDATE REVIEW SET CUID='cguest1',RVTITLE=#{param1
+		UPDATE REVIEW SET RVTITLE=#{param1
 		},RVCONTENT=#{param2 }, RVPIC=#{param3 }
 		WHERE
 		RVNUM=#{param4 }
@@ -77,12 +79,14 @@
 
 	<insert id="reply">
 		INSERT INTO
+		REVIEW(RVNUM,BUID,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT,SBCODE)
+		VALUES(REVIEW_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5}+1,#{param6}+1,#{param7})
 		REVIEW(RVNUM,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT,SBCODE)
 		VALUES(REVIEW_SEQ.NEXTVAL,#{param2},#{param3},#{param4},#{param5},#{param6}+1,#{param7})
 	</insert>
 	<select id="reply_write" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT * FROM REVIEW WHERE
-		BUNUM = #{param1}
+		BUID = #{param1}
 	</select>
 	<select id="reply_view" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT * FROM REVIEW WHERE

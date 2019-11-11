@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<footer class="sticky-footer">
+	<footer class="footer">
 
 	<div class="container my-auto">
 		<div class="copyright text-center my-auto">
