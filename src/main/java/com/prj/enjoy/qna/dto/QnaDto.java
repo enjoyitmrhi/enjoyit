@@ -15,6 +15,8 @@ public class QnaDto {
 	private String buid;
 	private String cunum;
 	private String cuid;
+	private String sbproduct;
+	private String sbname;
 
 	public int getQanum() {
 		return qanum;
@@ -110,6 +112,22 @@ public class QnaDto {
 
 	public void setCuid(String cuid) {
 		this.cuid = cuid;
+	}
+
+	public String getSbproduct() {
+		return sbproduct;
+	}
+
+	public void setSbproduct(String sbproduct) {
+		this.sbproduct = sbproduct;
+	}
+
+	public String getSbname() {
+		return sbname;
+	}
+
+	public void setSbname(String sbname) {
+		this.sbname = sbname;
 	}
 
 }

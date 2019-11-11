@@ -12,6 +12,8 @@ public class Business {
 	private String butel;
 	private String buaddr;
 	private Date budate;
+	private String bulongitude;
+	private String bulatitude;
 
 	public String getBunum() {
 		return bunum;
@@ -83,6 +85,22 @@ public class Business {
 
 	public void setBudate(Date budate) {
 		this.budate = budate;
+	}
+
+	public String getBulongitude() {
+		return bulongitude;
+	}
+
+	public void setBulongitude(String bulongitude) {
+		this.bulongitude = bulongitude;
+	}
+
+	public String getBulatitude() {
+		return bulatitude;
+	}
+
+	public void setBulatitude(String bulatitude) {
+		this.bulatitude = bulatitude;
 	}
 
 }

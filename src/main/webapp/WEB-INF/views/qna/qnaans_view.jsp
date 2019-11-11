@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +14,7 @@
 	<form action="qnaanswer_write">
 
 		<input type="hidden" name="num" value="${answerview.qanum }">
+		<input type="hidden" name="sbcode" value="${answerview.sbcode }">
 		<input type="hidden" name="group" value="${answerview.qagroup }">
 		<input type="hidden" name="step" value="${answerview.qastep }">
 		<input type="hidden" name="indent" value="${answerview.qaindent }">
@@ -30,13 +33,15 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="10" cols="20" name="content">
-			${answerview.qacontent }</textarea></td>
+				<td><pre><textarea rows="10" cols="20" name="content">
+				${answerview.qacontent }
+				└[re]
+			</textarea></pre></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
 				<td><input type="text" name="id"
-					value="${session_bid }${session_cid }" readonly="readonly"></td>
+					value="${session_bid }" readonly="readonly"></td>
 			</tr>
 
 		</table>

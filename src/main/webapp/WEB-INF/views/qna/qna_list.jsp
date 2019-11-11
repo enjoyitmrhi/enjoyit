@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setContentType("text/html; charset=utf-8"); %>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="resources/js/jQueryRotateCompressed.js"></script>
 <title>Insert title here</title>
@@ -12,35 +14,33 @@
 </head>
 <body>
 	<script type="text/javascript">
-		//<![CDATA[
-		function show_block(elem, ID) {
-			var menu = document.getElementById(ID);
-			if (elem.className != 'opened') {
-				elem.className = 'opened';
-				menu.style.display = "block";
-				$
-						.ajax({
-							type : "POST",
-							url : "answer_view.do",
-							data : ID,
-							success : function(data) {
-								alert("success" + data);
-								document.getElementById("answer_view" + ID).value = data;
-							},
-							error : function(data) {
-								alert("전송실패" + data);
-							}
-						});
-
-			} else {
-				elem.className = 'closed';
-				menu.style.display = "none";
+//<![CDATA[
+function show_block(elem,ID) {
+	var menu = document.getElementById(ID);
+	if (elem.className !='opened') {
+	    elem.className ='opened';
+	    menu.style.display ="block"; 
+	   $.ajax({
+	    	type:"POST",
+			url:"answer_view.do",
+			data : {ID:ID},
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+			success : function(data) {
+				/* alert("success"+data); */
+				document.getElementById("answer_view"+ID).value = data; 
+			}, error : function(data) {
+				alert("전송실패" + data);
 			}
-
-		}
-		//]]>
-	</script>
-
+	    });
+	    
+	}  else {
+		elem.className = 'closed';
+	    menu.style.display = "none";   
+	}
+	
+}
+//]]>
+</script>
 
 	<div class="container">
 
@@ -54,7 +54,8 @@
 			</script>
 		</form>
 
-
+		<input type="hidden" value="${sbcode }" name="sbcode">
+		<input type="hidden" value="${wid }" name="wid">
 		<h3>qnalist</h3>
 		qaTitle : ${qatitle } &nbsp;&nbsp; qaContent : ${qacontent }
 		&nbsp;&nbsp; searchKeyword : ${searchKeyword } <input type="hidden"
@@ -62,14 +63,13 @@
 
 
 		<table class="table table-hover">
-			<thead>
-				<tr class="table-success">
-					<td>글번호</td>
-					<td>제목</td>
-					<td>작성자</td>
 
-				</tr>
-			</thead>
+			<tr class="table-success">
+				<td>글번호</td>
+				<td>제목</td>
+				<td>작성자</td>
+
+			</tr>
 
 			<c:forEach items="${qnalist }" var="dto">
 				<c:if test="${dto.qaindent ==0}">
@@ -78,7 +78,8 @@
 						<td>${dto.qanum }</td>
 						<c:set value="${dto.qaindent }" var="endIndent" />
 
-						<td><c:forEach begin="1" end="${dto.qaindent }" var="cnt">		&nbsp;
+						<td><c:forEach begin="1" end="${dto.qaindent }" var="cnt">
+				&nbsp;
 				<c:if test="${cnt eq endIndent }">
 									<a>[re]</a>
 								</c:if>
@@ -97,18 +98,25 @@
 
 					</tr>
 
-					<tr id="${dto.qanum }" style="display: none;">
-						<td>${dto.qanum }</td>
-						<td><input type="text" id="answer_view${dto.qanum }"
-							value="" readonly></td>
-					</tr>
-
+					
+					
+					<td></td>
+					<td id="${dto.qanum }" style="display: none;" colspan="3">
+					
+					<textarea rows="7" cols="40" id="answer_view${dto.qanum }" readonly>
+					</textarea>
+					</td >
+					<td></td>
 				</c:if>
 			</c:forEach>
+			<c:if test="${session_cid != null}">
+			
 
-			<tr>
-				<td colspan="3"><a href="qna_write_view">QnA 작성하기</a></td>
-			</tr>
+				<tr>
+					<td colspan="3"><a
+						href="qna_write_view?sbcode=${sbcode }&wid=${wid}">QnA 작성하기</a></td>
+				</tr>
+			</c:if>
 		</table>
 
 		TotRow : ${searchVO.totRow }&nbsp; page /totPage : ${searchVO.page }/${searchVO.totPage }
@@ -167,7 +175,7 @@
 
 
 		<div>
-			<a href="review_list">리뷰보기</a> <a href="board_list">게시글로 가기</a>
+			<a href="review_list?wid=${wid }&sbcode=${sbcode }">리뷰보기</a> <a href="board_list">게시글로 가기</a>
 		</div>
 	</div>
 

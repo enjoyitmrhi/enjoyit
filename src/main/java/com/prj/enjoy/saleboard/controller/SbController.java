@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.prj.enjoy.login.dao.LoginDao;
+import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.saleboard.dao.SbDao;
 import com.prj.enjoy.saleboard.dto.SbDto;
 
@@ -54,15 +56,19 @@ public class SbController {
 		String sbcode = request.getParameter("sbcode");
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-
+		LoginDao logindao =sqlSession.getMapper(LoginDao.class);
 		String avgstar;
 		avgstar = dao.avgstar(sbcode);
 		if (avgstar == null || avgstar.equals("0")) {
 			avgstar = "1";
 		}
+		
+		Business dto = logindao.getBusiness(wid);
 		model.addAttribute("wid", wid);
 		model.addAttribute("avgstar", avgstar);
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
+		model.addAttribute("longY",dto.getBulongitude());
+		model.addAttribute("latX",dto.getBulatitude());
 		return "sale_board/sbcontent_view";
 	}
 

@@ -12,10 +12,12 @@
 <body>
 	<div class="container">
 		<h3>review_content_view.jsp</h3>
-		<form action="review_modify" method="post"
+		<form action="review_modify?wid=${wid }&sbcode=${sbcode }" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
+			<input type="hidden" name="sbcode" value="${content_view.rvnum }" />
+			<input type="hidden" name="wid" value="${content_view.rvpic }" />
 
 			<table class="table ">
 				<tr>
@@ -54,14 +56,14 @@
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="modify" />
-						&nbsp;&nbsp;<a href="review_list">목록보기</a> &nbsp;&nbsp;<a
+						&nbsp;&nbsp;<a href="review_list?wid=${wid }&sbcode=${sbcode }">목록보기</a> &nbsp;&nbsp;<a
 						href="review_delete?rvnum=${content_view.rvnum }
 				&rvgroup=${content_view.rvgroup }
 				&rvstep=${content_view.rvstep }
-				&rvindent=${content_view.rvindent }
+				&rvindent=${content_view.rvindent }&wid=${wid }&sbcode=${sbcode }
 				">삭제</a>
 						&nbsp;&nbsp;<a
-						href="review_reply_view?rvnum=${content_view.rvnum }">답변</a></td>
+						href="review_reply_view?rvnum=${content_view.rvnum }&wid=${wid }&sbcode=${sbcode }">답변</a></td>
 				</tr>
 			</table>
 		</form>

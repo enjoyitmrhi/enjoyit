@@ -10,8 +10,10 @@
 <body>
 	<div class="container">
 		<h3>review_write_view.jsp</h3>
-		<form action="review_write" method="post"
+		<form action="review_write?sbcode=${sbcode }" method="post"
 			enctype="multipart/form-data">
+			
+			
 			<table class="table table-hover">
 				<tr>
 					<td colspan="2">${dto.sbcode }|${dto.cuid }</td>
@@ -42,6 +44,7 @@
 						<a href="review_list">목록보기</a></td>
 				</tr>
 			</table>
+			
 		</form>
 	</div>
 

@@ -49,8 +49,8 @@
 		</tr>
 	</table>
 	<a href="edit_cu?cunum=${cu.cunum }"><button>정보수정</button></a>
-	<a href="../del_cu?cunum=${cu.cunum }"><button>회원삭제</button></a>
-	<a href="adminMain"><button>회원목록보기</button></a>
+	<a href="del_cu?cuid=${cu.cuid }"><button>회원삭제</button></a>
+	<a href="admin_cuMember"><button>회원목록보기</button></a>
 	</div>
 </body>
 </html>
