@@ -50,7 +50,6 @@
 		$("#more_list2").append(rows.join(""));
 	}
 
-
 	/* function getRowContentByData(item) {
 		var content = "";
 		content += "<tr>";
@@ -70,31 +69,30 @@
 		content += "</tr>";
 		return content
 	} */
-	
-	function getRowContentByData(item){
+
+	function getRowContentByData(item) {
 		var content = "";
-		content +="<div class='col-sm-6 col-md-4'>";
-		content +="<div class='thumbnail'>";
-		content +="<a href='sbcontent_view?wid="
+		content += "<div class='col-sm-6 col-md-4'>";
+		content += "<div class='thumbnail'>";
+		content += "<a href='sbcontent_view?wid="
 				+ item.buid
 				+ "&sbcode="
 				+ item.sbcode
 				+ "&sbpic="
 				+ item.sbpic
 				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' width='200px' height='200px'></a>";
-				
-		content += "<div class='caption'>";
-			
-		content +="<h3>제목 : "+item.sbtitle+" </h3>";
 
-				
-		content += "<p>가격 : "+item.sbprice+"</p>";
-				
+		content += "<div class='caption'>";
+
+		content += "<h3>제목 : " + item.sbtitle + " </h3>";
+
+		content += "<p>가격 : " + item.sbprice + "</p>";
+
 		content += "<p>	<a href='#' class='btn btn-primary' role='button'>예약하기</a> <a	href='#' class='btn btn-default' role='button'>상세보기</a> </p>";
 		content += "</div>";
 		content += "</div>";
 		content += "</div>";
-	return content
+		return content
 	}
 </script>
 
@@ -153,12 +151,12 @@
 			<div>
 				<div class="row" id="more_list2">
 					<c:forEach items="${boardlist }" var="dto">
-						<div class="col-sm-6 col-md-4">
+						<div class="col-sm-8 col-md-6">
 							<div class="thumbnail">
 								<a
 									href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
 									src="resources/upload/${dto.sbpic }" alt="no image"
-									width="200px" height="200px"></a>
+									class="img-thumbnail"></a>
 								<div class="caption">
 									<h3>제목 : ${dto.sbtitle }</h3>
 									<p>가격 : ${dto.sbprice}</p>
@@ -195,9 +193,11 @@
 
 
 
-		</div> <!-- end container -->
+		</div>
+		<!-- end container -->
 
-	</div> <!-- end wrap -->
+	</div>
+	<!-- end wrap -->
 
 	<!-- 	</div> -->
 </body>

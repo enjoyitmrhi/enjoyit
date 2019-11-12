@@ -62,7 +62,7 @@
 						<td><div id="map" style="width: 60%; height: 350px;"></div></td>
 					</tr>
 					<tr>
-						<td>상품 리뷰 평균</td>
+						<td>상품 평균 리뷰점수</td>
 
 						<td><c:set var="avg" value="${avgstar}"></c:set> <c:if
 								test="${avg != null }">
