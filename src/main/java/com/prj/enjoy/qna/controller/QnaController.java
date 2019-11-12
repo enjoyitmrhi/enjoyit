@@ -59,15 +59,15 @@ public class QnaController {
 		int total = 0;
 
 		if (qatitle.equals("qatitle") && qacontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "1");
+			total = dao.selectBoardCount(searchKeyword, "1",sbcode);
 		} else if (qatitle.equals("") && qacontent.equals("qacontent")) {
-			total = dao.selectBoardCount(searchKeyword, "2");
+			total = dao.selectBoardCount(searchKeyword, "2",sbcode);
 
 		} else if (qatitle.equals("qatitle") && qacontent.equals("qacontent")) {
-			total = dao.selectBoardCount(searchKeyword, "3");
+			total = dao.selectBoardCount(searchKeyword, "3",sbcode);
 
 		} else if (qatitle.equals("") && qacontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "0");
+			total = dao.selectBoardCount(searchKeyword, "0",sbcode);
 
 		}
 
@@ -91,19 +91,19 @@ public class QnaController {
 
 		if (qatitle.equals("qatitle") && qacontent.equals("")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "1", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1",sbcode));
 
 		} else if (qatitle.equals("") && qacontent.equals("qacontent")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "2", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2",sbcode));
 
 		} else if (qatitle.equals("qatitle") && qacontent.equals("qacontent")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "3", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3",sbcode));
 
 		} else if (qatitle.equals("") && qacontent.equals("")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "0", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0",sbcode));
 
 		}
 		return "qna/qna_list";

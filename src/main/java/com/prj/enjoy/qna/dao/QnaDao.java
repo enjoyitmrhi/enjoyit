@@ -24,7 +24,7 @@ public interface QnaDao {
 
 	void replyShape(int group, int step);
 
-	int selectBoardCount(String searchKeyword, String selNum);
+	int selectBoardCount(String searchKeyword, String selNum, String sbcode);
 	
 	String answer_view(String qanum);
 	

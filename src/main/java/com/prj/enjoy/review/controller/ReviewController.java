@@ -52,13 +52,13 @@ public class ReviewController {
 
 		int total = 0;
 		if (rvtitle.equals("rvtitle") && rvcontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "1");
+			total = dao.selectBoardCount(searchKeyword, "1",sbcode);
 		} else if (rvtitle.equals("") && rvcontent.equals("rvcontent")) {
-			total = dao.selectBoardCount(searchKeyword, "2");
+			total = dao.selectBoardCount(searchKeyword, "2",sbcode);
 		} else if (rvtitle.equals("rvtitle") && rvcontent.equals("rvcontent")) {
-			total = dao.selectBoardCount(searchKeyword, "3");
+			total = dao.selectBoardCount(searchKeyword, "3",sbcode);
 		} else if (rvtitle.equals("") && rvcontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "0");
+			total = dao.selectBoardCount(searchKeyword, "0",sbcode);
 		}
 
 		String strPage = request.getParameter("page");
@@ -77,16 +77,16 @@ public class ReviewController {
 
 		if (rvtitle.equals("rvtitle") && rvcontent.equals("")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "1", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1",sbcode));
 		} else if (rvtitle.equals("") && rvcontent.equals("rvcontent")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "2", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2",sbcode));
 		} else if (rvtitle.equals("rvtitle") && rvcontent.equals("rvcontent")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "3", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3",sbcode));
 		} else if (rvtitle.equals("") && rvcontent.equals("")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "0", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0",sbcode));
 		}
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("sbcode",sbcode);

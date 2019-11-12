@@ -9,7 +9,7 @@ public interface ReviewDao {
 	public ArrayList<ReviewDto> review_list(int rowStrat, int rowEnd, String searchKeyword, String selNum, String sbcode);
 
 
-	public int selectBoardCount(String searchKeyword, String selNum);
+	public int selectBoardCount(String searchKeyword, String selNum, String sbcode);
 
 	public void review_write(String sbcode,String cuid, String rvtitle,  int rvstar, String rvpic, String rvcontent);
 

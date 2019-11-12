@@ -53,7 +53,7 @@
 						href="review_download?p=resources/upload/&f=${content_view.rvpic }
 			&sbcode=${content_view.sbcode }">
 							${content_view.rvpic }</a> --%>
-							<img alt="" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
+							<img alt="no image" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
 							</td>
 				</tr>
 				<tr>

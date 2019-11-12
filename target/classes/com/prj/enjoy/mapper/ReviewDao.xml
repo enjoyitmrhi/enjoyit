@@ -23,13 +23,13 @@
 	<sql id="includeList">
 		<choose>
 			<when test="param4==1">
-				WHERE (RVTITLE LIKE '%' || #{param3} || '%')
+				AND (RVTITLE LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==2">
-				WHERE (RVCONTENT LIKE '%' || #{param3} || '%')
+				AND (RVCONTENT LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==3">
-				WHERE (RVTITLE LIKE '%' || #{param3} || '%' OR
+				AND (RVTITLE LIKE '%' || #{param3} || '%' OR
 				RVCONTENT LIKE '%' || #{param3} || '%')
 			</when>
 			<otherwise></otherwise>
@@ -53,7 +53,7 @@
 
 	<!-- total count -->
 	<select id="selectBoardCount" resultType="Integer">
-		SELECT COUNT(*) FROM REVIEW
+		SELECT COUNT(*) FROM REVIEW WHERE SBCODE = #{param3}
 		<include refid="includeBoard" />
 	</select>
 
