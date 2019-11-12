@@ -49,23 +49,20 @@
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td colspan="2"><%-- <a
-						href="review_download?p=resources/upload/&f=${content_view.rvpic }
-			&sbcode=${content_view.sbcode }">
-							${content_view.rvpic }</a> --%>
+					<td colspan="2">
 							<img alt="no image" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
 							</td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="modify" />
-						&nbsp;&nbsp;<a href="review_list?wid=${wid }&sbcode=${sbcode }">목록보기</a> &nbsp;&nbsp;<a
+						&nbsp;&nbsp;<a href="review_list?sbcode=${sbcode }&wid=${wid}">목록보기</a> &nbsp;&nbsp;<a
 						href="review_delete?rvnum=${content_view.rvnum }
 				&rvgroup=${content_view.rvgroup }
 				&rvstep=${content_view.rvstep }
-				&rvindent=${content_view.rvindent }&wid=${wid }&sbcode=${sbcode }
+				&rvindent=${content_view.rvindent }&sbcode=${sbcode }&wid=${wid}
 				">삭제</a>
 						&nbsp;&nbsp;<a
-						href="review_reply_view?rvnum=${content_view.rvnum }&wid=${wid }&sbcode=${sbcode }">답변</a></td>
+						href="review_reply_view?rvnum=${content_view.rvnum }&sbcode=${sbcode }&wid=${wid}">답변</a></td>
 				</tr>
 			</table>
 		</form>

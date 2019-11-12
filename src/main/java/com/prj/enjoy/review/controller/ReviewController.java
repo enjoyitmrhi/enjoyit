@@ -276,7 +276,7 @@ public class ReviewController {
 		int sbcode = Integer.parseInt(strcode);
 
 		model.addAttribute("reply_write", dao.reply_write(strId, sbcode));
-
+		model.addAttribute("wid",strId);
 		return "review/review_reply_write";
 	}
 
