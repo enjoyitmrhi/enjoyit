@@ -1,6 +1,5 @@
 package com.prj.enjoy.saleboard.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
