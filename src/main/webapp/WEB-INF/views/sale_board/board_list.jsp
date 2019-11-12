@@ -33,42 +33,15 @@
 
 	}
 
-	/* function renderMoreContents(list) {
-		var rows = [];
-		$.each(list, function(index, item) {
-			rows.push(getRowContentByData(item));
-		})
-
-		$("#more_list tbody").append(rows.join(""));
-	} */
+	
 	function renderMoreContents(list) {
 		var rows = [];
 		$.each(list, function(index, item) {
 			rows.push(getRowContentByData(item));
 		})
 
-		$("#more_list2").append(rows.join(""));
+		$("#more_list").append(rows.join(""));
 	}
-
-	/* function getRowContentByData(item) {
-		var content = "";
-		content += "<tr>";
-		content += "<td>" + item.sbcode + "</td>";
-		content += "<td>" + item.sbtitle + "</td>";
-		content += "<td><a href='sbcontent_view?wid="
-				+ item.buid
-				+ "&sbcode="
-				+ item.sbcode
-				+ "&sbpic="
-				+ item.sbpic
-				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' width='80px' height='80px'></td>";
-		content += "<td>" + item.buid + "</td>";
-		content += "<td>" + item.sbloc + "</td>";
-		content += "<td>" + item.sbprice + "</td>";
-		content += "<td>" + item.sbdate + "</td>";
-		content += "</tr>";
-		return content
-	} */
 
 	function getRowContentByData(item) {
 		var content = "";
@@ -113,43 +86,9 @@
 			</form>
 
 
-			<%-- <div class="tableList">
-
-
-				<table id="more_list" class="table table-hover">
-					<thead>
-						<tr class="table-active">
-							<td>SBCODE</td>
-							<td>SBTITLE</td>
-							<td>SBPIC</td>
-							<td>BUID</td>
-							<td>SBLOC</td>
-							<td>SBPRICE</td>
-							<td>Writing DATE</td>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${boardlist }" var="dto">
-							<tr>
-								<td>${dto.sbcode }</td>
-								<td>${dto.sbtitle }</td>
-								<td><a
-									href="sbcontent_view?wid=${dto.buid}&sbcode=${dto.sbcode}&sbpic=${dto.sbpic }"><img
-										alt='no image' src='resources/upload/${dto.sbpic }'
-										width='80px' height='80px'></a></td>
-								<td>${dto.buid}</td>
-								<td>${dto.sbloc}</td>
-								<td>${dto.sbprice}</td>
-								<td>${dto.sbdate }</td>
-
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
- --%>
 
 			<div>
-				<div class="row" id="more_list2">
+				<div class="row text-center" id="more_list">
 					<c:forEach items="${boardlist }" var="dto">
 						<div class="col-sm-8 col-md-6">
 							<div class="thumbnail">

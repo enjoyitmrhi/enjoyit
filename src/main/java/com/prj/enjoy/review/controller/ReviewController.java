@@ -235,9 +235,6 @@ public class ReviewController {
 	@RequestMapping("/review_delete")
 	public String delete(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
-		// String rvgroup = request.getParameter("rvgroup");
-		// String rvstep = request.getParameter("rvstep");
-		// String rvindent = request.getParameter("rvindent");
 		String wid= request.getParameter("wid");
 		String sbcode= request.getParameter("sbcode");
 		String strnum = request.getParameter("rvnum");

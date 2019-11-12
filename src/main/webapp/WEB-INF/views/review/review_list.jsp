@@ -27,7 +27,12 @@
 				<tr>
 					<td>${dto.rvnum }</td>
 					<td>${dto.sbcode }</td>
-					<td>${dto.cuid }</td>
+					<td><c:choose>
+							<c:when test="${not empty dto.cuid }">${dto.cuid }</c:when>
+
+							
+							<c:otherwise> 판매자 </c:otherwise>
+						</c:choose></td>
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
 							begin="1" end="${dto.rvindent }" var="cnt">
 							<c:if test="${cnt eq endIndent }">
