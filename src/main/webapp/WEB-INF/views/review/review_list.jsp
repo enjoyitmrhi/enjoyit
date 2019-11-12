@@ -34,7 +34,7 @@
 				</c:if>
 				&nbsp;
 			</c:forEach> <a
-						href="review_content_view?rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
+						href="review_content_view?wid=${wid }&rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
 					<td><c:choose>
 							<c:when test="${dto.rvstar eq '1' }">★</c:when>
 							<c:when test="${dto.rvstar eq '2' }">★★</c:when>
@@ -47,7 +47,7 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a href="review_write_view?sbcode=${sbcode }">리뷰 작성</a></td>
+				<td colspan="7"><a href="review_write_view?wid=${wid }&sbcode=${sbcode }">리뷰 작성</a></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">

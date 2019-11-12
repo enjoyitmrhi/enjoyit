@@ -51,7 +51,7 @@
 				<tr>
 					<td colspan="2"><input type="submit" class="btn btn-outline-primary" value="작성" />&nbsp;<input type="button" onclick="javascript:cancle() " value="취소"
 				class="btn btn-outline-danger">&nbsp;
-						<a href="review_list?sbcode=${sbcode }">목록보기</a></td>
+						<a href="review_list?sbcode=${sbcode }&wid=${wid}">목록보기</a></td>
 				</tr>
 			</table>
 		</form>

@@ -30,9 +30,11 @@ public class ReviewController {
 		String rvcontent = "";
 
 		String sbcode = request.getParameter("sbcode");
+		String wid = request.getParameter("wid");
 
 		model.addAttribute("sbcode", sbcode);
-
+		model.addAttribute("wid", wid);
+		
 		String[] brdtitle = request.getParameterValues("searchType");
 		if (brdtitle != null) {
 			for (String val : brdtitle) {
@@ -101,8 +103,9 @@ public class ReviewController {
 	public String write_view(HttpServletRequest request, Model model) {
 
 		String sbcode = request.getParameter("sbcode");
+		String wid = request.getParameter("wid");
 		model.addAttribute("sbcode", sbcode);
-
+		model.addAttribute("wid", wid);
 		return "review/review_write_view";
 
 	}
@@ -145,11 +148,13 @@ public class ReviewController {
 		int rvnum = Integer.parseInt(strnum);
 		String strcode = request.getParameter("sbcode");
 		int sbcode = Integer.parseInt(strcode);
+		String wid = request.getParameter("wid");
 
 		hitUp(rvnum);
 
 		model.addAttribute("content_view", dao.contentView(rvnum));
 		model.addAttribute("sbcode", sbcode);
+		model.addAttribute("wid", wid);
 
 		return "review/review_content_view";
 	}
@@ -201,6 +206,7 @@ public class ReviewController {
 		String strcode = req.getParameter("sbcode");
 		int sbcode = Integer.parseInt(strcode);
 		String cuid = req.getParameter("cuid");
+		String wid = req.getParameter("wid");
 
 		String rvpic = dao.getRvpic(rvtitle);
 
@@ -209,7 +215,7 @@ public class ReviewController {
 		}
 		dao.modify(rvtitle, rvcontent, rvpic, rvnum, sbcode, cuid);
 
-		return "redirect:review_list?sbcode=" + sbcode;
+		return "redirect:review_list?sbcode="+ sbcode+"&wid="+wid;
 	}
 
 	@RequestMapping("/review_delete")
@@ -222,9 +228,10 @@ public class ReviewController {
 		int rvnum = Integer.parseInt(strnum);
 		String sbcode = request.getParameter("sbcode");
 		model.addAttribute("sbcode", sbcode);
+		String wid = request.getParameter("wid");
 
 		dao.delete(rvnum);
-		return "redirect:review_list?sbcode=" + sbcode;
+		return "redirect:review_list?wid="+wid+"&sbcode="+sbcode;
 	}
 
 	@RequestMapping(value = "/review_reply_view")
@@ -254,7 +261,7 @@ public class ReviewController {
 
 		model.addAttribute("reply_write", dao.reply_write(strId, sbcode));
 
-		return "review/review_reply_write";
+		return "review/review_reply_write?wid="+strId+"&sbcode="+sbcode;
 	}
 
 	@RequestMapping("/review_reply")
