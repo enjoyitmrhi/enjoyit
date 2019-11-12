@@ -13,7 +13,9 @@ public class Customer {
 	private String cubirth;
 	private String cutel;
 	private Date cudate;
-
+	private String culongitude;
+	private String culatitude;
+	
 	public String getCunum() {
 		return cunum;
 	}
@@ -92,6 +94,22 @@ public class Customer {
 
 	public void setCudate(Date cudate) {
 		this.cudate = cudate;
+	}
+
+	public String getCulongitude() {
+		return culongitude;
+	}
+
+	public void setCulongitude(String culongitude) {
+		this.culongitude = culongitude;
+	}
+
+	public String getCulatitude() {
+		return culatitude;
+	}
+
+	public void setCulatitude(String culatitude) {
+		this.culatitude = culatitude;
 	}
 
 }

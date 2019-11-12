@@ -18,6 +18,8 @@ public class ReviewDto {
 	private String bunum;
 	private String buid;
 	private int rvnum;
+	private String sbproduct;
+	private String sbname;
 
 	public String getRvtitle() {
 		return rvtitle;
@@ -137,6 +139,22 @@ public class ReviewDto {
 
 	public void setRvnum(int rvnum) {
 		this.rvnum = rvnum;
+	}
+
+	public String getSbproduct() {
+		return sbproduct;
+	}
+
+	public void setSbproduct(String sbproduct) {
+		this.sbproduct = sbproduct;
+	}
+
+	public String getSbname() {
+		return sbname;
+	}
+
+	public void setSbname(String sbname) {
+		this.sbname = sbname;
 	}
 
 }

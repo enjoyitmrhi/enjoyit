@@ -7,9 +7,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>this is ch_cupw page</h3>
-sdvsdfsd
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$('#chpw2').blur(function(){
+	if($('#chpw').val() != 	$(this).val()){
+		$('#pw_check').text('비밀번호가 일치하지 않습니다.');
+		$('#pw_check').css('color','red');
+	}else {
+		$('#pw2_check').text('');
+	}
+});
 
+</script>
+<div>
+<h2>${session_cid }님 비밀번호 변경</h2>
+<form action="ch_cupwProc" method="post"> 
+기존 비밀번호를 입력해주세요<br/>
+<input type="password" name="cupw"/><br/>
+변경할 비밀번호를 입력해주세요<br/>
+<input type="password" name="chpw" id="chpw"/><br/>
+비밀번호 재확인<br/>
+<input type="password" name="chpw2" id="chpw2"/><br/>
+<div id="pw2_check"></div>
+<input type="submit" value="변경">
+</form>
+</div>
 
  	
 </body>

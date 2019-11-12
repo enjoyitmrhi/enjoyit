@@ -8,13 +8,13 @@
 	<sql id="includeBoard">
 		<choose>
 			<when test="param2==1">
-				WHERE (QATITLE LIKE '%' || #{param1} || '%')
+				AND (QATITLE LIKE '%' || #{param1} || '%')
 			</when>
 			<when test="param2==2">
-				WHERE (QACONTENT LIKE '%' || #{param1} || '%')
+				AND (QACONTENT LIKE '%' || #{param1} || '%')
 			</when>
 			<when test="param2==3">
-				WHERE (QATITLE LIKE '%' || #{param1} || '%'
+				AND (QATITLE LIKE '%' || #{param1} || '%'
 				OR
 				QACONTENT LIKE '%' || #{param1} || '%')
 			</when>
@@ -24,13 +24,13 @@
 	<sql id="includeList">
 		<choose>
 			<when test="param4==1">
-				WHERE (QATITLE LIKE '%' || #{param3} || '%')
+				AND (QATITLE LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==2">
-				WHERE (QACONTENT LIKE '%' || #{param3} || '%')
+				AND (QACONTENT LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==3">
-				WHERE (QATITLE LIKE '%' || #{param3} || '%'
+				AND (QATITLE LIKE '%' || #{param3} || '%'
 				OR
 				QACONTENT LIKE '%' || #{param3} || '%')
 			</when>
@@ -44,25 +44,25 @@
 		FROM (
 		SELECT
 		QANUM,QATITLE,QAGROUP,QASTEP,QAINDENT,QADATE,QACONTENT,SBCODE,BUNUM,BUID,CUNUM,CUID
-		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA
+		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA WHERE SBCODE = #{param5}
 		<include refid="includeList"></include>
 		)
-		WHERE SBCODE = #{param5} AND B_SEQ BETWEEN #{param1} AND #{param2}
+		WHERE B_SEQ BETWEEN #{param1} AND #{param2}
 
 
 
 	</select>
 	<select id="selectBoardCount" resultType="Integer">
-		SELECT COUNT(*) FROM QNA
+		SELECT COUNT(*) FROM QNA WHERE SBCODE= #{param3}
 		<include refid="includeBoard" />
 	</select>
 
 
 	<insert id="qnawrite">
 		INSERT INTO
-		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID)
+		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID,SBCODE)
 		VALUES
-		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3})
+		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},#{param4})
 
 	</insert>
 	<select id="qacontview" resultType="com.prj.enjoy.qna.dto.QnaDto">
@@ -91,9 +91,8 @@
 
 	<insert id="qnaAnswerWrite">
 		INSERT INTO QNA
-		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID)
-
-		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1}
+		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID,SBCODE)
+		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1},#{param7}
 		)
 
 	</insert>
@@ -108,7 +107,17 @@
 		SELECT QACONTENT FROM QNA WHERE QAGROUP = #{param1} AND QAINDENT = 1
 	</select>
 	
-	<select id="qnaboardcount" resultType="Integer">
+	<select id="qnaboardQcount" resultType="Integer">
 		SELECT COUNT(*) FROM QNA WHERE CUID = #{param1}
+	</select>
+	
+	<select id="qnaboardAcount" resultType="Integer">
+		SELECT COUNT(*) FROM QNA WHERE SBCODE IN (SELECT SBCODE FROM SALE_BOARD WHERE BUID=#{param1}) AND QAINDENT = 0 
+	</select>
+	
+	<select id="myqnalist" resultType="com.prj.enjoy.qna.dto.QnaDto">
+		SELECT BUID SBPRODUCT, SBTITLE SBNAME,SBCODE, QATITLE, QACONTENT  FROM 
+		(SELECT SB.BUID, SB.SBTITLE, qa.SBCODE, QA.QATITLE, QA.QACONTENT ,QA.CUID FROM QNA QA, SALE_BOARD SB WHERE QA.SBCODE=SB.SBCODE) 
+		WHERE CUID= #{param1}
 	</select>
 </mapper>

@@ -12,10 +12,12 @@
 <body>
 	<div class="container">
 		<h3>review_content_view.jsp</h3>
-		<form action="review_modify" method="post"
+		<form action="review_modify?wid=${wid }&sbcode=${sbcode }" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
+			<input type="hidden" name="sbcode" value="${content_view.rvnum }" />
+			<input type="hidden" name="wid" value="${content_view.rvpic }" />
 
 			<table class="table ">
 				<tr>
@@ -34,7 +36,7 @@
 						</c:choose></td>
 				</tr>
 				<tr>
-					<td>${content_view.cuid }|${content_view.sbcode }</td>
+					<td>${content_view.cuid }|상품 코드 : ${content_view.sbcode }</td>
 					<td>${content_view.rvdate }</td>
 					<td>조회수 : ${content_view.rvhit } | 번호 : ${content_view.rvnum }
 					</td>
@@ -47,21 +49,23 @@
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td colspan="2"><a
+					<td colspan="2"><%-- <a
 						href="review_download?p=resources/upload/&f=${content_view.rvpic }
 			&sbcode=${content_view.sbcode }">
-							${content_view.rvpic }</a></td>
+							${content_view.rvpic }</a> --%>
+							<img alt="no image" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
+							</td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="modify" />
-						&nbsp;&nbsp;<a href="review_list">목록보기</a> &nbsp;&nbsp;<a
+						&nbsp;&nbsp;<a href="review_list?wid=${wid }&sbcode=${sbcode }">목록보기</a> &nbsp;&nbsp;<a
 						href="review_delete?rvnum=${content_view.rvnum }
 				&rvgroup=${content_view.rvgroup }
 				&rvstep=${content_view.rvstep }
-				&rvindent=${content_view.rvindent }
+				&rvindent=${content_view.rvindent }&wid=${wid }&sbcode=${sbcode }
 				">삭제</a>
 						&nbsp;&nbsp;<a
-						href="review_reply_view?rvnum=${content_view.rvnum }">답변</a></td>
+						href="review_reply_view?rvnum=${content_view.rvnum }&wid=${wid }&sbcode=${sbcode }">답변</a></td>
 				</tr>
 			</table>
 		</form>

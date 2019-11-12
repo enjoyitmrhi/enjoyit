@@ -10,7 +10,7 @@ public interface QnaDao {
 
 	ArrayList<QnaDto> qnalist(int rowStart, int rowEnd, String searchKeyword, String selNum, String sbcode);
 
-	void qnawrite(String strTitle, String strContent, String strId);
+	void qnawrite(String strTitle, String strContent, String strId, String sbcode);
 
 	QnaDto qacontview(String strNum);
 
@@ -20,14 +20,18 @@ public interface QnaDao {
 
 	QnaDto qnaanswer(String number);
 
-	void qnaAnswerWrite(String cuid, int group, int step, int indent, String content, String title);
+	void qnaAnswerWrite(String cuid, int group, int step, int indent, String content, String title, String sbcode);
 
 	void replyShape(int group, int step);
 
-	int selectBoardCount(String searchKeyword, String selNum);
+	int selectBoardCount(String searchKeyword, String selNum, String sbcode);
 	
 	String answer_view(String qanum);
 	
-	int qnaboardcount(String cuid);
+	int qnaboardQcount(String cuid);
+	
+	int qnaboardAcount(String buid);
+
+	ArrayList<QnaDto> myqnalist(String cuid);
 	
 }

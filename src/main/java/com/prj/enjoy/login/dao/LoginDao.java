@@ -10,13 +10,13 @@ public interface LoginDao {
 
 	public Business getBusiness(String buid);
 
-	public int createCustomer(String cuid, String cupw, String cuname, String cuaddr, String cuentX, String cuentY, String cuemail, String cugender,
+	public int createCustomer(String cuid, String cupw, String cuname, String cuaddr,String culongY, String culatY ,String cuemail, String cugender,
 			String cubirth, String cutel);
 
 	public String chkCid(String cuid);
 
 	public void createBusiness(String buid, String bupw, String buname, String buemail, String burenum, String butel,
-			String buaddr, String buentX, String buentY);
+			String buaddr, String bulongY, String bulatX);
 
 	public String chkBid(String buid);
 	
@@ -28,7 +28,7 @@ public interface LoginDao {
 
 	public int popupfindBupw(String buname, String butel, String burenum, String buid);
 
-	public void chgcpw(String cuid, String ranPw);
+	public void chgcpw(String cuid, String chpw);
 	
-	public void chgbpw(String buid, String ranPw);
+	public void chgbpw(String buid, String chpw);
 }

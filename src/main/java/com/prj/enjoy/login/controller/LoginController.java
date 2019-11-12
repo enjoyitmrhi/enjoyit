@@ -28,14 +28,19 @@ import com.prj.enjoy.login.dto.Customer;
 import com.prj.enjoy.qna.dao.QnaDao;
 import com.prj.enjoy.review.dao.ReviewDao;
 
-
 @Controller
 public class LoginController {
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
+	@RequestMapping("/")
+	public ModelAndView indexpage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
+	}
 
 	@RequestMapping("/index")
 	public ModelAndView index() {
@@ -45,13 +50,16 @@ public class LoginController {
 	}
 
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpSession session) {
+		// 세션 삭제
+		session.invalidate();
+
 		return "login/login";
 	}
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		// 세션 삭제
+
 		session.invalidate();
 
 		return "redirect:/login";
@@ -66,11 +74,11 @@ public class LoginController {
 		Customer dto = dao.getCustomer(cuid);
 		if (dto == null) {
 			System.out.println("check id");
-			model.addAttribute("customer","true");
+			model.addAttribute("customer", "true");
 			return "login/login";
 		} else if (!dto.getCupw().equals(cupw)) {
 			System.out.println("check pw");
-			model.addAttribute("customer","true");
+			model.addAttribute("customer", "true");
 			return "login/login";
 		} else {
 			model.addAttribute("customer", dto);
@@ -91,11 +99,11 @@ public class LoginController {
 		Business dto = dao.getBusiness(buid);
 		if (dto == null) {
 			System.out.println("check id");
-			model.addAttribute("business","true");
+			model.addAttribute("business", "true");
 			return "login/login";
 		} else if (!dto.getBupw().equals(bupw)) {
 			System.out.println("check pw");
-			model.addAttribute("business","true");
+			model.addAttribute("business", "true");
 			return "login/login";
 		} else {
 			model.addAttribute("business", dto);
@@ -122,25 +130,23 @@ public class LoginController {
 		String cuname = request.getParameter("cuname");
 		String cugender = request.getParameter("cugender");
 		String cuyear = request.getParameter("cuyear");
-//		String cuaddr = request.getParameter("cuaddr");
 		String cumonth = request.getParameter("cumonth");
 		String cuday = request.getParameter("cuday");
 		String cubirth = String.format("%s-%s-%s", cuyear, cumonth, cuday);
 		String cutel = request.getParameter("cutel");
 		String cuemail = request.getParameter("cuemail");
-		
+
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
 		String addr3 = request.getParameter("addr3");
-		String cuaddr = String.format("%s %s %s", addr1, addr2, addr3); 
-		
-		String cuentX = request.getParameter("entX");
-		String cuentY = request.getParameter("entY");
-		System.out.println("cuaddr2 >>>> "+ cuaddr);
-		System.out.println("entX>>>>"+cuentX);
-		System.out.println("entY>>>>"+cuentY);
+		String cuaddr = String.format("%s %s %s", addr1, addr2, addr3);
 
-		
+		String culongY = request.getParameter("longy");
+		String culatX = request.getParameter("latx");
+		System.out.println("cuaddr2 >>>> " + cuaddr);
+		System.out.println("longy>>>" + culongY);
+		System.out.println("latx>>>>" + culatX);
+
 		int result = 0;
 		/* dao.chkCid(cuid); */ ;
 
@@ -156,7 +162,7 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "login/join";
 		} else {
-			dao.createCustomer(cuid, cupw, cuname, cuaddr, cuentX, cuentY, cuemail, cugender, cubirth, cutel);
+			dao.createCustomer(cuid, cupw, cuname, cuaddr, culongY, culatX, cuemail, cugender, cubirth, cutel);
 			return "redirect:login";
 		}
 
@@ -188,19 +194,19 @@ public class LoginController {
 		String buemail = request.getParameter("buemail");
 		String burenum = request.getParameter("burenum");
 		String butel = request.getParameter("butel");
-//		String buaddr = request.getParameter("buaddr");
+		// String buaddr = request.getParameter("buaddr");
 
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
 		String addr3 = request.getParameter("addr3");
-		String buaddr = String.format("%s %s %s", addr1, addr2, addr3); 
-		
-		String buentX = request.getParameter("entX");
-		String buentY = request.getParameter("entY");
-		System.out.println("buaddr2 >>>> "+ buaddr);
-		System.out.println("entX>>>>"+buentX);
-		System.out.println("entY>>>>"+buentY);
-		
+		String buaddr = String.format("%s %s %s", addr1, addr2, addr3);
+
+		String bulongY = request.getParameter("longy");
+		String bulatX = request.getParameter("latx");
+		System.out.println("buaddr2 >>>> " + buaddr);
+		System.out.println("entX>>>>" + bulongY);
+		System.out.println("entY>>>>" + bulatX);
+
 		int result = 0;
 		ArrayList<String> errors = new ArrayList();
 		if (result > 0) {
@@ -213,7 +219,7 @@ public class LoginController {
 		if (errors.size() > 0) {
 			return "login/bJoin";
 		} else {
-			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr, buentX, buentY);
+			dao.createBusiness(buid, bupw, buname, buemail, burenum, butel, buaddr, bulongY, bulatX);
 			return "redirect:login";
 		}
 
@@ -228,53 +234,236 @@ public class LoginController {
 
 		return result;
 	}
-	
+
 	@RequestMapping("/cuMypage")
 	public String cuMypage(HttpSession session, Model model) {
-		String cuid=(String) session.getAttribute("session_cid");
+		String cuid = (String) session.getAttribute("session_cid");
 		System.out.println(cuid);
 		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
 		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
 		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
-		model.addAttribute("cu",logdao.getCustomer(cuid));
-		model.addAttribute("qnacnt",qnadao.qnaboardcount(cuid));
-		model.addAttribute("rvcnt",rvdao.rvboardcount(cuid));
-		
+		model.addAttribute("cu", logdao.getCustomer(cuid));
+		model.addAttribute("qnacnt", qnadao.qnaboardQcount(cuid));
+		model.addAttribute("rvcnt", rvdao.reviewcount(cuid));
+
 		return "login/cuMypage";
 	}
-	
+
 	@RequestMapping("/del_cuself")
 	public String del_cuself(HttpServletRequest request, HttpSession session) {
 		System.out.println("passing del_cu");
 		String cunum = request.getParameter("cunum");
 		System.out.println("cunum : " + cunum);
+		String cuid = (String) session.getAttribute("session_cid");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		dao.del_cu(cunum);
+		dao.del_reserv(cuid);
+		dao.del_cReview(cuid);
+		dao.del_cQna(cuid);
+		dao.del_cu(cuid);
 		logout(session);
 		return "redirect:index";
 
 	}
-	
-	@RequestMapping("/buMypage")
-	public String buMypage(HttpSession session, Model model) {
-		String buid=(String) session.getAttribute("session_bid");
-		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		model.addAttribute("bu",dao.getBusiness(buid));
-		return "login/buMypage";
-	}
-	
+
 	@RequestMapping("/del_buself")
 	public String del_buself(HttpServletRequest request, HttpSession session) {
 		System.out.println("passing del_bu");
 		String bunum = request.getParameter("bunum");
-		System.out.println("cunum : " + bunum);
+		System.out.println("bunum : " + bunum);
+		String buid = (String) session.getAttribute("session_bid");
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		dao.del_bu(bunum);
+		dao.del_bQna(buid);
+		dao.del_bReview(buid);
+		dao.del_sb(buid);
+		dao.del_bu(buid);
 		logout(session);
 		return "redirect:index";
 
 	}
-	
+
+	@RequestMapping("/buMypage")
+	public String buMypage(HttpSession session, Model model) {
+		String buid = (String) session.getAttribute("session_bid");
+		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
+		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
+		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
+		model.addAttribute("bu", logdao.getBusiness(buid));
+		model.addAttribute("qnacnt", qnadao.qnaboardAcount(buid));
+		model.addAttribute("rvcnt", rvdao.replycount(buid));
+		return "login/buMypage";
+	}
+
+	@RequestMapping("/findId")
+	public String findId() {
+
+		return "login/findId";
+	}
+
+	@RequestMapping("/findPw")
+	public String findPw() {
+		return "login/findPw";
+	}
+
+	@RequestMapping("/popup_findId")
+	public String popup_findId(HttpServletRequest request, Model model) {
+		String cuname = request.getParameter("cuname");
+		String cutel = request.getParameter("cutel");
+		String cuyear = request.getParameter("cuyear");
+		String cumonth = request.getParameter("cumonth");
+		String cuday = request.getParameter("cuday");
+		String cubirth = String.format("%s-%s-%s", cuyear, cumonth, cuday);
+		// System.out.println(cuname+ cutel + cubirth);
+		LoginDao dao = sqlSession.getMapper(LoginDao.class);
+
+		String buname = request.getParameter("buname");
+		String butel = request.getParameter("butel");
+		String burenum = request.getParameter("burenum");
+		// System.out.println(buname+butel+burenum);
+
+		if (cuname != null) {
+			model.addAttribute("cuid", dao.popupfindCuid(cuname, cutel, cubirth));
+		}
+		if (buname != null) {
+			model.addAttribute("buid", dao.popupfindBuid(buname, butel, burenum));
+		}
+		return "login/popup_findId";
+	}
+
+	@RequestMapping("/popup_findPw")
+	public String popup_findPw(HttpServletRequest request, Model model) {
+		String cuid = request.getParameter("cuid");
+		String cuname = request.getParameter("cuname");
+		String cutel = request.getParameter("cutel");
+		String cuyear = request.getParameter("cuyear");
+		String cumonth = request.getParameter("cumonth");
+		String cuday = request.getParameter("cuday");
+		String cubirth = String.format("%s-%s-%s", cuyear, cumonth, cuday);
+		LoginDao dao = sqlSession.getMapper(LoginDao.class);
+
+		String buid = request.getParameter("buid");
+		String buname = request.getParameter("buname");
+		String butel = request.getParameter("butel");
+		String burenum = request.getParameter("burenum");
+
+		if (cuname != null) {
+			int cntpw = dao.popupfindCupw(cuname, cutel, cubirth, cuid);
+			System.out.println(cntpw);
+			String ranPw = setRanChar();
+			System.out.println(ranPw);
+			if (cntpw == 1) {
+				// 검색비밀번호가 하나일 시 임시비밀번호로 변경
+				dao.chgcpw(cuid, ranPw);
+				String cuemail = dao.getCustomer(cuid).getCuemail();
+				System.out.println(cuemail);
+				sendMail(cuemail, ranPw);
+				model.addAttribute("result", "임시비밀번호가 등록된 메일로 전송되었습니다.");
+			} else {
+				model.addAttribute("result", "입정한정보가 잘못되었습니다. 다시한번 확인해주세요.");
+			}
+		}
+		if (buname != null) {
+			int cntpw = dao.popupfindBupw(buname, butel, burenum, buid);
+			setRanChar();
+			String ranPw = setRanChar();
+			if (cntpw == 1) {
+				dao.chgbpw(buid, ranPw);
+				String buemail = dao.getBusiness(buid).getBuemail();
+				sendMail(buemail, ranPw);
+				model.addAttribute("result", "임시비밀번호가 등록된 메일로 전송되었습니다.");
+			} else {
+				model.addAttribute("result", "입정한정보가 잘못되었습니다. 다시한번 확인해주세요.");
+			}
+		}
+		return "login/popup_findPw";
+	}
+
+	private String setRanChar() {
+		Random ran = new Random();
+		char p;
+		String pwd = "";
+
+		for (int i = 0; i < 10; i++) {
+			int m = ran.nextInt(3) + 1;
+
+			if (m == 1) { // 숫자
+				m = ran.nextInt(10);
+				pwd += Integer.toString(m);
+			} else if (m == 2) {// 대문자
+				m = ran.nextInt(25) + 65;
+				p = (char) m;
+				pwd += Character.toString(p);
+			} else {// 소문자
+				m = ran.nextInt(25) + 97;
+				p = (char) m;
+				pwd += Character.toString(p);
+			}
+		}
+		// A-Z 65 ~ 90 25
+		// a-z 97 ~ 122
+
+		return pwd;
+	}
+
+	@RequestMapping(value = "/sendMail.do")
+	public String sendMail(final String setTo, final String ranPw) {
+		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+				helper.setFrom("enjoy It <goodboyssw@gmail.com>");
+				helper.setTo(setTo);
+				helper.setSubject("Enjoy It 임시비밀번호");
+				helper.setText("변경된 임시비밀번호입니다. 변경 부탁드립니다. " + ranPw, true);
+			}
+		};
+
+		mailSender.send(preparator);
+
+		return "result";
+	}
+
+	@RequestMapping("/ch_cupw")
+	public String ch_cupw() {
+		return "/login/ch_cupw";
+	}
+
+	@RequestMapping("/ch_cupwProc")
+	public String ch_cpwProc(HttpServletRequest request, HttpSession session) {
+		String cupw = request.getParameter("cupw");
+		String chpw = request.getParameter("chpw");
+		String cuid = (String) session.getAttribute("session_cid");
+		LoginDao dao = sqlSession.getMapper(LoginDao.class);
+		Customer dto = dao.getCustomer(cuid);
+		if (dto.getCupw().equals(cupw)) {
+			dao.chgcpw(cuid, chpw);
+			return "redirect:/cuMypage";
+		} else {
+			System.out.println("정보 오류 ");
+			return "login/ch_cupw";
+		}
+	}
+
+	@RequestMapping("/ch_bupw")
+	public String ch_bupw() {
+		return "login/ch_bupw";
+	}
+
+	@RequestMapping("/ch_bupwProc")
+	public String ch_bpwProc(HttpServletRequest request, HttpSession session) {
+		String bupw = request.getParameter("bupw");
+		String chpw = request.getParameter("chpw");
+		String buid = (String) session.getAttribute("session_bid");
+		LoginDao dao = sqlSession.getMapper(LoginDao.class);
+		Business dto = dao.getBusiness(buid);
+		if (dto.getBupw().equals(bupw)) {
+			dao.chgbpw(buid, chpw);
+			return "redirect:/buMypage";
+		} else {
+			System.out.println("정보 오류 ");
+			return "login/ch_bupw";
+		}
+	}
+
 	@RequestMapping("/edit_cuself")
 	public String edit_cu(HttpServletRequest request, Model model) {
 		String cunum = request.getParameter("cunum");
@@ -290,7 +479,7 @@ public class LoginController {
 		model.addAttribute("bu", dao.getBuInfo(bunum));
 		return "login/edit_buself";
 	}
-	
+
 	@RequestMapping("/editProc_cu")
 	public String editProc_cu(HttpServletRequest request, Model model) {
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
@@ -322,148 +511,36 @@ public class LoginController {
 		model.addAttribute("bunum", bunum);
 		return "redirect:buMypage";
 	}
-	
-	@RequestMapping("/ch_cupw")
-	public String ch_cupw() {
-		return "ch_cupw";
-	}
-	
-	@RequestMapping("/ch_bupw")
-	public String ch_bupw() {
-		return "ch_bupw";
-	}
-	
-	@RequestMapping("/jusoPopup")
-	public String jusoPopup(Model model) {		
-		return "login/jusoPopup";
-	}
-	
-	@RequestMapping("/findId")
-	public String findId(HttpServletRequest request) {
-		
-		return "login/findId";
-	}
-	@RequestMapping("/findPw")
-	public String findPw(HttpServletRequest request) {
-		return "login/findPw";
-	}
-	
-	@RequestMapping("/popup_findId")
-	public String popup_findId(HttpServletRequest request, Model model) {
-		String cuname = request.getParameter("cuname");
-		String cutel = request.getParameter("cutel");
-		String cuyear = request.getParameter("cuyear");
-		String cumonth = request.getParameter("cumonth");
-		String cuday = request.getParameter("cuday");
-		String cubirth = String.format("%s-%s-%s", cuyear, cumonth, cuday);
-//		System.out.println(cuname+ cutel + cubirth);
-		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		
-		String buname =request.getParameter("buname");
-		String butel =request.getParameter("butel");
-		String burenum =request.getParameter("burenum");
-//		System.out.println(buname+butel+burenum);
-		
-		if (cuname != null) {
-			model.addAttribute("cuid",dao.popupfindCuid(cuname, cutel, cubirth));
-		}
-		if (buname != null) {
-			model.addAttribute("buid",dao.popupfindBuid(buname, butel, burenum));			
-		}
-		return "login/popup_findId";
-	}
-	
-	@RequestMapping("/popup_findPw")
-	public String popup_findPw(HttpServletRequest request, Model model) {
-		String cuid = request.getParameter("cuid");
-		String cuname = request.getParameter("cuname");
-		String cutel = request.getParameter("cutel");
-		String cuyear = request.getParameter("cuyear");
-		String cumonth = request.getParameter("cumonth");
-		String cuday = request.getParameter("cuday");
-		String cubirth = String.format("%s-%s-%s", cuyear, cumonth, cuday);
-		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		
-		String buid = request.getParameter("buid");
-		String buname =request.getParameter("buname");
-		String butel =request.getParameter("butel");
-		String burenum =request.getParameter("burenum");
-		
-		if (cuname != null) {
-			int cntpw=dao.popupfindCupw(cuname, cutel, cubirth, cuid);
-			System.out.println(cntpw);
-			String ranPw = setRanChar();
-			System.out.println(ranPw);
-			if (cntpw ==1) {
-			//검색비밀번호가 하나일 시 임시비밀번호로 변경
-//				dao.chgcpw(cuid, ranPw);
-				sendMail(cuid,ranPw);
-				model.addAttribute("result","임시비밀번호가 등록된 메일로 전송되었습니다.");
-			}
-			else {
-				model.addAttribute("result","입정한정보가 잘못되었습니다. 다시한번 확인해주세요.");
-			}
-		}
-		if (buname != null) {
-			int cntpw = dao.popupfindBupw(buname, butel, burenum, buid);	
-			setRanChar();
-			String ranPw = setRanChar();
-			if (cntpw ==1) {
-//				dao.chgbpw(buid, ranPw);
-				sendMail(buid,ranPw);
-				model.addAttribute("result","임시비밀번호가 등록된 메일로 전송되었습니다.");
-			}
-			else {
-				model.addAttribute("result","입정한정보가 잘못되었습니다. 다시한번 확인해주세요.");
-			}
-		}
-		return "login/popup_findPw";
-	}
-	
-	private String setRanChar() {
-		Random ran = new Random();
-		char p;
-		String pwd = "";
 
-		for (int i = 0; i < 10; i++) {
-			int m = ran.nextInt(3) + 1;
-			
+	@RequestMapping("/myQuestion")
+	public String myQuestion(HttpSession session, Model model) {
+		String cuid = (String) session.getAttribute("session_cid");
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 
-			if (m == 1) { // 숫자
-				m = ran.nextInt(10);
-				pwd += Integer.toString(m);
-			} else if (m == 2) {// 대문자
-				m = ran.nextInt(25) + 65;
-				p = (char) m;
-				pwd += Character.toString(p);
-			} else {// 소문자
-				m = ran.nextInt(25) + 97;
-				p = (char) m;
-				pwd += Character.toString(p);
-			}
-		}
-		// A-Z 65 ~ 90  25
-		// a-z 97 ~ 122
-		
-		return pwd;
+		model.addAttribute("qnalist", dao.myqnalist(cuid));
+		return "login//myQuestion";
 	}
-	
-	@RequestMapping(value = "/sendMail.do") 
-	public String sendMail(final String setTo, final String ranPw) { 
-		final MimeMessagePreparator preparator = new MimeMessagePreparator() { 
-			@Override 
-			public void prepare(MimeMessage mimeMessage) throws Exception { 
-				final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); 
-				helper.setFrom("YourName <goodboyssw@gmail.com>"); 
-				helper.setTo("ssw1363@naver.com"); 
-				helper.setSubject("Enjoy It 임시비밀번호"); 
-				helper.setText(ranPw, true); 
-				} 
-			}; 
-			
-			mailSender.send(preparator); 
-			
-			return "result"; 
-		}
-	
+
+	@RequestMapping("/myReview")
+	public String myReview(HttpSession session, Model model) {
+		String cuid = (String) session.getAttribute("session_cid");
+		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+
+		model.addAttribute("reviewlist", dao.myreviewlist(cuid));
+		return "login/myReview";
+	}
+
+	@RequestMapping("/myAnswer")
+	public String myAnswer(HttpSession session, Model model) {
+		String buid = (String) session.getAttribute("session_bid");
+
+		return "login/myAnswer";
+	}
+
+	@RequestMapping("/myReply")
+	public String myReply(HttpSession session, Model model) {
+		String buid = (String) session.getAttribute("session_bid");
+
+		return "login/myReply";
+	}
 }
