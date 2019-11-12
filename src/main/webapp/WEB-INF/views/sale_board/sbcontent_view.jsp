@@ -71,7 +71,7 @@
 					</tr>
 				</table>
 			</div>
-			<a href="board_list"> 목록</a> &nbsp;&nbsp; <a href="review_list?sbcode=${sbcontent_view.sbcode }">
+			<a href="board_list"> 목록</a> &nbsp;&nbsp; <a href="review_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }">
 				리뷰보기</a> &nbsp;&nbsp;<a
 				href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }">QnA보기</a>
 			<br />
