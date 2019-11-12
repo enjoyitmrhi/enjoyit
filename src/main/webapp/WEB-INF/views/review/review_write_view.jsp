@@ -8,23 +8,32 @@
 
 </head>
 <body>
+<script>
+		function cancle() {
+			location.href = "review_list?sbcode=${sbcode}&wid=${wid}"
+		}
+	</script>
 	<div class="container">
 		<h3>review_write_view.jsp</h3>
-		<form action="review_write?sbcode=${sbcode }" method="post"
-			enctype="multipart/form-data">
-			
-			
+		<form action="review_write" method="post" enctype="multipart/form-data">
+		<input type="hidden" value="${sbcode}" name="sbcode">
+			<input type="hidden" value="${wid}" name="wid">
 			<table class="table table-hover">
 				<tr>
-					<td colspan="2">${dto.sbcode }|${dto.cuid }</td>
+					<td>상품 코드 : ${sbcode }</td>
+					<td><input
+						type="text" size="50" name="cuid"
+						value="${session_cid }" readonly="readonly"
+						class="form-control"></td>
 				</tr>
 				<tr>
 					<td>${dto.rvdate }|${dto.rvnum }</td>
-					<td>제목 : <input type="text" name="rvtitle" class="form-control" /></td>
+					<td>제목 : <input type="text" name="rvtitle"
+						class="form-control" /></td>
 				</tr>
 				<tr>
 					<td>별점</td>
-					<td><select name="rvstar" id="rvstar"  class="form-control"><option
+					<td><select name="rvstar" id="rvstar" class="form-control"><option
 								value="5" selected>★★★★★</option>
 							<option value="4">☆★★★★</option>
 							<option value="3">☆☆★★★</option>
@@ -40,8 +49,9 @@
 					<td><input type="file" name="rvpic" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="write" />&nbsp;&nbsp;
-						<a href="review_list">목록보기</a></td>
+					<td colspan="2"><input type="submit" class="btn btn-outline-primary" value="작성" />&nbsp;<input type="button" onclick="javascript:cancle() " value="취소"
+				class="btn btn-outline-danger">&nbsp;
+						<a href="review_list?sbcode=${sbcode }">목록보기</a></td>
 				</tr>
 			</table>
 			

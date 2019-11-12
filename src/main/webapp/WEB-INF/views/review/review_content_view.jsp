@@ -36,7 +36,7 @@
 						</c:choose></td>
 				</tr>
 				<tr>
-					<td>${content_view.cuid }|${content_view.sbcode }</td>
+					<td>${content_view.cuid }|상품 코드 : ${content_view.sbcode }</td>
 					<td>${content_view.rvdate }</td>
 					<td>조회수 : ${content_view.rvhit } | 번호 : ${content_view.rvnum }
 					</td>
@@ -49,10 +49,12 @@
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td colspan="2"><a
+					<td colspan="2"><%-- <a
 						href="review_download?p=resources/upload/&f=${content_view.rvpic }
 			&sbcode=${content_view.sbcode }">
-							${content_view.rvpic }</a></td>
+							${content_view.rvpic }</a> --%>
+							<img alt="no image" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
+							</td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="modify" />

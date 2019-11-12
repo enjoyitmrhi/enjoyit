@@ -11,21 +11,22 @@
 <body>
 	<div class="container">
 		<h3>review_list.jsp</h3>
-		
-		<input type="hidden" value="${sbcode }" name="sbcode">
-		<input type="hidden" value="${wid }" name="wid">
+
+		<input type="hidden" value="${sbcode }" name="sbcode"> <input
+			type="hidden" value="${wid }" name="wid">
 		<table class="table table-hover">
 			<tr>
+				<th>리뷰번호</th>
 				<th>상품번호</th>
 				<th>고객성함</th>
 				<th>제목</th>
 				<th>별점</th>
 				<th>날짜</th>
 				<th>조회수</th>
-				<th>리뷰번호</th>
 			</tr>
 			<c:forEach items="${review_list }" var="dto">
 				<tr>
+					<td>${dto.rvnum }</td>
 					<td>${dto.sbcode }</td>
 					<td>${dto.cuid }</td>
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
@@ -35,7 +36,7 @@
 				</c:if>
 				&nbsp;
 			</c:forEach> <a
-						href="review_content_view?rvnum=${dto.rvnum }&wid=${wid }&sbcode=${sbcode }">${dto.rvtitle }</a></td>
+						href="review_content_view?rvnum=${dto.rvnum }&wid=${wid }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
 					<td><c:choose>
 							<c:when test="${dto.rvstar eq '1' }">☆☆☆☆★</c:when>
 							<c:when test="${dto.rvstar eq '2' }">☆☆☆★★</c:when>
@@ -45,16 +46,17 @@
 						</c:choose></td>
 					<td>${dto.rvdate }</td>
 					<td>${dto.rvhit }</td>
-					<td>${dto.rvnum }</td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a href="review_write_view?sbcode=${sbcode }">리뷰 작성</a></td>
+				<td colspan="7"><a href="review_write_view?sbcode=${sbcode }">리뷰
+						작성</a></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">
-			<input type="hidden" name="page" value="" />
-			TotRow:${searchVO.totRow }&nbsp; page/totPage:${searchVO.page }/${searchVO.totPage }
+			<input type="hidden" name="page" value="" /> <input type="hidden"
+				name="sbcode" value="${sbcode }"> TotRow:${searchVO.totRow }&nbsp;
+			page/totPage:${searchVO.page }/${searchVO.totPage }
 			<script type="text/javascript">
 				function fnSubmitForm(page) {
 					document.form1.page.value = page;
@@ -64,8 +66,9 @@
 			<div>
 				<c:if test="${searchVO.totPage>1}">
 					<c:if test="${searchVO.page>1}">
-						<a href="review_list?sbcode=${sbcode }&page=1">[처음]</a>
-						<a href="review_list?sbcode=${sbcode }&page=${searchVO.page-1 }">[이전]</a>
+						<a href="review_list?page=1&sbcode=${sbcode }&wid=${wid }">[처음]</a>
+						<a
+							href="review_list?page=${searchVO.page-1 }&sbcode=${sbcode }&wid=${wid }">[이전]</a>
 					</c:if>
 					<c:forEach begin="${searchVO.pageStart}" end="${searchVO.pageEnd}"
 						var="i">
@@ -80,8 +83,10 @@
 						</c:choose>
 					</c:forEach>
 					<c:if test="${searchVO.totPage>searchVO.page}">
-						<a href="review_list?sbcode=${sbcode }&page=${searchVO.page+1 }">[다음]</a>
-						<a href="review_list?sbcode=${sbcode }&page=${searchVO.totPage }">[마지막]</a>
+						<a
+							href="review_list?page=${searchVO.page+1 }&sbcode=${sbcode }&wid=${wid }">[다음]</a>
+						<a
+							href="review_list?page=${searchVO.totPage }&sbcode=${sbcode }&wid=${wid }">[마지막]</a>
 					</c:if>
 				</c:if>
 			</div>
@@ -110,9 +115,11 @@
 					name="btn_search" value="검색" />
 			</div>
 			<div>
-				<a href="qna_list?wid=${wid }&sbcode=${sbcode }">QnA보기</a> <a href="board_list">게시글로 가기</a>
+				<a href="qna_list?wid=${wid }&sbcode=${sbcode }">QnA보기</a> <a
+					href="board_list">게시글로 가기</a>
 			</div>
 		</form>
-	</div> <!-- end container -->
+	</div>
+	<!-- end container -->
 </body>
 </html>
