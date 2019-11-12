@@ -518,7 +518,7 @@ public class LoginController {
 		String cuid = (String) session.getAttribute("session_cid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		
-		model.addAttribute("qnalist",dao.myqnalist(cuid));
+		model.addAttribute("qnalist",dao.myqnaclist(cuid));
 		return "login//myQuestion";
 	}
 	
@@ -534,7 +534,8 @@ public class LoginController {
 	@RequestMapping("/myAnswer")
 	public String myAnswer(HttpSession session, Model model) {
 		String buid = (String) session.getAttribute("session_bid");
-		
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
+		model.addAttribute("qnalist",dao.myqnablist(buid));
 		return "login/myAnswer";
 	}
 	
@@ -543,5 +544,10 @@ public class LoginController {
 		String buid = (String) session.getAttribute("session_bid");
 		
 		return "login/myReply";
+	}
+	
+	@RequestMapping("/qna_edit")
+	public String qna_edit(HttpServletRequest request, Model model) {
+		return "/login/qna_edit";
 	}
 }
