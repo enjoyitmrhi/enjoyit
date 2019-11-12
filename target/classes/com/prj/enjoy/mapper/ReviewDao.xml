@@ -23,19 +23,20 @@
 	<sql id="includeList">
 		<choose>
 			<when test="param4==1">
-				WHERE (RVTITLE LIKE '%' || #{param3} || '%')
+				AND (RVTITLE LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==2">
-				WHERE (RVCONTENT LIKE '%' || #{param3} || '%')
+				AND (RVCONTENT LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==3">
-				WHERE (RVTITLE LIKE '%' || #{param3} || '%' OR
+				AND (RVTITLE LIKE '%' || #{param3} || '%' OR
 				RVCONTENT LIKE '%' || #{param3} || '%')
 			</when>
 			<otherwise></otherwise>
 		</choose>
 	</sql>
-	<select id="review_list" resultType="com.prj.enjoy.review.dto.ReviewDto">
+	<select id="review_list" parameterType="map"
+		resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT SBCODE, CUID, RVTITLE,RVCONTENT, RVDATE, RVHIT, RVGROUP,
 		RVSTEP, RVINDENT, RVNUM, RVSTAR
 		FROM (SELECT SBCODE, CUID, RVTITLE,
@@ -47,25 +48,24 @@
 		REVIEW WHERE SBCODE = #{param5}
 		<include refid="includeList" />
 		)
-		WHERE REVIEW_SEQ
-		BETWEEN #{param1} AND #{param2}
+		WHERE SBCODE=#{param5} AND REVIEW_SEQ BETWEEN #{param1} AND #{param2}
 	</select>
 
 	<!-- total count -->
 	<select id="selectBoardCount" resultType="Integer">
-		SELECT COUNT(*) FROM REVIEW
+		SELECT COUNT(*) FROM REVIEW WHERE SBCODE = #{param3}
 		<include refid="includeBoard" />
 	</select>
 
 
 	<insert id="review_write">
 		INSERT INTO REVIEW
-		(RVNUM,SBCODE,CUID,RVHIT,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC,RVSTAR)
+		(RVNUM,RVHIT,RVGROUP,RVSTEP,RVINDENT,RVTITLE,RVCONTENT,RVPIC,RVSTAR,SBCODE,CUID)
 		VALUES
-		(REVIEW_SEQ.NEXTVAL,#{param1},#{param2},0,REVIEW_SEQ.CURRVAL,0,0,#{param3},#{param4},#{param5},#{param6})
+		(REVIEW_SEQ.NEXTVAL,0,REVIEW_SEQ.CURRVAL,0,0,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
 	</insert>
 	<update id="modify">
-		UPDATE REVIEW SET CUID='cguest1',RVTITLE=#{param1
+		UPDATE REVIEW SET RVTITLE=#{param1
 		},RVCONTENT=#{param2 }, RVPIC=#{param3 }
 		WHERE
 		RVNUM=#{param4 }
@@ -77,12 +77,12 @@
 
 	<insert id="reply">
 		INSERT INTO
-		REVIEW(RVNUM,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT,SBCODE)
-		VALUES(REVIEW_SEQ.NEXTVAL,#{param2},#{param3},#{param4},#{param5},#{param6}+1,#{param7})
+		REVIEW(RVNUM,BUID,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT,SBCODE)
+		VALUES(REVIEW_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5}+1,#{param6}+1,#{param7})
 	</insert>
 	<select id="reply_write" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT * FROM REVIEW WHERE
-		BUNUM = #{param1}
+		BUID = #{param1}
 	</select>
 	<select id="reply_view" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT * FROM REVIEW WHERE

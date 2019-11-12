@@ -19,6 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.review.dao.ReviewDao;
 import com.prj.enjoy.vopage.SearchVO;
 
+
 @Controller
 public class ReviewController {
 
@@ -52,13 +53,13 @@ public class ReviewController {
 
 		int total = 0;
 		if (rvtitle.equals("rvtitle") && rvcontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "1");
+			total = dao.selectBoardCount(searchKeyword, "1",sbcode);
 		} else if (rvtitle.equals("") && rvcontent.equals("rvcontent")) {
-			total = dao.selectBoardCount(searchKeyword, "2");
+			total = dao.selectBoardCount(searchKeyword, "2",sbcode);
 		} else if (rvtitle.equals("rvtitle") && rvcontent.equals("rvcontent")) {
-			total = dao.selectBoardCount(searchKeyword, "3");
+			total = dao.selectBoardCount(searchKeyword, "3",sbcode);
 		} else if (rvtitle.equals("") && rvcontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "0");
+			total = dao.selectBoardCount(searchKeyword, "0",sbcode);
 		}
 
 		String strPage = request.getParameter("page");
@@ -77,16 +78,16 @@ public class ReviewController {
 
 		if (rvtitle.equals("rvtitle") && rvcontent.equals("")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "1", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1",sbcode));
 		} else if (rvtitle.equals("") && rvcontent.equals("rvcontent")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "2", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2",sbcode));
 		} else if (rvtitle.equals("rvtitle") && rvcontent.equals("rvcontent")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "3", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3",sbcode));
 		} else if (rvtitle.equals("") && rvcontent.equals("")) {
 			model.addAttribute("review_list", dao.review_list(rowStrat, rowEnd, searchKeyword, "0", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0",sbcode));
 		}
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("sbcode",sbcode);
@@ -104,14 +105,16 @@ public class ReviewController {
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
 
+		
+		
+
 		return "review/review_write_view";
 
 	}
 
 	@RequestMapping("/review_write")
 	public String write(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-		String sbcode= request.getParameter("sbcode");
-		String wid= request.getParameter("wid");
+		
 		String cuid=(String) session.getAttribute("session_cid");
 		String attachPath = "resources\\upload\\";
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
@@ -119,20 +122,25 @@ public class ReviewController {
 
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
 				new DefaultFileRenamePolicy());
-
+		String sbcode= req.getParameter("sbcode");
+		String wid= req.getParameter("wid");
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
 		System.out.println("sbcode >>>>>>>"+sbcode);
 		String rvtitle = req.getParameter("rvtitle");
 		String rvcontent = req.getParameter("rvcontent");
-		String rvstar = req.getParameter("rvstar");
-
+		String strstar = req.getParameter("rvstar");
+		if (strstar == null || strstar.equals("")) {
+			strstar ="0";
+		}
+		int rvstar = Integer.parseInt(strstar);
 		String rvpic = req.getFilesystemName("rvpic");
 
 		if (rvpic == null) {
-			rvpic = "등록된 사진 없음";
+			rvpic = "no pic";
 		}
 
-		dao.review_write(sbcode,cuid,rvtitle, rvcontent, rvpic, rvstar);
+		dao.review_write(rvtitle, rvcontent, rvpic, rvstar, sbcode, cuid);
+		
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
 
@@ -141,12 +149,18 @@ public class ReviewController {
 
 	@RequestMapping("/review_content_view")
 	public String content_view(HttpServletRequest request, Model model) {
+
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+
 		String strnum = request.getParameter("rvnum");
 		String sbcode= request.getParameter("sbcode");
 		String wid= request.getParameter("wid");
 		int rvnum = Integer.parseInt(strnum);
+		
+
+
 		hitUp(rvnum);
+
 		model.addAttribute("content_view", dao.contentView(rvnum));
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
@@ -199,6 +213,8 @@ public class ReviewController {
 		String rvcontent = req.getParameter("rvcontent");
 		String strnum = req.getParameter("rvnum");
 		int rvnum = Integer.parseInt(strnum);
+	
+		
 
 		String rvpic = dao.getRvpic(rvtitle);
 
@@ -206,6 +222,11 @@ public class ReviewController {
 			rvpic = "";
 		}
 		dao.modify(rvtitle, rvcontent, rvpic, rvnum);
+
+
+		
+		
+
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
 		return "redirect:review_list";
@@ -221,6 +242,7 @@ public class ReviewController {
 		String sbcode= request.getParameter("sbcode");
 		String strnum = request.getParameter("rvnum");
 		int rvnum = Integer.parseInt(strnum);
+		
 		dao.delete(rvnum);
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
@@ -237,24 +259,24 @@ public class ReviewController {
 			strId = "0";
 		}
 		int rvnum = Integer.parseInt(strId);
+		
+
 		model.addAttribute("reply_view", dao.reply_view(rvnum));
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
 		return "review/review_reply_view";
-	
-	
 
 	}
 
 	@RequestMapping("/review_reply_write")
 	public String reply_write(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
-		String strId = request.getParameter("bunum");
-		String sbcode= request.getParameter("sbcode");
-		String wid= request.getParameter("wid");
-		model.addAttribute("reply_write", dao.reply_write(strId));
-		model.addAttribute("sbcode",sbcode);
-		model.addAttribute("wid", wid);
+		String strId = request.getParameter("buid");
+		String strcode = request.getParameter("sbcode");
+		int sbcode = Integer.parseInt(strcode);
+
+		model.addAttribute("reply_write", dao.reply_write(strId, sbcode));
+
 		return "review/review_reply_write";
 	}
 

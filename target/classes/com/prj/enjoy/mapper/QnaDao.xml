@@ -8,13 +8,13 @@
 	<sql id="includeBoard">
 		<choose>
 			<when test="param2==1">
-				WHERE (QATITLE LIKE '%' || #{param1} || '%')
+				AND (QATITLE LIKE '%' || #{param1} || '%')
 			</when>
 			<when test="param2==2">
-				WHERE (QACONTENT LIKE '%' || #{param1} || '%')
+				AND (QACONTENT LIKE '%' || #{param1} || '%')
 			</when>
 			<when test="param2==3">
-				WHERE (QATITLE LIKE '%' || #{param1} || '%'
+				AND (QATITLE LIKE '%' || #{param1} || '%'
 				OR
 				QACONTENT LIKE '%' || #{param1} || '%')
 			</when>
@@ -24,13 +24,13 @@
 	<sql id="includeList">
 		<choose>
 			<when test="param4==1">
-				WHERE (QATITLE LIKE '%' || #{param3} || '%')
+				AND (QATITLE LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==2">
-				WHERE (QACONTENT LIKE '%' || #{param3} || '%')
+				AND (QACONTENT LIKE '%' || #{param3} || '%')
 			</when>
 			<when test="param4==3">
-				WHERE (QATITLE LIKE '%' || #{param3} || '%'
+				AND (QATITLE LIKE '%' || #{param3} || '%'
 				OR
 				QACONTENT LIKE '%' || #{param3} || '%')
 			</when>
@@ -53,7 +53,7 @@
 
 	</select>
 	<select id="selectBoardCount" resultType="Integer">
-		SELECT COUNT(*) FROM QNA
+		SELECT COUNT(*) FROM QNA WHERE SBCODE= #{param3}
 		<include refid="includeBoard" />
 	</select>
 

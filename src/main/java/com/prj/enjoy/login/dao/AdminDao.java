@@ -1,7 +1,6 @@
 package com.prj.enjoy.login.dao;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
