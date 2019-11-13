@@ -38,6 +38,14 @@
 			<td>가입일</td>
 			<td>${bu.budate }</td>
 		</tr>
+		<tr>
+			<td>상품에 달린 문의 </td>
+			<td><a href="myAnswer">${qnacnt }개</a> <-보러가기</td>
+		</tr>
+		<tr>
+			<td>상품에 달린 리뷰 </td>
+			<td><a href="myReply">${rvcnt }개</a> <-보러가기</td>
+		</tr>
 	</table>
 	<a href="edit_buself?bunum=${bu.bunum }"><button>정보수정</button></a>
 	<a href="ch_bupw"><button>비밀번호변경</button></a>

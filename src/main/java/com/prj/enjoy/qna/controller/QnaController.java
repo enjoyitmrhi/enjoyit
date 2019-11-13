@@ -59,15 +59,15 @@ public class QnaController {
 		int total = 0;
 
 		if (qatitle.equals("qatitle") && qacontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "1");
+			total = dao.selectBoardCount(searchKeyword, "1",sbcode);
 		} else if (qatitle.equals("") && qacontent.equals("qacontent")) {
-			total = dao.selectBoardCount(searchKeyword, "2");
+			total = dao.selectBoardCount(searchKeyword, "2",sbcode);
 
 		} else if (qatitle.equals("qatitle") && qacontent.equals("qacontent")) {
-			total = dao.selectBoardCount(searchKeyword, "3");
+			total = dao.selectBoardCount(searchKeyword, "3",sbcode);
 
 		} else if (qatitle.equals("") && qacontent.equals("")) {
-			total = dao.selectBoardCount(searchKeyword, "0");
+			total = dao.selectBoardCount(searchKeyword, "0",sbcode);
 
 		}
 
@@ -91,19 +91,19 @@ public class QnaController {
 
 		if (qatitle.equals("qatitle") && qacontent.equals("")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "1", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "1",sbcode));
 
 		} else if (qatitle.equals("") && qacontent.equals("qacontent")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "2", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "2",sbcode));
 
 		} else if (qatitle.equals("qatitle") && qacontent.equals("qacontent")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "3", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "3",sbcode));
 
 		} else if (qatitle.equals("") && qacontent.equals("")) {
 			model.addAttribute("qnalist", dao.qnalist(rowStart, rowEnd, searchKeyword, "0", sbcode));
-			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0"));
+			model.addAttribute("totRowCnt", dao.selectBoardCount(searchKeyword, "0",sbcode));
 
 		}
 		return "qna/qna_list";
@@ -111,8 +111,8 @@ public class QnaController {
 	}
 
 	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody String answer_view(@RequestParam("ID") String qanum) {
-		System.out.println(qanum);
+	public @ResponseBody String answer_view(@RequestParam("ID")String qanum) {
+		System.out.println("ID >>>"+qanum);
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		String data = dao.answer_view(qanum);
 		System.out.println(data);
@@ -142,6 +142,7 @@ public class QnaController {
 		String strContent = request.getParameter("qcontent");
 		String strTitle = request.getParameter("qtitle");
 		String strId = request.getParameter("qid");
+		String wid = request.getParameter("wid");
 
 		System.out.println("strContent = " + strContent);
 		System.out.println("strTitle = " + strTitle);
@@ -149,6 +150,8 @@ public class QnaController {
 
 		dao.qnawrite(strTitle, strContent, strId,sbcode);
 		model.addAttribute("id", strId);
+		model.addAttribute("wid",wid);
+		model.addAttribute("sbcode",sbcode);
 
 		return "redirect:qna_list?sbcode="+sbcode;
 	}
@@ -197,10 +200,12 @@ public class QnaController {
 	@RequestMapping("/qnaanswerview")
 	public String qnaAnswer(HttpServletRequest request, Model model) {
 		String qanum = request.getParameter("qanum");
+		String wid = request.getParameter("wid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		QnaDto dto = dao.qnaanswer(qanum);
 
 		model.addAttribute("answerview", dto);
+		model.addAttribute("wid",wid);
 
 		return "qna/qnaans_view";
 	}

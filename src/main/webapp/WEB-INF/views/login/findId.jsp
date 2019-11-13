@@ -51,27 +51,37 @@
 	<form action="popup_chkId" name="cuPopup">
 	<label>이름</label> <input type="text" name="cuname" id="cuname"><br> 
 	<label>연락처</label> <input type="tel" name="cutel" id="cutel"><br> 
-	<label>생년월일</label> 
+	<label>생년월일</label>
 		<select name="cuyear" id="cuyear">
 			<option value="" selected>년도</option>
 			<c:forEach begin="0" end="50" var="i">
 				<c:forEach begin="99" end="99" var="j">
-					<option value="${j - i }">${j - i }</option>
+					<option value="19${j - i }">${j - i }</option>
 				</c:forEach>
 			</c:forEach>
 		</select> 
 		<select name="cumonth" id="cumonth"> 
 			<option value="" selected>월</option>
 				<c:forEach var="i" begin="1" end="12">
-					<option value="${i }">${i }</option>
+					<c:if test="${i < 10 }">
+						<option value="0${i }">0${i }</option>
+					</c:if>
+					<c:if test="${i >= 10 }">
+						<option value="${i }">${i }</option>
+					</c:if>
 				</c:forEach>
 		</select> 
 		<select name="cuday" id="cuday">
 			<option value="" selected>일</option>
 			<c:forEach var="i" begin="1" end="31">
-				<option value="${i }">${i }</option>
+				<c:if test="${i <10}">
+					<option value="0${i }">0${i }</option>
+				</c:if>
+				<c:if test="${i >=10 }">
+					<option value="${i }">${i }</option>
+				</c:if>
 			</c:forEach>			
-		</select><br> 
+		</select><br/>
 	<input type="button" value="아이디확인"  onclick="showPopup_cu();">
 	</form>
 	</div>

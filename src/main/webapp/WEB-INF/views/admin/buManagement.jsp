@@ -46,8 +46,8 @@
 		</tr>
 	</table>
 	<a href="edit_bu?bunum=${bu.bunum }"><button>정보수정</button></a>
-	<a href="../del_bu?bunum=${bu.bunum }"><button>회원삭제</button></a>
-	<a href="adminMain"><button>회원목록보기</button></a>
+	<a href="del_bu?buid=${bu.buid }"><button>회원삭제</button></a>
+	<a href="admin_buMember"><button>회원목록보기</button></a>
 	</div>
 </body>
 </html>

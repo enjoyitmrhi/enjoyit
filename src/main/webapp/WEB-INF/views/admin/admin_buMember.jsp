@@ -65,8 +65,8 @@
 
 		<br>
 
-
-		<form action="../del_bu" method="post">
+	</div>
+<form action="del_bu" method="post">
 			<h3>가맹회원 목록</h3>
 			<input type="submit" value="가맹회원삭제">
 			<table class="table table-hover">
@@ -86,7 +86,7 @@
 				<c:forEach items="${blist}" var="bu">
 					<tr>
 
-						<td><input type="radio" name="bunum" value="${bu.bunum }"></td>
+						<td><input type="radio" name="buid" value="${bu.buid }"></td>
 
 						<td>${bu.bunum}</td>
 						<td><a href="buManagement?bunum=${bu.bunum}">${bu.buid }</a></td>
@@ -110,8 +110,8 @@
 			<div>
 				<c:if test="${bSearchVO.totPage > 1 }">
 					<c:if test="${bSearchVO.page>1 }">
-						<a href="adminMain?bpage=1">[처음]</a>
-						<a href="adminMain?bpage=${bSearchVO.page-1 }">[이전]</a>
+						<a href="admin_buMember?bpage=1">[처음]</a>
+						<a href="admin_buMember?bpage=${bSearchVO.page-1 }">[이전]</a>
 					</c:if>
 					<c:forEach begin="${bSearchVO.pageStart }"
 						end="${bSearchVO.pageEnd }" var="i">
@@ -127,11 +127,12 @@
 						</c:choose>
 					</c:forEach>
 					<c:if test="${bSearchVO.totPage>bSearchVO.page }">
-						<a href="adminMain?bpage=${bSearchVO.page+1 }">[다음]</a>
-						<a href="adminMain?bpage=${bSearchVO.totPage }">[마지막]</a>
+						<a href="admin_buMember?bpage=${bSearchVO.page+1 }">[다음]</a>
+						<a href="admin_buMember?bpage=${bSearchVO.totPage }">[마지막]</a>
 					</c:if>
 				</c:if>
 			</div>
+			<a href="admin_cuMember"><input type="button" value="일반회원보기"></a>
 		</form>
 	</div>
 	<!-- end container -->

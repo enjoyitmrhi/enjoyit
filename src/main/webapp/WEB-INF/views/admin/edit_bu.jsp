@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>this is buModify page</h3>
-	<form action="editProc_bu" method="post">
+	<form action="bu_editProc" method="post">
 		<table>
 			<tr>
 				<td>회원번호</td>

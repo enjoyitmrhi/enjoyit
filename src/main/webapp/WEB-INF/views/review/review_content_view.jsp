@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<h3>review_content_view.jsp</h3>
-		<form action="review_modify" method="post"
+		<form action="review_modify?wid=${wid }&sbcode=${sbcode }" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
@@ -53,7 +53,7 @@
 						href="review_download?p=resources/upload/&f=${content_view.rvpic }
 			&sbcode=${content_view.sbcode }">
 							${content_view.rvpic }</a> --%>
-							<img alt="" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
+							<img alt="no image" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
 							</td>
 				</tr>
 				<tr>

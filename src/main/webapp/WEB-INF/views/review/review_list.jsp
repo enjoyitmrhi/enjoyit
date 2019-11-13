@@ -11,7 +11,9 @@
 <body>
 	<div class="container">
 		<h3>review_list.jsp</h3>
-		<input type="hidden" value="${sbcode }" name="abcode">
+
+		<input type="hidden" value="${sbcode }" name="sbcode"> <input
+			type="hidden" value="${wid }" name="wid">
 		<table class="table table-hover">
 			<tr>
 				<th>리뷰번호</th>
@@ -51,8 +53,9 @@
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">
-			<input type="hidden" name="page" value="" />
-			TotRow:${searchVO.totRow }&nbsp; page/totPage:${searchVO.page }/${searchVO.totPage }
+			<input type="hidden" name="page" value="" /> <input type="hidden"
+				name="sbcode" value="${sbcode }"> TotRow:${searchVO.totRow }&nbsp;
+			page/totPage:${searchVO.page }/${searchVO.totPage }
 			<script type="text/javascript">
 				function fnSubmitForm(page) {
 					document.form1.page.value = page;
@@ -62,8 +65,9 @@
 			<div>
 				<c:if test="${searchVO.totPage>1}">
 					<c:if test="${searchVO.page>1}">
-						<a href="review_list?sbcode=${sbcode }&page=1">[처음]</a>
-						<a href="review_list?sbcode=${sbcode }&page=${searchVO.page-1 }">[이전]</a>
+						<a href="review_list?page=1&sbcode=${sbcode }&wid=${wid }">[처음]</a>
+						<a
+							href="review_list?page=${searchVO.page-1 }&sbcode=${sbcode }&wid=${wid }">[이전]</a>
 					</c:if>
 					<c:forEach begin="${searchVO.pageStart}" end="${searchVO.pageEnd}"
 						var="i">
@@ -78,8 +82,10 @@
 						</c:choose>
 					</c:forEach>
 					<c:if test="${searchVO.totPage>searchVO.page}">
-						<a href="review_list?sbcode=${sbcode }&page=${searchVO.page+1 }">[다음]</a>
-						<a href="review_list?sbcode=${sbcode }&page=${searchVO.totPage }">[마지막]</a>
+						<a
+							href="review_list?page=${searchVO.page+1 }&sbcode=${sbcode }&wid=${wid }">[다음]</a>
+						<a
+							href="review_list?page=${searchVO.totPage }&sbcode=${sbcode }&wid=${wid }">[마지막]</a>
 					</c:if>
 				</c:if>
 			</div>
@@ -108,9 +114,11 @@
 					name="btn_search" value="검색" />
 			</div>
 			<div>
-				<a href="qna_list?sbcode=${sbcode }">QnA보기</a> <a href="board_list">게시글로 가기</a>
+				<a href="qna_list?wid=${wid }&sbcode=${sbcode }">QnA보기</a> <a
+					href="board_list">게시글로 가기</a>
 			</div>
 		</form>
-	</div> <!-- end container -->
+	</div>
+	<!-- end container -->
 </body>
 </html>

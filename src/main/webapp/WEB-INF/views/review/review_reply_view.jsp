@@ -15,8 +15,9 @@
 		<input type="hidden" name="buid" value="${reply_view.buid }" /> <input
 			type="hidden" name="rvgroup" value="${reply_view.rvgroup }" /> <input
 			type="hidden" name="rvstep" value="${reply_view.rvstep }" /> <input
-			type="hidden" name="rvindent" value="${reply_view.rvindent }" /><input
-			type="hidden" name="sbcode" value="${reply_view.sbcode}" />
+			type="hidden" name="rvindent" value="${reply_view.rvindent }" /> <input
+			type="hidden" name="wid" value="${wid }" /> <input
+			type="hidden" name="sbcode" value="${sbcode }" />
 		<table class="table">
 
 			<tr>

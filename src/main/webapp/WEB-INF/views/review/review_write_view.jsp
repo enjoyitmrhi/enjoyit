@@ -54,6 +54,7 @@
 						<a href="review_list?sbcode=${sbcode }&wid=${wid}">목록보기</a></td>
 				</tr>
 			</table>
+			
 		</form>
 	</div>
 
