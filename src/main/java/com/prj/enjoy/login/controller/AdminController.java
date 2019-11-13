@@ -36,7 +36,7 @@ public class AdminController {
 			return "/admin";
 		} else {
 			System.out.println("login success");
-			return "redirect:/adminMain";
+			return "redirect:adminMain";
 		}
 		
 	}
