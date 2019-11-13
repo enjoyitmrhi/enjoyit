@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 <script>
 	function del_sbCont() {
@@ -14,9 +15,16 @@
 		}
 		;
 		location.href = "sbdelete?sbcode=" + sbcode;
-
 	};
+	
+	 function reserv(sbcode){
+         var url = "reservation.pop?sbcode="+ sbcode;
+         var name = "reserv apply";
+         var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+         window.open(url, name, option);
+     }
 </script>
+
 
 </head>
 <body>
@@ -86,10 +94,12 @@
 					class="btn btn-outline-primary btn-sm" role="btn"> 리뷰보기</a>
 				&nbsp;&nbsp;<a
 					href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
-					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>
+					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>&nbsp;&nbsp;
+				<a href="javascript:reserv(${sbcontent_view.sbcode})"
+					class="btn btn-outline-primary btn-sm" role="btn">예약하기</a>
 				<div style="float: right;">
 					<c:if test="${sbcontent_view.buid == session_bid}">
-						<button onclick="javascript:del_sbCont()"
+						<button onclick="javascript:del_sbCont(${sbcontent_view.sbcode})"
 							class="btn btn-outline-info btn-sm">삭제하기</button>
 		&nbsp;&nbsp;
 		<input type="submit" class="btn btn-outline-info btn-sm" value="수정하기">
@@ -99,6 +109,7 @@
 		</form>
 
 
+	<div id="map" style="width:60%;height:350px;"></div>
 
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c152ea050e4105950daf9c520e328d4c"></script>

@@ -32,6 +32,8 @@ public interface QnaDao {
 	
 	int qnaboardAcount(String buid);
 
-	ArrayList<QnaDto> myqnalist(String cuid);
+	ArrayList<QnaDto> myqnaclist(String cuid);
+	
+	ArrayList<QnaDto> myqnablist(String buid);
 	
 }
