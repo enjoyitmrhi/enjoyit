@@ -36,7 +36,7 @@ public class AdminController {
 			return "/admin";
 		} else {
 			System.out.println("login success");
-			return "redirect:/adminMain";
+			return "redirect:adminMain";
 		}
 		
 	}
@@ -75,7 +75,7 @@ public class AdminController {
 		dao.del_cReview(cuid);
 		dao.del_cQna(cuid);
 		dao.del_cu(cuid);
-		return "redirect:/admin_cuMember";
+		return "redirect:admin_cuMember";
 
 	}
 
@@ -88,7 +88,7 @@ public class AdminController {
 		dao.del_bReview(buid);
 		dao.del_sb(buid);
 		dao.del_bu(buid);
-		return "redirect:/admin_buMember";
+		return "redirect:admin_buMember";
 
 	}
 

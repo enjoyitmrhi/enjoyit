@@ -50,7 +50,7 @@
                 {
                   title  : 'event1',
                   start  : '2019-11-01',
-                  end    : '2019-11-01'
+                  end    : '2019-11-01',
                   rendering: 'background'
                 },
                 {
@@ -88,7 +88,7 @@
 <table>
 	<tr>
 		<th>예약자명</th>
-		<th>${session_cid }</th>
+		<th><input type="hidden" name="cuid"> ${session_cid }</th>
 	</tr>
 	<tr>
 		<th>예약상품</th>

@@ -156,7 +156,7 @@ public class QnaController {
 		model.addAttribute("wid",wid);
 		model.addAttribute("sbcode",sbcode);
 
-		return "redirect:qna_list?sbcode="+sbcode;
+		return "redirect:qna_list";
 	}
 
 	@RequestMapping("/qnacontent_view")
