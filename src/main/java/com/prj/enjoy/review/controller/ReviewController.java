@@ -19,6 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.review.dao.ReviewDao;
 import com.prj.enjoy.vopage.SearchVO;
 
+
 @Controller
 public class ReviewController {
 
@@ -234,9 +235,6 @@ public class ReviewController {
 	@RequestMapping("/review_delete")
 	public String delete(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
-		// String rvgroup = request.getParameter("rvgroup");
-		// String rvstep = request.getParameter("rvstep");
-		// String rvindent = request.getParameter("rvindent");
 		String wid= request.getParameter("wid");
 		String sbcode= request.getParameter("sbcode");
 		String strnum = request.getParameter("rvnum");
@@ -275,8 +273,8 @@ public class ReviewController {
 		int sbcode = Integer.parseInt(strcode);
 
 		model.addAttribute("reply_write", dao.reply_write(strId, sbcode));
-
-		return "review/review_reply_write?wid="+strId+"&sbcode="+sbcode;
+		model.addAttribute("wid",strId);
+		return "review/review_reply_write";
 	}
 
 	@RequestMapping("/review_reply")

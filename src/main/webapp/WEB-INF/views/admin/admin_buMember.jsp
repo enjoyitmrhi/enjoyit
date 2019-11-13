@@ -65,7 +65,7 @@
 
 		<br>
 
-	</div>
+	
 <form action="del_bu" method="post">
 			<h3>가맹회원 목록</h3>
 			<input type="submit" value="가맹회원삭제">

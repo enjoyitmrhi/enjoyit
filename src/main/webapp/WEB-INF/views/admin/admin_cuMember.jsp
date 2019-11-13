@@ -66,7 +66,7 @@
 		<br>
 		
 
-	</div>
+	
 <form action="del_cu" method="post">
 			<h3>일반회원 목록</h3>
 			<input type="submit" value="회원삭제">
@@ -132,5 +132,6 @@
 			</div>
 			<a href="admin_buMember"><input type="button" value="가맹회원보기"></a>
 		</form>
+		</div>
 </body>
 </html>

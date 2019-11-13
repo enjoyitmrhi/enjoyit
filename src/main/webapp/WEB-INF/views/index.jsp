@@ -12,41 +12,52 @@
 <body>
 	<div class="container">
 		<h3>this is index page</h3>
-		<c:if test="${session_cid != null }">
-[${session_cname }]님 로그인 되셨습니다.	
-</c:if>
-		<c:if test="${session_bid != null }">
-[${session_bname }]님 로그인 되셨습니다.	
-</c:if>
+		<a href="board_list">게시판 </a>
 
 
-		<ul>
-			<c:if test="${session_cid == null && session_bid == null }">
-				<li><a href="login">login</a></li>
-			</c:if>
-			<c:if test="${session_cid != null }">
-				<li><a href="logout">logout</a></li>
-			</c:if>
-			<c:if test="${session_bid != null }">
-				<li><a href="logout">logout</a></li>
-			</c:if>
-			<c:if test="${session_cid == null && session_bid == null}">
-				<li><a href="board_list">BOARD without LOGIN</a></li>
-			</c:if>
-			<c:if test="${session_bid != null }">
-				<li><a href="board_list">BOARD</a></li>
-			</c:if>
-			<c:if test="${session_cid != null }">
-				<li><a href="board_list">BOARD</a></li>
-			</c:if>
-			<c:if test="${session_bid != null }">
-				<li><a href="buMypage">My Page</a></li>
-			</c:if>
-			<c:if test="${session_cid != null }">
-				<li><a href="cuMypage">My Page</a></li>
-			</c:if>
 
-		</ul>
+		<div id="banner" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#banner" data-slide-to="0" class="active"></li>
+				<li data-target="#banner" data-slide-to="1"></li>
+				<li data-target="#banner" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<!-- 슬라이드 1 -->
+				<div class="carousel-item active">
+					<img class="d-block img-fluid "
+						src="resources/imgs/banner1.jpg"
+						alt="First slide">
+				</div>
+				<!-- 슬라이드 1 -->
+
+
+				<!-- 슬라이드 2 -->
+
+				<div class="carousel-item">
+					<img class="d-block img-fluid "
+						src="resources/imgs/banner2.jpg"
+						alt="Second slide">
+				</div>
+				<!-- 슬라이드 2 -->
+				
+				<!-- 슬라이드 3 -->
+
+				<div class="carousel-item">
+					<img class="d-block img-fluid "	src="resources/imgs/banner3.jpg" alt="Third slide">
+				</div>
+				<!-- 슬라이드 3 -->
+
+			</div>
+			<a class="carousel-control-prev" href="#banner" role="button"
+				data-slide="prev"> <span class="carousel-control-prev-icon"
+				aria-hidden="true"></span> <span class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#banner" role="button"
+				data-slide="next"> <span class="carousel-control-next-icon"
+				aria-hidden="true"></span> <span class="sr-only">Next</span>
+			</a>
+		</div>
+
 	</div>
 
 </body>
