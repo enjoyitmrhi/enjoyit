@@ -1,6 +1,8 @@
 package com.prj.enjoy.qna.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -110,12 +112,13 @@ public class QnaController {
 
 	}
 
-	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody String answer_view(@RequestParam("ID")String qanum) {
+	@RequestMapping(value = "answer_view.do", produces = "application/text; charset=utf8")
+	public @ResponseBody String answer_view(@RequestParam("ID")String qanum) throws Exception {
 		System.out.println("ID >>>"+qanum);
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		String data = dao.answer_view(qanum);
-		System.out.println(data);
+//		String encode= URLEncoder.encode(data , "UTF-8");
+//		System.out.println(encode);
 		return data;
 
 	}
@@ -168,7 +171,8 @@ public class QnaController {
 		model.addAttribute("content_view", dto);
 
 		return "/qna/qna_content_view";
-
+		
+		
 	}
 
 	@RequestMapping("/qnadelete")
