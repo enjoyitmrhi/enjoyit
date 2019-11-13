@@ -9,13 +9,11 @@
 
 </head>
 <body>
-	<script>		
-		
+	<script>
 		function modify_auth() {
-			
+
 			document.ansform.submit();
 		};
-		
 	</script>
 	<div class="container">
 		<h3>content_view</h3>
@@ -44,24 +42,37 @@
 					<td>작성자</td>
 					<td>${content_view.cuid }</td>
 				</tr>
+				<tr>
+					<td colspan="2">
 
+						<div style="float: left;">
+							<c:if test="${wid == session_bid}">
+								<a class="btn btn-outline-primary btn-sm" role="btn"
+									href="qnaanswerview?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}">답글달기</a>
+								<br />
+							</c:if>
+							<c:if test="${content_view.cuid ==session_cid}">
+								<input type="button" value="수정하기"
+									onclick="javascript:modify_auth()"
+									class="btn btn-outline-primary btn-sm">
+								<a
+									href="qnadelete?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}"
+									class="btn btn-outline-primary btn-sm" role="btn">삭제하기</a>
+							</c:if>
+						</div> <input type="submit" style="display: none;">
+						<div style="float: right;">
+							<a href="qna_list?sbcode=${content_view.sbcode }&wid=${wid}"
+								class="btn btn-outline-primary btn-sm" role="btn"> 목록가기</a>
+						</div>
+
+
+					</td>
+				</tr>
 			</table>
-			<c:if test="${wid == session_bid}">
-				<a  class="btn btn-success" role="button"
-					href="qnaanswerview?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}">답글달기</a><br/>
-			</c:if>
-
-			<input type="submit" style="display: none;">
-
 		</form>
-		<a href="qna_list?sbcode=${content_view.sbcode }&wid=${wid}" class="btn btn-primary" role="button"> 목록가기</a>
-		<c:if test="${content_view.cuid ==session_cid}">
-			<input type="button" value="수정하기" onclick="javascript:modify_auth()" class="btn btn-primary">
-			<a
-				href="qnadelete?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}" class="btn btn-primary" role="button">삭제하기</a>
-				&nbsp;&nbsp;
-		
-		</c:if>
+	</div>
+
+
 	</div>
 </body>
 </html>

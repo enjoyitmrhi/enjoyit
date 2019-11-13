@@ -12,8 +12,7 @@
 	<div class="container">
 		<h3>review_list.jsp</h3>
 
-		<input type="hidden" value="${sbcode }" name="sbcode"> <input
-			type="hidden" value="${wid }" name="wid">
+
 		<table class="table table-hover">
 			<tr>
 				<th>리뷰번호</th>
@@ -28,7 +27,12 @@
 				<tr>
 					<td>${dto.rvnum }</td>
 					<td>${dto.sbcode }</td>
-					<td>${dto.cuid }</td>
+					<td><c:choose>
+							<c:when test="${not empty dto.cuid }">${dto.cuid }</c:when>
+
+							
+							<c:otherwise> 판매자 </c:otherwise>
+						</c:choose></td>
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
 							begin="1" end="${dto.rvindent }" var="cnt">
 							<c:if test="${cnt eq endIndent }">
@@ -49,11 +53,13 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a href="review_write_view?wid=${wid }&sbcode=${sbcode }">리뷰 작성</a></td>
+				<td colspan="7"><a
+					href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">
 			<input type="hidden" name="page" value="" /> <input type="hidden"
+				value="${wid }" name="wid"><input type="hidden"
 				name="sbcode" value="${sbcode }"> TotRow:${searchVO.totRow }&nbsp;
 			page/totPage:${searchVO.page }/${searchVO.totPage }
 			<script type="text/javascript">
@@ -114,7 +120,7 @@
 					name="btn_search" value="검색" />
 			</div>
 			<div>
-				<a href="qna_list?wid=${wid }&sbcode=${sbcode }">QnA보기</a> <a
+				<a href="qna_list?sbcode=${sbcode }&wid=${wid}">QnA보기</a> <a
 					href="board_list">게시글로 가기</a>
 			</div>
 		</form>
