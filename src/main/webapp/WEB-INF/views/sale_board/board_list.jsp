@@ -45,7 +45,7 @@
 
 	function getRowContentByData(item) {
 		var content = "";
-		content += "<div class='col-sm-6 col-md-4'>";
+		content += "<div class='col-sm-8 col-md-6'>";
 		content += "<div class='thumbnail'>";
 		content += "<a href='sbcontent_view?wid="
 				+ item.buid
@@ -138,7 +138,7 @@
 	</div>
 	<!-- end wrap -->
 
-	<!-- 	</div> -->
+	
 </body>
 
 </html>
