@@ -71,14 +71,13 @@
 					</tr>
 					<tr>
 						<td>상품 리뷰 평균</td>
-
-						<td><c:set var="avg" value="${avgstar}"></c:set> <c:if
-								test="${avg != null }">
+						<td><c:set var="avg" value="${avgstar}"></c:set> 
+						<c:if test="${avg != null }">
 								<c:choose>
-									<c:when test="${avg eq '1' }">☆☆☆☆★</c:when>
-									<c:when test="${avg eq '2' }">☆☆☆★★</c:when>
-									<c:when test="${avg eq '3' }">☆☆★★★</c:when>
-									<c:when test="${avg eq '4' }">☆★★★★</c:when>
+									<c:when test="${avg ge '1' and avg lt '2' }">★</c:when>
+									<c:when test="${avg ge '2' and avg lt '3' }">★★</c:when>
+									<c:when test="${avg ge '3' and avg lt '4' }">★★★</c:when>
+									<c:when test="${avg ge '4' and avg lt '5' }">★★★★</c:when>
 									<c:when test="${avg eq '5' }">★★★★★</c:when>
 								</c:choose>
 							</c:if></td>

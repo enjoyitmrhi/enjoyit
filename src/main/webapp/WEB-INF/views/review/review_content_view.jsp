@@ -12,12 +12,12 @@
 <body>
 	<div class="container">
 		<h3>review_content_view.jsp</h3>
-		<form action="review_modify?wid=${wid }&sbcode=${sbcode }" method="post"
-			enctype="multipart/form-data">
+		<form action="review_modify?wid=${wid }&sbcode=${sbcode }"
+			method="post" enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
-			<input type="hidden" name="sbcode" value="${content_view.rvnum }" />
-			<input type="hidden" name="wid" value="${content_view.rvpic }" />
+			<input type="hidden" name="wid" value="${wid }">
+			<input type="hidden" value="${sbcode}" name="sbcode">
 
 			<table class="table ">
 				<tr>
@@ -28,15 +28,15 @@
 				<tr>
 					<td>별점</td>
 					<td colspan="2"><c:choose>
-							<c:when test="${content_view.rvstar eq '1' }">☆☆☆☆★</c:when>
-							<c:when test="${content_view.rvstar eq '2' }">☆☆☆★★</c:when>
-							<c:when test="${content_view.rvstar eq '3' }">☆☆★★★</c:when>
-							<c:when test="${content_view.rvstar eq '4' }">☆★★★★</c:when>
+							<c:when test="${content_view.rvstar eq '1' }">★</c:when>
+							<c:when test="${content_view.rvstar eq '2' }">★★</c:when>
+							<c:when test="${content_view.rvstar eq '3' }">★★★</c:when>
+							<c:when test="${content_view.rvstar eq '4' }">★★★★</c:when>
 							<c:when test="${content_view.rvstar eq '5' }">★★★★★</c:when>
 						</c:choose></td>
 				</tr>
 				<tr>
-					<td>${content_view.cuid }|상품 코드 : ${content_view.sbcode }</td>
+					<td>${content_view.cuid }|상품코드:${content_view.sbcode }</td>
 					<td>${content_view.rvdate }</td>
 					<td>조회수 : ${content_view.rvhit } | 번호 : ${content_view.rvnum }
 					</td>
@@ -49,23 +49,50 @@
 				</tr>
 				<tr>
 					<td>사진</td>
-					<td colspan="2"><%-- <a
-						href="review_download?p=resources/upload/&f=${content_view.rvpic }
-			&sbcode=${content_view.sbcode }">
-							${content_view.rvpic }</a> --%>
-							<img alt="no image" src="resources/upload/${content_view.rvpic }" style="width: 300px; height: 200px;">
-							</td>
+					<td colspan="2"><img alt="no image"
+						src="resources/upload/${content_view.rvpic }"
+						style="width: 300px; height: 200px;"></td>
 				</tr>
 				<tr>
-					<td colspan="3"><input type="submit" value="modify" />
-						&nbsp;&nbsp;<a href="review_list?wid=${wid }&sbcode=${sbcode }">목록보기</a> &nbsp;&nbsp;<a
-						href="review_delete?rvnum=${content_view.rvnum }
-				&rvgroup=${content_view.rvgroup }
-				&rvstep=${content_view.rvstep }
-				&rvindent=${content_view.rvindent }&wid=${wid }&sbcode=${sbcode }
-				">삭제</a>
-						&nbsp;&nbsp;<a
-						href="review_reply_view?rvnum=${content_view.rvnum }&wid=${wid }&sbcode=${sbcode }">답변</a></td>
+					<td colspan="3">
+						<div style="float: left;">
+							<c:choose>
+								<c:when test="${not empty session_cid }">
+									<c:if test="${content_view.cuid == session_cid}">
+										<input type="submit" value="수정"
+											class="btn btn-outline-primary btn-sm" /> &nbsp;&nbsp;<a
+											href="review_delete?rvnum=${content_view.rvnum }&sbcode=${sbcode }&wid=${wid}"
+											class="btn btn-outline-primary btn-sm" role="btn">삭제</a>
+									</c:if>
+								</c:when>
+								<c:otherwise></c:otherwise>
+							</c:choose>
+						</div>
+						<div style="float: left;">
+							<c:choose>
+								<c:when test="${not empty session_bid }">
+									<c:if test="${content_view.buid == session_bid}">
+										<input type="submit" value="수정"
+											class="btn btn-outline-primary btn-sm" /> &nbsp;&nbsp;<a
+											href="review_delete?rvnum=${content_view.rvnum }&sbcode=${sbcode }&wid=${wid}"
+											class="btn btn-outline-primary btn-sm" role="btn">삭제</a>
+
+									</c:if>
+								</c:when>
+								<c:otherwise></c:otherwise>
+							</c:choose>
+							&nbsp;&nbsp;
+							<c:if test="${wid == session_bid}">
+								<a
+									href="review_reply_view?rvnum=${content_view.rvnum }&sbcode=${sbcode }&wid=${wid}"
+									class="btn btn-outline-primary btn-sm" role="btn">답변</a>
+							</c:if>
+						</div>
+						<div style="float: right;">
+							<a href="review_list?sbcode=${sbcode }&wid=${wid}"
+								class="btn btn-outline-primary btn-sm" role="btn">목록보기</a>
+						</div>
+					</td>
 				</tr>
 			</table>
 		</form>

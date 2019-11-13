@@ -35,10 +35,10 @@
 					<td>별점</td>
 					<td><select name="rvstar" id="rvstar" class="form-control"><option
 								value="5" selected>★★★★★</option>
-							<option value="4">☆★★★★</option>
-							<option value="3">☆☆★★★</option>
-							<option value="2">☆☆☆★★</option>
-							<option value="1">☆☆☆☆★</option></select></td>
+							<option value="4">★★★★</option>
+							<option value="3">★★★</option>
+							<option value="2">★★</option>
+							<option value="1">★</option></select></td>
 				</tr>
 				<tr>
 					<td>내용</td>
@@ -51,7 +51,7 @@
 				<tr>
 					<td colspan="2"><input type="submit" class="btn btn-outline-primary" value="작성" />&nbsp;<input type="button" onclick="javascript:cancle() " value="취소"
 				class="btn btn-outline-danger">&nbsp;
-						<a href="review_list?sbcode=${sbcode }">목록보기</a></td>
+						<a href="review_list?sbcode=${sbcode }&wid=${wid}">목록보기</a></td>
 				</tr>
 			</table>
 			

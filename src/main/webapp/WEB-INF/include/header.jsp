@@ -10,6 +10,7 @@
 	href="<c:url value= "/resources/bootstrap/css/bootstrap.css" />">
 <link rel="stylesheet"
 	href="<c:url value= "/resources/bootstrap/css/bootstrap.min.css" />">
+
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -19,7 +20,6 @@
 
 </head>
 <body>
-
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary"> <a
 		class="navbar-brand" href="/enjoyit/">Enjoy_IT</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -66,6 +66,24 @@
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 		</ul>
 
+
+
+
+
+
+
+
+
+
+
+		<div class="form-inline my-2 my-lg-0">
+			<c:if test="${session_cid != null }">
+			[${session_cname }]님 로그인 되셨습니다.
+			</c:if>
+			<c:if test="${session_bid != null }">
+			[${session_bname }]님 로그인 되셨습니다.
+			</c:if>
+		</div>
 		<c:if test="${session_cid !=null }">
 			<form class="form-inline my-2 my-lg-0" action="cuMypage">
 				<button class="btn btn-secondary btn-sm" type="submit">MyPage</button>
