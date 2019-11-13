@@ -52,10 +52,12 @@
 					<td>${dto.rvhit }</td>
 				</tr>
 			</c:forEach>
+			<c:if test="${session_cid != null}">
 			<tr>
 				<td colspan="7"><a
 					href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a></td>
 			</tr>
+			</c:if>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">
 			<input type="hidden" name="page" value="" /> <input type="hidden"

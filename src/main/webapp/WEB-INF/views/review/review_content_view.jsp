@@ -43,7 +43,7 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td colspan="2"><textarea name="rvcontent" rows="10">
+					<td colspan="2"><textarea name="rvcontent" rows="10" class="form-control">
 				${content_view.rvcontent }
 			</textarea></td>
 				</tr>
