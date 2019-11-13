@@ -77,8 +77,8 @@
 
 	<insert id="reply">
 		INSERT INTO
-		REVIEW(RVNUM,BUID,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT,SBCODE)
-		VALUES(REVIEW_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5}+1,#{param6}+1,#{param7})
+		REVIEW(RVNUM,BUID,RVTITLE,RVCONTENT,RVGROUP,RVSTEP,RVINDENT,SBCODE,RVHIT)
+		VALUES(REVIEW_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},#{param5}+1,#{param6}+1,#{param7},0)
 	</insert>
 	<select id="reply_write" resultType="com.prj.enjoy.review.dto.ReviewDto">
 		SELECT * FROM REVIEW WHERE
