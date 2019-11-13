@@ -276,7 +276,7 @@ public class ReviewController {
 
 		model.addAttribute("reply_write", dao.reply_write(strId, sbcode));
 
-		return "review/review_reply_write";
+		return "review/review_reply_write?wid="+strId+"&sbcode="+sbcode;
 	}
 
 	@RequestMapping("/review_reply")

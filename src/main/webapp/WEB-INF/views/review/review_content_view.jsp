@@ -16,8 +16,8 @@
 			enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
-			<input type="hidden" name="sbcode" value="${content_view.rvnum }" />
-			<input type="hidden" name="wid" value="${content_view.rvpic }" />
+			<input type="hidden" name="wid" value="${wid }">
+			<input type="hidden" value="${sbcode}" name="sbcode">
 
 			<table class="table ">
 				<tr>
@@ -28,10 +28,10 @@
 				<tr>
 					<td>별점</td>
 					<td colspan="2"><c:choose>
-							<c:when test="${content_view.rvstar eq '1' }">☆☆☆☆★</c:when>
-							<c:when test="${content_view.rvstar eq '2' }">☆☆☆★★</c:when>
-							<c:when test="${content_view.rvstar eq '3' }">☆☆★★★</c:when>
-							<c:when test="${content_view.rvstar eq '4' }">☆★★★★</c:when>
+							<c:when test="${content_view.rvstar eq '1' }">★</c:when>
+							<c:when test="${content_view.rvstar eq '2' }">★★</c:when>
+							<c:when test="${content_view.rvstar eq '3' }">★★★</c:when>
+							<c:when test="${content_view.rvstar eq '4' }">★★★★</c:when>
 							<c:when test="${content_view.rvstar eq '5' }">★★★★★</c:when>
 						</c:choose></td>
 				</tr>
@@ -57,15 +57,17 @@
 							</td>
 				</tr>
 				<tr>
-					<td colspan="3"><input type="submit" value="modify" />
-						&nbsp;&nbsp;<a href="review_list?wid=${wid }&sbcode=${sbcode }">목록보기</a> &nbsp;&nbsp;<a
+					<td colspan="3"><input type="submit" value="수정하기" />
+						&nbsp;&nbsp;<a href="review_list?sbcode=${content_view.sbcode }&wid=${wid}">목록보기</a> &nbsp;&nbsp;<a
 						href="review_delete?rvnum=${content_view.rvnum }
 				&rvgroup=${content_view.rvgroup }
 				&rvstep=${content_view.rvstep }
-				&rvindent=${content_view.rvindent }&wid=${wid }&sbcode=${sbcode }
+				&rvindent=${content_view.rvindent }
+				&sbcode=${content_view.sbcode }
+				&wid=${wid }
 				">삭제</a>
 						&nbsp;&nbsp;<a
-						href="review_reply_view?rvnum=${content_view.rvnum }&wid=${wid }&sbcode=${sbcode }">답변</a></td>
+						href="review_reply_view?rvnum=${content_view.rvnum }&sbcode=${content_view.sbcode}&wid=${wid}">답변</a></td>
 				</tr>
 			</table>
 		</form>
