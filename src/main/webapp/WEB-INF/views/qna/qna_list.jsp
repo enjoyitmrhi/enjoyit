@@ -24,8 +24,7 @@
 			if (elem.className != 'opened') {
 				elem.className = 'opened';
 				menu.style.display = "block";
-				$
-						.ajax({
+				$.ajax({
 							type : "POST",
 							url : "answer_view.do",
 							data : {

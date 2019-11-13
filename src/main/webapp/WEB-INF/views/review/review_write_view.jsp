@@ -35,10 +35,10 @@
 					<td>별점</td>
 					<td><select name="rvstar" id="rvstar" class="form-control"><option
 								value="5" selected>★★★★★</option>
-							<option value="4">☆★★★★</option>
-							<option value="3">☆☆★★★</option>
-							<option value="2">☆☆☆★★</option>
-							<option value="1">☆☆☆☆★</option></select></td>
+							<option value="4">★★★★</option>
+							<option value="3">★★★</option>
+							<option value="2">★★</option>
+							<option value="1">★</option></select></td>
 				</tr>
 				<tr>
 					<td>내용</td>

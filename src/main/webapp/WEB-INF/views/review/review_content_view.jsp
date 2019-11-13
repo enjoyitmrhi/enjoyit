@@ -16,8 +16,8 @@
 			method="post" enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
-			<input type="hidden" name="sbcode" value="${content_view.rvnum }" />
-			<input type="hidden" name="wid" value="${content_view.rvpic }" />
+			<input type="hidden" name="wid" value="${wid }">
+			<input type="hidden" value="${sbcode}" name="sbcode">
 
 			<table class="table ">
 				<tr>
@@ -28,10 +28,10 @@
 				<tr>
 					<td>별점</td>
 					<td colspan="2"><c:choose>
-							<c:when test="${content_view.rvstar eq '1' }">☆☆☆☆★</c:when>
-							<c:when test="${content_view.rvstar eq '2' }">☆☆☆★★</c:when>
-							<c:when test="${content_view.rvstar eq '3' }">☆☆★★★</c:when>
-							<c:when test="${content_view.rvstar eq '4' }">☆★★★★</c:when>
+							<c:when test="${content_view.rvstar eq '1' }">★</c:when>
+							<c:when test="${content_view.rvstar eq '2' }">★★</c:when>
+							<c:when test="${content_view.rvstar eq '3' }">★★★</c:when>
+							<c:when test="${content_view.rvstar eq '4' }">★★★★</c:when>
 							<c:when test="${content_view.rvstar eq '5' }">★★★★★</c:when>
 						</c:choose></td>
 				</tr>
