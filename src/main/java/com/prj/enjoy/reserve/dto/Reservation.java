@@ -4,28 +4,40 @@ import java.sql.Timestamp;
 
 public class Reservation {
 	private String rtnum;
-	private Timestamp rtsdate;
-	private Timestamp rtedate;
+	private String rtsdate;
+	private String rtedate;
 	private String sbcode;
 	private String cunum;
 	private String cuid;
+	private String confirm;
 	
+	public Reservation(String cuid, String rtsdate, String rtedate, String confirm) {	
+		this.rtsdate = rtsdate;
+		this.rtedate = rtedate;		
+		this.cuid = cuid;
+		this.confirm = confirm;
+	}
+	
+	@Override
+	public String toString() {
+		return 	"Reservation [title=" + cuid + ", start :" + rtsdate + ", end :" + rtedate +  ", confirm :" + confirm + "]";
+	}
 	public String getRtnum() {
 		return rtnum;
 	}
 	public void setRtnum(String rtnum) {
 		this.rtnum = rtnum;
 	}
-	public Timestamp getRtsdate() {
+	public String getRtsdate() {
 		return rtsdate;
 	}
-	public void setRtsdate(Timestamp rtsdate) {
+	public void setRtsdate(String rtsdate) {
 		this.rtsdate = rtsdate;
 	}
-	public Timestamp getRtedate() {
+	public String getRtedate() {
 		return rtedate;
 	}
-	public void setRtedate(Timestamp rtedate) {
+	public void setRtedate(String rtedate) {
 		this.rtedate = rtedate;
 	}
 	public String getSbcode() {
@@ -45,5 +57,11 @@ public class Reservation {
 	}
 	public void setCuid(String cuid) {
 		this.cuid = cuid;
+	}
+	public String getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
 	}
 }

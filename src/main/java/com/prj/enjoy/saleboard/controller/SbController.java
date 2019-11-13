@@ -137,5 +137,5 @@ public class SbController {
 		return "redirect:board_list";
 
 	}
-
+	
 }
