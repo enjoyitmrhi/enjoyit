@@ -87,4 +87,20 @@ public class SbDto {
 		this.sbcontent = sbcontent;
 	}
 
+	public String getSblongitude() {
+		return sblongitude;
+	}
+
+	public void setSblongitude(String sblongitude) {
+		this.sblongitude = sblongitude;
+	}
+
+	public String getSblatitude() {
+		return sblatitude;
+	}
+
+	public void setSblatitude(String sblatitude) {
+		this.sblatitude = sblatitude;
+	}
+
 }

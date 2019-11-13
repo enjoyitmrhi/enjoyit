@@ -18,7 +18,6 @@ import com.prj.enjoy.login.dao.LoginDao;
 import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.saleboard.dao.SbDao;
 import com.prj.enjoy.saleboard.dto.SbDto;
-import com.prj.enjoy.saleboard.dto.String;
 
 @Controller
 public class SbController {
