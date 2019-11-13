@@ -46,28 +46,11 @@
        	eventSources: [
             // your event source
             {	
-              events: [ // put the array in the `events` property
-                {
-                  title  : 'event1',
-                  start  : '2019-11-01',
-                  end    : '2019-11-01'
-                  rendering: 'background'
-                },
-                {
-                  title  : 'event2',
-                  start  : '2019-11-05',
-                  end    : '2019-11-07',
-                  rendering: 'background'
-                },
-                {
-                  title  : 'event3',
-                  start  : '2019-11-09',
-                  end 	 : '2019-11-09',
-                  rendering: 'background'
-                }
-              ],
-              color: 'red',     // an option!
-              textColor: 'yellow' // an option!
+              events: 
+              ${evt} ,
+              //color: 'red',     // an option!
+              //textColor: 'yellow' // an option!
+              
             }
           ] 
       }); 
@@ -84,29 +67,13 @@
 
 <div id='calendar' style="overflow:hidden; width:75%; height:auto; text-align: center;"></div>
 	<div></div> <!-- 나중에 예약가능 날짜 색별로 설명  -->
-<form action="#" name="form1"> 
-<table>
-	<tr>
-		<th>예약자명</th>
-		<th>${session_cid }</th>
-	</tr>
-	<tr>
-		<th>예약상품</th>
-		<th>당연히 sbtitle</th>
-	</tr>
-	<tr>
-		<th>시작일</th>
-		<th><input type="text" id="startStr" readonly></th>
-	</tr>
-	<tr>
-		<th>종료일</th>
-		<th><input type="text" id="endStr" readonly></th>
-	</tr>
-	<tr>
-		<th><input type="button" onclick="closeWindow()" value="신청하기"></th>
-	</tr>
+<form action="pop/reserv_Confirm" name="form1"> 
 
-</table>
+<input type="hidden" name="rtnum" value="${rtnum }" >
+<input type="button" onclick="closeWindow()" value="예약수락">
+	
+
+
 </form>
 </body>
 </html>

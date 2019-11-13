@@ -95,8 +95,10 @@
 				&nbsp;&nbsp;<a
 					href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
 					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>&nbsp;&nbsp;
+				<c:if test="${session_cid != null }">
 				<a href="javascript:reserv(${sbcontent_view.sbcode})"
 					class="btn btn-outline-primary btn-sm" role="btn">예약하기</a>
+				</c:if>
 				<div style="float: right;">
 					<c:if test="${sbcontent_view.buid == session_bid}">
 						<button onclick="javascript:del_sbCont(${sbcontent_view.sbcode})"
