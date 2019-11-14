@@ -66,8 +66,6 @@ public class SbController {
 		model.addAttribute("wid", wid);
 		model.addAttribute("avgstar", avgstar);
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
-		model.addAttribute("longY",dto.getBulongitude());
-		model.addAttribute("latX",dto.getBulatitude());
 		return "sale_board/sbcontent_view";
 	}
 
