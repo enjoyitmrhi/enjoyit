@@ -120,7 +120,6 @@ new daum.Postcode({
 
 				</tr>
 				 
-            <tbody>
                <tr>
                   <td><input type="text" id="sample4_postcode"
                      placeholder="우편번호"> <input type="button"

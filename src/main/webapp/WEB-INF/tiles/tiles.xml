@@ -10,12 +10,7 @@
 		<put-attribute name="footer" value="/WEB-INF/include/footer.jsp" />
 	</definition>
 
-	<!-- base를 상속받은 base/index -->
-	<definition name="base/index" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
-	</definition>
 
-	<!-- 동적 매핑. 만약 /user/login의 경로라면 /WEB-INF/views/user/login.jsp 뷰를 가져온다. -->
 	<definition name="*" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
 	</definition>
@@ -27,7 +22,22 @@
 	<definition name="*/*/*" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
-	
-	
-	
+
+
+
+	<!-- 팝업용 -->
+	<definition name="popup" template="/WEB-INF/include/withoutHF.jsp">
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="sale_board/reserv" extends="popup">
+		<put-attribute name="body" value="/WEB-INF/views/sale_board/reserv.jsp" />
+	</definition>
+
+	<definition name="login/onSchedule" extends="popup">
+		<put-attribute name="body" value="/WEB-INF/views/login/onSchedule.jsp" />
+	</definition>
+
+
+
 </tiles-definitions> 

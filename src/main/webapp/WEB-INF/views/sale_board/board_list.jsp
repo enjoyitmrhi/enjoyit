@@ -61,7 +61,6 @@
 
 		content += "<p>가격 : " + item.sbprice + "</p>";
 
-		content += "<p>	<a href='#' class='btn btn-primary' role='button'>예약하기</a> <a	href='#' class='btn btn-default' role='button'>상세보기</a> </p>";
 		content += "</div>";
 		content += "</div>";
 		content += "</div>";
@@ -99,10 +98,6 @@
 								<div class="caption">
 									<h3>제목 : ${dto.sbtitle }</h3>
 									<p>가격 : ${dto.sbprice}</p>
-									<p>
-										<a href="#" class="btn btn-primary" role="button">예약하기</a> <a
-											href="#" class="btn btn-default" role="button">상세보기</a>
-									</p>
 								</div>
 							</div>
 						</div>

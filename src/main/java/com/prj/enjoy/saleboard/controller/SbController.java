@@ -55,13 +55,13 @@ public class SbController {
 		String sbcode = request.getParameter("sbcode");
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		LoginDao logindao =sqlSession.getMapper(LoginDao.class);
+		LoginDao logindao = sqlSession.getMapper(LoginDao.class);
 		String avgstar;
 		avgstar = dao.avgstar(sbcode);
 		if (avgstar == null || avgstar.equals("0")) {
 			avgstar = "1";
 		}
-		
+
 		Business dto = logindao.getBusiness(wid);
 		model.addAttribute("wid", wid);
 		model.addAttribute("avgstar", avgstar);
@@ -91,24 +91,27 @@ public class SbController {
 		String sbpic = req.getFilesystemName("sbpic");
 		String sbtitle = req.getParameter("sbtitle");
 		String sbprice = req.getParameter("sbprice");
-		String addr1 = request.getParameter("addr1");
-		String addr2 = request.getParameter("addr2");
-		String addr3 = request.getParameter("addr3");
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+		String addr3 = req.getParameter("addr3");
 		String sbloc = String.format("%s %s %s", addr1, addr2, addr3);
 		String sblongitude = req.getParameter("longy");
 		String sblatitude = req.getParameter("latx");
 
+		if (sbpic == null ) {
+			sbpic="";
+		}
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude);
+		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc, sblongitude, sblatitude);
 
 		return "redirect:board_list";
 	}
 
 	@RequestMapping(value = "/sbdelete")
-	public String sbdelete(HttpServletRequest request, Model model) {
+	public String sbdelete(HttpServletRequest request) {
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		String sbcode = request.getParameter("sbcode");
-
+		System.out.println(sbcode);
 		dao.delete(sbcode);
 		return "redirect:board_list";
 
@@ -119,25 +122,47 @@ public class SbController {
 		String attachPath = "resources\\upload\\";
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
 		String path = uploadPath + attachPath;
-		
+
 		MultipartRequest req = new MultipartRequest(request, path, 2044 * 1024 * 10, "UTF-8",
 				new DefaultFileRenamePolicy());
 
-		
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		String sbcode = req.getParameter("sbcode");
 		String sbprice = req.getParameter("sbprice");
 		String sbtitle = req.getParameter("sbtitle");
 		String sbcontent = req.getParameter("sbcontent");
+		String sbpic = req.getFilesystemName("sbpic");
 
-		String sbpic = dao.getSbPic(sbcode);
-		if (sbpic == null) {
-			sbpic = "";
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+		String addr3 = req.getParameter("addr3");
+		String sbloc = String.format("%s %s %s", addr1, addr2, addr3);
+		String sblongitude = req.getParameter("longy");
+		String sblatitude = req.getParameter("latx");
+
+		System.out.println(addr1);
+		System.out.println(sblongitude);
+
+		if (sbpic == null || sbpic == "") {
+			sbpic = dao.getSbPic(sbcode);
 		}
-		
-		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic);
+
+		System.out.println("적용후 addr" + addr1);
+		System.out.println("적용후 longitude" + sblongitude);
+
+		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent, sbpic, sbloc, sblongitude, sblatitude);
 		return "redirect:board_list";
 
 	}
-	
+
+	@RequestMapping(value = "/sbmodify_view")
+	public String sbmodify_view(HttpServletRequest request, Model model) {
+		String wid = request.getParameter("wid");
+		String sbcode = request.getParameter("sbcode");
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
+		model.addAttribute("wid", wid);
+		return "sale_board/sbmodify_view";
+
+	}
 }

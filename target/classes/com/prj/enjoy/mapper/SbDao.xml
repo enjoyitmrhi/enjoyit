@@ -45,7 +45,7 @@
 	</delete>
 	
 	<update id="sbmodify">
-	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5} WHERE SBCODE = #{param1}
+	UPDATE SALE_BOARD SET SBLOC = #{param6} ,SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5},SBLONGITUDE=#{param7},SBLATITUDE=#{param8} WHERE SBCODE = #{param1}
 	
 	</update>
 	
@@ -57,6 +57,22 @@
 	
 	<select id="getSbPic" resultType="String">
 		SELECT SBPIC FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
+	
+	<select id="getSbloc" resultType="String">
+		SELECT SBLOC FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
+	<select id="getSbLongitude" resultType="String">
+		SELECT SBLONGITUDE FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
+	<select id="getSbLatitude" resultType="String">
+		SELECT SBLATITUDE FROM SALE_BOARD
 		WHERE
 		SBCODE=#{param1 }
 	</select>

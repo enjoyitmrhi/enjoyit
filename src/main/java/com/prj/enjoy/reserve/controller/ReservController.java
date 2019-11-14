@@ -40,7 +40,7 @@ public class ReservController {
 		model.addAttribute("evt",evt);
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("sbtitle",dao.getTitle1(sbcode));
-		return "sale_board/reserv.pop";
+		return "sale_board/reserv";
 	}
 	
 	@RequestMapping("/pop/reserv_Apply")
@@ -72,7 +72,7 @@ public class ReservController {
 		}
 		model.addAttribute("evt",evt);
 		model.addAttribute("rtnum", rtnum);
-		return "login/onSchedule.pop";
+		return "login/onSchedule";
 	}
 	
 	@RequestMapping("/pop/reserv_Confirm")
