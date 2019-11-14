@@ -8,44 +8,47 @@
 
 </head>
 <body>
-	<h3>this is cuModify page</h3>
-	<table>
-		<tr>
-			<td>회원번호</td>
-			<td><input type="text">${cu.cunum }</td>
-		</tr>
-		<tr>
-			<td>회원아이디</td>
-			<td>${cu.cuid }</td>
-		</tr>
-		<tr>
-			<td>회원명</td>
-			<td>${cu.cuname }</td>
-		</tr>
-		<tr>
-			<td>회원주소</td>
-			<td>${cu.cuaddr }</td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td>${cu.cuemail }</td>
-		</tr>
-		<tr>
-			<td>생년월일</td>
-			<td>${cu.cubirth }</td>
-		</tr>
-		<tr>
-			<td>성별</td>
-			<td>${cu.cugender }</td>
-		</tr>
-		<tr>
-			<td>연락처</td>
-			<td>${cu.cutel }</td>
-		</tr>
-		<tr>
-			<td>가입일</td>
-			<td>${cu.cudate }</td>
-		</tr>
-	</table>
+	<div class="container">
+
+		<h3>this is cuModify page</h3>
+		<table>
+			<tr>
+				<td>회원번호</td>
+				<td><input type="text">${cu.cunum }</td>
+			</tr>
+			<tr>
+				<td>회원아이디</td>
+				<td>${cu.cuid }</td>
+			</tr>
+			<tr>
+				<td>회원명</td>
+				<td>${cu.cuname }</td>
+			</tr>
+			<tr>
+				<td>회원주소</td>
+				<td>${cu.cuaddr }</td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td>${cu.cuemail }</td>
+			</tr>
+			<tr>
+				<td>생년월일</td>
+				<td>${cu.cubirth }</td>
+			</tr>
+			<tr>
+				<td>성별</td>
+				<td>${cu.cugender }</td>
+			</tr>
+			<tr>
+				<td>연락처</td>
+				<td>${cu.cutel }</td>
+			</tr>
+			<tr>
+				<td>가입일</td>
+				<td>${cu.cudate }</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

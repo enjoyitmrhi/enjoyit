@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
@@ -8,18 +8,18 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
+<script>
+	function fnSubmitcForm(page) {
+		document.form1.cpage.value = page;
+		document.form1.submit();
+	}
+	function fnSubmitbForm(page) {
+		document.form1.bpage.value = page;
+		document.form1.submit();
+	}
+</script>
 </head>
 <body>
-<script>
-		function fnSubmitcForm(page) {
-			document.form1.cpage.value = page;
-			document.form1.submit();
-		}
-		function fnSubmitbForm(page) {
-			document.form1.bpage.value = page;
-			document.form1.submit();
-		}
-	</script>
 
 
 	<div class="container">
@@ -61,13 +61,13 @@
 			</form>
 		</div>
 
-		
+
 
 		<br>
-		
 
-	
-<form action="del_cu" method="post">
+
+
+		<form action="del_cu" method="post">
 			<h3>일반회원 목록</h3>
 			<input type="submit" value="회원삭제">
 			<table class="table table-hover">
@@ -132,6 +132,6 @@
 			</div>
 			<a href="admin_buMember"><input type="button" value="가맹회원보기"></a>
 		</form>
-		</div>
+	</div>
 </body>
 </html>

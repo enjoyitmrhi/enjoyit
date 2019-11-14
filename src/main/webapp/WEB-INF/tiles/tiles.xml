@@ -25,19 +25,49 @@
 
 
 
-	<!-- 팝업용 -->
-	<definition name="popup" template="/WEB-INF/include/withoutHF.jsp">
+	<!-- header, footer 제거 -->
+	<definition name="empty" template="/WEB-INF/include/withoutHF.jsp">
 		<put-attribute name="body" value="" />
 	</definition>
 
-	<definition name="sale_board/reserv" extends="popup">
-		<put-attribute name="body" value="/WEB-INF/views/sale_board/reserv.jsp" />
+	<!-- 팝업용 -->
+	<definition name="sale_board/reserv" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/sale_board/reserv.jsp" />
 	</definition>
 
-	<definition name="login/onSchedule" extends="popup">
-		<put-attribute name="body" value="/WEB-INF/views/login/onSchedule.jsp" />
+	<definition name="login/onSchedule" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/login/onSchedule.jsp" />
 	</definition>
 
-
-
+	<!-- 관리자 페이지 -->
+	<definition name="admin" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
+	</definition>
+	<definition name="admin/adminMain" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminMain.jsp" />
+	</definition>
+	<definition name="admin/cuManagement" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/cuManagement.jsp" />
+	</definition>
+	<definition name="admin/buManagement" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/buManagement.jsp" />
+	</definition>
+	<definition name="admin/edit_cu" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/admin/edit_cu.jsp" />
+	</definition>
+	<definition name="admin/edit_bu" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/admin/edit_bu.jsp" />
+	</definition>
+	<definition name="admin/admin_cuMember" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/admin_cuMember.jsp" />
+	</definition>
+	<definition name="admin/admin_buMember" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/admin_buMember.jsp" />
+	</definition>
 </tiles-definitions> 
