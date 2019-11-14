@@ -91,9 +91,9 @@ public class SbController {
 		String sbpic = req.getFilesystemName("sbpic");
 		String sbtitle = req.getParameter("sbtitle");
 		String sbprice = req.getParameter("sbprice");
-		String addr1 = request.getParameter("addr1");
-		String addr2 = request.getParameter("addr2");
-		String addr3 = request.getParameter("addr3");
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+		String addr3 = req.getParameter("addr3");
 		String sbloc = String.format("%s %s %s", addr1, addr2, addr3);
 		String sblongitude = req.getParameter("longy");
 		String sblatitude = req.getParameter("latx");

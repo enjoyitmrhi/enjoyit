@@ -13,13 +13,51 @@
 
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function join() {
+	var url = "join.pop";
+    var name = "Customer Join";
+    var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+    window.open(url, name, option);
+}
 
+function bJoin() {
+	var url = "bJoin.pop";
+    var name = "Business Join";
+    var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+    window.open(url, name, option);
+}
 
+function login() {
+	var url = "login.pop";
+    var name = "Login page";
+    var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+    window.open(url, name, option);
+}
 
-
+/* session.setAttribute("session_cid",getCookie("session_cid"));
+session.setAttribute("session_bid",getCookie("session_bid")); */
+</script>
+<% 
+Cookie[] cookies = request.getCookies();
+if(cookies != null){
+    for(Cookie cookie : cookies){
+        if(cookie.getName().equals("cid")){
+            session.setAttribute("session_cid", cookie.getValue());
+        }else if(cookie.getName().equals("cname")){
+            session.setAttribute("session_cname", cookie.getValue());
+        }else if(cookie.getName().equals("bid")){
+            session.setAttribute("session_bid", cookie.getValue());
+        }else if(cookie.getName().equals("bname")){
+            session.setAttribute("session_bname", cookie.getValue());
+        }
+    }
+} 
+%>
 
 </head>
 <body>
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary"> <a
 		class="navbar-brand" href="/enjoyit/">Enjoy_IT</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -110,12 +148,12 @@
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign
 					up</button>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="join">고객회원가입</a> <a
-						class="dropdown-item" href="bJoin">기업회원가입</a>
+					<a class="dropdown-item" href="javascript:join()">고객회원가입</a> <a
+						class="dropdown-item" href="javascript:bJoin()">기업회원가입</a>
 				</div>
 			</div>
 			&nbsp;&nbsp;
-			<form class="form-inline my-2 my-lg-0" action="login">
+			<form class="form-inline my-2 my-lg-0" action="javascript:login()">
 				<button class="btn btn-secondary  btn-sm" type="submit">Sign
 					in</button>
 			</form>

@@ -93,6 +93,12 @@ function checkfield() {
       
    }
    document.addjoin.submit();
+   window.close();
+}
+
+function close_pop() {
+	window.close();
+	
 }
 
 var geocoder = new daum.maps.services.Geocoder();
@@ -223,13 +229,11 @@ function sample4_execDaumPostcode() {
          <label><strong>사업자등록번호*</strong></label> <input type="text"
             name="burenum" id="burenum"><br> <label><strong>연락처*</strong></label>
          <input type="tel" name="butel" id="butel"><br> <label><strong>이메일*</strong></label>
-         <input type="email" name="buemail" id="buemail"><br> <input
-            type="button" value="회원가입" onclick="checkfield()">
+         <input type="email" name="buemail" id="buemail"><br> 
 
-
-         </table>
       </form>
-      <a href="login"><button>취소</button></a>
+         <input type="button" value="회원가입" onclick="checkfield()">
+	     <a href="javascript:close_pop()"><button>취소</button></a>
    </div>
 </body>
 </html>

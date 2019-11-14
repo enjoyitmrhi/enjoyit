@@ -42,10 +42,10 @@
 			<td>상품에 달린 문의 </td>
 			<td><a href="myAnswer">${qnacnt }개</a> <-보러가기</td>
 		</tr>
-		<tr>
+		<%-- <tr>
 			<td>상품에 달린 리뷰 </td>
 			<td><a href="myReply">${rvcnt }개</a> <-보러가기</td>
-		</tr>
+		</tr> --%>
 		<tr>
 			<td>예약신청글 </td>
 			<td><a href="myReserv">${rtcnt }개</a> <-보러가기</td>

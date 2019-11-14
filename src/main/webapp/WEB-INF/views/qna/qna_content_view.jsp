@@ -56,7 +56,7 @@
 									onclick="javascript:modify_auth()"
 									class="btn btn-outline-primary btn-sm">
 								<a
-									href="qnadelete?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}"
+									href="qnadelete?qanum=${qa.qanum}&wid=${wid }&sbcode=${content_view.sbcode}"
 									class="btn btn-outline-primary btn-sm" role="btn">삭제하기</a>
 							</c:if>
 						</div> <input type="submit" style="display: none;">
@@ -73,6 +73,5 @@
 	</div>
 
 
-	</div>
 </body>
 </html>

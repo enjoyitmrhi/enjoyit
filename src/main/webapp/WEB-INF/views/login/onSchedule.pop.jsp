@@ -47,7 +47,7 @@
             // your event source
             {	
               events: 
-              ${evt} ,
+              ${evt} 
               //color: 'red',     // an option!
               //textColor: 'yellow' // an option!
               
@@ -57,8 +57,9 @@
       calendar.render();
     });
     
-    function closeWindow() {  
+    function closeWindow() { 
     	 document.form1.submit();
+    	 window.opener.location = "myReserv";
     	 window.close();  
     }
 </script>
