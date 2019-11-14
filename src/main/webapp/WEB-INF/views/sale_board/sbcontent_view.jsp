@@ -95,8 +95,10 @@
 				&nbsp;&nbsp;<a
 					href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
 					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>&nbsp;&nbsp;
+				<c:if test="${session_cid != null }">
 				<a href="javascript:reserv(${sbcontent_view.sbcode})"
 					class="btn btn-outline-primary btn-sm" role="btn">예약하기</a>
+				</c:if>
 				<div style="float: right;">
 					<c:if test="${sbcontent_view.buid == session_bid}">
 						<button onclick="javascript:del_sbCont(${sbcontent_view.sbcode})"
@@ -119,7 +121,7 @@
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(${longY}, ${latX}), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(${sbcontent_view.sblongitude }, ${sbcontent_view.sblatitude }), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
        
     };
@@ -130,7 +132,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 var positions = [
     {
         content: '<div>작업장 </div>', 
-        latlng: new kakao.maps.LatLng(${longY}, ${latX})
+        latlng: new kakao.maps.LatLng(${sbcontent_view.sblongitude }, ${sbcontent_view.sblatitude })
     }
 ];
 

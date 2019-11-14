@@ -26,6 +26,7 @@ import com.prj.enjoy.login.dao.LoginDao;
 import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.login.dto.Customer;
 import com.prj.enjoy.qna.dao.QnaDao;
+import com.prj.enjoy.reserve.dao.ReservDao;
 import com.prj.enjoy.review.dao.ReviewDao;
 
 @Controller
@@ -287,9 +288,11 @@ public class LoginController {
 		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
 		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
 		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
+		ReservDao rtdao = sqlSession.getMapper(ReservDao.class);
 		model.addAttribute("bu", logdao.getBusiness(buid));
 		model.addAttribute("qnacnt", qnadao.qnaboardAcount(buid));
 		model.addAttribute("rvcnt", rvdao.replycount(buid));
+		model.addAttribute("rtcnt", rtdao.cntReserv(buid));
 		return "login/buMypage";
 	}
 
@@ -541,9 +544,18 @@ public class LoginController {
 	@RequestMapping("/myReply")
 	public String myReply(HttpSession session, Model model) {
 		String buid = (String) session.getAttribute("session_bid");
-
+		
 		return "login/myReply";
 	}
+	
+	@RequestMapping("/myReserv")
+	public String myReserv(HttpSession session, Model model) {
+		String buid = (String) session.getAttribute("session_bid");
+		ReservDao dao = sqlSession.getMapper(ReservDao.class);
+		model.addAttribute("rtlist", dao.getReserv(buid));
+		return "login/myReserv";
+	}
+	
 	
 	@RequestMapping("/qna_edit")
 	public String qna_edit(HttpServletRequest request, Model model) {
