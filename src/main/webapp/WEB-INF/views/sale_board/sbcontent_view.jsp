@@ -133,8 +133,7 @@ var positions = [
     {
         content: '<div>작업장 </div>', 
         latlng: new kakao.maps.LatLng(${sbcontent_view.sblongitude }, ${sbcontent_view.sblatitude })
-    }
-];
+    }];
 
 for (var i = 0; i < positions.length; i ++) {
     // 마커를 생성합니다

@@ -10,7 +10,7 @@
 <body>
 
 	<script>
-		function cancle() {
+		function cancel() {
 			location.href = "qna_list?sbcode=${sbcode}&wid=${wid}"
 		}
 	</script>
@@ -46,7 +46,7 @@
 
 			</table>
 			<input type="submit" class="btn btn-outline-primary" value="완료">
-			<input type="button" onclick="javascript:cancle() " value="취소"
+			<input type="button" onclick="javascript:cancel() " value="취소"
 				class="btn btn-outline-danger">
 		</form>
 	</div>
