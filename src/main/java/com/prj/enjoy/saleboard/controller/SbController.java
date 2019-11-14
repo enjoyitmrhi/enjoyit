@@ -93,10 +93,15 @@ public class SbController {
 		String sbpic = req.getFilesystemName("sbpic");
 		String sbtitle = req.getParameter("sbtitle");
 		String sbprice = req.getParameter("sbprice");
-		String sbloc = req.getParameter("sbloc");
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
+		String addr3 = request.getParameter("addr3");
+		String sbloc = String.format("%s %s %s", addr1, addr2, addr3);
+		String sblongitude = req.getParameter("longy");
+		String sblatitude = req.getParameter("latx");
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc);
+		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude);
 
 		return "redirect:board_list";
 	}

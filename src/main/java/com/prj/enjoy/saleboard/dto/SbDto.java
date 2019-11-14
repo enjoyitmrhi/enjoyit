@@ -12,6 +12,8 @@ public class SbDto {
 	private String sbloc;
 	private Timestamp sbdate;
 	private String buid;
+	private String sblongitude;
+	private String sblatitude;
 
 	public int getSbcode() {
 		return sbcode;
