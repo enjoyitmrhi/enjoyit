@@ -29,9 +29,9 @@
 
 	<insert id="board_write">
 		INSERT INTO
-		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBLONGITUDE,SBLATITUDE,BUID)
+		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,BUID)
 		VALUES(SBCODE_SEQ.NEXTVAL+1,(SELECT BUNUM FROM BUSINESS WHERE BUID =
-		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param1} )
+		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param1} )
 
 	</insert>
 	
