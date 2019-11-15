@@ -102,11 +102,7 @@ new daum.Postcode({
 						value="${session_bid  }" readonly="readonly" class="form-control"></td>
 
 				</tr>
-				<tr>
-					<td>사진</td>
-					<td><input type="file" name="sbpic" class="form-control"></td>
-
-				</tr>
+				
 				<tr>
 					<td>제목</td>
 					<td><input type="text" size="50" name="sbtitle"
@@ -119,7 +115,17 @@ new daum.Postcode({
 						class="form-control"></td>
 
 				</tr>
-				 
+				<tr>
+					<td>내용</td>
+					<td><textarea rows="15" name="sbcontent"
+						class="form-control"> </textarea> </td>
+
+				</tr>
+				 <tr>
+					<td>사진</td>
+					<td><input type="file" name="sbpic" class="form-control"></td>
+
+				</tr>
                <tr>
                   <td><input type="text" id="sample4_postcode"
                      placeholder="우편번호"> <input type="button"

@@ -9,7 +9,7 @@ import com.prj.enjoy.review.dto.ReviewDto;
 public interface SbDao {
 	ArrayList<SbDto> board_list();
 
-	void board_write(String buid, String sbpic, String sbtitle, String sbprice, String sbloc, String sblongitude, String sblatitude);
+	void board_write(String buid, String sbpic, String sbtitle, String sbprice, String sbloc, String sblongitude, String sblatitude, String sbcontent);
 
 	SbDto sb_content(String sbcode);
 
