@@ -162,15 +162,14 @@
 			</div>
 			<div>
 				<a href="board_list" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a>
+					role="btn"> 취소</a>
 			</div>
 			<div style="float: right;">
 				<c:if test="${sbcontent_view.buid == session_bid}">
-					<input type="submit" class="btn btn-outline-info btn-sm"
-						value="수정하기">
+					<input type="submit" class="btn btn-outline-info btn-sm" value="수정">
 		&nbsp;&nbsp;
 		<a href="sbdelete?sbcode=${sbcontent_view.sbcode}"
-						class="btn btn-outline-primary btn-sm" role="btn"> 삭제하기</a>
+						class="btn btn-outline-danger btn-sm" role="btn"> 삭제</a>
 
 				</c:if>
 			</div>

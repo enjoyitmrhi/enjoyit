@@ -28,29 +28,27 @@ height: 300px;
 			<li data-target="#banner" data-slide-to="2"></li>
 		</ol>
 		<div class="carousel-inner" role="listbox">
-			<!-- 슬라이드 1 -->
+			<!-- 슬라이드 1 시작-->
 			<div class="carousel-item active">
 				<img class="d-block img-fluid " src="resources/imgs/banner1.jpg" 
 					alt="First slide">
 			</div>
-			<!-- 슬라이드 1 -->
+			<!-- 슬라이드 1 끝-->
 
 
-			<!-- 슬라이드 2 -->
-
+			<!-- 슬라이드 2 시작-->
 			<div class="carousel-item">
 				<img class="d-block img-fluid " src="resources/imgs/banner2.jpg"
 					alt="Second slide">
 			</div>
-			<!-- 슬라이드 2 -->
+			<!-- 슬라이드 2 끝-->
 
-			<!-- 슬라이드 3 -->
-
+			<!-- 슬라이드 3 시작-->
 			<div class="carousel-item">
 				<img class="d-block img-fluid " src="resources/imgs/banner3.jpg"
 					alt="Third slide">
 			</div>
-			<!-- 슬라이드 3 -->
+			<!-- 슬라이드 3 끝-->
 
 		</div>
 		<a class="carousel-control-prev" href="#banner" role="button"

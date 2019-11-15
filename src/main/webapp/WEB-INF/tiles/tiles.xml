@@ -30,16 +30,12 @@
 		<put-attribute name="body" value="" />
 	</definition>
 
-	<!-- 팝업용 -->
+	<!-- 예약 페이지 -->
 	<definition name="sale_board/reserv" extends="empty">
 		<put-attribute name="body"
 			value="/WEB-INF/views/sale_board/reserv.jsp" />
 	</definition>
 
-	<definition name="login/onSchedule" extends="empty">
-		<put-attribute name="body"
-			value="/WEB-INF/views/login/onSchedule.jsp" />
-	</definition>
 
 	<!-- 관리자 페이지 -->
 	<definition name="admin" extends="empty">
@@ -70,4 +66,24 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/admin_buMember.jsp" />
 	</definition>
+
+
+	<!-- 로그인 페이지 -->
+	<definition name="login/login" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />
+	</definition>
+
+	<definition name="login/join" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/login/join.jsp" />
+	</definition>
+
+	<definition name="login/bJoin" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/login/bJoin.jsp" />
+	</definition>
+	<definition name="login/onSchedule" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/login/onSchedule.jsp" />
+	</definition>
+
+
 </tiles-definitions> 

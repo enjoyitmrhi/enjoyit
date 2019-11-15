@@ -27,13 +27,12 @@
 	}
 	function getNumber() {
 		var num = $("#num").val() - 0; // -0을 하지 않으면 문자로 인식하기 때문에 일부로 붙였다.
-		num = num + 6;
+		num = num + 4;
 		$("#num").val(num);
 		return num
 
 	}
 
-	
 	function renderMoreContents(list) {
 		var rows = [];
 		$.each(list, function(index, item) {
@@ -53,7 +52,7 @@
 				+ item.sbcode
 				+ "&sbpic="
 				+ item.sbpic
-				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' width='200px' height='200px'></a>";
+				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' class='img-thumbnail'></a>";
 
 		content += "<div class='caption'>";
 
@@ -80,13 +79,13 @@
 		<div class="container">
 			<form id="searchTxtForm">
 
-				<input type="hidden" name="num" id="num" value="6">
+				<input type="hidden" name="num" id="num" value="4">
 
 			</form>
 
 
 
-			<div>
+			<div id="top">
 				<div class="row text-center" id="more_list">
 					<c:forEach items="${boardlist }" var="dto">
 						<div class="col-sm-8 col-md-6">
@@ -114,15 +113,18 @@
 
 
 
+			<div align="left">
+				<c:if test="${session_bid != null}">
+					<a href="board_write_view?buid=${session_bid }" role="btn"
+						class="btn btn-outline-primary btn-sm">글 작성</a>
 
-			<c:if test="${session_bid != null}">
-				<a href="board_write_view?buid=${session_bid }">writing!!</a>
+				</c:if>
+			</div>
+			<div align="right">
+				<a href="#top"> 맨위로 가기</a>
+			</div>
 
-			</c:if>
-			<c:if test="${session_bid == null}">
 
-				<a>writing!! only for business</a>
-			</c:if>
 
 
 
@@ -133,7 +135,7 @@
 	</div>
 	<!-- end wrap -->
 
-	
+
 </body>
 
 </html>

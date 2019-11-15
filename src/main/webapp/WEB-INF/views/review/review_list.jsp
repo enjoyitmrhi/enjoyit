@@ -53,8 +53,10 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a
-					href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a></td>
+				<td colspan="7">
+					<c:if test="${session_cid != null}"><a
+					href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a>
+					</c:if></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">

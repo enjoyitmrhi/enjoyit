@@ -91,10 +91,10 @@
 				</c:if>
 				<div style="float: right;">
 					<c:if test="${sbcontent_view.buid == session_bid}">
-						
 
-					 <input type="submit"
-							class="btn btn-outline-info btn-sm" value="수정하기">
+
+						<input type="submit" class="btn btn-outline-info btn-sm"
+							value="수정페이지">
 					</c:if>
 				</div>
 			</div>

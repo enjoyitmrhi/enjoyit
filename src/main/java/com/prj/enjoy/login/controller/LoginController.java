@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.core.ApplicationContext;
-import org.apache.catalina.core.StandardContext;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -59,7 +57,7 @@ public class LoginController {
 		// 세션 삭제
 		session.invalidate();
 
-		return "login/login.pop";
+		return "login/login";
 	}
 
 	@RequestMapping("/logout")
@@ -131,7 +129,7 @@ public class LoginController {
 
 	@RequestMapping("/join.pop")
 	public String join() {
-		return "login/join.pop";
+		return "login/join";
 	}
 
 	@RequestMapping("/joinProc")
@@ -194,7 +192,7 @@ public class LoginController {
 
 	@RequestMapping("/bJoin.pop")
 	public String bJoin() {
-		return "login/bJoin.pop";
+		return "login/bJoin";
 	}
 
 	@RequestMapping("/bJoinProc")

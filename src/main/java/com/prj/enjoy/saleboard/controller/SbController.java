@@ -41,7 +41,7 @@ public class SbController {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
-		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 4;
 
 		ArrayList<SbDto> addDto = dao.add_list(sNum, eNum);
 
