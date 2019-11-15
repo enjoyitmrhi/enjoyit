@@ -241,4 +241,15 @@ public class QnaController {
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		dao.replyShape(group, step);
 	}
+	
+	@RequestMapping("/qna_edit")
+	public String qna_edit(HttpServletRequest request, Model model) {
+		String qanum = request.getParameter("num");
+		QnaDao dao =sqlSession.getMapper(QnaDao.class);
+		dao.qacontview(qanum);
+		model.addAttribute("qa",dao.qacontview(qanum));
+		
+		return "/login/qna_edit";
+	}
+	
 }

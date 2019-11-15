@@ -21,14 +21,14 @@
 	</insert>
 	<select id="cntReserv" resultType="Integer">
 		SELECT COUNT(*) FROM RESERVATION WHERE SBCODE IN 
-		(SELECT SBCODE FROM SALE_BOARD WHERE BUID = #{param1}) AND RTCONFIRM = 'false'	
+		(SELECT SBCODE FROM SALE_BOARD WHERE BUID = #{param1}) AND RTCONFIRM = 'false'
 	</select>
 	<select id="getReserv" resultType="com.prj.enjoy.reserve.dto.Reservation">
 		SELECT RTNUM, SBTITLE, CUID, RTSDATE, RTEDATE FROM 
 		(SELECT RTNUM, SBTITLE, RT.CUID, RTSDATE, RTEDATE, RT.SBCODE, RTCONFIRM 
 		FROM SALE_BOARD SB, RESERVATION RT WHERE SB.SBCODE=RT.SBCODE) 
 		WHERE SBCODE IN (SELECT SBCODE FROM SALE_BOARD WHERE BUID = #{param1}) 
-		AND RTCONFIRM = 'false'
+		AND RTCONFIRM = 'false' ORDER BY RTNUM
 	</select>
 	<select id="getConfirm" resultType="com.prj.enjoy.reserve.dto.Reservation">
 		SELECT CUID,RTSDATE,RTEDATE,RTCONFIRM FROM RESERVATION WHERE RTNUM = #{param1} OR (SBCODE= (SELECT SBCODE FROM RESERVATION WHERE RTNUM =#{param1}) AND RTCONFIRM = 'true')	
