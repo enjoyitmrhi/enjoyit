@@ -15,9 +15,9 @@ public interface AdminDao {
 
 	public ArrayList<Business> getBusiness(@Param("busort") String busort, @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd);
 
-//	public ArrayList<Customer> getCustomer();
-//
-//	public ArrayList<Business> getBusiness();
+	public ArrayList<Customer> getCuLoc();
+
+	public ArrayList<Business> getBuLoc();
 
 	public Customer getCuInfo(String cunum);
 

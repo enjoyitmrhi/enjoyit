@@ -16,6 +16,10 @@ public class Customer {
 	private String culongitude;
 	private String culatitude;
 	
+	public String toString(String cuid, String culongitude, String culatitude) {
+		return "{content:'<div>"+cuid+"</div>',latlng: new kakao.maps.LatLng("+culongitude+","+culatitude+")}";
+	}
+	
 	public String getCunum() {
 		return cunum;
 	}
