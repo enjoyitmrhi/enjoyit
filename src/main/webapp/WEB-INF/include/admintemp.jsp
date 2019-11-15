@@ -22,10 +22,14 @@
 </head>
 <body>
 
-	
+	<div>
+		<div id="header">
+			<tiles:insertAttribute name="header" />
+		</div>
 		<div id="main">
 			<tiles:insertAttribute name="body" />
 		</div>
+	</div>
 	
 	
 	

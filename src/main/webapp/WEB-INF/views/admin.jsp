@@ -14,13 +14,13 @@
 		 <div class="col-sm-6">
 			관리자로그인
 			<form action="adminLoginProc" method="post">
-				<table class= "table">
+				<table class= "table table-hover" align="center" >
 					<tr>
-						<td  class="table-primary"><span>아이디</span></td>
+						<td ><span>아이디</span></td>
 						<td><input type="text" name="adid" class = "form-control"></td>
 					</tr>
 					<tr>
-						<td class="table-primary"><span>비밀번호</span></td>
+						<td ><span>비밀번호</span></td>
 						<td><input type="password" name="adpw"  class = "form-control"></td>
 					</tr>
 				</table>

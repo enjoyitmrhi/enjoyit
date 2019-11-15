@@ -71,7 +71,7 @@
 			<h3>가맹회원 목록</h3>
 			<input type="submit" value="가맹회원삭제">
 			<table class="table table-hover">
-				<tr class="table-primary">
+				<tr class="table-dark">
 					<td>선택</td>
 					<td>회원번호</td>
 					<td>회원아이디</td>
