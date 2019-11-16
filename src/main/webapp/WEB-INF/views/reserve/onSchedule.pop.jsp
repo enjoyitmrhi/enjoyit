@@ -14,10 +14,11 @@
 <script src='<c:url value ="/resources/fullcalendar/interaction/main.js" />'></script>
 <script src='<c:url value ="/resources/fullcalendar/core/locales/ko.js" />'></script>
 <script src='<c:url value ="/resources/fullcalendar/moment/main.min.js" />'></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
-    
       var calendar = new FullCalendar.Calendar(calendarEl, {
     	
         plugins: [ 'dayGrid' , 'interaction'],
@@ -62,6 +63,22 @@
     	 window.opener.location = "myReserv";
     	 window.close();  
     }
+    
+    function cancelApply(rtnum) { 
+    	var result = confirm("신청된 예약을 취소하시겠습니까?");
+    	var cuid = $('#cuid').val();
+    	if(result){
+    		 $.ajax({
+    			 type : "POST",
+			     url : "cancelApply.do",
+			     data : {
+			          num : rtnum
+			      }
+    		 });
+    		 
+    		location.href = "cancelMsg?cuid="+cuid;
+    	}	
+   }
 </script>
 </head>
 <body>
@@ -72,8 +89,8 @@
 
 <input type="hidden" name="rtnum" value="${rtnum }" >
 <input type="button" onclick="closeWindow()" value="예약수락">
-	
-
+<input type="button" onclick="cancelApply(${rtnum })" value="예약취소">	
+<input type="hidden" id="cuid" value="${cuid }">
 
 </form>
 </body>

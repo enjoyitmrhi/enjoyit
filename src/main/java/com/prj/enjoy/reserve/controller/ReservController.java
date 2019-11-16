@@ -58,6 +58,7 @@ public class ReservController {
 	@RequestMapping("/onSchedule.pop")
 	public String onSchedule(HttpServletRequest request, Model model) {
 		String rtnum =request.getParameter("rtnum");
+		String id =request.getParameter("cuid");
 		ReservDao dao = sqlSession.getMapper(ReservDao.class);
 		ArrayList<Reservation> schedules = dao.getConfirm(rtnum);
 		ArrayList<String> evt =new ArrayList<String>();
@@ -70,9 +71,11 @@ public class ReservController {
 			rev=new Reservation(cuid, rtsdate, rtedate, rtconfirm);
 			evt.add(rev.toString());
 		}
+		model.addAttribute("cuid", dao.getReservInfo(rtnum).getCuid());
+		
 		model.addAttribute("evt",evt);
-		model.addAttribute("rtnum", rtnum);
-		return "login/onSchedule.pop";
+		model.addAttribute("rtnum", rtnum);		
+		return "reserve/onSchedule.pop";
 	}
 	
 	@RequestMapping("/pop/reserv_Confirm")
@@ -80,5 +83,33 @@ public class ReservController {
 		String rtnum = request.getParameter("rtnum");
 		ReservDao dao = sqlSession.getMapper(ReservDao.class);
 		dao.apply_Confirm(rtnum);
+	}
+	
+	@RequestMapping("/cancelApply")
+	public void cancelApply(HttpServletRequest requst) {
+		String rtnum = requst.getParameter("num");
+		ReservDao dao = sqlSession.getMapper(ReservDao.class);
+		dao.reservCancel(rtnum);
+		
+	}
+	
+	@RequestMapping("/cancelMsg")
+	public String sendMsg(HttpServletRequest request, Model model) {
+//		String rtnum = request.getParameter("rtnum");
+		String cuid= request.getParameter("cuid");
+		ReservDao dao= sqlSession.getMapper(ReservDao.class);	
+		model.addAttribute("cuid", cuid);
+		return "reserve/cancelMsg.pop"; 
+	}
+	
+	@RequestMapping("/send")
+	public void send(HttpServletRequest request, Model model) {
+		String msgtitle = request.getParameter("title");
+		String msgfrom = request.getParameter("from");
+		String msgto = request.getParameter("to");
+		String msgcontent = request.getParameter("content");
+		ReservDao dao= sqlSession.getMapper(ReservDao.class);
+		dao.cancelMsg(msgtitle,msgfrom,msgto,msgcontent);
+		
 	}
 }
