@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.core.ApplicationContext;
-import org.apache.catalina.core.StandardContext;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,6 +27,7 @@ import com.prj.enjoy.login.dao.AdminDao;
 import com.prj.enjoy.login.dao.LoginDao;
 import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.login.dto.Customer;
+import com.prj.enjoy.message.dao.MsgDao;
 import com.prj.enjoy.qna.dao.QnaDao;
 import com.prj.enjoy.reserve.dao.ReservDao;
 import com.prj.enjoy.review.dao.ReviewDao;
@@ -256,9 +255,12 @@ public class LoginController {
 		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
 		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
 		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
+		MsgDao msgdao = sqlSession.getMapper(MsgDao.class);
 		model.addAttribute("cu", logdao.getCustomer(cuid));
 		model.addAttribute("qnacnt", qnadao.qnaboardQcount(cuid));
 		model.addAttribute("rvcnt", rvdao.reviewcount(cuid));
+		model.addAttribute("newmsg",msgdao.chkMsg(cuid,1));
+		model.addAttribute("totmsg",msgdao.chkMsg(cuid,2));
 
 		return "login/cuMypage";
 	}
