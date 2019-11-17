@@ -36,4 +36,7 @@ public interface QnaDao {
 	
 	ArrayList<QnaDto> myqnablist(String buid);
 	
+	String getType(String sbcode);
+
+	String chkReply(String strNum);
 }

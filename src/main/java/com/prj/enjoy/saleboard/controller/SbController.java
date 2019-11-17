@@ -25,25 +25,69 @@ public class SbController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping(value = "/board_list")
-	public String boardList(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/board_list_seminar")
+	public String boardList_seminar(HttpServletRequest request, Model model) {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 
-		model.addAttribute("boardlist", dao.board_list());
+		model.addAttribute("boardlist", dao.board_list_seminar());
 
-		return "sale_board/board_list";
+		return "sale_board/board_list_seminar";
+	}
+	@RequestMapping(value = "/board_list_practice")
+	public String boardList_practice(HttpServletRequest request, Model model) {
+
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+
+		model.addAttribute("boardlist", dao.board_list_practice());
+
+		return "sale_board/board_list_practice";
+	}
+	@RequestMapping(value = "/board_list_party")
+	public String boardList_party(HttpServletRequest request, Model model) {
+
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+
+		model.addAttribute("boardlist", dao.board_list_party());
+
+		return "sale_board/board_list_party";
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/add_list")
-	public ArrayList<SbDto> jsonBoardList(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/add_list1")
+	public ArrayList<SbDto> jsonBoardList1(HttpServletRequest request, HttpServletResponse response) {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
 		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
 
-		ArrayList<SbDto> addDto = dao.add_list(sNum, eNum);
+		ArrayList<SbDto> addDto = dao.add_list1(sNum, eNum);
+
+		return addDto;
+
+	}
+	@ResponseBody
+	@RequestMapping(value = "/add_list2")
+	public ArrayList<SbDto> jsonBoardList2(HttpServletRequest request, HttpServletResponse response) {
+
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+
+		ArrayList<SbDto> addDto = dao.add_list2(sNum, eNum);
+
+		return addDto;
+
+	}
+	@ResponseBody
+	@RequestMapping(value = "/add_list3")
+	public ArrayList<SbDto> jsonBoardList3(HttpServletRequest request, HttpServletResponse response) {
+
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+
+		ArrayList<SbDto> addDto = dao.add_list3(sNum, eNum);
 
 		return addDto;
 
@@ -97,20 +141,38 @@ public class SbController {
 		String sbloc = String.format("%s %s %s", addr1, addr2, addr3);
 		String sblongitude = req.getParameter("longy");
 		String sblatitude = req.getParameter("latx");
+		String sbtype =req.getParameter("sbtype");
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude);
-
-		return "redirect:board_list";
+		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude,sbtype);
+		if (sbtype.equals("1")) {
+			return "redirect:board_list_seminar";
+		}else if (sbtype.equals("2")) {
+			return "redirect:board_list_practice";
+		}else {
+			return "redirect:board_list_party";
+		}
+			
 	}
 
 	@RequestMapping(value = "/sbdelete")
 	public String sbdelete(HttpServletRequest request, Model model) {
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		String sbcode = request.getParameter("sbcode");
-
+		System.out.println("sbcode >>>>>>> "+sbcode);
+		String sbtype = dao.getType(sbcode);
+		dao.del_reserv(sbcode);
+		dao.del_Qna(sbcode);
+		dao.del_Review(sbcode);
 		dao.delete(sbcode);
-		return "redirect:board_list";
+		
+		if (sbtype.equals("1")) {
+			return "redirect:board_list_seminar";
+		}else if (sbtype.equals("2")) {
+			return "redirect:board_list_practice";
+		}else {
+			return "redirect:board_list_party";
+		}
 
 	}
 
@@ -136,8 +198,15 @@ public class SbController {
 		}
 		
 		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic);
-		return "redirect:board_list";
+		String sbtype = dao.getType(sbcode);
 
+		if (sbtype.equals("1")) {
+			return "redirect:board_list_seminar";
+		}else if (sbtype.equals("2")) {
+			return "redirect:board_list_practice";
+		}else {
+			return "redirect:board_list_party";
+		}
 	}
 	
 }

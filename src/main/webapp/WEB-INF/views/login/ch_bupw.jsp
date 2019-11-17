@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
+<div class="container">
 <h2>${session_bid }님 비밀번호 변경</h2>
 <form action="ch_bupwProc" method="post"> 
 기존 비밀번호를 입력해주세요<br/>

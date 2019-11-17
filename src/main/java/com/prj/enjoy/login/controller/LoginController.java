@@ -79,7 +79,7 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, value = "/loginProc.do")
 	@ResponseBody
 	public String loginProc(@RequestParam("userid") String cuid, @RequestParam("userpw") String cupw,
-		Model model, HttpServletResponse response) throws Exception {
+		Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
 		Customer dto = dao.getCustomer(cuid);
@@ -123,6 +123,7 @@ public class LoginController {
 			Cookie cookie1 = new Cookie("bid",buid);
 			Cookie cookie2 = new Cookie("bname",dto.getBuname());
             response.addCookie(cookie1);response.addCookie(cookie2);
+            
 			return "true";
 		}
 

@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href='<c:url value ="/resources/fullcalendar/core/main.css" />'
-   rel='stylesheet' />
+<link href='<c:url value ="/resources/fullcalendar/core/main.css" />' rel='stylesheet' />
 <link href='<c:url value ="/resources/fullcalendar/daygrid/main.css" />'
    rel='stylesheet' />
 <script src='<c:url value ="/resources/fullcalendar/core/main.js" />'></script>
 <script src='<c:url value ="/resources/fullcalendar/daygrid/main.js" />'></script>
-<script src='<c:url value ="/resources/fullcalendar/interaction/main.js" />'></script>
+<script src='<c:url value ="/resources/fullcalendar/interaction/main.js" />'>   </script>
 <script src='<c:url value ="/resources/fullcalendar/core/locales/ko.js" />'></script>
 <script src='<c:url value ="/resources/fullcalendar/moment/main.min.js" />'></script>
 <script>

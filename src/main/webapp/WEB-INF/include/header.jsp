@@ -73,32 +73,32 @@ if(cookies != null){
 			</a></li>
 			<li class="nav-item dropdown show"><a
 				class="nav-link dropdown-toggle" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false" href="#">Seminar room</a>
+				aria-haspopup="true" aria-expanded="false" href="board_list_seminar">Seminar room</a>
 				<div class="dropdown-menu " x-placement="bottom-start"
 					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-					<a class="dropdown-item" href="#">Meeting room</a> <a
-						class="dropdown-item" href="#">Study room</a> <a
-						class="dropdown-item" href="#">Something else here</a>
+					<a class="dropdown-item" href="board_list_seminar">Meeting room</a> <a
+						class="dropdown-item" href="board_list_seminar">Study room</a> <a
+						class="dropdown-item" href="board_list_seminar">Something else here</a>
 				</div></li>
 			<li class="nav-item dropdown show"><a
 				class="nav-link dropdown-toggle" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false" href="#">Practice
+				aria-haspopup="true" aria-expanded="false" href="board_list_practice">Practice
 					room</a>
 				<div class="dropdown-menu " x-placement="bottom-start"
 					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-					<a class="dropdown-item" href="#">Singing practice room</a> <a
-						class="dropdown-item" href="#">Dance practice room</a> <a
-						class="dropdown-item" href="#">Performance practice room</a>
+					<a class="dropdown-item" href="board_list_practice">Singing practice room</a> <a
+						class="dropdown-item" href="board_list_practice">Dance practice room</a> <a
+						class="dropdown-item" href="board_list_practice">Performance practice room</a>
 
 				</div></li>
 			<li class="nav-item  dropdown show"><a
 				class="nav-link dropdown-toggle" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false" href="#">Party room</a>
+				aria-haspopup="true" aria-expanded="false" href="board_list_party">Party room</a>
 				<div class="dropdown-menu " x-placement="bottom-start"
 					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-					<a class="dropdown-item" href="#">Big party room</a> <a
-						class="dropdown-item" href="#">Small party room</a> <a
-						class="dropdown-item" href="#">Something else here</a>
+					<a class="dropdown-item" href="board_list_party">Big party room</a> <a
+						class="dropdown-item" href="board_list_party">Small party room</a> <a
+						class="dropdown-item" href="board_list_party">Something else here</a>
 
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>

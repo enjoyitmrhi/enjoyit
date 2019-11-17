@@ -10,7 +10,6 @@
 </head>
 <body>
 <div class="container">
-<h3>this is my Answer</h3>
 		<table>
 			<tr>
 				<td>상품명</td>

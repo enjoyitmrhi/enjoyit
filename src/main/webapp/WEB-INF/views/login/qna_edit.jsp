@@ -11,12 +11,13 @@
 
 			document.ansform.submit();
 		};
+		
+		
 	</script>
 </head>
 <body>
 	
 	<div class="container">
-	<h3>content_view</h3>
 	상품판매자 :${session_bid }
 	<form action="qnamodify" method="post" name="ansform" id="ansform">
 		<input type="hidden" name="sbcode" value="${qa.sbcode }">
@@ -36,9 +37,9 @@
 			</table>
 		<input type="submit" style="display: none;">
 
-		<a><button onclick="javascript:modify_auth()">수정하기</button></a>
-		<a href="qnadelete?qanum=${qa.qanum}&wid=${session_bid }&sbcode=${qa.sbcode}"><button>삭제하기</button></a>
-		<a href="qna_list"> 목록가기</a>
+		<a><button onclick="javascript:modify_auth()" class="btn btn-outline-primary btn-sm">수정하기</button></a>
+		<a href="qnadelete?qanum=${qa.qanum}&wid=${session_bid }&sbcode=${qa.sbcode}" class="btn btn-outline-primary btn-sm">삭제하기</a>
+		<a href="qna_list?sbcode=${qa.sbcode}&wid=${session_bid }" class="btn btn-outline-primary btn-sm"> 목록가기</a>
 		</form>
 		&nbsp;&nbsp;
 	</div>

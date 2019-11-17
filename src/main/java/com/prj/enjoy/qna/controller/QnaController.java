@@ -32,9 +32,10 @@ public class QnaController {
 
 		String sbcode = request.getParameter("sbcode");
 		String wid = request.getParameter("wid");
+		String sbtype = dao.getType(sbcode);
 		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("wid", wid);
-
+		model.addAttribute("sbtype", sbtype);
 		String qatitle = "";
 		String qacontent = "";
 
@@ -167,9 +168,9 @@ public class QnaController {
 		model.addAttribute("wid", wid);
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		QnaDto dto = dao.qacontview(strNum);
-
+		String result= dao.chkReply(strNum);
+		model.addAttribute("reply", result);
 		model.addAttribute("content_view", dto);
-
 		return "/qna/qna_content_view";
 		
 		
@@ -177,11 +178,12 @@ public class QnaController {
 
 	@RequestMapping("/qnadelete")
 	public String qnadelete(HttpServletRequest request, Model model) {
+		System.out.println("passing delete");
 		String strNum = request.getParameter("qanum");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		String wid = request.getParameter("wid");
 		String sbcode = request.getParameter("sbcode");
-
+		System.out.println(strNum);
 		dao.qnadelete(strNum);
 
 		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
@@ -189,6 +191,7 @@ public class QnaController {
 
 	@RequestMapping("/qnamodify")
 	public String qnamodify(HttpServletRequest request, Model model) {
+		System.out.println("passing modify");
 		String strNum = request.getParameter("qanum");
 		String content = request.getParameter("content");
 		String wid = request.getParameter("wid");

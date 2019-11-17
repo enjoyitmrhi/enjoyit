@@ -14,6 +14,15 @@ public class SbDto {
 	private String buid;
 	private String sblongitude;
 	private String sblatitude;
+	private String sbtype;
+
+	public String getSbtype() {
+		return sbtype;
+	}
+
+	public void setSbtype(String sbtype) {
+		this.sbtype = sbtype;
+	}
 
 	public int getSbcode() {
 		return sbcode;

@@ -8,6 +8,7 @@
 
 </head>
 <body>
+<div class="container">
 	<h3>this is edit_cu page</h3>
 	<form action="cu_editProc" method="post">
 		<table>
@@ -52,5 +53,6 @@
 			href="cuManagement?cunum=${cu.cunum }"><input type="button"
 			value="취소"></a>
 	</form>
+</div>
 </body>
 </html>

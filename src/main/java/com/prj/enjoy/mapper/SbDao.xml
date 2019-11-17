@@ -5,33 +5,71 @@
 
 <mapper namespace="com.prj.enjoy.saleboard.dao.SbDao">
 
-	<select id="board_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+	<select id="board_list_seminar" resultType="com.prj.enjoy.saleboard.dto.SbDto">
 		SELECT
 		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
 		FROM (
-		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID ,
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,
 		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
-		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN '1' AND '6'
+		SB_SEQ FROM SALE_BOARD WHERE SBTYPE = '1' ) WHERE SB_SEQ BETWEEN 1 AND 6
 		
 
 	</select>
-	<select id="add_list" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+	<select id="board_list_practice" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+		SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD WHERE SBTYPE = '2') WHERE SB_SEQ BETWEEN 1 AND 6 
+		
+
+	</select>
+	<select id="board_list_party" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+		SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD WHERE SBTYPE = '3') WHERE SB_SEQ BETWEEN 1 AND 6
+		
+
+	</select>
+	<select id="add_list1" resultType="com.prj.enjoy.saleboard.dto.SbDto">
 	SELECT
 		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
 		FROM (
-		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID ,
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,
 		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
-		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN #{param1} AND #{param2}
+		SB_SEQ FROM SALE_BOARD WHERE SBTYPE ='1') WHERE SB_SEQ BETWEEN #{param1} AND #{param2}
 	
 	</select>
 
+	<select id="add_list2" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+	SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD WHERE SBTYPE ='2' ) WHERE SB_SEQ BETWEEN #{param1} AND #{param2} 
 	
+	</select>
+	
+	<select id="add_list3" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+	SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,
+		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
+		SB_SEQ FROM SALE_BOARD WHERE SBTYPE ='3') WHERE SB_SEQ BETWEEN #{param1} AND #{param2}
+	
+	</select>
 
 	<insert id="board_write">
 		INSERT INTO
-		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBLONGITUDE,SBLATITUDE,BUID)
+		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBLONGITUDE,SBLATITUDE,BUID,SBTYPE)
 		VALUES(SBCODE_SEQ.NEXTVAL+1,(SELECT BUNUM FROM BUSINESS WHERE BUID =
-		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param1} )
+		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param1},#{param8} )
 
 	</insert>
 	
@@ -42,6 +80,16 @@
 	
 	<delete id="delete">
 	DELETE FROM SALE_BOARD WHERE SBCODE = #{param1}
+	</delete>
+	
+	<delete id="del_reserv">
+		DELETE FROM RESERVATION WHERE SBCODE = #{param1}
+	</delete>
+	<delete id="del_Review">
+		DELETE FROM REVIEW WHERE SBCODE = #{param1}
+	</delete>
+	<delete id="del_Qna">
+		DELETE FROM QNA WHERE SBCODE = #{param1}
 	</delete>
 	
 	<update id="sbmodify">
@@ -61,5 +109,7 @@
 		SBCODE=#{param1 }
 	</select>
 	
-	
+	<select id="getType" resultType="String">
+		SELECT SBTYPE FROM SALE_BOARD WHERE SBCODE = #{param1}
+	</select>
 </mapper>

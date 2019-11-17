@@ -184,7 +184,7 @@ function sample4_execDaumPostcode() {
 
    <div class="container">
 
-      <h3>this is bjoin page</h3>
+      
       <form action="bJoinProc" method="post" name="addjoin">
          <label><strong>아이디*</strong></label> <input type="text" name="buid"
             id="buid"> <input type="button" id="chk_bid"

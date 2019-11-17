@@ -122,4 +122,8 @@
 		(SELECT SB.BUID, SB.SBTITLE, RV.SBCODE, RV.RVTITLE, RV.RVCONTENT ,RV.CUID FROM REVIEW RV, SALE_BOARD SB WHERE RV.SBCODE=SB.SBCODE) 
 		WHERE CUID= #{param1}
 	</select>
+	
+	<select id="getType" resultType="String">
+		SELECT SBTYPE FROM SALE_BOARD WHERE SBCODE = #{param1}
+	</select>
 </mapper>

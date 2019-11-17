@@ -19,7 +19,7 @@ $('#chpw2').blur(function(){
 });
 
 </script>
-<div>
+<div class="container">
 <h2>${session_cid }님 비밀번호 변경</h2>
 <form action="ch_cupwProc" method="post"> 
 기존 비밀번호를 입력해주세요<br/>
