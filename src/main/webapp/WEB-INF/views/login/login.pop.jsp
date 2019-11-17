@@ -25,6 +25,7 @@
 		function loginProc() {
 			var userid = $('input#cuid').val();
 			var userpw = $('input#cupw').val();
+			
 			   $.ajax({
 			      type : "POST",
 			      url : "loginProc.do",
@@ -36,7 +37,7 @@
 			    	  if (data == 'true') {
 			        document.form1.submit();
 				    window.opener.location.reload();
-			        alert("로그인 성공하셨습니다.");
+			        alert(" 로그인 성공하셨습니다.");
 				    window.close();
 			      } else {
 			    		alert(data);
@@ -134,7 +135,6 @@
 		<input type="radio" name="login" id="bu" 
 		onclick="javascript:change_buMod()" />
 		<span class="up">가맹점로그인</span>
-
 
 		<ul>
 			<li><a href="findId">아이디찾기</a></li>

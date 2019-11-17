@@ -38,5 +38,6 @@ public interface ReviewDao {
 	ArrayList<ReviewDto> myreviewlist (String cuid);
 
 	int rvboardcount(String cuid);
-
+	
+	String getType(String sbcode);
 }

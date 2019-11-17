@@ -180,8 +180,19 @@
 		</form>
 
 		<div>
-			<a href="review_list?wid=${wid }&sbcode=${sbcode }">리뷰보기</a> <a
-				href="board_list">게시글로 가기</a>
+			<a href="review_list?wid=${wid }&sbcode=${sbcode }" 
+			class="btn btn-outline-primary btn-sm"
+					role="btn">리뷰보기</a> 
+			<c:if test="${sbtype ==1}">
+				<a href="board_list_seminar" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				<c:if test="${sbtype ==2}">
+				<a href="board_list_practice" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				<c:if test="${sbtype ==3}">
+				<a href="board_list_party" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+			
 		</div>
 	</div>
 

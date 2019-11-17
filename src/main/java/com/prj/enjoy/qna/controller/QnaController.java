@@ -32,9 +32,10 @@ public class QnaController {
 
 		String sbcode = request.getParameter("sbcode");
 		String wid = request.getParameter("wid");
+		String sbtype = dao.getType(sbcode);
 		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("wid", wid);
-
+		model.addAttribute("sbtype", sbtype);
 		String qatitle = "";
 		String qacontent = "";
 

@@ -12,7 +12,7 @@
 
 		$.ajax({
 			type : "get",
-			url : "add_list",
+			url : "add_list1",
 			data : $("#searchTxtForm").serialize(),
 			success : function(result) {
 
