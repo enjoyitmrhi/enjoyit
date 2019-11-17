@@ -75,7 +75,7 @@
 					<td>글번호</td>
 					<td>제목</td>
 					<td>작성자</td>
-
+					<td>답글보기</td>
 				</tr>
 
 				<c:forEach items="${qnalist }" var="dto">
@@ -91,10 +91,7 @@
 										<a>[re]</a>
 									</c:if>
 								</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a>
-								<a class="closed"
-								href="javascript:show_block(this,${dto.qanum })"><img
-									id="image" src="resources/imgs/tri_edit.png"
-									style="width: 30px; height: 30px;"></a></td>
+								</td>
 
 							<c:if test="${dto.qaindent==0 }">
 								<td>${dto.cuid }</td>
@@ -102,7 +99,10 @@
 							<c:if test="${dto.qaindent==1 }">
 								<td>${dto.buid }</td>
 							</c:if>
-
+							<td><a class="closed"
+								href="javascript:show_block(this,${dto.qanum })"><img
+									id="image" src="resources/imgs/tri_edit.png"
+									style="width: 30px; height: 30px;"></a></td>
 						</tr>
 
 

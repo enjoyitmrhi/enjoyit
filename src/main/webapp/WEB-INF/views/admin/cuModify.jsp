@@ -8,6 +8,7 @@
 
 </head>
 <body>
+<div class="container">
 	<h3>this is cuModify page</h3>
 	<table>
 		<tr>
@@ -47,5 +48,6 @@
 			<td>${cu.cudate }</td>
 		</tr>
 	</table>
+</div>
 </body>
 </html>

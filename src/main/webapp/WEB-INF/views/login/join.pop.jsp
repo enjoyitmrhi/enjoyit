@@ -185,7 +185,6 @@ function sample4_execDaumPostcode() {
 </script>
 
 <div class="container">
-	<h3>this is join page</h3>
 	<form action="joinProc" method="post" name="addjoin" id="addjoin">
 		<label><strong>아이디*</strong></label> <input type="text" name="cuid" id="cuid"> 
 		<input type="button" id="chk_cid" onclick="javascript:chk_id()" value="중복확인"><br> 

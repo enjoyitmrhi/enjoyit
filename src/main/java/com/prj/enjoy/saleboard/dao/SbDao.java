@@ -36,5 +36,6 @@ public interface SbDao {
 	ArrayList<SbDto> add_list3(int sNum, int eNum);
 
 	String getSbPic(String sbcode);
-
+	
+	String getType(String sbcode);
 }

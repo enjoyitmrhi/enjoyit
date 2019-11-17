@@ -8,7 +8,6 @@
 </head>
 <body>
 <div class="container">
-<h3>this is buMypage</h3>
 <table>
 		<tr>
 			<td>회원아이디</td>

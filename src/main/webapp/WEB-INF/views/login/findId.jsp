@@ -45,7 +45,6 @@
 	</script>
 
 	<div class="container">
-	<h3>this is findId page</h3>
 	<div id="cuType">
 	일반회원 <br>
 	<form action="popup_chkId" name="cuPopup">

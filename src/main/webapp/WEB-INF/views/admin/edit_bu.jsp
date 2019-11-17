@@ -8,6 +8,7 @@
 
 </head>
 <body>
+<div class="container">
 	<h3>this is buModify page</h3>
 	<form action="bu_editProc" method="post">
 		<table>
@@ -48,5 +49,6 @@
 			href="buManagement?bunum=${bu.bunum }"><input type="button"
 			value="취소"></a>
 	</form>
+</div>
 </body>
 </html>

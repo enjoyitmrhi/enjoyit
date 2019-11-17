@@ -145,8 +145,14 @@ public class SbController {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude,sbtype);
-
-		return "redirect:board_list";
+		if (sbtype.equals("1")) {
+			return "redirect:board_list_seminar";
+		}else if (sbtype.equals("2")) {
+			return "redirect:board_list_practice";
+		}else {
+			return "redirect:board_list_party";
+		}
+			
 	}
 
 	@RequestMapping(value = "/sbdelete")
@@ -154,11 +160,19 @@ public class SbController {
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		String sbcode = request.getParameter("sbcode");
 		System.out.println("sbcode >>>>>>> "+sbcode);
+		String sbtype = dao.getType(sbcode);
 		dao.del_reserv(sbcode);
 		dao.del_Qna(sbcode);
 		dao.del_Review(sbcode);
 		dao.delete(sbcode);
-		return "redirect:board_list";
+		
+		if (sbtype.equals("1")) {
+			return "redirect:board_list_seminar";
+		}else if (sbtype.equals("2")) {
+			return "redirect:board_list_practice";
+		}else {
+			return "redirect:board_list_party";
+		}
 
 	}
 
@@ -184,8 +198,15 @@ public class SbController {
 		}
 		
 		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic);
-		return "redirect:board_list";
+		String sbtype = dao.getType(sbcode);
 
+		if (sbtype.equals("1")) {
+			return "redirect:board_list_seminar";
+		}else if (sbtype.equals("2")) {
+			return "redirect:board_list_practice";
+		}else {
+			return "redirect:board_list_party";
+		}
 	}
 	
 }

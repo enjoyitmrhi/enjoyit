@@ -8,6 +8,7 @@
 
 </head>
 <body>
+<div class="container">
 	<h3>this is buModify page</h3>
 	<table>
 		<tr>
@@ -43,5 +44,6 @@
 			<td>${bu.budate }</td>
 		</tr>
 	</table>
+</div>
 </body>
 </html>

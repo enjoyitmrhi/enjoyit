@@ -27,7 +27,6 @@
 </head>
 <body>
 <div class="container">
-<h3>this is cuMypage</h3>
 
 <table>
 		<tr>
