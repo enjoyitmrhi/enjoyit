@@ -40,9 +40,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/sale_board/reserv.jsp" />
 	</definition>
-	<definition name="login/onSchedule" extends="empty">
+	<definition name="reserve/onSchedule" extends="empty">
 		<put-attribute name="body"
-			value="/WEB-INF/views/login/onSchedule.jsp" />
+			value="/WEB-INF/views/reserve/onSchedule.jsp" />
 	</definition>
 	<definition name="reserve/cancelMsg" extends="empty">
 		<put-attribute name="body"

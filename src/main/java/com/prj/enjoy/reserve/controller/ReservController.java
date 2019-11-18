@@ -75,7 +75,7 @@ public class ReservController {
 		
 		model.addAttribute("evt",evt);
 		model.addAttribute("rtnum", rtnum);
-		return "login/onSchedule";
+		return "reserve/onSchedule";
 	}
 	
 	@RequestMapping("/pop/reserv_Confirm")
