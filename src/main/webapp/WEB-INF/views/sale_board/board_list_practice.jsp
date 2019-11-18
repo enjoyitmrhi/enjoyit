@@ -115,15 +115,14 @@
 
 
 
+ 
+			<div align="left">
+				<c:if test="${session_bid != null}">
+					<a href="board_write_view?buid=${session_bid }&sbtype=2" role="btn"
+						class="btn btn-outline-primary btn-sm">글 작성</a>
 
-			<c:if test="${session_bid != null}">
-				<a href="board_write_view?buid=${session_bid }">writing!!</a>
-
-			</c:if>
-			<c:if test="${session_bid == null}">
-
-				<a>writing!! only for business</a>
-			</c:if>
+				</c:if>
+			</div>
 
 
 

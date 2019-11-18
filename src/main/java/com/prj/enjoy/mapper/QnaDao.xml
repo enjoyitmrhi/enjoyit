@@ -72,9 +72,13 @@
 	</select>
 
 	<delete id="qnadelete">
-		DELETE FROM QNA WHERE QANUM = #{param1}
+		DELETE FROM QNA WHERE QAGROUP = #{param1}
 	</delete>
 
+
+<delete id="answerdelete">
+		DELETE FROM QNA WHERE QANUM = #{param1}
+	</delete>
 	<update id="qnamodify">
 		UPDATE QNA SET QACONTENT = #{param2} WHERE QANUM =
 		#{param1}

@@ -116,7 +116,10 @@ public class SbController {
 	@RequestMapping(value = "/board_write_view")
 	public String board_write_view(HttpServletRequest request, Model model) {
 		String strId = request.getParameter("buid");
+		String sbtype =request.getParameter("sbtype");
+		model.addAttribute("sbtype",sbtype);
 		model.addAttribute("id", strId);
+
 		return "sale_board/board_write_view";
 	}
 

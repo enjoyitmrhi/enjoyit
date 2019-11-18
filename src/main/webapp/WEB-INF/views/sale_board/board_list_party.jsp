@@ -115,7 +115,7 @@
 
 			<div align="left">
 				<c:if test="${session_bid != null}">
-					<a href="board_write_view?buid=${session_bid }" role="btn"
+					<a href="board_write_view?buid=${session_bid }&sbtype=3" role="btn"
 						class="btn btn-outline-primary btn-sm">글 작성</a>
 
 				</c:if>

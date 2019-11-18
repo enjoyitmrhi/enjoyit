@@ -8,12 +8,6 @@
 
 </head>
 <body>
-
-	<script>
-		function cancel() {
-			location.href = "qna_list?sbcode=${sbcode}&wid=${wid}"
-		}
-	</script>
 	<div class="container">
 
 		<h3>qna_write_view</h3>
@@ -45,9 +39,9 @@
 
 
 			</table>
-			<input type="submit" class="btn btn-outline-primary" value="완료">
-			<input type="button" onclick="javascript:cancel() " value="취소"
-				class="btn btn-outline-danger">
+			<input type="submit" class="btn btn-outline-primary btn-sm" value="완료">
+			<a role = "btn" class = "btn btn-outline-danger btn-sm" href="qna_list?sbcode=${sbcode}&wid=${wid}">취소</a>
+			
 		</form>
 	</div>
 </body>
