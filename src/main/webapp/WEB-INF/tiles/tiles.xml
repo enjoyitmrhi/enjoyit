@@ -94,6 +94,20 @@
 	<definition name="login/bJoin" extends="empty">
 		<put-attribute name="body" value="/WEB-INF/views/login/bJoin.jsp" />
 	</definition>
+	
+	
+	<definition name="login/findId" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/login/findId.jsp" />
+	</definition>
+	<definition name="login/popup_findId" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/login/popup_findId.jsp" />
+	</definition>
+	<definition name="login/findPw" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/login/findPw.jsp" />
+	</definition>
+	<definition name="login/popup_findPw" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/login/popup_findPw.jsp" />
+	</definition>
 	<definition name="login/onSchedule" extends="empty">
 		<put-attribute name="body"
 			value="/WEB-INF/views/login/onSchedule.jsp" />
