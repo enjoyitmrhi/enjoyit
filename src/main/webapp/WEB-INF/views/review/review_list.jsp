@@ -30,8 +30,8 @@
 					<td><c:choose>
 							<c:when test="${not empty dto.cuid }">${dto.cuid }</c:when>
 
-							
-							<c:otherwise> 판매자 </c:otherwise>
+
+							<c:otherwise> ${dto.buid } </c:otherwise>
 						</c:choose></td>
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
 							begin="1" end="${dto.rvindent }" var="cnt">
@@ -53,8 +53,9 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a
-					href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a></td>
+				<td colspan="7"><c:if test="${session_cid != null}">
+						<a href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a>
+					</c:if></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">

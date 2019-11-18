@@ -8,23 +8,22 @@
 
 </head>
 <body>
-<script>
+	<script>
 		function cancle() {
 			location.href = "review_list?sbcode=${sbcode}&wid=${wid}"
 		}
 	</script>
 	<div class="container">
 		<h3>review_write_view.jsp</h3>
-		<form action="review_write" method="post" enctype="multipart/form-data">
-		<input type="hidden" value="${sbcode}" name="sbcode">
-			<input type="hidden" value="${wid}" name="wid">
+		<form action="review_write" method="post"
+			enctype="multipart/form-data">
+			<input type="hidden" value="${sbcode}" name="sbcode"> <input
+				type="hidden" value="${wid}" name="wid">
 			<table class="table table-hover">
 				<tr>
 					<td>상품 코드 : ${sbcode }</td>
-					<td><input
-						type="text" size="50" name="cuid"
-						value="${session_cid }" readonly="readonly"
-						class="form-control"></td>
+					<td><input type="text" size="50" name="cuid"
+						value="${session_cid }" readonly="readonly" class="form-control"></td>
 				</tr>
 				<tr>
 					<td>${dto.rvdate }|${dto.rvnum }</td>
@@ -49,12 +48,14 @@
 					<td><input type="file" name="rvpic" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" class="btn btn-outline-primary" value="작성" />&nbsp;<input type="button" onclick="javascript:cancle() " value="취소"
-				class="btn btn-outline-danger">&nbsp;
-						<a href="review_list?sbcode=${sbcode }&wid=${wid}">목록보기</a></td>
+					<td colspan="2"><input type="submit"
+						class="btn btn-outline-primary btn-sm" value="작성" />&nbsp;<input
+						type="button" onclick="javascript:cancle() " value="취소"
+						class="btn btn-outline-danger btn-sm">&nbsp; <a
+						href="review_list?sbcode=${sbcode }&wid=${wid}">목록보기</a></td>
 				</tr>
 			</table>
-			
+
 		</form>
 	</div>
 

@@ -60,9 +60,10 @@
 
 	<insert id="qnawrite">
 		INSERT INTO
-		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID,SBCODE)
+		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID,CUNUM,SBCODE)
 		VALUES
-		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},#{param4})
+		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},(SELECT CUNUM FROM CUSTOMER WHERE CUID =
+		#{param3}),#{param4})
 
 	</insert>
 	<select id="qacontview" resultType="com.prj.enjoy.qna.dto.QnaDto">
@@ -91,8 +92,9 @@
 
 	<insert id="qnaAnswerWrite">
 		INSERT INTO QNA
-		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID,SBCODE)
-		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1},#{param7}
+		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID,BUNUM,SBCODE)
+		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1},(SELECT BUNUM FROM BUSINESS WHERE BUID =
+		#{param1}),#{param7}
 		)
 
 	</insert>

@@ -11,7 +11,7 @@
 		FROM (
 		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,
 		ROW_NUMBER() OVER(ORDER BY SBCODE DESC) 
-		SB_SEQ FROM SALE_BOARD WHERE SBTYPE = '1' ) WHERE SB_SEQ BETWEEN 1 AND 6
+		SB_SEQ FROM SALE_BOARD ) WHERE SB_SEQ BETWEEN '1' AND '4'
 		
 
 	</select>
@@ -68,7 +68,9 @@
 	<insert id="board_write">
 		INSERT INTO
 		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBLONGITUDE,SBLATITUDE,BUID,SBTYPE)
+		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBCONTENT,SBPRICE,SBLOC,SBLONGITUDE,SBLATITUDE,BUID)
 		VALUES(SBCODE_SEQ.NEXTVAL+1,(SELECT BUNUM FROM BUSINESS WHERE BUID =
+		#{param1}),#{param2},#{param3},#{param8},#{param4},#{param5},#{param6},#{param7},#{param1} )
 		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param1},#{param8} )
 
 	</insert>
@@ -93,7 +95,7 @@
 	</delete>
 	
 	<update id="sbmodify">
-	UPDATE SALE_BOARD SET SBLOC = 'CHANGEDLOC',SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5} WHERE SBCODE = #{param1}
+	UPDATE SALE_BOARD SET SBLOC = #{param6} ,SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5},SBLONGITUDE=#{param7},SBLATITUDE=#{param8} WHERE SBCODE = #{param1}
 	
 	</update>
 	
@@ -108,6 +110,23 @@
 		WHERE
 		SBCODE=#{param1 }
 	</select>
+	
+	<select id="getSbloc" resultType="String">
+		SELECT SBLOC FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
+	<select id="getSbLongitude" resultType="String">
+		SELECT SBLONGITUDE FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
+	<select id="getSbLatitude" resultType="String">
+		SELECT SBLATITUDE FROM SALE_BOARD
+		WHERE
+		SBCODE=#{param1 }
+	</select>
+	
 	
 	<select id="getType" resultType="String">
 		SELECT SBTYPE FROM SALE_BOARD WHERE SBCODE = #{param1}

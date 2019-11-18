@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
+<div class = "container">
+
+<h3>this is cuModify page</h3>
 	<form action="editProc_cu" method="post">
 		<table>
 			<tr>
@@ -51,6 +53,6 @@
 			href="cuMypage"><input type="button"
 			value="취소"></a>
 	</form>
-</div>
+	</div>
 </body>
 </html>

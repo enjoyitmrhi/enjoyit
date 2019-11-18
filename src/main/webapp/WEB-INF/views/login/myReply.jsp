@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div class="container">
+</div>
 </body>
 </html>
