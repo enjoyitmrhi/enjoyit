@@ -116,10 +116,14 @@ if(cookies != null){
 
 		<div class="form-inline my-2 my-lg-0">
 			<c:if test="${session_cid != null }">
+			<span style="color: #ccc">
 			[${session_cname }]님 로그인 되셨습니다.
+			</span>
 			</c:if>
 			<c:if test="${session_bid != null }">
+			<span style="color: #ccc">
 			[${session_bname }]님 로그인 되셨습니다.
+			</span>
 			</c:if>
 		</div>
 		<c:if test="${session_cid !=null }">
@@ -174,6 +178,7 @@ if(cookies != null){
 
 
 	</nav>
+	<div class="clearfix"></div>
 	<br />
 </body>
 </html>

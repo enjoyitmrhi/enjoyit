@@ -44,16 +44,16 @@
 		FROM (
 		SELECT
 		QANUM,QATITLE,QAGROUP,QASTEP,QAINDENT,QADATE,QACONTENT,SBCODE,BUNUM,BUID,CUNUM,CUID
-		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA WHERE SBCODE = #{param5}
+		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA WHERE (SBCODE = #{param5}
 		<include refid="includeList"></include>
-		)
+		))
 		WHERE B_SEQ BETWEEN #{param1} AND #{param2}
 
 
 
 	</select>
 	<select id="selectBoardCount" resultType="Integer">
-		SELECT COUNT(*) FROM QNA WHERE SBCODE= #{param3}
+		SELECT COUNT(*) FROM QNA WHERE SBCODE= #{param3} AND QAINDENT = 0
 		<include refid="includeBoard" />
 	</select>
 

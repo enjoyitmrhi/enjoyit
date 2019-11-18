@@ -39,6 +39,7 @@
 
 
 	</nav>
+	<div class="clearfix"></div>
 	<br />
 </body>
 </html>

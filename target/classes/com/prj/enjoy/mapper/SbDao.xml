@@ -93,7 +93,7 @@
 	</delete>
 	
 	<update id="sbmodify">
-	UPDATE SALE_BOARD SET SBLOC = #{param6} ,SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5},SBLONGITUDE=#{param7},SBLATITUDE=#{param8} WHERE SBCODE = #{param1}
+	UPDATE SALE_BOARD SET SBLOC = #{param6} ,SBPRICE = #{param2},SBTITLE=#{param3},SBCONTENT=#{param4},SBPIC=#{param5},SBLONGITUDE=#{param7},SBLATITUDE=#{param8},SBTYPE=#{param9} WHERE SBCODE = #{param1}
 	
 	</update>
 	

@@ -106,7 +106,7 @@
 				<table class="table">
 
 					<tr>
-						<td>제목</td>
+						<td  style="width: 10%;">제목</td>
 						<td><input type="text" size="50" name="sbtitle"
 							class="form-control"></td>
 
@@ -119,7 +119,7 @@
 					</tr>
 					<tr>
 						<td>룸타입</td>
-						<td><select name="sbtype" class="form-control">
+						<td><select name="sbtype" class="form-control" style="width: 250px;">
 								<option value="1" selected>Seminar room</option>
 								<option value="2">Practice room</option>
 								<option value="3">Party room</option>
@@ -139,18 +139,17 @@
 					<tr>
 						<td>위치</td>
 						<td><input type="text" id="sample4_postcode"
-							placeholder="우편번호"> <input type="button"
-							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"
-							class="form-control"></td>
+							placeholder="우편번호" class= "form-control" style="width: 30%; float: left;"> <input type="button" 
+							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td><input type="text" name="addr1" id="sample4_roadAddress"
-							placeholder="도로명주소" class="form-control"> <input
+							placeholder="도로명주소" class="form-control" style="width: 30%; float: left; "> <input
 							type="text" name="addr2" id="sample4_detailAddress"
-							placeholder="상세주소" class="form-control"> <input
+							placeholder="상세주소" class="form-control"style="width: 30%; float: left;"> <input
 							type="text" name="addr3" id="sample4_extraAddress"
-							placeholder="참고항목" class="form-control"></td>
+							placeholder="참고항목" class="form-control"style="width: 30%; float: left;"></td>
 					</tr>
 					<tr>
 						<td><input type="hidden" id="sample4_jibunAddress"
@@ -167,15 +166,15 @@
 				<input type="submit" class="btn btn-outline-primary btn-sm"
 					value="완료"> &nbsp; &nbsp;
 				<c:if test="${sbtype ==1}">
-					<a href="board_list_seminar" class="btn btn-outline-danger btn-sm"
+					<a href="board_list_seminar" class="btn btn-outline-warning btn-sm"
 						role="btn"> 취소</a>
 				</c:if>
 				<c:if test="${sbtype ==2}">
-					<a href="board_list_practice" class="btn btn-outline-danger btn-sm"
+					<a href="board_list_practice" class="btn btn-outline-warning btn-sm"
 						role="btn"> 취소</a>
 				</c:if>
 				<c:if test="${sbtype ==3}">
-					<a href="board_list_party" class="btn btn-outline-danger btn-sm"
+					<a href="board_list_party" class="btn btn-outline-warning btn-sm"
 						role="btn"> 취소</a>
 				</c:if>
 

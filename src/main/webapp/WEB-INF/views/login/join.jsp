@@ -219,7 +219,8 @@
 				</tr>
 				<tr>
 					<td><label>성별</label></td>
-					<td colspan="2"><select name="cugender">
+					<td colspan="2"><select name="cugender" class="form-control"
+						style="width: 30%;">
 							<option value="" selected>성별</option>
 							<option value="male">남자</option>
 							<option value="female">여자</option>
@@ -227,14 +228,16 @@
 				</tr>
 				<tr>
 					<td><label><strong>생년월일*</strong></label></td>
-					<td colspan="2"><select name="cuyear" id="cuyear">
+					<td colspan="2"><select name="cuyear" id="cuyear"
+						class="form-control" style="width: 30%; float: left;">
 							<option value="" selected>년도</option>
 							<c:forEach begin="0" end="50" var="i">
 								<c:forEach begin="99" end="99" var="j">
 									<option value="19${j - i }">${j - i }</option>
 								</c:forEach>
 							</c:forEach>
-					</select> <select name="cumonth" id="cumonth">
+					</select> <select name="cumonth" id="cumonth" class="form-control"
+						style="width: 30%; float: left;">
 							<option value="" selected>월</option>
 							<c:forEach var="i" begin="1" end="12">
 								<c:if test="${i < 10 }">
@@ -244,7 +247,8 @@
 									<option value="${i }">${i }</option>
 								</c:if>
 							</c:forEach>
-					</select> <select name="cuday" id="cuday">
+					</select> <select name="cuday" id="cuday" class="form-control"
+						style="width: 30%; float: left;">
 							<option value="" selected>일</option>
 							<c:forEach var="i" begin="1" end="31">
 								<c:if test="${i <10}">
@@ -260,18 +264,20 @@
 
 
 				<tr>
-					<td><input type="text" id="sample4_postcode"
-						placeholder="우편번호"> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-					</td>
+					<td colspan="3"><input type="text" id="sample4_postcode"
+						placeholder="우편번호" 
+						style="width: 20%; float: left;"> <input type="button"
+						onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><br></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="addr1" id="sample4_roadAddress"
-						placeholder="도로명주소" style="width: 20%"> <input type="text"
-						name="addr2" id="sample4_detailAddress" placeholder="상세주소">
-						<input type="text" name="addr3" id="sample4_extraAddress"
-						placeholder="참고항목"></td>
-
+					<td colspan="3"><input type="text" name="addr1"
+						id="sample4_roadAddress" placeholder="도로명주소"
+						style="width: 20%;"> <input
+						type="text" name="addr2" id="sample4_detailAddress"
+						placeholder="상세주소" > <input type="text" name="addr3"
+						id="sample4_extraAddress" placeholder="참고항목" ></td>
+				</tr>
+				<tr>
 					<td><input type="hidden" id="sample4_jibunAddress"
 						placeholder="지번주소"> <span id="guide"
 						style="color: #999; display: none"></span></td>
@@ -285,7 +291,8 @@
 				<tr>
 
 					<td><label><strong>연락처*</strong></label></td>
-					<td colspan="2"><input type="tel" name="cutel" id="cutel"></td>
+					<td colspan="2"><input type="tel" name="cutel" id="cutel"
+						></td>
 				</tr>
 				<tr>
 					<td><label><strong>이메일*</strong></label></td>

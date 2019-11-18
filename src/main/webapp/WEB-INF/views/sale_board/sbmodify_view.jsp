@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -103,14 +105,25 @@
 			<div class="border-secondary">
 				<table class="table">
 					<tr>
-						<td>가격</td>
-						<td><input class="form-control" name="sbprice" id="sbprice"
-							value="${sbcontent_view.sbprice }"></td>
-					</tr>
-					<tr>
 						<td>제목</td>
 						<td><input class="form-control" name="sbtitle" id="sbtitle"
 							value="${sbcontent_view.sbtitle }"></td>
+					</tr>
+					<tr>
+						<td style="width: 10%;">가격</td>
+						<td><input class="form-control" name="sbprice" id="sbprice"
+							value="${sbcontent_view.sbprice }"></td>
+					</tr>
+
+					<tr>
+						<td>룸타입</td>
+						<td><select name="sbtype" class="form-control"
+							style="width: 250px;">
+								<option value="1" selected>Seminar room</option>
+								<option value="2">Practice room</option>
+								<option value="3">Party room</option>
+						</select></td>
+
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -118,23 +131,16 @@
 							src="resources/upload/${sbcontent_view.sbpic }"> <br /> <textarea
 								class="form-control" rows="15" name="sbcontent" id="sbcontent"> ${sbcontent_view.sbcontent } </textarea></td>
 					</tr>
-					<tr>
-						<td>위치</td>
 
-						<td><div>
-								<input type="text" id="sample4_postcode" placeholder="우편번호">
-								<input type="button" onclick="sample4_execDaumPostcode()"
-									value="우편번호 찾기" class="form-control"><br>
-							</div></td>
-					</tr>
+
 					<tr>
 						<td></td>
 						<td><input type="text" name="addr1" id="sample4_roadAddress"
-							placeholder="도로명주소" style="width: 20%" class="form-control">
-							<input type="text" name="addr2" id="sample4_detailAddress"
-							placeholder="상세주소" class="form-control"> <input
+							placeholder="도로명주소" class="form-control" style="width: 30%; float: left; "> <input
+							type="text" name="addr2" id="sample4_detailAddress"
+							placeholder="상세주소" class="form-control"style="width: 30%; float: left;"> <input
 							type="text" name="addr3" id="sample4_extraAddress"
-							placeholder="참고항목" class="form-control"></td>
+							placeholder="참고항목" class="form-control"style="width: 30%; float: left;"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -160,9 +166,17 @@
 
 
 			</div>
-			<div>
-				<a href="board_list" class="btn btn-outline-primary btn-sm"
-					role="btn"> 취소</a>
+			<div style="float: left;">
+			<c:if test="${sbtype ==1}">
+				<a href="board_list_seminar" class="btn btn-outline-warning btn-sm"
+					role="btn"> 취소</a></c:if>
+				<c:if test="${sbtype ==2}">
+				<a href="board_list_practice" class="btn btn-outline-warning btn-sm"
+					role="btn"> 취소</a></c:if>
+				<c:if test="${sbtype ==3}">
+				<a href="board_list_party" class="btn btn-outline-warning btn-sm"
+					role="btn"> 취소</a></c:if>
+			
 			</div>
 			<div style="float: right;">
 				<c:if test="${sbcontent_view.buid == session_bid}">
@@ -180,5 +194,6 @@
 
 
 	</div>
+	
 </body>
 </html>

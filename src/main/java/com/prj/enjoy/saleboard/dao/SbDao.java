@@ -22,7 +22,7 @@ public interface SbDao {
 	
 	void del_reserv(String sbcode);
 
-	void sbmodify(String sbcode, String sbprice, String sbtitle, String sbcontent, String sbpic, String sbloc, String sblongitude, String sblatitude);
+	void sbmodify(String sbcode, String sbprice, String sbtitle, String sbcontent, String sbpic, String sbloc, String sblongitude, String sblatitude, String sbtype);
 
 	String avgstar(String sbcode);
 	

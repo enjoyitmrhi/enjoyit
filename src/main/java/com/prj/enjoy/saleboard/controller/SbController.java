@@ -197,6 +197,7 @@ public class SbController {
 		String sbprice = req.getParameter("sbprice");
 		String sbtitle = req.getParameter("sbtitle");
 		String sbcontent = req.getParameter("sbcontent");
+		String sbtype = req.getParameter("sbtype");
 		String sbpic = req.getFilesystemName("sbpic");
 
 		String addr1 = req.getParameter("addr1");
@@ -213,12 +214,12 @@ public class SbController {
 			sbpic = dao.getSbPic(sbcode);
 		}
 		
-		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic,sbloc,sblongitude,sblatitude);
-		String sbtype = dao.getType(sbcode);
+		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic,sbloc,sblongitude,sblatitude,sbtype);
+		String sbtype2 = dao.getType(sbcode);
 
-		if (sbtype.equals("1")) {
+		if (sbtype2.equals("1")) {
 			return "redirect:board_list_seminar";
-		}else if (sbtype.equals("2")) {
+		}else if (sbtype2.equals("2")) {
 			return "redirect:board_list_practice";
 		}else {
 			return "redirect:board_list_party";
@@ -229,9 +230,11 @@ public class SbController {
 	public String sbmodify_view(HttpServletRequest request, Model model) {
 		String wid = request.getParameter("wid");
 		String sbcode = request.getParameter("sbcode");
+		String sbtype = request.getParameter("sbtype");
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
 		model.addAttribute("wid", wid);
+		model.addAttribute("sbtype",sbtype);
 		return "sale_board/sbmodify_view";
 
 	}
