@@ -48,9 +48,11 @@
 				</tr>
 
 			</table>
-			<a href="qna_list?sbcode=${answerview.sbcode }&wid=${wid}"
-				class="btn btn-primary" role="button"> 목록가기</a> &nbsp;&nbsp; <input
-				class="btn btn-primary" type="submit" value="완료">
+			<input class="btn btn-outline-primary btn-sm" type="submit"
+				value="완료"> <a
+				href="qna_list?sbcode=${answerview.sbcode }&wid=${wid}"
+				class="btn btn-outline-danger btn-sm" role="button"> 취소</a>
+			&nbsp;&nbsp;
 		</form>
 	</div>
 

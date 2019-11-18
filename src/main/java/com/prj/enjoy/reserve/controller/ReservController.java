@@ -97,7 +97,7 @@ public class ReservController {
 	public String sendMsg(HttpServletRequest request, Model model) {
 //		String rtnum = request.getParameter("rtnum");
 		String cuid= request.getParameter("cuid");
-		ReservDao dao= sqlSession.getMapper(ReservDao.class);	
+		ReservDao dao= sqlSession.getMapper(ReservDao.class);
 		model.addAttribute("cuid", cuid);
 		return "reserve/cancelMsg"; 
 	}

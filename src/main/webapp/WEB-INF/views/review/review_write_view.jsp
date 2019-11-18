@@ -8,11 +8,6 @@
 
 </head>
 <body>
-	<script>
-		function cancle() {
-			location.href = "review_list?sbcode=${sbcode}&wid=${wid}"
-		}
-	</script>
 	<div class="container">
 		<h3>review_write_view.jsp</h3>
 		<form action="review_write" method="post"
@@ -49,10 +44,9 @@
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit"
-						class="btn btn-outline-primary btn-sm" value="작성" />&nbsp;<input
-						type="button" onclick="javascript:cancle() " value="취소"
-						class="btn btn-outline-danger btn-sm">&nbsp; <a
-						href="review_list?sbcode=${sbcode }&wid=${wid}">목록보기</a></td>
+						class="btn btn-outline-primary btn-sm" value="작성" />&nbsp;
+						<a role = "btn" class ="btn btn-outline-danger btn-sm"  href="review_list?sbcode=${sbcode}&wid=${wid}"> 취소</a>
+						</td>
 				</tr>
 			</table>
 
