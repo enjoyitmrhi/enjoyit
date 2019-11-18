@@ -27,15 +27,7 @@
 			</a></li>
 			<li class="nav-item "><a class="nav-link" href="admin_cuMember">고객 회원관리</a></li>
 			<li class="nav-item "><a class="nav-link" href="admin_buMember">가맹 회원관리</a></li>
-			<li class="nav-item dropdown show"><a
-				class="nav-link dropdown-toggle" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false" href="#">회원관리</a>
-				<div class="dropdown-menu " x-placement="bottom-start"
-					style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-					<a class="dropdown-item" href="admin_cuMember">고객 회원 관리</a> <a
-						class="dropdown-item" href="admin_buMember">가맹 회원관리</a>
-
-				</div></li>
+			
 
 		</ul>
 

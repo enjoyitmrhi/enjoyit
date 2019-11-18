@@ -46,17 +46,19 @@
 					<td colspan="2">
 
 						<div style="float: left;">
-							<c:if test="${wid == session_bid}">
+							<c:if test="${wid == session_bid && reply}">
+							
 								<a class="btn btn-outline-primary btn-sm" role="btn"
 									href="qnaanswerview?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}">답글달기</a>
 								<br />
+							
 							</c:if>
 							<c:if test="${content_view.cuid ==session_cid}">
 								<input type="button" value="수정하기"
 									onclick="javascript:modify_auth()"
 									class="btn btn-outline-primary btn-sm">
 								<a
-									href="qnadelete?qanum=${qa.qanum}&wid=${wid }&sbcode=${content_view.sbcode}"
+									href="qnadelete?qanum=${content_view.qanum}&wid=${wid }&sbcode=${content_view.sbcode}"
 									class="btn btn-outline-primary btn-sm" role="btn">삭제하기</a>
 							</c:if>
 						</div> <input type="submit" style="display: none;">

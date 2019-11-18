@@ -61,7 +61,7 @@ height: 300px;
 	</div>
 	<div class="container">
 		<h3>this is index page</h3>
-		<a href="board_list">게시판 </a>
+		<!-- <a href="board_list">게시판 </a> -->
 
 
 

@@ -129,4 +129,10 @@
 		FROM QNA QA, SALE_BOARD SB WHERE QA.SBCODE=SB.SBCODE) 
 		WHERE BUID =#{param1} ORDER BY QAGROUP, QAINDENT ASC
 	</select>
+	<select id="getType" resultType="String">
+		SELECT SBTYPE FROM SALE_BOARD WHERE SBCODE = #{param1}
+	</select>
+	<select id="chkReply" resultType="String">
+		SELECT DECODE(COUNT(*),0,'true','false') FROM QNA WHERE QAGROUP=#{param1} and QAINDENT =1
+	</select>
 </mapper>

@@ -36,4 +36,16 @@
 	<update id="apply_Confirm">
 		UPDATE RESERVATION SET RTCONFIRM = 'true' WHERE RTNUM =#{param1}
 	</update>
+	<select id="getReservInfo" resultType="com.prj.enjoy.reserve.dto.Reservation">
+		SELECT * FROM RESERVATION WHERE RTNUM = #{param1}
+	</select>
+	
+	<insert id="cancelMsg">
+		INSERT INTO MESSAGE (MSGNUM,MSGTITLE,MSGFROM,MSGTO,MSGCONTENT,MSGCHK) 
+		VALUES(MSG_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},'false')
+	</insert>
+	
+	<delete id="reservCancel">
+		DELETE FROM RESERVATION WHERE RTNUM = #{param1}
+	</delete>
 </mapper>

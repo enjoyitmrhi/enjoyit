@@ -8,12 +8,12 @@
 
 <title>Insert title here</title>
 <script>
-	function del_sbCont() {
-		var sbcode = $
+	function del_sbCont(sbcode) {
+		/* var sbcode = $
 		{
 			sbcontent_view.sbcode
 		}
-		;
+		; */
 		location.href = "sbdelete?sbcode=" + sbcode;
 	};
 	
@@ -78,8 +78,16 @@
 
 			</div>
 			<div>
-				<a href="board_list" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a> &nbsp;&nbsp; <a
+				<c:if test="${sbcontent_view.sbtype ==1}">
+				<a href="board_list_seminar" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				<c:if test="${sbcontent_view.sbtype ==2}">
+				<a href="board_list_practice" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				<c:if test="${sbcontent_view.sbtype ==3}">
+				<a href="board_list_party" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				 &nbsp;&nbsp; <a
 					href="review_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
 					class="btn btn-outline-primary btn-sm" role="btn"> 리뷰보기</a>
 				&nbsp;&nbsp;<a

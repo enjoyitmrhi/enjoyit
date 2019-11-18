@@ -116,6 +116,16 @@ new daum.Postcode({
 
 				</tr>
 				<tr>
+					<td>룸타입</td>
+					<td><select name="sbtype" class="form-control">
+					<option value="1" selected>Seminar room</option>
+					<option value="2">Practice room</option>
+					<option value="3">Party room</option>
+					</select></td>
+
+				</tr> 
+            <tbody>
+				<tr>
 					<td>내용</td>
 					<td><textarea rows="15" name="sbcontent"
 						class="form-control"> </textarea> </td>
@@ -150,7 +160,7 @@ new daum.Postcode({
                      placeholder="경도"> <input type="text" name="latx"
                      id="latx" placeholder="위도"></td>
                </tr>
- 
+ 				
 			</table>
 			<input type="submit" value="완료">
 		</form>

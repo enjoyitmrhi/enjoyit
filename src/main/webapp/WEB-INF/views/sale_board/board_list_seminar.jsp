@@ -12,7 +12,7 @@
 
 		$.ajax({
 			type : "get",
-			url : "add_list",
+			url : "add_list1",
 			data : $("#searchTxtForm").serialize(),
 			success : function(result) {
 
@@ -33,6 +33,7 @@
 
 	}
 
+	
 	function renderMoreContents(list) {
 		var rows = [];
 		$.each(list, function(index, item) {
@@ -52,7 +53,7 @@
 				+ item.sbcode
 				+ "&sbpic="
 				+ item.sbpic
-				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' class='img-thumbnail'></a>";
+				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' width='200px' height='200px'></a>";
 
 		content += "<div class='caption'>";
 
@@ -85,7 +86,7 @@
 
 
 
-			<div id="top">
+			<div>
 				<div class="row text-center" id="more_list">
 					<c:forEach items="${boardlist }" var="dto">
 						<div class="col-sm-8 col-md-6">
@@ -97,6 +98,7 @@
 								<div class="caption">
 									<h3>제목 : ${dto.sbtitle }</h3>
 									<p>가격 : ${dto.sbprice}</p>
+									
 								</div>
 							</div>
 						</div>
@@ -113,18 +115,15 @@
 
 
 
-			<div align="left">
-				<c:if test="${session_bid != null}">
-					<a href="board_write_view?buid=${session_bid }" role="btn"
-						class="btn btn-outline-primary btn-sm">글 작성</a>
 
-				</c:if>
-			</div>
-			<div align="right">
-				<a href="#top"> 맨위로 가기</a>
-			</div>
+			<c:if test="${session_bid != null}">
+				<a href="board_write_view?buid=${session_bid }">writing!!</a>
 
+			</c:if>
+			<c:if test="${session_bid == null}">
 
+				<a>writing!! only for business</a>
+			</c:if>
 
 
 
@@ -135,7 +134,7 @@
 	</div>
 	<!-- end wrap -->
 
-
+	
 </body>
 
 </html>

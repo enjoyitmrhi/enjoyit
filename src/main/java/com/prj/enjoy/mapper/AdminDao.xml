@@ -57,6 +57,14 @@
 		<include refid="bsort" />
 	</select>
 	
+	<select id="getCuLoc" resultType="com.prj.enjoy.login.dto.Customer">
+		SELECT * FROM CUSTOMER 
+	</select>
+	
+	<select id="getBuLoc" resultType="com.prj.enjoy.login.dto.Business">
+		SELECT * FROM BUSINESS
+	</select>
+	
 	<select id="selectCuCount" resultType="Integer">
 		SELECT COUNT(*) FROM CUSTOMER
 	</select>

@@ -33,6 +33,7 @@ public class ReviewController {
 		String sbcode= request.getParameter("sbcode");
 		String wid= request.getParameter("wid");
 		String[] brdtitle = request.getParameterValues("searchType");
+		
 		if (brdtitle != null) {
 			for (String val : brdtitle) {
 				if (val.equals("rvtitle")) {
@@ -92,7 +93,8 @@ public class ReviewController {
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
-
+		String sbtype = dao.getType(sbcode);
+		model.addAttribute("sbtype", sbtype);
 		// model.addAttribute("review_list", dao.review_list());
 
 		return "review/review_list";
