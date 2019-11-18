@@ -26,14 +26,14 @@ public class MsgController {
 		MsgDao dao = sqlSession.getMapper(MsgDao.class);
 		model.addAttribute("msg_list", dao.msgList(cuid));
 		
-		return "message/msg_list.pop";
+		return "message/msg_list";
 	}
 	
 	@RequestMapping("/sendMsg.pop")
 	public String sendMsg() {
 		System.out.println("passing sendMsg");
 		
-		return "message/sendMsg.pop";
+		return "message/sendMsg";
 	}
 	
 	@RequestMapping("/msg_content.pop")
@@ -46,7 +46,7 @@ public class MsgController {
 		model.addAttribute("content", dao.msgContent(msgnum));
 		model.addAttribute("prev",dao.getPrev(msgnum,msgto));
 		model.addAttribute("next",dao.getNext(msgnum,msgto));
-		return "message/msg_content.pop";
+		return "message/msg_content";
 	}
 	
 	@RequestMapping("/msg_del")

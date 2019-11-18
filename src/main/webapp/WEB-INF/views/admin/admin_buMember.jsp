@@ -133,7 +133,7 @@
 					</c:if>
 				</c:if>
 			</div>
-			<a href="admin_cuMember"><input type="button" value="일반회원보기"></a>
+			
 		</form>
 	<div id="map" style="width:100%;height:350px;"></div>
 		</div>

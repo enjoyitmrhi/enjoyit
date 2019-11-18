@@ -130,7 +130,6 @@
 					</c:if>
 				</c:if>
 			</div>
-			<a href="admin_buMember"><input type="button" value="가맹회원보기"></a>
 		</form>
 		
 		

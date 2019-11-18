@@ -14,7 +14,7 @@ public interface SbDao {
 
 	ArrayList<SbDto> board_list_party();
 
-	void board_write(String buid, String sbpic, String sbtitle, String sbprice, String sbloc, String sblongitude, String sblatitude, String sbtype);
+	void board_write(String buid, String sbpic, String sbtitle, String sbprice, String sbloc, String sblongitude, String sblatitude, String sbtype,String sbcontent);
 
 	SbDto sb_content(String sbcode);
 
@@ -42,4 +42,8 @@ public interface SbDao {
 	String getSbLatitude(String sbcode);
 
 	String getType(String sbcode);
+
+	void del_Qna(String sbcode);
+
+	void del_Review(String sbcode);
 }

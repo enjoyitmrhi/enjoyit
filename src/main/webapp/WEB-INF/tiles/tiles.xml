@@ -40,9 +40,29 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/sale_board/reserv.jsp" />
 	</definition>
+	<definition name="login/onSchedule" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/login/onSchedule.jsp" />
+	</definition>
+	<definition name="reserve/cancelMsg" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/reserve/cancelMsg.jsp" />
+	</definition>
 
+	<!-- 메세지 -->
+	<definition name="message/msg_list" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/message/msg_list.jsp" />
+	</definition>
 
-
+<definition name="message/sendMsg" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/message/sendMsg.jsp" />
+	</definition>
+	<definition name="message/msg_content" extends="empty">
+		<put-attribute name="body"
+			value="/WEB-INF/views/message/msg_content.jsp" />
+	</definition>
 
 
 	<!-- admin페이지, footer 제거 -->
@@ -94,23 +114,21 @@
 	<definition name="login/bJoin" extends="empty">
 		<put-attribute name="body" value="/WEB-INF/views/login/bJoin.jsp" />
 	</definition>
-	
-	
+
+
 	<definition name="login/findId" extends="empty">
 		<put-attribute name="body" value="/WEB-INF/views/login/findId.jsp" />
 	</definition>
 	<definition name="login/popup_findId" extends="empty">
-		<put-attribute name="body" value="/WEB-INF/views/login/popup_findId.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/login/popup_findId.jsp" />
 	</definition>
 	<definition name="login/findPw" extends="empty">
 		<put-attribute name="body" value="/WEB-INF/views/login/findPw.jsp" />
 	</definition>
 	<definition name="login/popup_findPw" extends="empty">
-		<put-attribute name="body" value="/WEB-INF/views/login/popup_findPw.jsp" />
-	</definition>
-	<definition name="login/onSchedule" extends="empty">
 		<put-attribute name="body"
-			value="/WEB-INF/views/login/onSchedule.jsp" />
+			value="/WEB-INF/views/login/popup_findPw.jsp" />
 	</definition>
 
 

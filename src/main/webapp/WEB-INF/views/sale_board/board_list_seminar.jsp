@@ -27,7 +27,7 @@
 	}
 	function getNumber() {
 		var num = $("#num").val() - 0; // -0을 하지 않으면 문자로 인식하기 때문에 일부로 붙였다.
-		num = num + 6;
+		num = num + 4;
 		$("#num").val(num);
 		return num
 
@@ -61,7 +61,6 @@
 
 		content += "<p>가격 : " + item.sbprice + "</p>";
 
-		content += "<p>	<a href='#' class='btn btn-primary' role='button'>예약하기</a> <a	href='#' class='btn btn-default' role='button'>상세보기</a> </p>";
 		content += "</div>";
 		content += "</div>";
 		content += "</div>";
@@ -81,7 +80,7 @@
 		<div class="container">
 			<form id="searchTxtForm">
 
-				<input type="hidden" name="num" id="num" value="6">
+				<input type="hidden" name="num" id="num" value="4">
 
 			</form>
 
@@ -99,10 +98,7 @@
 								<div class="caption">
 									<h3>제목 : ${dto.sbtitle }</h3>
 									<p>가격 : ${dto.sbprice}</p>
-									<p>
-										<a href="#" class="btn btn-primary" role="button">예약하기</a> <a
-											href="#" class="btn btn-default" role="button">상세보기</a>
-									</p>
+									
 								</div>
 							</div>
 						</div>

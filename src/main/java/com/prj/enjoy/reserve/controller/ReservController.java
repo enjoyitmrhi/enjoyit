@@ -99,7 +99,7 @@ public class ReservController {
 		String cuid= request.getParameter("cuid");
 		ReservDao dao= sqlSession.getMapper(ReservDao.class);	
 		model.addAttribute("cuid", cuid);
-		return "reserve/cancelMsg.pop"; 
+		return "reserve/cancelMsg"; 
 	}
 	
 	@RequestMapping("/send")

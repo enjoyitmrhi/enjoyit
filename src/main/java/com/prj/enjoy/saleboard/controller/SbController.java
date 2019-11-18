@@ -148,7 +148,7 @@ public class SbController {
 			sbpic="";
 		}
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude,sbtype);
+		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude,sbtype,sbcontent);
 		if (sbtype.equals("1")) {
 			return "redirect:board_list_seminar";
 		}else if (sbtype.equals("2")) {
@@ -210,7 +210,7 @@ public class SbController {
 			sbpic = dao.getSbPic(sbcode);
 		}
 		
-		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic);
+		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic,sbloc,sblongitude,sblatitude);
 		String sbtype = dao.getType(sbcode);
 
 		if (sbtype.equals("1")) {
