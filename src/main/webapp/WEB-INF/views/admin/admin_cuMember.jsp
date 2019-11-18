@@ -24,11 +24,11 @@
 
 	<div class="container">
 
-		<div style="width: 20px; display: inline;">
+		<div>
 			<form action="admin_cuMember" name="form1" id="form1" method="post">
 				<input type="hidden" name="cpage" value=""> <input
 					type="hidden" name="bpage" value=""> <select
-					class="form-control" name="sort" onchange="chsort()">
+					class="form-control" name="sort" onchange="chsort()" style="width: 50%; display: inline;" >
 					<option>정렬방법</option>
 					<c:choose>
 						<c:when test="${num }">
@@ -63,25 +63,25 @@
 
 
 
-		<br>
+		<br/>
 
 
 
 		<form action="del_cu" method="post">
 			<h3>일반회원 목록</h3>
 			<input type="submit" value="회원삭제">
-			<table class="table table-hover">
+			<table class="table table-striped">
 				<tr class="table-dark">
-					<td>선택</td>
-					<td>회원번호</td>
-					<td>회원아이디</td>
-					<td>회원명</td>
-					<td>회원주소</td>
-					<td>이메일</td>
-					<td>생년월일</td>
-					<td>성별</td>
-					<td>연락처</td>
-					<td>가입일</td>
+					<th>선택</th>
+					<th>회원번호</th>
+					<th>회원아이디</th>
+					<th>회원명</th>
+					<th>회원주소</th>
+					<th>이메일</th>
+					<th>생년월일</th>
+					<th>성별</th>
+					<th>연락처</th>
+					<th>가입일</th>
 
 				</tr>
 				<c:forEach items="${clist}" var="cu">

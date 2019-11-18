@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="clearfix"></div>
 	<footer class="footer">
 
 	<div class="container my-auto">

@@ -33,6 +33,7 @@
 		<h3>sbcontent_view</h3>
 		<form action="sbmodify_view" method="post">
 			<input type="hidden" name="sbcode" value="${sbcontent_view.sbcode }">
+			<input type="hidden" name="sbtype" value="${sbcontent_view.sbtype}">
 			<div class="border-secondary">
 				<table class="table">
 					<tr>

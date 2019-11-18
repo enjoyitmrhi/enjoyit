@@ -80,7 +80,7 @@
 <body>
 	<br>
 
-	<div class="container">
+	<div  style="margin :100px 10px 30px 150px;">
 		<div id="cuType">
 			<h3>
 				<strong>회원 로그인</strong>
@@ -99,8 +99,9 @@
 
 					</tr>
 				</table>
-
-				<input type="button" value="로그인" onclick="loginProc()">
+				<div>
+					<input type="button" value="로그인" onclick="loginProc()"	>
+				</div>
 
 			</form>
 		</div>

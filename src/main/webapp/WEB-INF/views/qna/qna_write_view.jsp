@@ -40,7 +40,7 @@
 
 			</table>
 			<input type="submit" class="btn btn-outline-primary btn-sm" value="완료">
-			<a role = "btn" class = "btn btn-outline-danger btn-sm" href="qna_list?sbcode=${sbcode}&wid=${wid}">취소</a>
+			<a role = "btn" class = "btn btn-outline-warning btn-sm" href="qna_list?sbcode=${sbcode}&wid=${wid}">취소</a>
 			
 		</form>
 	</div>
