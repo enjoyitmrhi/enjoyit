@@ -21,18 +21,20 @@
 	<div class="container">
 		<h2>${session_cid }님비밀번호변경</h2>
 		<form action="ch_cupwProc" method="post">
-			<table class ="table" style="width: 50%;">
+			<table class="table" style="width: 50%;">
 				<tr>
 					<td>기존 비밀번호를 입력해주세요</td>
-					<td><input type="password" name="cupw" class="form-control"/></td>
+					<td><input type="password" name="cupw" class="form-control" /></td>
 				</tr>
 				<tr>
 					<td>변경할 비밀번호를 입력해주세요</td>
-					<td><input type="password" name="chpw" id="chpw" class="form-control"/></td>
+					<td><input type="password" name="chpw" id="chpw"
+						class="form-control" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호 재확인</td>
-					<td><input type="password" name="chpw2" id="chpw2" class="form-control"/></td>
+					<td><input type="password" name="chpw2" id="chpw2"
+						class="form-control" /></td>
 				</tr>
 
 			</table>
