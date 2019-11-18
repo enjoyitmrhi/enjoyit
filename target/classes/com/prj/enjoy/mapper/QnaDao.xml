@@ -62,7 +62,7 @@
 		INSERT INTO
 		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID,CUNUM,SBCODE)
 		VALUES
-		(QNA_SEQ.nextval+1,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},(SELECT CUNUM FROM CUSTOMER WHERE CUID =
+		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},(SELECT CUNUM FROM CUSTOMER WHERE CUID =
 		#{param3}),#{param4})
 
 	</insert>
@@ -72,9 +72,13 @@
 	</select>
 
 	<delete id="qnadelete">
-		DELETE FROM QNA WHERE QANUM = #{param1}
+		DELETE FROM QNA WHERE QAGROUP = #{param1}
 	</delete>
 
+
+<delete id="answerdelete">
+		DELETE FROM QNA WHERE QANUM = #{param1}
+	</delete>
 	<update id="qnamodify">
 		UPDATE QNA SET QACONTENT = #{param2} WHERE QANUM =
 		#{param1}
@@ -93,7 +97,7 @@
 	<insert id="qnaAnswerWrite">
 		INSERT INTO QNA
 		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID,BUNUM,SBCODE)
-		VALUES(QNA_SEQ.nextval+1,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1},(SELECT BUNUM FROM BUSINESS WHERE BUID =
+		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1},(SELECT BUNUM FROM BUSINESS WHERE BUID =
 		#{param1}),#{param7}
 		)
 

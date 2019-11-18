@@ -188,6 +188,17 @@ public class QnaController {
 
 		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
 	}
+	@RequestMapping("/answerdelete")
+	public String answerdelete(HttpServletRequest request, Model model) {
+		System.out.println("passing delete");
+		String qanum = request.getParameter("qanum");
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
+		String wid = request.getParameter("wid");
+		String sbcode = request.getParameter("sbcode");
+		dao.answerdelete(qanum);
+
+		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
+	}
 
 	@RequestMapping("/qnamodify")
 	public String qnamodify(HttpServletRequest request, Model model) {

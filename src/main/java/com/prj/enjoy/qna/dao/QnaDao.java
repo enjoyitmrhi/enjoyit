@@ -39,4 +39,6 @@ public interface QnaDao {
 	String getType(String sbcode);
 
 	String chkReply(String strNum);
+
+	void answerdelete(String strNum);
 }

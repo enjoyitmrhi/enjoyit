@@ -37,7 +37,7 @@
 		<input type="submit" style="display: none;">
 
 		<a><button onclick="javascript:modify_auth()" class="btn btn-outline-primary btn-sm">수정하기</button></a>
-		<a href="qnadelete?qanum=${qa.qanum}&wid=${session_bid }&sbcode=${qa.sbcode}" class="btn btn-outline-primary btn-sm">삭제하기</a>
+		<a href="answerdelete?qanum=${qa.qanum}&wid=${session_bid }&sbcode=${qa.sbcode}" class="btn btn-outline-primary btn-sm">삭제하기</a>
 		<a href="qna_list?sbcode=${qa.sbcode}&wid=${session_bid }" class="btn btn-outline-primary btn-sm"> 목록가기</a>
 		</form>
 		&nbsp;&nbsp;
