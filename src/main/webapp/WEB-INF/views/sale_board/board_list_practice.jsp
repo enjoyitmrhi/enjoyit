@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script>
 	function moreContent() {
-
 		$.ajax({
 			type : "get",
 			url : "add_list2",
@@ -53,7 +52,7 @@
 				+ item.sbcode
 				+ "&sbpic="
 				+ item.sbpic
-				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' width='200px' height='200px'></a>";
+				+ "'><img  alt='no image' src='resources/upload/"+ item.sbpic  + "' class='img-thumbnail'></a>";
 
 		content += "<div class='caption'>";
 

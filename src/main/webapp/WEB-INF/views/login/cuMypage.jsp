@@ -36,7 +36,7 @@ text-align: center;
 
 <table class ="table">
 		<tr>
-			<td class = "culeft">회원아이디</td>
+			<td>회원아이디</td>
 			<td>${cu.cuid }</td>
 		</tr>
 		<tr>

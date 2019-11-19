@@ -34,8 +34,7 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><pre>
-							<textarea class="form-control" rows="10" cols="20" name="content">${answerview.qacontent }
+					<td><pre><textarea class="form-control" rows="10" cols="20" name="content">${answerview.qacontent }
 └[re]
 </textarea>
 					</pre></td>

@@ -53,8 +53,10 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><img class="w-75 p-3" alt="no image"
-							src="resources/upload/${sbcontent_view.sbpic }"> <br /> <textarea
+						<td>
+						<c:if test="${sbcontent_view.sbpic !='no_image.jpg'}">
+						<img class="w-75 p-3" alt="no image"
+							src="resources/upload/${sbcontent_view.sbpic }"> <br /> </c:if><textarea
 								class="form-control" rows="15" name="sbcontent" id="sbcontent"> ${sbcontent_view.sbcontent } </textarea></td>
 					</tr>
 					<tr>
