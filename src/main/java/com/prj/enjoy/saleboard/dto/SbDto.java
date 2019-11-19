@@ -12,6 +12,17 @@ public class SbDto {
 	private String sbloc;
 	private Timestamp sbdate;
 	private String buid;
+	private String sblongitude;
+	private String sblatitude;
+	private String sbtype;
+
+	public String getSbtype() {
+		return sbtype;
+	}
+
+	public void setSbtype(String sbtype) {
+		this.sbtype = sbtype;
+	}
 
 	public int getSbcode() {
 		return sbcode;
@@ -83,6 +94,22 @@ public class SbDto {
 
 	public void setSbcontent(String sbcontent) {
 		this.sbcontent = sbcontent;
+	}
+
+	public String getSblongitude() {
+		return sblongitude;
+	}
+
+	public void setSblongitude(String sblongitude) {
+		this.sblongitude = sblongitude;
+	}
+
+	public String getSblatitude() {
+		return sblatitude;
+	}
+
+	public void setSblatitude(String sblatitude) {
+		this.sblatitude = sblatitude;
 	}
 
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -25,7 +27,9 @@ import com.prj.enjoy.login.dao.AdminDao;
 import com.prj.enjoy.login.dao.LoginDao;
 import com.prj.enjoy.login.dto.Business;
 import com.prj.enjoy.login.dto.Customer;
+import com.prj.enjoy.message.dao.MsgDao;
 import com.prj.enjoy.qna.dao.QnaDao;
+import com.prj.enjoy.reserve.dao.ReservDao;
 import com.prj.enjoy.review.dao.ReviewDao;
 
 @Controller
@@ -48,8 +52,24 @@ public class LoginController {
 		mav.setViewName("index");
 		return mav;
 	}
+	@RequestMapping("/about")
+	public String about() {
 
-	@RequestMapping("/login")
+		return "about/about";
+	}
+	
+	@RequestMapping("/terms.pop")
+	public String terms() {
+
+		return "about/terms";
+	}
+	@RequestMapping("/htu.pop")
+	public String howtouse() {
+		
+		return "about/howtouse";
+	}
+	
+	@RequestMapping("/login.pop")
 	public String login(HttpSession session) {
 		// 세션 삭제
 		session.invalidate();
@@ -58,64 +78,74 @@ public class LoginController {
 	}
 
 	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-
+	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
 		session.invalidate();
-
-		return "redirect:/login";
+		Cookie[] cookies = request.getCookies();
+		
+		if(cookies != null) {
+			for(int i =0; i< cookies.length; i++) {
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+			}
+		}
+		return "redirect:index";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/loginProc")
-	public String loginProc(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-
+	@RequestMapping(method = RequestMethod.POST, value = "/loginProc.do")
+	@ResponseBody
+	public String loginProc(@RequestParam("userid") String cuid, @RequestParam("userpw") String cupw,
+		Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		String cuid = request.getParameter("cuid");
-		String cupw = request.getParameter("cupw");
 		Customer dto = dao.getCustomer(cuid);
 		if (dto == null) {
 			System.out.println("check id");
-			model.addAttribute("customer", "true");
-			return "login/login";
+			model.addAttribute("alert","check id");
+			return "false: check id";
 		} else if (!dto.getCupw().equals(cupw)) {
 			System.out.println("check pw");
-			model.addAttribute("customer", "true");
-			return "login/login";
+			model.addAttribute("alert","check id");
+			return "false: check pw";
 		} else {
 			model.addAttribute("customer", dto);
 			System.out.println("로그인 성공");
-			session.setAttribute("session_cid", cuid);
-			session.setAttribute("session_cname", dto.getCuname());
-			return "redirect:board_list";
+//			request.setAttribute("session_cid", cuid);
+			Cookie cookie1 = new Cookie("cid",cuid);
+			Cookie cookie2 = new Cookie("cname",dto.getCuname());
+            response.addCookie(cookie1);response.addCookie(cookie2);
+			return "true";
 		}
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/bLoginProc")
-	public String bLoginProc(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-
+	@RequestMapping(method = RequestMethod.POST, value = "/bLoginProc.do")
+	@ResponseBody
+	public String bLoginProc(@RequestParam("userid") String buid, @RequestParam("userpw") String bupw,
+			HttpServletResponse response, Model model) throws Exception {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		String buid = request.getParameter("buid");
-		String bupw = request.getParameter("bupw");
 		Business dto = dao.getBusiness(buid);
 		if (dto == null) {
 			System.out.println("check id");
-			model.addAttribute("business", "true");
-			return "login/login";
+			model.addAttribute("alert","check id");
+			return "false: check id";
 		} else if (!dto.getBupw().equals(bupw)) {
 			System.out.println("check pw");
-			model.addAttribute("business", "true");
-			return "login/login";
+			model.addAttribute("alert","check id");
+			return "false: check pw";
 		} else {
 			model.addAttribute("business", dto);
 			System.out.println("로그인 성공");
-			session.setAttribute("session_bid", buid);
-			session.setAttribute("session_bname", dto.getBuname());
-			return "index";
+			Cookie cookie1 = new Cookie("bid",buid);
+			Cookie cookie2 = new Cookie("bname",dto.getBuname());
+            response.addCookie(cookie1);response.addCookie(cookie2);
+            
+			return "true";
 		}
 
 	}
 
-	@RequestMapping("/join")
+	@RequestMapping("/join.pop")
 	public String join() {
 		return "login/join";
 	}
@@ -178,7 +208,7 @@ public class LoginController {
 		return result;
 	}
 
-	@RequestMapping("/bJoin")
+	@RequestMapping("/bJoin.pop")
 	public String bJoin() {
 		return "login/bJoin";
 	}
@@ -242,15 +272,18 @@ public class LoginController {
 		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
 		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
 		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
+		MsgDao msgdao = sqlSession.getMapper(MsgDao.class);
 		model.addAttribute("cu", logdao.getCustomer(cuid));
 		model.addAttribute("qnacnt", qnadao.qnaboardQcount(cuid));
 		model.addAttribute("rvcnt", rvdao.reviewcount(cuid));
+		model.addAttribute("newmsg",msgdao.chkMsg(cuid,1));
+		model.addAttribute("totmsg",msgdao.chkMsg(cuid,2));
 
 		return "login/cuMypage";
 	}
 
 	@RequestMapping("/del_cuself")
-	public String del_cuself(HttpServletRequest request, HttpSession session) {
+	public String del_cuself(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
 		System.out.println("passing del_cu");
 		String cunum = request.getParameter("cunum");
 		System.out.println("cunum : " + cunum);
@@ -260,13 +293,13 @@ public class LoginController {
 		dao.del_cReview(cuid);
 		dao.del_cQna(cuid);
 		dao.del_cu(cuid);
-		logout(session);
+		logout(session, request, response);
 		return "redirect:index";
 
 	}
 
 	@RequestMapping("/del_buself")
-	public String del_buself(HttpServletRequest request, HttpSession session) {
+	public String del_buself(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
 		System.out.println("passing del_bu");
 		String bunum = request.getParameter("bunum");
 		System.out.println("bunum : " + bunum);
@@ -276,7 +309,7 @@ public class LoginController {
 		dao.del_bReview(buid);
 		dao.del_sb(buid);
 		dao.del_bu(buid);
-		logout(session);
+		logout(session, request, response);
 		return "redirect:index";
 
 	}
@@ -287,9 +320,11 @@ public class LoginController {
 		LoginDao logdao = sqlSession.getMapper(LoginDao.class);
 		QnaDao qnadao = sqlSession.getMapper(QnaDao.class);
 		ReviewDao rvdao = sqlSession.getMapper(ReviewDao.class);
+		ReservDao rtdao = sqlSession.getMapper(ReservDao.class);
 		model.addAttribute("bu", logdao.getBusiness(buid));
 		model.addAttribute("qnacnt", qnadao.qnaboardAcount(buid));
 		model.addAttribute("rvcnt", rvdao.replycount(buid));
+		model.addAttribute("rtcnt", rtdao.cntReserv(buid));
 		return "login/buMypage";
 	}
 
@@ -516,8 +551,8 @@ public class LoginController {
 	public String myQuestion(HttpSession session, Model model) {
 		String cuid = (String) session.getAttribute("session_cid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
-
-		model.addAttribute("qnalist", dao.myqnalist(cuid));
+		
+		model.addAttribute("qnalist",dao.myqnaclist(cuid));
 		return "login//myQuestion";
 	}
 
@@ -533,14 +568,25 @@ public class LoginController {
 	@RequestMapping("/myAnswer")
 	public String myAnswer(HttpSession session, Model model) {
 		String buid = (String) session.getAttribute("session_bid");
-
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
+		model.addAttribute("qnalist",dao.myqnablist(buid));
 		return "login/myAnswer";
 	}
 
 	@RequestMapping("/myReply")
 	public String myReply(HttpSession session, Model model) {
 		String buid = (String) session.getAttribute("session_bid");
-
+		
 		return "login/myReply";
 	}
+	
+	@RequestMapping("/myReserv")
+	public String myReserv(HttpSession session, Model model) {
+		String buid = (String) session.getAttribute("session_bid");
+		ReservDao dao = sqlSession.getMapper(ReservDao.class);
+		model.addAttribute("rtlist", dao.getReserv(buid));
+		return "login/myReserv";
+	}
+	
+	
 }

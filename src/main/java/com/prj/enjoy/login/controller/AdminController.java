@@ -1,5 +1,7 @@
 package com.prj.enjoy.login.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.prj.enjoy.login.dao.AdminDao;
+import com.prj.enjoy.login.dto.Business;
+import com.prj.enjoy.login.dto.Customer;
 import com.prj.enjoy.login.dto.bSearchVO;
 import com.prj.enjoy.login.dto.cSearchVO;
 
@@ -36,7 +40,7 @@ public class AdminController {
 			return "/admin";
 		} else {
 			System.out.println("login success");
-			return "redirect:/adminMain";
+			return "redirect:adminMain";
 		}
 		
 	}
@@ -75,7 +79,7 @@ public class AdminController {
 		dao.del_cReview(cuid);
 		dao.del_cQna(cuid);
 		dao.del_cu(cuid);
-		return "redirect:/admin_cuMember";
+		return "redirect:admin_cuMember";
 
 	}
 
@@ -88,7 +92,7 @@ public class AdminController {
 		dao.del_bReview(buid);
 		dao.del_sb(buid);
 		dao.del_bu(buid);
-		return "redirect:/admin_buMember";
+		return "redirect:admin_buMember";
 
 	}
 
@@ -192,7 +196,6 @@ public class AdminController {
 			System.out.println(busort);
 		}
 		
-		
 		System.out.println(cusort);
 		model.addAttribute("clist", dao.getCustomer(cusort, rowStart, rowEnd));
 		model.addAttribute("cSearchVO",csearchVO);
@@ -210,10 +213,19 @@ public class AdminController {
 		
 		rowStart = bsearchVO.getRowStart();
 		rowEnd = bsearchVO.getRowEnd();
+		ArrayList<Customer> events = dao.getCuLoc();
+		ArrayList<String> a =new ArrayList<String>();
+		Customer cu = new Customer();
+		for (Customer rt : events) {
+			String id=rt.getCuid();
+			String longY=rt.getCulongitude();
+			String latX=rt.getCulatitude();
+			a.add(cu.toString(id,longY,latX));
+		}
 		
-		model.addAttribute("blist", dao.getBusiness(busort, rowStart, rowEnd));
+		model.addAttribute("blist", dao.getCustomer(busort, rowStart, rowEnd));
 		model.addAttribute("bSearchVO",bsearchVO);
-		
+		model.addAttribute("events", a);
 		return"admin/admin_cuMember";
 	}
 	@RequestMapping("/admin_buMember")
@@ -276,8 +288,20 @@ public class AdminController {
 		rowStart = bsearchVO.getRowStart();
 		rowEnd = bsearchVO.getRowEnd();
 		
+		ArrayList<Business> events = dao.getBuLoc();
+		ArrayList<String> a =new ArrayList<String>();
+		Customer bu = new Customer();
+		for (Business rt : events) {
+			String id=rt.getBuid();
+			String longY=rt.getBulongitude();
+			String latX=rt.getBulatitude();
+			a.add(bu.toString(id,longY,latX));
+		}
+		
 		model.addAttribute("blist", dao.getBusiness(busort, rowStart, rowEnd));
 		model.addAttribute("bSearchVO",bsearchVO);
+		model.addAttribute("events", a);
+		
 		return"admin/admin_buMember";
 	}
 	

@@ -10,51 +10,54 @@
 </head>
 <body>
 	<div class="container">
-		<h3>review_list.jsp</h3>
-
-		<input type="hidden" value="${sbcode }" name="sbcode"> <input
-			type="hidden" value="${wid }" name="wid">
 		<table class="table table-hover">
-			<tr>
-				<th>리뷰번호</th>
-				<th>상품번호</th>
-				<th>고객성함</th>
+			<tr class=" table-success">
+
+
 				<th>제목</th>
 				<th>별점</th>
+				<th>작성자</th>
 				<th>날짜</th>
 				<th>조회수</th>
 			</tr>
 			<c:forEach items="${review_list }" var="dto">
 				<tr>
-					<td>${dto.rvnum }</td>
-					<td>${dto.sbcode }</td>
-					<td>${dto.cuid }</td>
+
+
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
 							begin="1" end="${dto.rvindent }" var="cnt">
 							<c:if test="${cnt eq endIndent }">
-								<img alt="" src="resources/img/reply.gif">[re]
+								<img alt="" src="resources/imgs/reply.gif">[re]
 				</c:if>
 				&nbsp;
 			</c:forEach> <a
-						href="review_content_view?rvnum=${dto.rvnum }&wid=${wid }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
+						href="review_content_view?wid=${wid }&rvnum=${dto.rvnum }&rvcontent=${dto.rvcontent}&rvtitle=${dto.rvtitle}&sbcode=${sbcode}">${dto.rvtitle }</a></td>
 					<td><c:choose>
-							<c:when test="${dto.rvstar eq '1' }">☆☆☆☆★</c:when>
-							<c:when test="${dto.rvstar eq '2' }">☆☆☆★★</c:when>
-							<c:when test="${dto.rvstar eq '3' }">☆☆★★★</c:when>
-							<c:when test="${dto.rvstar eq '4' }">☆★★★★</c:when>
+							<c:when test="${dto.rvstar eq '1' }">★</c:when>
+							<c:when test="${dto.rvstar eq '2' }">★★</c:when>
+							<c:when test="${dto.rvstar eq '3' }">★★★</c:when>
+							<c:when test="${dto.rvstar eq '4' }">★★★★</c:when>
 							<c:when test="${dto.rvstar eq '5' }">★★★★★</c:when>
+						</c:choose></td>
+					<td><c:choose>
+							<c:when test="${not empty dto.cuid }">${dto.cuid }</c:when>
+
+
+							<c:otherwise> ${dto.buid } </c:otherwise>
 						</c:choose></td>
 					<td>${dto.rvdate }</td>
 					<td>${dto.rvhit }</td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a href="review_write_view?sbcode=${sbcode }">리뷰
-						작성</a></td>
+				<td colspan="7"><c:if test="${session_cid != null}">
+						<a href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a>
+					</c:if></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">
 			<input type="hidden" name="page" value="" /> <input type="hidden"
+				value="${wid }" name="wid"><input type="hidden"
 				name="sbcode" value="${sbcode }"> TotRow:${searchVO.totRow }&nbsp;
 			page/totPage:${searchVO.page }/${searchVO.totPage }
 			<script type="text/javascript">
@@ -115,8 +118,21 @@
 					name="btn_search" value="검색" />
 			</div>
 			<div>
-				<a href="qna_list?wid=${wid }&sbcode=${sbcode }">QnA보기</a> <a
-					href="board_list">게시글로 가기</a>
+				<a href="qna_list?sbcode=${sbcode }&wid=${wid}"
+					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>
+				<c:if test="${sbtype ==1}">
+					<a href="board_list_seminar" class="btn btn-outline-primary btn-sm"
+						role="btn"> 목록</a>
+				</c:if>
+				<c:if test="${sbtype ==2}">
+					<a href="board_list_practice"
+						class="btn btn-outline-primary btn-sm" role="btn"> 목록</a>
+				</c:if>
+				<c:if test="${sbtype ==3}">
+					<a href="board_list_party" class="btn btn-outline-primary btn-sm"
+						role="btn"> 목록</a>
+				</c:if>
+
 			</div>
 		</form>
 	</div>

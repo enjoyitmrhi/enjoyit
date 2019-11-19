@@ -5,41 +5,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
 <script>
-	function del_sbCont() {
-		var sbcode = $
+	function del_sbCont(sbcode) {
+		/* var sbcode = $
 		{
 			sbcontent_view.sbcode
 		}
-		;
+		; */
 		location.href = "sbdelete?sbcode=" + sbcode;
-
 	};
+	
+	 function reserv(sbcode){
+         var url = "reservation.pop?sbcode="+ sbcode;
+         var name = "reserv apply";
+         var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+         window.open(url, name, option);
+     }
 </script>
+
 
 </head>
 <body>
 
 	<div class="container">
-		<h3>sbcontent_view</h3>
-		<form action="sbmodify" method="post" enctype="multipart/form-data">
+		<form action="sbmodify_view" method="post">
 			<input type="hidden" name="sbcode" value="${sbcontent_view.sbcode }">
+			<input type="hidden" name="sbtype" value="${sbcontent_view.sbtype}">
 			<div class="border-secondary">
 				<table class="table">
 					<tr>
 						<td>작성자</td>
-						<td>${sbcontent_view.buid }</td>
-					</tr>
-					<tr>
-						<td>상품코드</td>
-						<!-- 나중에 지울 td -->
-						<td>${sbcontent_view.sbcode }</td>
-					</tr>
-					<tr>
-						<td>로그인 한 유저</td>
-						<!-- 나중에 지울 td -->
-						<td>${session_bid }${session_cid }</td>
+						<td>${writer }</td>
 					</tr>
 					<tr>
 						<td>가격</td>
@@ -63,14 +62,13 @@
 					</tr>
 					<tr>
 						<td>상품 리뷰 평균</td>
-
 						<td><c:set var="avg" value="${avgstar}"></c:set> <c:if
 								test="${avg != null }">
 								<c:choose>
-									<c:when test="${avg eq '1' }">☆☆☆☆★</c:when>
-									<c:when test="${avg eq '2' }">☆☆☆★★</c:when>
-									<c:when test="${avg eq '3' }">☆☆★★★</c:when>
-									<c:when test="${avg eq '4' }">☆★★★★</c:when>
+									<c:when test="${avg ge '1' and avg lt '2' }">★</c:when>
+									<c:when test="${avg ge '2' and avg lt '3' }">★★</c:when>
+									<c:when test="${avg ge '3' and avg lt '4' }">★★★</c:when>
+									<c:when test="${avg ge '4' and avg lt '5' }">★★★★</c:when>
 									<c:when test="${avg eq '5' }">★★★★★</c:when>
 								</c:choose>
 							</c:if></td>
@@ -81,25 +79,38 @@
 
 			</div>
 			<div>
-				<a href="board_list" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a> &nbsp;&nbsp; <a
+				<c:if test="${sbcontent_view.sbtype ==1}">
+				<a href="board_list_seminar" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				<c:if test="${sbcontent_view.sbtype ==2}">
+				<a href="board_list_practice" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				<c:if test="${sbcontent_view.sbtype ==3}">
+				<a href="board_list_party" class="btn btn-outline-primary btn-sm"
+					role="btn"> 목록</a></c:if>
+				 &nbsp;&nbsp; <a
 					href="review_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
 					class="btn btn-outline-primary btn-sm" role="btn"> 리뷰보기</a>
 				&nbsp;&nbsp;<a
 					href="qna_list?wid=${wid }&sbcode=${sbcontent_view.sbcode }"
-					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>
+					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>&nbsp;&nbsp;
+				<c:if test="${session_cid != null }">
+					<a href="javascript:reserv(${sbcontent_view.sbcode})"
+						class="btn btn-outline-primary btn-sm" role="btn">예약하기</a>
+				</c:if>
 				<div style="float: right;">
 					<c:if test="${sbcontent_view.buid == session_bid}">
-						<button onclick="javascript:del_sbCont()"
-							class="btn btn-outline-info btn-sm">삭제하기</button>
-		&nbsp;&nbsp;
-		<input type="submit" class="btn btn-outline-info btn-sm" value="수정하기">
+
+
+						<input type="submit" class="btn btn-outline-info btn-sm"
+							value="수정페이지">
 					</c:if>
 				</div>
 			</div>
 		</form>
 
 
+		<div id="map" style="width: 60%; height: 350px;"></div>
 
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c152ea050e4105950daf9c520e328d4c"></script>
@@ -109,20 +120,19 @@
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(${longY}, ${latX}), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(${sbcontent_view.sblongitude }, ${sbcontent_view.sblatitude }), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
        
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
- 
+var loc = '<div>'+$('#sbtitle')+'</div>';
 // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 var positions = [
     {
-        content: '<div>작업장 </div>', 
-        latlng: new kakao.maps.LatLng(${longY}, ${latX})
-    }
-];
+        content: loc, 
+        latlng: new kakao.maps.LatLng(${sbcontent_view.sblongitude }, ${sbcontent_view.sblatitude })
+    }];
 
 for (var i = 0; i < positions.length; i ++) {
     // 마커를 생성합니다
@@ -157,35 +167,7 @@ function makeOutListener(infowindow) {
     };
 }
  
-/* 아래와 같이도 할 수 있습니다 */
-/*
-for (var i = 0; i < positions.length; i ++) {
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng // 마커의 위치
-    });
 
-    // 마커에 표시할 인포윈도우를 생성합니다 
-    var infowindow = new kakao.maps.InfoWindow({
-        content: positions[i].content // 인포윈도우에 표시할 내용
-    });
-
-    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-    (function(marker, infowindow) {
-        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-        kakao.maps.event.addListener(marker, 'mouseover', function() {
-            infowindow.open(map, marker);
-        });
-
-        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-        kakao.maps.event.addListener(marker, 'mouseout', function() {
-            infowindow.close();
-        });
-    })(marker, infowindow);
-}
-*/
 </script>
 
 

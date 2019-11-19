@@ -9,10 +9,9 @@
 </head>
 <body>
 <div class="container">
-	<h3>review_reply_view.jsp</h3>
 	<form action="review_reply" method="post">
 		<input type="hidden" name="rvnum" value="${reply_view.rvnum }" />
-		<input type="hidden" name="buid" value="${reply_view.buid }" /> <input
+		<input type="hidden" name="buid" value="${session_bid }" /> <input
 			type="hidden" name="rvgroup" value="${reply_view.rvgroup }" /> <input
 			type="hidden" name="rvstep" value="${reply_view.rvstep }" /> <input
 			type="hidden" name="rvindent" value="${reply_view.rvindent }" /> <input
@@ -36,7 +35,7 @@
 			</textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="reply" /></td>
+				<td colspan="2"><input type="submit" value="답변 작성 완료" class="btn btn-outline-info btn-sm"/></td>
 			</tr>
 		</table>
 	</form>

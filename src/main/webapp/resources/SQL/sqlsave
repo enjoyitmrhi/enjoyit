@@ -5,37 +5,40 @@ drop table sale_board;
 drop table business;
 drop table customer;
 drop table administrator;
+DROP table message;
 drop sequence sbcode_seq;
 drop SEQUENCE qna_seq;
 drop sequence bu_seq;
 drop sequence cu_seq;
 drop sequence REVIEW_SEQ ;
+drop sequence rt_seq;
+drop sequence msg_seq;
 
 
 -- customer
 CREATE TABLE  customer  (
     cuNum     VARCHAR2(10) NOT NULL, -- cuNum
-    cuId      VARCHAR2(20)  NOT NULL, -- cuId
-    cuName    VARCHAR2(20)  NOT NULL, -- cuName
+    cuId      VARCHAR2(20) unique not null, -- cuId
+    cuName      VARCHAR2(20)  NOT NULL, -- cuName
     cuPw      VARCHAR2(20)  NULL,     -- cuPw
     cuAddr    VARCHAR2(100) NULL,     -- cuAddr
-    cuentX    VARCHAR2(30) NULL,     --cuentX
-    cuentY    VARCHAR2(30) NULL,     --cuentY
+    culongitude    VARCHAR2(30) NULL,     --ê²½ë„
+    culatitude    VARCHAR2(30) NULL,     --ìœ„ë„
     cuEmail   VARCHAR2(50)  NULL,     -- cuEmail
     cuBirth   VARCHAR2(20)  NULL,     -- cuBirth
-    cuGender  VARCHAR2(5)   NULL,     -- cuGender
+    cuGender  VARCHAR2(6)   NULL,     -- cuGender
     cuTel     VARCHAR2(20) NULL,     -- cuTel
-    cuDate    DATE   DEFAULT sysdate      -- cuDate
-);
+    cuDate    DATE  DEFAULT sysdate);      -- cuDate
 
--- È¸¿øÅ×ÀÌºí Ãß°¡»çÇ×
---¿ìÆí¹øÈ£
---µµ·Î¸í + »ó¼¼ÁÖ¼Ò 
---(ÅëÇÕÁÖ¼Ò)
---ÁÂÇ¥Á¤º¸ entX, entY (hidden)
---È¸¿øµî±Ş ¿¹»ó
 
--- customer ±âº»Å°
+-- íšŒì›í…Œì´ë¸” ì¶”ê°€ì‚¬í•­
+--ìš°í¸ë²ˆí˜¸
+--ë„ë¡œëª… + ìƒì„¸ì£¼ì†Œ 
+--(í†µí•©ì£¼ì†Œ)
+--ì¢Œí‘œì •ë³´ entX, entY (hidden)
+--íšŒì›ë“±ê¸‰ ì˜ˆìƒ
+
+-- customer ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX  PK_customer 
    ON  customer  ( -- customer
        cuNum  ASC, -- cuNum
@@ -45,7 +48,7 @@ CREATE UNIQUE INDEX  PK_customer
 -- customer
 ALTER TABLE  customer 
    ADD
-      CONSTRAINT  PK_customer  -- customer ±âº»Å°
+      CONSTRAINT  PK_customer  -- customer ê¸°ë³¸í‚¤
       PRIMARY KEY (
           cuNum , -- cuNum
           cuId    -- cuId
@@ -55,19 +58,19 @@ ALTER TABLE  customer
 -- business
 CREATE TABLE  business  (
     buNum    VARCHAR2(10) NOT NULL, -- buNum
-    buId     VARCHAR2(50)  NOT NULL, -- buId
+    buId     VARCHAR2(50) unique NOT NULL, -- buId
     buPw     VARCHAR2(50)  NULL,     -- buPw
     buName   VARCHAR2(50)  NULL,     -- buName
     buEmail  VARCHAR2(50)  NULL,     -- buEmail
     buReNum  VARCHAR2(20) NULL,     -- buReNum
     buTel    VARCHAR2(50)  NULL,     -- buTel
     buAddr   VARCHAR2(100) NULL,     -- buAddr
-    buentX    VARCHAR2(30) NULL,     --buentX
-    buentY    VARCHAR2(30) NULL,     --buentY
+    bulongitude    VARCHAR2(30) NULL,  --longitude   
+    bulatitude    VARCHAR2(30) NULL,   --latitude  
     buDate   DATE  DEFAULT sysdate      -- buDate
 );
 
--- business ±âº»Å°
+-- business ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX  PK_business 
    ON  business  ( -- business
        buNum  ASC, -- buNum
@@ -77,7 +80,7 @@ CREATE UNIQUE INDEX  PK_business
 -- business
 ALTER TABLE  business
    ADD
-      CONSTRAINT  PK_business  -- business ±âº»Å°
+      CONSTRAINT  PK_business  -- business ê¸°ë³¸í‚¤
       PRIMARY KEY (
           buNum , -- buNum
           buId    -- buId
@@ -94,11 +97,14 @@ CREATE TABLE  sale_Board  (
     sbContent VARCHAR2(500) NULL,     -- sbContent
     sbPrice  NUMBER      NULL,     -- sbPrice
     sbLoc    VARCHAR2(500) NULL,     -- sbLoc
+    sblongitude    VARCHAR2(30) NULL,  --longitude   
+    sblatitude    VARCHAR2(30) NULL,   --latitude 
     sbDate   date         DEFAULT sysdate,     -- sbDate
-    buId     VARCHAR2(50)  NULL      -- buId
+    buId     VARCHAR2(50)  NULL,      -- buId
+    sbtype varchar2(20)   null
 );
 
--- sale_Board ±âº»Å°
+-- sale_Board ê¸°ë³¸í‚¤
 CREATE UNIQUE INDEX  PK_sale_Board 
    ON  sale_Board  ( -- sale_Board
        sbCode  ASC -- sbCode
@@ -107,7 +113,7 @@ CREATE UNIQUE INDEX  PK_sale_Board
 -- sale_Board
 ALTER TABLE  sale_Board 
    ADD
-      CONSTRAINT  PK_sale_Board  -- sale_Board ±âº»Å°
+      CONSTRAINT  PK_sale_Board  -- sale_Board ê¸°ë³¸í‚¤
       PRIMARY KEY (
           sbCode  -- sbCode
       );
@@ -150,21 +156,36 @@ CREATE TABLE  review  (
     buId       VARCHAR2(50)  NULL  -- buId
 );
 
-
 -- reservation
 CREATE TABLE  reservation  (
     rtNum    NUMBER     NULL, -- rtNum
-    rtSDate  DATE         NULL, -- rtSDate
-    rtEDate  DATE         NULL, -- rtEDate
+    rtSDate  VARCHAR2(20)  NULL, -- rtSDate
+    rtEDate  VARCHAR2(20)  NULL, -- rtEDate
     sbCode   NUMBER     NULL, -- sbCode
     cuNum    VARCHAR2(10)NULL, -- cuNum
-    cuId     VARCHAR2(20) NULL  -- cuId
+    cuId     VARCHAR2(20) NULL,  -- cuId
+    rtconfirm varchar2(10) null --confirm
 );
 
 create table administrator(
 adid VARCHAR2(10),
 adpw VARCHAR2(10)
 );
+
+Create Table Message (
+Msgnum Varchar2(10),
+Msgtitle Varchar2(50),
+Msgfrom Varchar2(20),
+Msgto Varchar2(20),
+Msgcontent Varchar2(400),
+Msgdate Date  Default Sysdate,
+msgchk varchar2(10)
+);
+
+create sequence msg_seq ;
+
+
+
 -- sale_Board
 ALTER TABLE  sale_Board 
    ADD
@@ -289,47 +310,49 @@ create sequence bu_seq ;
 
 
 
-insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr)
-values('b001','bguest1','1234','»ç¾÷ÀÚ1','email@email','»ç¾÷ÀÚ¹øÈ£','010-3245-1363','°­³²ÇÑº¹ÆÇ');
-insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr)
-values(lpad(lpad(BU_SEQ.nextval+1,3,0),4,'b'),'bguest2','1234','»ç¾÷ÀÚ2','email@email','»ç¾÷ÀÚ¹øÈ£','010-3245-1363','°­³²ÇÑº¹ÆÇ');
+insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr,BULONGITUDE,BULATITUDE)
+values('b001','bguest1','1234','ì‚¬ì—…ì1','email@email','ì‚¬ì—…ìë²ˆí˜¸','010-3245-1363','ê°•ë‚¨í•œë³µíŒ','37.497904','127.026900');
+insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr,BULONGITUDE,BULATITUDE)
+values(lpad(lpad(BU_SEQ.nextval+1,3,0),4,'b'),'bguest2','1234','ì‚¬ì—…ì2','email@email','ì‚¬ì—…ìë²ˆí˜¸','010-3245-1363','ê°•ë‚¨í•œë³µíŒ','37.4482232','127.0525448');
 
 
 create sequence cu_seq ;
 
 
-insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel) 
-values ('c001','cguest1','¼Õ´Ô1','1234','ºÎ»ê','email@email','890505','³²ÀÚ','010-0000-1111');
+insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) 
+values ('c001','cguest1','ì†ë‹˜1','1234','ë¶€ì‚°','email@email','1989-05-05','ë‚¨ì','010-0000-1111','37.497904','127.026900');
 
-insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel) 
-values ('c'||(lpad(cU_SEQ.nextval+1,3,0)),'cguest2','¼Õ´Ô2','1234','ºÎ»ê','email@email','960207','¿©ÀÚ','010-1111-1111');
+insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) 
+values ('c'||(lpad(cU_SEQ.nextval+1,3,0)),'cguest2','ì†ë‹˜2','1234','ë¶€ì‚°','email@email','1996-02-07','ì—¬ì','010-1111-1111','37.4482232','127.0525448');
 
 
 create sequence sbcode_seq ;
-insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbcontent,sbprice,sbloc,buid)
-values(1,'b001','°Ô½ÃÆÇ»çÁø1','°Ô½ÃÆÇÁ¦¸ñ1','¼Ò°³¾îÂ¼±¸ÀúÂ¼±¸','1000000','Á¦ÀÏºñ½Ñ°÷','bguest1');
+insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE,sbLATITUDE,buid,sbtype)
+values(1,'b001','ê²Œì‹œíŒì‚¬ì§„1','ê²Œì‹œíŒì œëª©1','ì†Œê°œì–´ì©Œêµ¬ì €ì©Œêµ¬','1000000','ì œì¼ë¹„ì‹¼ê³³','37.497904','127.026900','bguest1','1');
 
-insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbcontent,sbprice,sbloc,buid)
-values(sbcode_seq.nextval+1,'b002','°Ô½ÃÆÇ»çÁø2','°Ô½ÃÆÇÁ¦¸ñ2','¶ö¶ó¶ó¶ó¶ó¶ó¶ó¶ó','5000000','´õºñ½Ñ°÷','bguest2');
+insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE,sbLATITUDE,buid,sbtype)
+values(sbcode_seq.nextval+1,'b002','ê²Œì‹œíŒì‚¬ì§„2','ê²Œì‹œíŒì œëª©2','ë„ë¼ë¼ë¼ë¼ë¼ë¼ë¼','5000000','ë”ë¹„ì‹¼ê³³','37.4482232','127.0525448','bguest2','2');
 
 
 
 create sequence qna_seq;
 insert into qna(qatitle,qacontent,sbcode,bunum,buid,cunum,cuid,qanum,qagroup,qastep,qaindent)
-values('QnAÁ¦¸ñ','QnA³»¿ë',1,'b001','bguest1','c001','cguest1',1,1,0,0);
+values('QnAì œëª©','QnAë‚´ìš©',1,'b001','bguest1','c001','cguest1',1,1,0,0);
 insert into qna(qatitle,qacontent,sbcode,bunum,buid,cunum,cuid,qanum,qagroup,qastep,qaindent)
-values('QnAÁ¦¸ñ','QnA³»¿ë',2,'b002','bguest2','c002','cguest2',qna_seq.nextval+1,2,0,0);
+values('QnAì œëª©','QnAë‚´ìš©',2,'b002','bguest2','c002','cguest2',qna_seq.nextval+1,2,0,0);
 
-
-insert into reservation(rtnum,rtsdate,rtedate,sbcode,cunum,cuid)
-values(1,'19-10-17','19-11-15',2,'c001','cguest1');
+create sequence rt_seq;
+insert into reservation(rtnum,rtsdate,rtedate,sbcode,cunum,cuid,rtconfirm)
+values(1,'2019-11-17','2019-11-20',2,'c001','cguest1','true');
+insert into reservation(rtnum,rtsdate,rtedate,sbcode,cunum,cuid,rtconfirm)
+values(rt_seq.nextval+1,'2019-11-15','2019-11-16',2,'c002','cguest2','false');
 
 create sequence REVIEW_SEQ ;
 
 insert into review(rvtitle,rvcontent,rvpic,rvstar,rvnum,rvhit ,sbcode,cunum,cuid,bunum,buid,rvgroup,rvstep,rvindent) 
-values('¹è¼Û »¡¶ó¿ä','¸®ºä³»¿ë1','¸®ºä»çÁø1',1,1,0,2,'c001','cguest1','b001','bguest1',1,0,0);
+values('ë°°ì†¡ ë¹¨ë¼ìš”','ë¦¬ë·°ë‚´ìš©1','ë¦¬ë·°ì‚¬ì§„1',1,1,0,2,'c001','cguest1','b001','bguest1',1,0,0);
 insert into review(rvtitle,rvcontent,rvpic,rvstar,rvnum,rvhit ,sbcode,cunum,cuid,bunum,buid,rvgroup,rvstep,rvindent) 
-values('¹è¼Û »¡¶ó¿ä','¸®ºä³»¿ë1','¸®ºä»çÁø1',2,review_seq.nextval+1,0,2,'c002','cguest2','b002','bguest2',2,0,0);
+values('ë°°ì†¡ ë¹¨ë¼ìš”','ë¦¬ë·°ë‚´ìš©1','ë¦¬ë·°ì‚¬ì§„1',2,review_seq.nextval+1,0,2,'c002','cguest2','b002','bguest2',2,0,0);
 
 insert into administrator values('enjoy','1234');
 

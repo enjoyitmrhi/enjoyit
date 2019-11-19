@@ -7,40 +7,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>this is cuModify page</h3>
+<div class = "container">
 	<form action="editProc_cu" method="post">
-		<table>
+		<table class = "table" style="width: 70%;">
 			<tr>
-				<td>회원번호</td>
-				<td><input type="text" name="cunum" value="${cu.cunum }" readonly></td>
+				<td style="width: 200px">회원번호</td>
+				<td><input type="text" name="cunum" value="${cu.cunum }" readonly class = "form-control"></td>
 			</tr>
 			<tr>
 				<td>회원아이디</td>
-				<td><input type="text" name="cuid" value="${cu.cuid }" readonly></td>
+				<td><input type="text" name="cuid" value="${cu.cuid }" readonly class = "form-control"></td>
 			</tr>	
 			<tr>
 				<td>회원명</td>
-				<td><input type="text" name="cuname" value="${cu.cuname }"></td>
+				<td><input type="text" name="cuname" value="${cu.cuname }" class = "form-control"></td>
 			</tr>
 			<tr>
 				<td>회원주소</td>
-				<td><input type="text" name="cuaddr" value="${cu.cuaddr }"></td>
+				<td><input type="text" name="cuaddr" value="${cu.cuaddr }" class = "form-control"></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" name="cuemail" value="${cu.cuemail }"></td>
+				<td><input type="text" name="cuemail" value="${cu.cuemail }" class = "form-control"></td>
 			</tr>
 			<tr>
 				<td>생년월일</td>
-				<td><input type="text" name="cubirth" value="${cu.cubirth }"></td>
+				<td><input type="text" name="cubirth" value="${cu.cubirth } "class = "form-control"></td>
 			</tr>
 			<tr>
 				<td>성별</td>
-				<td><input type="text" name="cugender" value="${cu.cugender }"></td>
+				<td><input type="text" name="cugender" value="${cu.cugender }"class = "form-control"></td>
 			</tr>
 			<tr>
 				<td>연락처</td>
-				<td><input type="text" name="cutel" value="${cu.cutel }"></td>
+				<td><input type="text" name="cutel" value="${cu.cutel }"class = "form-control"></td>
 			</tr>
 			<tr>
 				<td>가입일</td>
@@ -51,5 +51,6 @@
 			href="cuMypage"><input type="button"
 			value="취소"></a>
 	</form>
+	</div>
 </body>
 </html>

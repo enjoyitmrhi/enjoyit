@@ -33,6 +33,7 @@ public class ReviewController {
 		String sbcode= request.getParameter("sbcode");
 		String wid= request.getParameter("wid");
 		String[] brdtitle = request.getParameterValues("searchType");
+		
 		if (brdtitle != null) {
 			for (String val : brdtitle) {
 				if (val.equals("rvtitle")) {
@@ -92,7 +93,8 @@ public class ReviewController {
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("sbcode",sbcode);
 		model.addAttribute("wid", wid);
-
+		String sbtype = dao.getType(sbcode);
+		model.addAttribute("sbtype", sbtype);
 		// model.addAttribute("review_list", dao.review_list());
 
 		return "review/review_list";
@@ -133,6 +135,7 @@ public class ReviewController {
 			strstar ="0";
 		}
 		int rvstar = Integer.parseInt(strstar);
+		
 		String rvpic = req.getFilesystemName("rvpic");
 
 		if (rvpic == null) {
@@ -235,9 +238,6 @@ public class ReviewController {
 	@RequestMapping("/review_delete")
 	public String delete(HttpServletRequest request, Model model) {
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
-		// String rvgroup = request.getParameter("rvgroup");
-		// String rvstep = request.getParameter("rvstep");
-		// String rvindent = request.getParameter("rvindent");
 		String wid= request.getParameter("wid");
 		String sbcode= request.getParameter("sbcode");
 		String strnum = request.getParameter("rvnum");
@@ -276,7 +276,7 @@ public class ReviewController {
 		int sbcode = Integer.parseInt(strcode);
 
 		model.addAttribute("reply_write", dao.reply_write(strId, sbcode));
-
+		model.addAttribute("wid",strId);
 		return "review/review_reply_write";
 	}
 

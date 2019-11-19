@@ -1,6 +1,8 @@
 package com.prj.enjoy.qna.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,9 +32,10 @@ public class QnaController {
 
 		String sbcode = request.getParameter("sbcode");
 		String wid = request.getParameter("wid");
+		String sbtype = dao.getType(sbcode);
 		model.addAttribute("sbcode", sbcode);
 		model.addAttribute("wid", wid);
-
+		model.addAttribute("sbtype", sbtype);
 		String qatitle = "";
 		String qacontent = "";
 
@@ -110,12 +113,13 @@ public class QnaController {
 
 	}
 
-	@RequestMapping(value = "answer_view.do")
-	public @ResponseBody String answer_view(@RequestParam("ID")String qanum) {
+	@RequestMapping(value = "answer_view.do", produces = "application/text; charset=utf8")
+	public @ResponseBody String answer_view(@RequestParam("ID")String qanum) throws Exception {
 		System.out.println("ID >>>"+qanum);
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		String data = dao.answer_view(qanum);
-		System.out.println(data);
+//		String encode= URLEncoder.encode(data , "UTF-8");
+//		System.out.println(encode);
 		return data;
 
 	}
@@ -153,7 +157,7 @@ public class QnaController {
 		model.addAttribute("wid",wid);
 		model.addAttribute("sbcode",sbcode);
 
-		return "redirect:qna_list?sbcode="+sbcode;
+		return "redirect:qna_list";
 	}
 
 	@RequestMapping("/qnacontent_view")
@@ -164,27 +168,41 @@ public class QnaController {
 		model.addAttribute("wid", wid);
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		QnaDto dto = dao.qacontview(strNum);
-
+		String result= dao.chkReply(strNum);
+		model.addAttribute("reply", result);
 		model.addAttribute("content_view", dto);
-
 		return "/qna/qna_content_view";
-
+		
+		
 	}
 
 	@RequestMapping("/qnadelete")
 	public String qnadelete(HttpServletRequest request, Model model) {
+		System.out.println("passing delete");
 		String strNum = request.getParameter("qanum");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		String wid = request.getParameter("wid");
 		String sbcode = request.getParameter("sbcode");
-
+		System.out.println(strNum);
 		dao.qnadelete(strNum);
+
+		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
+	}
+	@RequestMapping("/answerdelete")
+	public String answerdelete(HttpServletRequest request, Model model) {
+		System.out.println("passing delete");
+		String qanum = request.getParameter("qanum");
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
+		String wid = request.getParameter("wid");
+		String sbcode = request.getParameter("sbcode");
+		dao.answerdelete(qanum);
 
 		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
 	}
 
 	@RequestMapping("/qnamodify")
 	public String qnamodify(HttpServletRequest request, Model model) {
+		System.out.println("passing modify");
 		String strNum = request.getParameter("qanum");
 		String content = request.getParameter("content");
 		String wid = request.getParameter("wid");
@@ -237,4 +255,15 @@ public class QnaController {
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
 		dao.replyShape(group, step);
 	}
+	
+	@RequestMapping("/qna_edit")
+	public String qna_edit(HttpServletRequest request, Model model) {
+		String qanum = request.getParameter("num");
+		QnaDao dao =sqlSession.getMapper(QnaDao.class);
+		dao.qacontview(qanum);
+		model.addAttribute("qa",dao.qacontview(qanum));
+		
+		return "/login/qna_edit";
+	}
+	
 }

@@ -15,6 +15,10 @@ public class Business {
 	private String bulongitude;
 	private String bulatitude;
 
+	public String toString(String buid, String bulongitude, String bulatitude) {
+		return "{content:'<div>"+buid+"</div>',latlng: new kakao.maps.LatLng("+bulongitude+","+bulatitude+")}";
+	}
+	
 	public String getBunum() {
 		return bunum;
 	}

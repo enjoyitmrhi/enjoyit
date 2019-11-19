@@ -8,7 +8,6 @@
 
 </head>
 <body>
-	<h3>reply_write.jsp</h3>
 	<form action="review_reply" method="post">
 			<input type="hidden" name="buid" value="${reply_write.buid }" />
 			<input type="hidden" name="sbcode" value="${sbcode }" />
@@ -23,7 +22,7 @@
 			</tr>
 			<tr>
 				<td colspan="2"><textarea type="text" name="rvcontent"
-						rows="10" value="${reply_write.rvcontent }"></textarea></td>
+						rows="10" >${reply_write.rvcontent }</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="reply" /></td>

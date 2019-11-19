@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prj.enjoy.reserve.dao.ReservDao">
+	<select id="getSchedule" resultType="com.prj.enjoy.reserve.dto.Reservation">
+		SELECT CUID,RTSDATE,RTEDATE,RTCONFIRM FROM RESERVATION WHERE SBCODE = #{param1}	
+	</select>
+
+	<select id="getTitle1" resultType="String">
+		SELECT SBTITLE FROM SALE_BOARD WHERE SBCODE = #{param1}
+	</select>
+	
+	<select id="getTitle2" resultType="String">
+		SELECT SBTITLE FROM SALE_BOARD WHERE BUID = #{param1}
+	</select>
+	
+	<insert id="applySchedule">
+		INSERT INTO RESERVATION (RTNUM,SBCODE,CUID,RTSDATE,RTEDATE,RTCONFIRM) 
+		VALUES (RT_SEQ.NEXTVAL+1,#{param1},#{param2},#{param3},#{param4},'false')
+	</insert>
+	<select id="cntReserv" resultType="Integer">
+		SELECT COUNT(*) FROM RESERVATION WHERE SBCODE IN 
+		(SELECT SBCODE FROM SALE_BOARD WHERE BUID = #{param1}) AND RTCONFIRM = 'false'
+	</select>
+	<select id="getReserv" resultType="com.prj.enjoy.reserve.dto.Reservation">
+		SELECT RTNUM, SBTITLE, CUID, RTSDATE, RTEDATE FROM 
+		(SELECT RTNUM, SBTITLE, RT.CUID, RTSDATE, RTEDATE, RT.SBCODE, RTCONFIRM 
+		FROM SALE_BOARD SB, RESERVATION RT WHERE SB.SBCODE=RT.SBCODE) 
+		WHERE SBCODE IN (SELECT SBCODE FROM SALE_BOARD WHERE BUID = #{param1}) 
+		AND RTCONFIRM = 'false' ORDER BY RTNUM
+	</select>
+	<select id="getConfirm" resultType="com.prj.enjoy.reserve.dto.Reservation">
+		SELECT CUID,RTSDATE,RTEDATE,RTCONFIRM FROM RESERVATION WHERE RTNUM = #{param1} OR (SBCODE= (SELECT SBCODE FROM RESERVATION WHERE RTNUM =#{param1}) AND RTCONFIRM = 'true')	
+	</select>
+	<update id="apply_Confirm">
+		UPDATE RESERVATION SET RTCONFIRM = 'true' WHERE RTNUM =#{param1}
+	</update>
+	<select id="getReservInfo" resultType="com.prj.enjoy.reserve.dto.Reservation">
+		SELECT * FROM RESERVATION WHERE RTNUM = #{param1}
+	</select>
+	
+	<insert id="cancelMsg">
+		INSERT INTO MESSAGE (MSGNUM,MSGTITLE,MSGFROM,MSGTO,MSGCONTENT,MSGCHK) 
+		VALUES(MSG_SEQ.NEXTVAL+1,#{param1},#{param2},#{param3},#{param4},'false')
+	</insert>
+	
+	<delete id="reservCancel">
+		DELETE FROM RESERVATION WHERE RTNUM = #{param1}
+	</delete>
+</mapper>

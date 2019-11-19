@@ -44,25 +44,26 @@
 		FROM (
 		SELECT
 		QANUM,QATITLE,QAGROUP,QASTEP,QAINDENT,QADATE,QACONTENT,SBCODE,BUNUM,BUID,CUNUM,CUID
-		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA WHERE SBCODE = #{param5}
+		,ROW_NUMBER() OVER( ORDER BY QAGROUP DESC ,QASTEP ASC) B_SEQ FROM QNA WHERE (SBCODE = #{param5}
 		<include refid="includeList"></include>
-		)
+		))
 		WHERE B_SEQ BETWEEN #{param1} AND #{param2}
 
 
 
 	</select>
 	<select id="selectBoardCount" resultType="Integer">
-		SELECT COUNT(*) FROM QNA WHERE SBCODE= #{param3}
+		SELECT COUNT(*) FROM QNA WHERE SBCODE= #{param3} AND QAINDENT = 0
 		<include refid="includeBoard" />
 	</select>
 
 
 	<insert id="qnawrite">
 		INSERT INTO
-		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID,SBCODE)
+		QNA(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,CUID,CUNUM,SBCODE)
 		VALUES
-		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},#{param4})
+		(QNA_SEQ.nextval,QNA_SEQ.currval,0,0,#{param1},#{param2},#{param3},(SELECT CUNUM FROM CUSTOMER WHERE CUID =
+		#{param3}),#{param4})
 
 	</insert>
 	<select id="qacontview" resultType="com.prj.enjoy.qna.dto.QnaDto">
@@ -71,9 +72,13 @@
 	</select>
 
 	<delete id="qnadelete">
-		DELETE FROM QNA WHERE QANUM = #{param1}
+		DELETE FROM QNA WHERE QAGROUP = #{param1}
 	</delete>
 
+
+<delete id="answerdelete">
+		DELETE FROM QNA WHERE QANUM = #{param1}
+	</delete>
 	<update id="qnamodify">
 		UPDATE QNA SET QACONTENT = #{param2} WHERE QANUM =
 		#{param1}
@@ -91,8 +96,9 @@
 
 	<insert id="qnaAnswerWrite">
 		INSERT INTO QNA
-		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID,SBCODE)
-		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1},#{param7}
+		(QANUM,QAGROUP,QASTEP,QAINDENT,QATITLE,QACONTENT,BUID,BUNUM,SBCODE)
+		VALUES(QNA_SEQ.nextval,#{param2},#{param3}+1,#{param4}+1,#{param6},#{param5},#{param1},(SELECT BUNUM FROM BUSINESS WHERE BUID =
+		#{param1}),#{param7}
 		)
 
 	</insert>
@@ -115,9 +121,22 @@
 		SELECT COUNT(*) FROM QNA WHERE SBCODE IN (SELECT SBCODE FROM SALE_BOARD WHERE BUID=#{param1}) AND QAINDENT = 0 
 	</select>
 	
-	<select id="myqnalist" resultType="com.prj.enjoy.qna.dto.QnaDto">
+	<select id="myqnaclist" resultType="com.prj.enjoy.qna.dto.QnaDto">
 		SELECT BUID SBPRODUCT, SBTITLE SBNAME,SBCODE, QATITLE, QACONTENT  FROM 
 		(SELECT SB.BUID, SB.SBTITLE, qa.SBCODE, QA.QATITLE, QA.QACONTENT ,QA.CUID FROM QNA QA, SALE_BOARD SB WHERE QA.SBCODE=SB.SBCODE) 
 		WHERE CUID= #{param1}
+	</select>
+	
+	<select id="myqnablist" resultType="com.prj.enjoy.qna.dto.QnaDto">
+		SELECT SBTITLE SBPRODUCT, CUID , QATITLE, QACONTENT, QAINDENT, QAGROUP, QANUM,SBCODE FROM 
+		( SELECT SB.BUID, SB.SBTITLE, QA.CUID, QA.QACONTENT, QA.QATITLE, QA.QAINDENT,QA.QAGROUP ,QA.QANUM ,QA.SBCODE
+		FROM QNA QA, SALE_BOARD SB WHERE QA.SBCODE=SB.SBCODE) 
+		WHERE BUID =#{param1} ORDER BY QAGROUP, QAINDENT ASC
+	</select>
+	<select id="getType" resultType="String">
+		SELECT SBTYPE FROM SALE_BOARD WHERE SBCODE = #{param1}
+	</select>
+	<select id="chkReply" resultType="String">
+		SELECT DECODE(COUNT(*),0,'true','false') FROM QNA WHERE QAGROUP=#{param1} and QAINDENT =1
 	</select>
 </mapper>
