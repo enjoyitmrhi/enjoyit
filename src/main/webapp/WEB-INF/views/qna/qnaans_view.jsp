@@ -35,11 +35,10 @@
 				<tr>
 					<td>내용</td>
 					<td><pre>
-							<textarea class="form-control" rows="10" cols="20" name="content">
-				${answerview.qacontent }
-				└[re]
-			</textarea>
-						</pre></td>
+							<textarea class="form-control" rows="10" cols="20" name="content">${answerview.qacontent }
+└[re]
+</textarea>
+					</pre></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
@@ -48,9 +47,11 @@
 				</tr>
 
 			</table>
-			<a href="qna_list?sbcode=${answerview.sbcode }&wid=${wid}"
-				class="btn btn-primary" role="button"> 목록가기</a> &nbsp;&nbsp; <input
-				class="btn btn-primary" type="submit" value="완료">
+			<input class="btn btn-outline-primary btn-sm" type="submit"
+				value="완료"> <a
+				href="qna_list?sbcode=${answerview.sbcode }&wid=${wid}"
+				class="btn btn-outline-warning btn-sm" role="button"> 취소</a>
+			&nbsp;&nbsp;
 		</form>
 	</div>
 

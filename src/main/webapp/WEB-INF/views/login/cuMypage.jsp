@@ -24,13 +24,19 @@
 		  $(".blinkEle").toggle();
 		}, 500);
 </script>
+<style type="text/css">
+.culeft{
+width: 200px;
+text-align: center;
+}
+</style>
 </head>
 <body>
 <div class="container">
 
-<table>
+<table class ="table">
 		<tr>
-			<td>회원아이디</td>
+			<td class = "culeft">회원아이디</td>
 			<td>${cu.cuid }</td>
 		</tr>
 		<tr>

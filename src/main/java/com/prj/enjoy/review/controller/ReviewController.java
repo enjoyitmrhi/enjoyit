@@ -135,6 +135,7 @@ public class ReviewController {
 			strstar ="0";
 		}
 		int rvstar = Integer.parseInt(strstar);
+		
 		String rvpic = req.getFilesystemName("rvpic");
 
 		if (rvpic == null) {

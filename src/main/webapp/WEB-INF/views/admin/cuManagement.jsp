@@ -48,9 +48,9 @@
 			<td>${cu.cudate }</td>
 		</tr>
 	</table>
-	<a href="edit_cu?cunum=${cu.cunum }"><button>정보수정</button></a>
-	<a href="del_cu?cuid=${cu.cuid }"><button>회원삭제</button></a>
-	<a href="admin_cuMember"><button>회원목록보기</button></a>
+	<a href="edit_cu?cunum=${cu.cunum }"><button class= "btn btn-outline-dark btn-sm">정보수정</button></a>
+	<a href="del_cu?cuid=${cu.cuid }"><button class= "btn btn-outline-dark btn-sm">회원삭제</button></a>
+	<a href="admin_cuMember"><button class= "btn btn-outline-dark btn-sm">회원목록보기</button></a>
 	</div>
 </body>
 </html>

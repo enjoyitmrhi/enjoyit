@@ -7,8 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>	
 <script language="javascript" type="text/javascript">
 		function change_cuMod() {
@@ -43,6 +41,9 @@
 			}
 			
 	</script>
+</head>
+<body>
+
 	<div class="container">
 
 	<div id="cuType">

@@ -8,36 +8,38 @@
 </head>
 <body>
 <body>
-<div class="container">
+<div class = "container">
+
+	<h3>this is edit_bu page</h3>
 	<form action="editProc_bu" method="post">
-		<table>
+		<table class ="table" style="width: 70%;">
 			<tr>
-				<td>회원번호</td>
-				<td><input type="text" name="bunum" value="${bu.bunum }" readonly></td>
+				<td style="width: 200px;">회원번호</td>
+				<td><input type="text" name="bunum" value="${bu.bunum }" readonly class="form-control"></td>
 			</tr>
 			<tr>
 				<td>회원아이디</td>
-				<td><input type="text" name="buid" value="${bu.buid }" readonly/></td>
+				<td><input type="text" name="buid" value="${bu.buid }" readonly class="form-control"/></td>
 			</tr>
 			<tr>
 				<td>사업자명</td>
-				<td><input type="text" name="buname" value="${bu.buname }" /></td>
+				<td><input type="text" name="buname" value="${bu.buname }" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td>사업자주소</td>
-				<td><input type="text" name="buaddr" value="${bu.buaddr }" /></td>
+				<td><input type="text" name="buaddr" value="${bu.buaddr }" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="email" name="buemail" value="${bu.buemail }" /></td>
+				<td><input type="email" name="buemail" value="${bu.buemail }" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td>사업자등록번호</td>
-				<td><input type="text" name="burenum" value="${bu.burenum }" /></td>
+				<td><input type="text" name="burenum" value="${bu.burenum }" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td>연락처</td>
-				<td><input type="text" name="butel" value="${bu.butel }" /></td>
+				<td><input type="text" name="butel" value="${bu.butel }" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td>가입일</td>
@@ -45,9 +47,9 @@
 			</tr>
 		</table>
 		<input type="submit" value="정보수정"> <a
-			href="buManagement?bunum=${bu.bunum }"><input type="button"
-			value="취소"></a>
+			href="buMypage?bunum=${bu.bunum }">
+			 <input type="button" value="취소"></a>
 	</form>
-</div>
+	</div>
 </body>
 </html>

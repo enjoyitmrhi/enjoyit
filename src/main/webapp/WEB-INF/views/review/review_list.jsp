@@ -14,25 +14,19 @@
 
 
 		<table class="table table-hover">
-			<tr>
-				<th>리뷰번호</th>
-				<th>상품번호</th>
-				<th>고객성함</th>
+			<tr class=" table-success">
+
+
 				<th>제목</th>
 				<th>별점</th>
+				<th>작성자</th>
 				<th>날짜</th>
 				<th>조회수</th>
 			</tr>
 			<c:forEach items="${review_list }" var="dto">
 				<tr>
-					<td>${dto.rvnum }</td>
-					<td>${dto.sbcode }</td>
-					<td><c:choose>
-							<c:when test="${not empty dto.cuid }">${dto.cuid }</c:when>
 
-							
-							<c:otherwise> 판매자 </c:otherwise>
-						</c:choose></td>
+
 					<td><c:set value="${dto.rvindent }" var="endIndent" /> <c:forEach
 							begin="1" end="${dto.rvindent }" var="cnt">
 							<c:if test="${cnt eq endIndent }">
@@ -48,13 +42,20 @@
 							<c:when test="${dto.rvstar eq '4' }">★★★★</c:when>
 							<c:when test="${dto.rvstar eq '5' }">★★★★★</c:when>
 						</c:choose></td>
+					<td><c:choose>
+							<c:when test="${not empty dto.cuid }">${dto.cuid }</c:when>
+
+
+							<c:otherwise> ${dto.buid } </c:otherwise>
+						</c:choose></td>
 					<td>${dto.rvdate }</td>
 					<td>${dto.rvhit }</td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="7"><a
-					href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a></td>
+				<td colspan="7"><c:if test="${session_cid != null}">
+						<a href="review_write_view?sbcode=${sbcode }&wid=${wid}">리뷰 작성</a>
+					</c:if></td>
 			</tr>
 		</table>
 		<form action="review_list" method="post" id="form1" name="form1">
@@ -120,19 +121,21 @@
 					name="btn_search" value="검색" />
 			</div>
 			<div>
-				<a href="qna_list?sbcode=${sbcode }&wid=${wid}" 
-				class="btn btn-outline-primary btn-sm"
-					role="btn">QnA보기</a> 
+				<a href="qna_list?sbcode=${sbcode }&wid=${wid}"
+					class="btn btn-outline-primary btn-sm" role="btn">QnA보기</a>
 				<c:if test="${sbtype ==1}">
-				<a href="board_list_seminar" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a></c:if>
+					<a href="board_list_seminar" class="btn btn-outline-primary btn-sm"
+						role="btn"> 목록</a>
+				</c:if>
 				<c:if test="${sbtype ==2}">
-				<a href="board_list_practice" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a></c:if>
+					<a href="board_list_practice"
+						class="btn btn-outline-primary btn-sm" role="btn"> 목록</a>
+				</c:if>
 				<c:if test="${sbtype ==3}">
-				<a href="board_list_party" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a></c:if>
-				
+					<a href="board_list_party" class="btn btn-outline-primary btn-sm"
+						role="btn"> 목록</a>
+				</c:if>
+
 			</div>
 		</form>
 	</div>

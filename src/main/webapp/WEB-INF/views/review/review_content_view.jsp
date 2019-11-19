@@ -16,14 +16,14 @@
 			method="post" enctype="multipart/form-data">
 			<input type="hidden" name="rvnum" value="${content_view.rvnum }" />
 			<input type="hidden" name="rvpic" value="${content_view.rvpic }" />
-			<input type="hidden" name="wid" value="${wid }">
-			<input type="hidden" value="${sbcode}" name="sbcode">
+			<input type="hidden" name="wid" value="${wid }"> <input
+				type="hidden" value="${sbcode}" name="sbcode">
 
 			<table class="table ">
 				<tr>
 					<td>제목 :</td>
 					<td colspan="3"><input type="text" name="rvtitle"
-						value="${content_view.rvtitle }" size="50" /></td>
+						value="${content_view.rvtitle }" class ="form-control" /></td>
 				</tr>
 				<tr>
 					<td>별점</td>
@@ -43,8 +43,7 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td colspan="2"><textarea name="rvcontent" rows="10">
-				${content_view.rvcontent }
+					<td colspan="2"><textarea name="rvcontent" rows="10" class ="form-control">${content_view.rvcontent }
 			</textarea></td>
 				</tr>
 				<tr>
@@ -62,7 +61,7 @@
 										<input type="submit" value="수정"
 											class="btn btn-outline-primary btn-sm" /> &nbsp;&nbsp;<a
 											href="review_delete?rvnum=${content_view.rvnum }&sbcode=${sbcode }&wid=${wid}"
-											class="btn btn-outline-primary btn-sm" role="btn">삭제</a>
+											class="btn btn-outline-danger btn-sm" role="btn">삭제</a>
 									</c:if>
 								</c:when>
 								<c:otherwise></c:otherwise>
@@ -75,7 +74,7 @@
 										<input type="submit" value="수정"
 											class="btn btn-outline-primary btn-sm" /> &nbsp;&nbsp;<a
 											href="review_delete?rvnum=${content_view.rvnum }&sbcode=${sbcode }&wid=${wid}"
-											class="btn btn-outline-primary btn-sm" role="btn">삭제</a>
+											class="btn btn-outline-danger btn-sm" role="btn">삭제</a>
 
 									</c:if>
 								</c:when>

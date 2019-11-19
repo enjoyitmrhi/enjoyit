@@ -23,7 +23,7 @@
 			</tr>
 			<tr>
 				<td colspan="2"><textarea type="text" name="rvcontent"
-						rows="10" value="${reply_write.rvcontent }"></textarea></td>
+						rows="10" >${reply_write.rvcontent }</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="reply" /></td>

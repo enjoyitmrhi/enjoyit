@@ -72,10 +72,10 @@
 			<table class="table table-hover">
 
 				<tr class="table-success">
-					<td>글번호</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>답글보기</td>
+					<th>글번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>답글보기</th>
 				</tr>
 
 				<c:forEach items="${qnalist }" var="dto">

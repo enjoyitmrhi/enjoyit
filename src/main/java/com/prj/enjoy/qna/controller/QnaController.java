@@ -157,7 +157,7 @@ public class QnaController {
 		model.addAttribute("wid",wid);
 		model.addAttribute("sbcode",sbcode);
 
-		return "redirect:qna_list?sbcode="+sbcode;
+		return "redirect:qna_list";
 	}
 
 	@RequestMapping("/qnacontent_view")
@@ -185,6 +185,17 @@ public class QnaController {
 		String sbcode = request.getParameter("sbcode");
 		System.out.println(strNum);
 		dao.qnadelete(strNum);
+
+		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
+	}
+	@RequestMapping("/answerdelete")
+	public String answerdelete(HttpServletRequest request, Model model) {
+		System.out.println("passing delete");
+		String qanum = request.getParameter("qanum");
+		QnaDao dao = sqlSession.getMapper(QnaDao.class);
+		String wid = request.getParameter("wid");
+		String sbcode = request.getParameter("sbcode");
+		dao.answerdelete(qanum);
 
 		return "redirect:qna_list?wid="+wid+"&sbcode="+sbcode;
 	}
