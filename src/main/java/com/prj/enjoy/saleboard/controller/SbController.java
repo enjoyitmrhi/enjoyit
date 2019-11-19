@@ -97,7 +97,6 @@ public class SbController {
 	public String sbcontent_view(HttpServletRequest request, Model model) {
 		String wid = request.getParameter("wid");
 		String sbcode = request.getParameter("sbcode");
-
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		LoginDao logindao =sqlSession.getMapper(LoginDao.class);
 		String avgstar;
@@ -107,9 +106,11 @@ public class SbController {
 		}
 		
 		Business dto = logindao.getBusiness(wid);
+		
 		model.addAttribute("wid", wid);
 		model.addAttribute("avgstar", avgstar);
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
+		model.addAttribute("writer", dto.getBuname());
 		return "sale_board/sbcontent_view";
 	}
 
