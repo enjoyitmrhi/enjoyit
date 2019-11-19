@@ -8,7 +8,6 @@
 
 </head>
 <body>
-	<h3>reply_write.jsp</h3>
 	<form action="review_reply" method="post">
 			<input type="hidden" name="buid" value="${reply_write.buid }" />
 			<input type="hidden" name="sbcode" value="${sbcode }" />

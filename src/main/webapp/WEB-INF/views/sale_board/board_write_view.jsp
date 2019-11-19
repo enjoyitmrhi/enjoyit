@@ -98,8 +98,6 @@
 <body>
 	<div id="wrap">
 		<div class="container">
-
-			<h3>board_write_view</h3>
 			<form action="board_write" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="buid" value="${session_bid  }">

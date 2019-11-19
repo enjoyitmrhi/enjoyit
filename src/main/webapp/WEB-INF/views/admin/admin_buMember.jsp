@@ -29,7 +29,8 @@
 			<form action="admin_buMember" name="form1" id="form1" method="post">
 				<input type="hidden" name="cpage" value=""> <input
 					type="hidden" name="bpage" value=""> <select
-					class="form-control" name="sort" onchange="chsort()" style="width: 50%; display: inline;">
+					class="form-control" name="sort" onchange="chsort()"
+					style="width: 50%; display: inline;">
 					<option>정렬방법</option>
 					<c:choose>
 						<c:when test="${num }">

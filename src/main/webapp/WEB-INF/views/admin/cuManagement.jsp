@@ -8,49 +8,50 @@
 
 </head>
 <body>
-<div class="container">
-	<h3>this is customer management page</h3>
-	<table>
-		<tr>
-			<td>회원번호</td>
-			<td>${cu.cunum }</td>
-		</tr>
-		<tr>
-			<td>회원아이디</td>
-			<td>${cu.cuid }</td>
-		</tr>
-		<tr>
-			<td>회원명</td>
-			<td>${cu.cuname }</td>
-		</tr>
-		<tr>
-			<td>회원주소</td>
-			<td>${cu.cuaddr }</td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td>${cu.cuemail }</td>
-		</tr>
-		<tr>
-			<td>생년월일</td>
-			<td>${cu.cubirth }</td>
-		</tr>
-		<tr>
-			<td>성별</td>
-			<td>${cu.cugender }</td>
-		</tr>
-		<tr>
-			<td>연락처</td>
-			<td>${cu.cutel }</td>
-		</tr>
-		<tr>
-			<td>가입일</td>
-			<td>${cu.cudate }</td>
-		</tr>
-	</table>
-	<a href="edit_cu?cunum=${cu.cunum }"><button class= "btn btn-outline-dark btn-sm">정보수정</button></a>
-	<a href="del_cu?cuid=${cu.cuid }"><button class= "btn btn-outline-dark btn-sm">회원삭제</button></a>
-	<a href="admin_cuMember"><button class= "btn btn-outline-dark btn-sm">회원목록보기</button></a>
+	<div class="container">
+		<table>
+			<tr>
+				<td>회원번호</td>
+				<td>${cu.cunum }</td>
+			</tr>
+			<tr>
+				<td>회원아이디</td>
+				<td>${cu.cuid }</td>
+			</tr>
+			<tr>
+				<td>회원명</td>
+				<td>${cu.cuname }</td>
+			</tr>
+			<tr>
+				<td>회원주소</td>
+				<td>${cu.cuaddr }</td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td>${cu.cuemail }</td>
+			</tr>
+			<tr>
+				<td>생년월일</td>
+				<td>${cu.cubirth }</td>
+			</tr>
+			<tr>
+				<td>성별</td>
+				<td>${cu.cugender }</td>
+			</tr>
+			<tr>
+				<td>연락처</td>
+				<td>${cu.cutel }</td>
+			</tr>
+			<tr>
+				<td>가입일</td>
+				<td>${cu.cudate }</td>
+			</tr>
+		</table>
+		<a href="edit_cu?cunum=${cu.cunum }"><button
+				class="btn btn-outline-dark btn-sm">정보수정</button></a> <a
+			href="del_cu?cuid=${cu.cuid }"><button
+				class="btn btn-outline-dark btn-sm">회원삭제</button></a> <a
+			href="admin_cuMember"><button class="btn btn-outline-dark btn-sm">회원목록보기</button></a>
 	</div>
 </body>
 </html>

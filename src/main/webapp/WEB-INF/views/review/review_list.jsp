@@ -10,9 +10,6 @@
 </head>
 <body>
 	<div class="container">
-		<h3>review_list.jsp</h3>
-
-
 		<table class="table table-hover">
 			<tr class=" table-success">
 

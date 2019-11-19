@@ -9,8 +9,6 @@
 <body>
 <body>
 <div class = "container">
-
-	<h3>this is edit_bu page</h3>
 	<form action="editProc_bu" method="post">
 		<table class ="table" style="width: 70%;">
 			<tr>
