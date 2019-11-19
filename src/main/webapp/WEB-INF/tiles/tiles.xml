@@ -55,15 +55,21 @@
 			value="/WEB-INF/views/message/msg_list.jsp" />
 	</definition>
 
-<definition name="message/sendMsg" extends="empty">
-		<put-attribute name="body"
-			value="/WEB-INF/views/message/sendMsg.jsp" />
+	<definition name="message/sendMsg" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/message/sendMsg.jsp" />
 	</definition>
 	<definition name="message/msg_content" extends="empty">
 		<put-attribute name="body"
 			value="/WEB-INF/views/message/msg_content.jsp" />
 	</definition>
 
+	<!-- 이용약관 -->
+	<definition name="about/terms" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/about/terms.jsp" />
+	</definition>
+	<definition name="about/howtouse" extends="empty">
+		<put-attribute name="body" value="/WEB-INF/views/about/howtouse.jsp" />
+	</definition>
 
 	<!-- admin페이지, footer 제거 -->
 	<definition name="adminpage" template="/WEB-INF/include/admintemp.jsp">

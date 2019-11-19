@@ -21,7 +21,11 @@ height: 300px;
 </head>
 <body>
 
-	<div id="banner" class="carousel slide" data-ride="carousel" >
+	
+	<div class="container">
+		<h3>this is index page</h3>
+		<!-- <a href="board_list">게시판 </a> -->
+<div id="banner" class="carousel slide" data-ride="carousel" >
 		<ol class="carousel-indicators">
 			<li data-target="#banner" data-slide-to="0" class="active"></li>
 			<li data-target="#banner" data-slide-to="1"></li>
@@ -59,10 +63,6 @@ height: 300px;
 			aria-hidden="true"></span> <span class="sr-only">Next</span>
 		</a>
 	</div>
-	<div class="container">
-		<h3>this is index page</h3>
-		<!-- <a href="board_list">게시판 </a> -->
-
 
 
 
