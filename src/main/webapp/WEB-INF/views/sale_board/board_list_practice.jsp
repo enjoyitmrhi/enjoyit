@@ -33,7 +33,6 @@
 
 	}
 
-	
 	function renderMoreContents(list) {
 		var rows = [];
 		$.each(list, function(index, item) {
@@ -98,7 +97,7 @@
 								<div class="caption">
 									<h3>제목 : ${dto.sbtitle }</h3>
 									<p>가격 : ${dto.sbprice}</p>
-								
+
 								</div>
 							</div>
 						</div>
@@ -115,7 +114,7 @@
 
 
 
- 
+
 			<div align="left">
 				<c:if test="${session_bid != null}">
 					<a href="board_write_view?buid=${session_bid }&sbtype=2" role="btn"
@@ -123,7 +122,9 @@
 
 				</c:if>
 			</div>
-
+			<div align="right">
+				<a href="#top"> 맨위로 가기</a>
+			</div>
 
 
 
@@ -133,7 +134,7 @@
 	</div>
 	<!-- end wrap -->
 
-	
+
 </body>
 
 </html>

@@ -51,14 +51,24 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
 		return mav;
-	}@RequestMapping("/about")
-	public String about() {
-		
-		
-
-		return "about";
 	}
+	@RequestMapping("/about")
+	public String about() {
 
+		return "about/about";
+	}
+	
+	@RequestMapping("/terms.pop")
+	public String terms() {
+
+		return "about/terms";
+	}
+	@RequestMapping("/htu.pop")
+	public String howtouse() {
+		
+		return "about/howtouse";
+	}
+	
 	@RequestMapping("/login.pop")
 	public String login(HttpSession session) {
 		// 세션 삭제
