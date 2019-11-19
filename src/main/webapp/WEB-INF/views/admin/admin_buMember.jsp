@@ -70,17 +70,17 @@
 		<form action="del_bu" method="post">
 			<h3>가맹회원 목록</h3>
 			<input type="submit" value="가맹회원삭제">
-			<table class="table table-striped">
-				<tr class="table-dark">
-					<th>선택</th>
-					<th>회원번호</th>
-					<th>회원아이디</th>
-					<th>사업자명</th>
-					<th>사업자주소</th>
-					<th>이메일</th>
-					<th>사업자등록번호</th>
-					<th>연락처</th>
-					<th>가입일</th>
+			<table class="table table-hover">
+				<tr class="table-primary">
+					<td>선택</td>
+					<td>회원번호</td>
+					<td>회원아이디</td>
+					<td>사업자명</td>
+					<td>사업자주소</td>
+					<td>이메일</td>
+					<td>사업자등록번호</td>
+					<td>연락처</td>
+					<td>가입일</td>
 				</tr>
 
 

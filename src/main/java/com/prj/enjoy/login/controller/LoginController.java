@@ -51,6 +51,12 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
 		return mav;
+	}@RequestMapping("/about")
+	public String about() {
+		
+		
+
+		return "about";
 	}
 
 	@RequestMapping("/login.pop")
