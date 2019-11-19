@@ -16,7 +16,6 @@
 <body>
 
 	<div class="container">
-		<h3>content_view</h3>
 		상품판매자 :${session_bid }
 		<form action="qnamodify" method="post" name="ansform" id="ansform">
 			<input type="hidden" name="sbcode" value="${qa.sbcode }"> <input

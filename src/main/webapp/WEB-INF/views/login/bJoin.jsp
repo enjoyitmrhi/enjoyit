@@ -187,7 +187,7 @@
 <body>
 	<div class="container">
 
-		<h3>this is bjoin page</h3>
+		<h3>기업 회원가입</h3>
 		<form action="bJoinProc" method="post" name="addjoin">
 			<table class="table">
 

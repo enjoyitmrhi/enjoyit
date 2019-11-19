@@ -99,7 +99,6 @@
 </head>
 <body>
 	<div class="container">
-		<h3>sbcontent_view</h3>
 		<form action="sbmodify" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="sbcode" value="${sbcontent_view.sbcode }">
 			<div class="border-secondary">

@@ -46,6 +46,7 @@
 
 <body>
 	<div class="clearfix"></div>
+	<br />
 	<footer class="footer">
 
 	<div class="container my-auto">
@@ -55,17 +56,17 @@
 				class="hfooter">
 				<a href="/enjoyit/">홈으로</a> <a href="">개인정보취급방침</a> <a
 					href="javascript:terms()">이용약관</a> <a href="javascript:htu()">이용안내</a>
-
-
-				<div style="text-align: center;">
-					<br> <span> Enjoy / 대표자 : ET<br>
-					</span> <span> 주소 : 서울특별시 강동구 천호대로 1095 현대코아 3층<br>
-					</span> <span> Tel : 02-458-2241 / Fax:02-482-9894 / 대표 E-mail :
-						i9096055@naver.com <br>
-					</span> <br> <span>Copyright © Enjoyit 2019 GALLERIES
-						ASSOCIATION OF KOREA. ALL RIGHT RESERVED.</span> <br>
-				</div>
 			</div>
+
+			<div style="text-align: center;">
+				<br> <span> Enjoy / 대표자 : ET<br>
+				</span> <span> 주소 : 서울특별시 강동구 천호대로 1095 현대코아 3층<br>
+				</span> <span> Tel : 02-458-2241 / Fax:02-482-9894 / 대표 E-mail :
+					i9096055@naver.com <br>
+				</span> <br> <span>Copyright © Enjoyit 2019 GALLERIES
+					ASSOCIATION OF KOREA. ALL RIGHT RESERVED.</span> <br>
+			</div>
+
 		</div>
 	</div>
 	</footer>

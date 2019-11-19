@@ -10,7 +10,6 @@
 <body>
 	<div class="container">
 
-		<h3>this is return id</h3>
 		<c:if test="${cuid != null || buid != null}">
 귀하의 아이디는 
 </c:if>

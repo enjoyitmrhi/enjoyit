@@ -17,7 +17,7 @@ section {
 #LowBody {
 	text-align: center;
 	padding: 70px;
-	background-color: cornflowerblue;
+	
 }
 
 #section_recruit {

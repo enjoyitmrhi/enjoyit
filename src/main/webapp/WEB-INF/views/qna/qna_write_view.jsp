@@ -10,7 +10,6 @@
 <body>
 	<div class="container">
 
-		<h3>qna_write_view</h3>
 		<form action="qna_write" method="post">
 			<input type="hidden" value="${sbcode}" name="sbcode">
 			<input type="hidden" value="${wid}" name="wid">

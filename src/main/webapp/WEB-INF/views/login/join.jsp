@@ -191,7 +191,7 @@
 
 
 	<div class="container">
-		<h3>this is join page</h3>
+		<h3>고객 회원가입</h3>
 		<form action="joinProc" method="post" name="addjoin" id="addjoin">
 			<table class="table">
 				<tr>
