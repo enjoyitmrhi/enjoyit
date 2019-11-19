@@ -36,9 +36,7 @@ function terms() {
 </head>
 <body>
 	<div class="container">
-		<div id="LowHead">
-			<h3>여긴 이미지 간단한 이미지 넣는 곳</h3>
-		</div>
+		
 		<section> <img src="resources/imgs/Enjoyroom.png" id="img1">
 		<h2 class="tit_comm " style="color: burlywood;">Enjoy 소개</h2>
 		<strong>전문가가 추천하는, 원하는 장소를 간편하게 예약하세요.</strong> <br>
