@@ -31,7 +31,7 @@ function bJoin() {
 function login() {
 	var url = "login.pop";
     var name = "Login page";
-    var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+    var option = "width = 500, height = 400, top = 50, left = 200, location = no"
     window.open(url, name, option);
 }
 
@@ -101,7 +101,7 @@ if(cookies != null){
 						class="dropdown-item" href="board_list_party">Something else here</a>
 
 				</div></li>
-			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+			<li class="nav-item"><a class="nav-link" href="about">About</a></li>
 		</ul>
 
 
