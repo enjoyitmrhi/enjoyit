@@ -20,7 +20,7 @@
 	function onMsgBox() {
 		var url = "message.pop";
 		var name = "Applt confirm";
-		var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+		var option = "width = 650, height = 600, top = 50, left = 200, location = no"
 		window.open(url, name, option);
 	}
 
@@ -28,12 +28,7 @@
 		$(".blinkEle").toggle();
 	}, 500);
 </script>
-<style type="text/css">
-.culeft {
-	width: 200px;
-	text-align: center;
-}
-</style>
+
 </head>
 <body>
 	<div class="container">
