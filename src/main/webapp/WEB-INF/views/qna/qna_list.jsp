@@ -14,40 +14,41 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="resources/js/jQueryRotateCompressed.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript">
+	//<![CDATA[
+	function show_block(elem, ID) {
+		var menu = document.getElementById(ID);
+		if (elem.className != 'opened') {
+			elem.className = 'opened';
+			menu.style.display = "block";
+			$
+					.ajax({
+						type : "POST",
+						url : "answer_view.do",
+						data : {
+							ID : ID
+						},
+						contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+						success : function(data) {
+							/* alert("success"+data); */
+							document.getElementById("answer_view" + ID).value = data;
+						},
+						error : function(data) {
+							alert("전송실패" + data);
+						}
+					});
+
+		} else {
+			elem.className = 'closed';
+			menu.style.display = "none";
+		}
+
+	}
+	//]]>
+</script>
 
 </head>
 <body>
-	<script type="text/javascript">
-		//<![CDATA[
-		function show_block(elem, ID) {
-			var menu = document.getElementById(ID);
-			if (elem.className != 'opened') {
-				elem.className = 'opened';
-				menu.style.display = "block";
-				 $.ajax({
-							type : "POST",
-							url : "answer_view.do",
-							data : {
-								ID : ID
-							},
-							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-							success : function(data) {
-								/* alert("success"+data); */
-								document.getElementById("answer_view" + ID).value = data;
-							},
-							error : function(data) {
-								alert("전송실패" + data);
-							}
-						});
-
-			}  else {
-				elem.className = 'closed';
-				menu.style.display = "none";
-			}
-
-		}
-		//]]>
-	</script>
 
 	<div class="container">
 
@@ -91,7 +92,7 @@
 										<a>[re]</a>
 									</c:if>
 								</c:forEach> <a href="qnacontent_view?num=${dto.qanum }&wid=${wid}">${dto.qatitle }</a>
-								</td>
+							</td>
 
 							<c:if test="${dto.qaindent==0 }">
 								<td>${dto.cuid }</td>
@@ -128,7 +129,8 @@
 			<div>
 				<c:if test="${searchVO.page > 1 }">
 					<a href="qna_list?page=1&sbcode=${sbcode}&wid=${wid}">맨앞</a>
-					<a href="qna_list?page=${searchVO.page-1 }&sbcode=${sbcode}&wid=${wid}">이전</a>
+					<a
+						href="qna_list?page=${searchVO.page-1 }&sbcode=${sbcode}&wid=${wid}">이전</a>
 				</c:if>
 				<c:if test="${searchVO.totPage > 1 }">
 					<c:forEach begin="${searchVO.pageStart }"
@@ -146,8 +148,10 @@
 
 					</c:forEach>
 					<c:if test="${searchVO.page <searchVO.totPage }">
-						<a href="qna_list?page=${searchVO.page+1 }&sbcode=${sbcode}&wid=${wid}">다음</a>
-						<a href="qna_list?page=${searchVO.totPage }&sbcode=${sbcode}&wid=${wid}">맨뒤</a>
+						<a
+							href="qna_list?page=${searchVO.page+1 }&sbcode=${sbcode}&wid=${wid}">다음</a>
+						<a
+							href="qna_list?page=${searchVO.totPage }&sbcode=${sbcode}&wid=${wid}">맨뒤</a>
 					</c:if>
 				</c:if>
 			</div>
@@ -180,19 +184,21 @@
 		</form>
 
 		<div>
-			<a href="review_list?wid=${wid }&sbcode=${sbcode }" 
-			class="btn btn-outline-primary btn-sm"
-					role="btn">리뷰보기</a> 
+			<a href="review_list?wid=${wid }&sbcode=${sbcode }"
+				class="btn btn-outline-primary btn-sm" role="btn">리뷰보기</a>
 			<c:if test="${sbtype ==1}">
 				<a href="board_list_seminar" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a></c:if>
-				<c:if test="${sbtype ==2}">
+					role="btn"> 목록</a>
+			</c:if>
+			<c:if test="${sbtype ==2}">
 				<a href="board_list_practice" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a></c:if>
-				<c:if test="${sbtype ==3}">
+					role="btn"> 목록</a>
+			</c:if>
+			<c:if test="${sbtype ==3}">
 				<a href="board_list_party" class="btn btn-outline-primary btn-sm"
-					role="btn"> 목록</a></c:if>
-			
+					role="btn"> 목록</a>
+			</c:if>
+
 		</div>
 	</div>
 

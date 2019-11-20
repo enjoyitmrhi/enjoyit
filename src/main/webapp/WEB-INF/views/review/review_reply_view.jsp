@@ -9,7 +9,6 @@
 </head>
 <body>
 <div class="container">
-	<h3>review_reply_view.jsp</h3>
 	<form action="review_reply" method="post">
 		<input type="hidden" name="rvnum" value="${reply_view.rvnum }" />
 		<input type="hidden" name="buid" value="${session_bid }" /> <input

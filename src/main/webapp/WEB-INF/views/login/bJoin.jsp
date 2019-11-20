@@ -94,10 +94,12 @@
 			document.addjoin.bupw2.focus();
 			exit;
 
+		} else {
+
+			$("#addjoin").submit();
+
+			setTimeout("close_pop()", 10);
 		}
-		document.addjoin.submit();
-		alert("회원가입에 성공하셨습니다.");
-		window.close();
 	}
 	
 	function check(re, what, message) {
@@ -202,8 +204,8 @@
 <body>
 	<div class="container">
 
-		<h3>this is bjoin page</h3>
-		<form action="bJoinProc" method="post" name="addjoin">
+		<h3>기업 회원가입</h3>
+		<form action="bJoinProc" method="post" name="addjoin" id="addjoin">
 			<table class="table">
 
 				<tbody>

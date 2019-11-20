@@ -80,51 +80,67 @@
 <body>
 	<br>
 
-	<div  style="margin :100px 10px 30px 150px;">
+	<div style="margin: 10px 10px 30px 10px;">
 		<div id="cuType">
-			<h3>
-				<strong>회원 로그인</strong>
-			</h3>
-			<form action="#" method="post" name="form1">
-				<table>
-					<tr>
-						<td>아이디</td>
-						<td><input class="form-control" type="text" name="cuid"
-							id="cuid"></td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" class="form-control" name="cupw"
-							id="cupw"></td>
 
-					</tr>
+			<form action="#" method="post" name="form1">
+				<table class="table">
+					<thead>
+						<tr>
+							<td colspan="2" class="table-primary" style="text-align: center;">
+								<h3>
+									<strong>회원 로그인</strong>
+								</h3>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>아이디</td>
+							<td><input class="form-control" type="text" name="cuid"
+								id="cuid"></td>
+						</tr>
+						<tr>
+							<td>비밀번호</td>
+							<td><input type="password" class="form-control" name="cupw"
+								id="cupw"></td>
+
+						</tr>
+					</tbody>
 				</table>
 				<div>
-					<input type="button" value="로그인" onclick="loginProc()"	>
+					<input type="button" value="로그인" onclick="loginProc()">
 				</div>
 
 			</form>
 		</div>
 
 		<div id="buType" style="display: none;">
-			<h3>
-				<strong>가맹점 로그인</strong>
-			</h3>
+
 			<form action="#" method="post" name="form2">
-				<table>
-					<tr>
-						<td>아이디</td>
-						<td><input class="form-control" type="text" name="buid"
-							id="buid"></td>
+				<table class="table">
+					<thead>
+						<tr>
+							<td colspan="2" class="table-primary" style="text-align: center;"><h3>
+									<strong>가맹점 로그인</strong>
+								</h3></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>아이디</td>
+							<td><input class="form-control" type="text" name="buid"
+								id="buid"></td>
 
 
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input class="form-control" type="password" name="bupw"
-							id="bupw"></td>
+						</tr>
+						<tr>
+							<td>비밀번호</td>
+							<td><input class="form-control" type="password" name="bupw"
+								id="bupw"></td>
 
-					</tr>
+						</tr>
+					</tbody>
 				</table>
 				<input type="button" value="로그인" onclick="bLoginProc()">
 

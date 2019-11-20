@@ -1,38 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-	var msg = ${newmsg}
-	if(msg != '0' ){
-		alert("미확인 메세지 "+msg+"개가 있습니다.");
+	var msg = $
+	{
+		newmsg
 	}
-	
+	if (msg != '0') {
+		alert("미확인 메세지 " + msg + "개가 있습니다.");
+	}
+
 	function onMsgBox() {
 		var url = "message.pop";
-        var name = "Applt confirm";
-        var option = "width = 500, height = 700, top = 50, left = 200, location = no"
-        window.open(url, name, option);
+		var name = "Applt confirm";
+		var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+		window.open(url, name, option);
 	}
-	
-	setInterval(function(){
-		  $(".blinkEle").toggle();
-		}, 500);
+
+	setInterval(function() {
+		$(".blinkEle").toggle();
+	}, 500);
 </script>
 <style type="text/css">
-.culeft{
-width: 200px;
-text-align: center;
+.culeft {
+	width: 200px;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-<div class="container">
+	<div class="container">
 
 <table class ="table">
 		<tr>
@@ -85,7 +89,12 @@ text-align: center;
 		<a href="ch_cupw"><button>비밀번호변경</button></a>	
 		<a href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
 
-</div>
+		</table>
+		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a> <a
+			href="ch_cupw"><button>비밀번호변경</button></a> <a
+			href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
+
+	</div>
 
 </body>
 </html>

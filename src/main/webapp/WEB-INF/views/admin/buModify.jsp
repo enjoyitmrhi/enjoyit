@@ -9,7 +9,6 @@
 </head>
 <body>
 	<div class="container">
-		<h3>this is buModify page</h3>
 		<table>
 			<tr>
 				<td>회원번호</td>

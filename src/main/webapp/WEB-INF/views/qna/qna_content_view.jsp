@@ -6,17 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-</head>
-<body>
-	<script>
+<script>
 		function modify_auth() {
 
 			document.ansform.submit();
 		};
 	</script>
+</head>
+<body>
 	<div class="container">
-		<h3>content_view</h3>
 		상품판매자 :${wid }
 		<form action="qnamodify" method="post" name="ansform" id="ansform">
 

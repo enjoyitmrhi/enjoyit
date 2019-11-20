@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,14 +9,22 @@
 </head>
 <body>
 	<table>
-	<caption>
-	<c:if test="${prev != null}" ><a href="msg_content.pop?num=${prev }"><button><<</button></a></c:if>
-	<c:if test="${prev == null}"><a><button><<</button></a></c:if>
-	
-	<c:if test="${next != null}" ><a href="msg_content.pop?num=${next }"><button>>></button></a></c:if>
-	<c:if test="${next == null}" ><a><button>>></button></a></c:if>
-	</caption>
-	
+		<caption>
+			<c:if test="${prev != null}">
+				<a href="msg_content.pop?num=${prev }"><button> &lt;&lt; </button></a>
+			</c:if>
+			<c:if test="${prev == null}">
+				<a><button>&lt;&lt;</button></a>
+			</c:if>
+
+			<c:if test="${next != null}">
+				<a href="msg_content.pop?num=${next }"><button>&gt;&gt;</button></a>
+			</c:if>
+			<c:if test="${next == null}">
+				<a><button>>></button></a>
+			</c:if>
+		</caption>
+
 		<tr>
 			<th>보낸사람</th>
 			<th>${content.msgfrom }</th>

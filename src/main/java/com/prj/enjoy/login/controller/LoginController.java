@@ -52,7 +52,23 @@ public class LoginController {
 		mav.setViewName("index");
 		return mav;
 	}
+	@RequestMapping("/about")
+	public String about() {
 
+		return "about/about";
+	}
+	
+	@RequestMapping("/terms.pop")
+	public String terms() {
+
+		return "about/terms";
+	}
+	@RequestMapping("/htu.pop")
+	public String howtouse() {
+		
+		return "about/howtouse";
+	}
+	
 	@RequestMapping("/login.pop")
 	public String login(HttpSession session) {
 		// 세션 삭제
@@ -160,9 +176,10 @@ public class LoginController {
 		System.out.println("cuaddr2 >>>> " + cuaddr);
 		System.out.println("longy>>>" + culongY);
 		System.out.println("latx>>>>" + culatX);
-
+		
+		
 		int result = 0;
-		/* dao.chkCid(cuid); */ ;
+		 dao.chkCid(cuid);  ;
 
 		List<String> errors = new ArrayList();
 		if (result > 0) {

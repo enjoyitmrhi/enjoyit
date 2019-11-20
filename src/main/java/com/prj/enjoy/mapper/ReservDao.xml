@@ -17,7 +17,7 @@
 	
 	<insert id="applySchedule">
 		INSERT INTO RESERVATION (RTNUM,SBCODE,CUID,RTSDATE,RTEDATE,RTCONFIRM) 
-		VALUES (RT_SEQ.NEXTVAL+1,#{param1},#{param2},#{param3},#{param4},'false')
+		VALUES (RT_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},'false')
 	</insert>
 	<select id="cntReserv" resultType="Integer">
 		SELECT COUNT(*) FROM RESERVATION WHERE SBCODE IN 
@@ -42,7 +42,7 @@
 	
 	<insert id="cancelMsg">
 		INSERT INTO MESSAGE (MSGNUM,MSGTITLE,MSGFROM,MSGTO,MSGCONTENT,MSGCHK) 
-		VALUES(MSG_SEQ.NEXTVAL+1,#{param1},#{param2},#{param3},#{param4},'false')
+		VALUES(MSG_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},'false')
 	</insert>
 	
 	<delete id="reservCancel">

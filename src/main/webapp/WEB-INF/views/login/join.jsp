@@ -98,10 +98,15 @@
 			document.addjoin.cupw2.focus();
 			exit;
 
+		} else {
+
+			/* document.addjoin.submit(); */
+			$("#addjoin").submit();
+			
+			setTimeout("close_pop()", 10);
+
 		}
-		document.addjoin.submit();
-		alert("회원가입에 성공하셨습니다.");
-		window.close();
+
 	}
 	
 	function check(re, what, message) {
@@ -206,7 +211,7 @@
 
 
 	<div class="container">
-		<h3>this is join page</h3>
+		<h3>고객 회원가입</h3>
 		<form action="joinProc" method="post" name="addjoin" id="addjoin">
 			<table class="table">
 				<tr>
@@ -280,17 +285,15 @@
 
 				<tr>
 					<td colspan="3"><input type="text" id="sample4_postcode"
-						placeholder="우편번호" 
-						style="width: 20%; float: left;"> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><br></td>
+						placeholder="우편번호" style="width: 20%; float: left;"> <input
+						type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="text" name="addr1"
-						id="sample4_roadAddress" placeholder="도로명주소"
-						style="width: 20%;"> <input
-						type="text" name="addr2" id="sample4_detailAddress"
-						placeholder="상세주소" > <input type="text" name="addr3"
-						id="sample4_extraAddress" placeholder="참고항목" ></td>
+						id="sample4_roadAddress" placeholder="도로명주소" style="width: 20%;">
+						<input type="text" name="addr2" id="sample4_detailAddress"
+						placeholder="상세주소"> <input type="text" name="addr3"
+						id="sample4_extraAddress" placeholder="참고항목"></td>
 				</tr>
 				<tr>
 					<td><input type="hidden" id="sample4_jibunAddress"
@@ -318,9 +321,9 @@
 					
 				</tr>
 			</table>
+			<input type="button" value="회원가입" onclick="checkfield()"> <a
+				href="javascript:close_pop()"><button>취소</button></a>
 		</form>
-		<input type="button" value="회원가입" onclick="checkfield()"> <a
-			href="javascript:close_pop()"><button>취소</button></a>
 	</div>
 
 

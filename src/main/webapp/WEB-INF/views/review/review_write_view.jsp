@@ -9,7 +9,6 @@
 </head>
 <body>
 	<div class="container">
-		<h3>review_write_view.jsp</h3>
 		<form action="review_write" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" value="${sbcode}" name="sbcode"> <input

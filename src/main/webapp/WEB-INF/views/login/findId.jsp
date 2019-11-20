@@ -45,51 +45,74 @@
 
 
 	<div class="container">
-		<h3>this is findId page</h3>
 		<div id="cuType">
 			일반회원 <br>
 			<form action="popup_chkId" name="cuPopup">
-				<label>이름</label> <input type="text" name="cuname" id="cuname"><br>
-				<label>연락처</label> <input type="tel" name="cutel" id="cutel"><br>
-				<label>생년월일</label> <select name="cuyear" id="cuyear">
-					<option value="" selected>년도</option>
-					<c:forEach begin="0" end="50" var="i">
-						<c:forEach begin="99" end="99" var="j">
-							<option value="19${j - i }">${j - i }</option>
-						</c:forEach>
-					</c:forEach>
-				</select> <select name="cumonth" id="cumonth">
-					<option value="" selected>월</option>
-					<c:forEach var="i" begin="1" end="12">
-						<c:if test="${i < 10 }">
-							<option value="0${i }">0${i }</option>
-						</c:if>
-						<c:if test="${i >= 10 }">
-							<option value="${i }">${i }</option>
-						</c:if>
-					</c:forEach>
-				</select> <select name="cuday" id="cuday">
-					<option value="" selected>일</option>
-					<c:forEach var="i" begin="1" end="31">
-						<c:if test="${i <10}">
-							<option value="0${i }">0${i }</option>
-						</c:if>
-						<c:if test="${i >=10 }">
-							<option value="${i }">${i }</option>
-						</c:if>
-					</c:forEach>
-				</select><br /> <input type="button" value="아이디확인" onclick="showPopup_cu();">
+				<table class="table">
+					<tr>
+						<td><label>이름</label></td>
+						<td><input type="text" name="cuname" id="cuname"></td>
+					</tr>
+					<tr>
+						<td><label>연락처</label></td>
+						<td><input type="tel" name="cutel" id="cutel"></td>
+					</tr>
+					<tr>
+						<td><label>생년월일</label></td>
+						<td><select name="cuyear" id="cuyear" class = "form-control" style="width: 30%; float: left;">
+								<option value="" selected>년도</option>
+								<c:forEach begin="0" end="50" var="i">
+									<c:forEach begin="99" end="99" var="j">
+										<option value="19${j - i }">${j - i }</option>
+									</c:forEach>
+								</c:forEach>
+						</select> <select name="cumonth" id="cumonth" class = "form-control" style="width: 30%; float: left;">
+								<option value="" selected>월</option>
+								<c:forEach var="i" begin="1" end="12">
+									<c:if test="${i < 10 }">
+										<option value="0${i }">0${i }</option>
+									</c:if>
+									<c:if test="${i >= 10 }">
+										<option value="${i }">${i }</option>
+									</c:if>
+								</c:forEach>
+						</select> <select name="cuday" id="cuday" class = "form-control" style="width: 30%; float: left;">
+								<option value="" selected>일</option>
+								<c:forEach var="i" begin="1" end="31">
+									<c:if test="${i <10}">
+										<option value="0${i }">0${i }</option>
+									</c:if>
+									<c:if test="${i >=10 }">
+										<option value="${i }">${i }</option>
+									</c:if>
+								</c:forEach>
+						</select></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="button" value="아이디확인"
+							onclick="showPopup_cu();"></td>
+					</tr>
+				</table>
+
 			</form>
 		</div>
 
 		<div id="buType" style="display: none;">
 			가맹회원 <br>
 			<form action="popup_chkId" name="buPopup">
-				<label>사업자명</label> <input type="text" name="buname" id="buname"><br>
-				<label>사업자등록번호</label> <input type="text" name="burenum"
-					id="burenum"><br> <label>연락처</label> <input type="tel"
-					name="butel" id="butel"><br> <input type="button"
-					value="아이디확인" onclick="showPopup_bu();">
+				<table class="table">
+					<tr><td><label>사업자명</label></td>
+					<td><input type="text" name="buname" id="buname"></td>
+					</tr>
+					<tr><td><label>사업자등록번호</label></td>
+					<td><input type="text" name="burenum" id="burenum"></td>
+					</tr>
+					
+					<tr><td><label>연락처</label></td>
+					<td><input type="tel" name="butel" id="butel"></td>
+					</tr>
+					<tr><td colspan="2"><input type="button" value="아이디확인" onclick="showPopup_bu();"></td> </tr>
+				</table>
 			</form>
 		</div>
 

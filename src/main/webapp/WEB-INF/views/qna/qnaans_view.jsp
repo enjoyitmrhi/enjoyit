@@ -11,7 +11,6 @@
 </head>
 <body>
 	<div class="container">
-		<h3>qnaans_view</h3>
 		<form action="qnaanswer_write">
 
 			<input type="hidden" name="num" value="${answerview.qanum }">
