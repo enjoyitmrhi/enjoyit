@@ -85,7 +85,7 @@ public class ReservController {
 		dao.apply_Confirm(rtnum);
 	}
 	
-	@RequestMapping("/cancelApply")
+	@RequestMapping("/cancelApply.do")
 	public void cancelApply(HttpServletRequest requst) {
 		String rtnum = requst.getParameter("num");
 		ReservDao dao = sqlSession.getMapper(ReservDao.class);
@@ -98,11 +98,12 @@ public class ReservController {
 //		String rtnum = request.getParameter("rtnum");
 		String cuid= request.getParameter("cuid");
 		ReservDao dao= sqlSession.getMapper(ReservDao.class);
+		System.out.println(cuid);
 		model.addAttribute("cuid", cuid);
 		return "reserve/cancelMsg"; 
 	}
 	
-	@RequestMapping("/send")
+	@RequestMapping("/send.do")
 	public void send(HttpServletRequest request, Model model) {
 		String msgtitle = request.getParameter("title");
 		String msgfrom = request.getParameter("from");
