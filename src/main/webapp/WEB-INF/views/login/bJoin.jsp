@@ -89,9 +89,12 @@
 			document.addjoin.bupw2.focus();
 			exit;
 
+		} else {
+
+			$("#addjoin").submit();
+
+			setTimeout("close_pop()", 10);
 		}
-		document.addjoin.submit();
-		window.close();
 	}
 
 	function close_pop() {
@@ -188,7 +191,7 @@
 	<div class="container">
 
 		<h3>기업 회원가입</h3>
-		<form action="bJoinProc" method="post" name="addjoin">
+		<form action="bJoinProc" method="post" name="addjoin" id="addjoin">
 			<table class="table">
 
 				<tbody>

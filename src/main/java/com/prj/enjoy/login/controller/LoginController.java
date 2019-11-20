@@ -176,9 +176,10 @@ public class LoginController {
 		System.out.println("cuaddr2 >>>> " + cuaddr);
 		System.out.println("longy>>>" + culongY);
 		System.out.println("latx>>>>" + culatX);
-
+		
+		
 		int result = 0;
-		/* dao.chkCid(cuid); */ ;
+		 dao.chkCid(cuid);  ;
 
 		List<String> errors = new ArrayList();
 		if (result > 0) {
