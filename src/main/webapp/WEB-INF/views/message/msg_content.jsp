@@ -21,7 +21,7 @@
 				<a href="msg_content.pop?num=${next }"><button>&gt;&gt;</button></a>
 			</c:if>
 			<c:if test="${next == null}">
-				<a><button>>></button></a>
+				<a><button>&gt;&gt;</button></a>
 			</c:if>
 		</caption>
 
