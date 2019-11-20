@@ -308,30 +308,31 @@ ALTER TABLE  reservation
 
 create sequence bu_seq ;
 
-
+select bu_seq.nextval from dual;
 
 insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr,BULONGITUDE,BULATITUDE)
 values('b001','bguest1','1234','사업자1','email@email','사업자번호','010-3245-1363','강남한복판','37.497904','127.026900');
 insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr,BULONGITUDE,BULATITUDE)
-values(lpad(lpad(BU_SEQ.nextval+1,3,0),4,'b'),'bguest2','1234','사업자2','email@email','사업자번호','010-3245-1363','강남한복판','37.4482232','127.0525448');
+values(lpad(lpad(BU_SEQ.nextval,3,0),4,'b'),'bguest2','1234','사업자2','email@email','사업자번호','010-3245-1363','강남한복판','37.4482232','127.0525448');
 
 
 create sequence cu_seq ;
 
-
+select cu_seq.nextval from dual;
 insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) 
 values ('c001','cguest1','손님1','1234','부산','email@email','1989-05-05','남자','010-0000-1111','37.497904','127.026900');
 
 insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) 
-values ('c'||(lpad(cU_SEQ.nextval+1,3,0)),'cguest2','손님2','1234','부산','email@email','1996-02-07','여자','010-1111-1111','37.4482232','127.0525448');
+values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest2','손님2','1234','부산','email@email','1996-02-07','여자','010-1111-1111','37.4482232','127.0525448');
 
 
 create sequence sbcode_seq ;
+select sbcode_seq.nextval from dual;
 insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE,sbLATITUDE,buid,sbtype)
-values(1,'b001','게시판사진1','게시판제목1','소개어쩌구저쩌구','1000000','제일비싼곳','37.497904','127.026900','bguest1','1');
+values(1,'b001','Lighthouse.jpg','게시판제목1','소개어쩌구저쩌구','1000000','제일비싼곳','37.497904','127.026900','bguest1','1');
 
 insert into sale_board(sbcode,bunum,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE,sbLATITUDE,buid,sbtype)
-values(sbcode_seq.nextval+1,'b002','게시판사진2','게시판제목2','랄라라라라라라라','5000000','더비싼곳','37.4482232','127.0525448','bguest2','2');
+values(sbcode_seq.nextval,'b002','Chrysanthemum.jpg','게시판제목2','랄라라라라라라라','5000000','더비싼곳','37.4482232','127.0525448','bguest2','2');
 
 
 
@@ -342,10 +343,11 @@ insert into qna(qatitle,qacontent,sbcode,bunum,buid,cunum,cuid,qanum,qagroup,qas
 values('QnA제목','QnA내용',2,'b002','bguest2','c002','cguest2',qna_seq.nextval+1,2,0,0);
 
 create sequence rt_seq;
+select rt_seq.nextval from dual;
 insert into reservation(rtnum,rtsdate,rtedate,sbcode,cunum,cuid,rtconfirm)
 values(1,'2019-11-17','2019-11-20',2,'c001','cguest1','true');
 insert into reservation(rtnum,rtsdate,rtedate,sbcode,cunum,cuid,rtconfirm)
-values(rt_seq.nextval+1,'2019-11-15','2019-11-16',2,'c002','cguest2','false');
+values(rt_seq.nextval,'2019-11-15','2019-11-16',2,'c002','cguest2','false');
 
 create sequence REVIEW_SEQ ;
 
