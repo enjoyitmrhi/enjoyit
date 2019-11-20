@@ -8,41 +8,44 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
-		<caption>
-			<c:if test="${prev != null}">
-				<a href="msg_content.pop?num=${prev }"><button> &lt;&lt; </button></a>
-			</c:if>
-			<c:if test="${prev == null}">
-				<a><button>&lt;&lt;</button></a>
-			</c:if>
+	<div class="container" style="margin-top: 20px">
+		<table class="table">
+			<caption>
+				<c:if test="${prev != null}">
+					<a href="msg_content.pop?num=${prev }"><button>
+							&lt;&lt;</button></a>
+				</c:if>
+				<c:if test="${prev == null}">
+					<a><button>&lt;&lt;</button></a>
+				</c:if>
 
-			<c:if test="${next != null}">
-				<a href="msg_content.pop?num=${next }"><button>&gt;&gt;</button></a>
-			</c:if>
-			<c:if test="${next == null}">
-				<a><button>&gt;&gt;</button></a>
-			</c:if>
-		</caption>
+				<c:if test="${next != null}">
+					<a href="msg_content.pop?num=${next }"><button>&gt;&gt;</button></a>
+				</c:if>
+				<c:if test="${next == null}">
+					<a><button>&gt;&gt;</button></a>
+				</c:if>
+			</caption>
 
-		<tr>
-			<th>보낸사람</th>
-			<th>${content.msgfrom }</th>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<th>${content.msgtitle}</th>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<th>${content.msgcontent}</th>
-		</tr>
-		<tr>
-			<th>보낸시간</th>
-			<th>${content.msgdate}</th>
-		</tr>
-	</table>
-	<a href="message.pop"><button>목록으로</button></a>
-	<a href="msg_del?num=${content.msgnum }"><button>삭제</button></a>
+			<tr>
+				<th>보낸사람</th>
+				<th>${content.msgfrom }</th>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<th>${content.msgtitle}</th>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<th>${content.msgcontent}</th>
+			</tr>
+			<tr>
+				<th>보낸시간</th>
+				<th>${content.msgdate}</th>
+			</tr>
+		</table>
+		<a href="message.pop"><button>목록으로</button></a> <a
+			href="msg_del?num=${content.msgnum }"><button>삭제</button></a>
+	</div>
 </body>
 </html>
