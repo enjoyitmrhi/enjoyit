@@ -11,14 +11,14 @@
 	<table>
 		<caption>
 			<c:if test="${prev != null}">
-				<a href="msg_content.pop?num=${prev }"><button><<</button></a>
+				<a href="msg_content.pop?num=${prev }"><button> &lt;&lt; </button></a>
 			</c:if>
 			<c:if test="${prev == null}">
-				<a><button><<</button></a>
+				<a><button>&lt;&lt;</button></a>
 			</c:if>
 
 			<c:if test="${next != null}">
-				<a href="msg_content.pop?num=${next }"><button>>></button></a>
+				<a href="msg_content.pop?num=${next }"><button>&gt;&gt;</button></a>
 			</c:if>
 			<c:if test="${next == null}">
 				<a><button>>></button></a>
