@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script>
 	function moreContent() {
-
 		$.ajax({
 			type : "get",
 			url : "add_list2",

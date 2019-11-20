@@ -66,7 +66,7 @@ public class SbController {
 		return addDto;
 
 	}
-	@ResponseBody
+	@ResponseBody	
 	@RequestMapping(value = "/add_list2")
 	public ArrayList<SbDto> jsonBoardList2(HttpServletRequest request, HttpServletResponse response) {
 
@@ -149,7 +149,7 @@ public class SbController {
 		String sbtype =req.getParameter("sbtype");
 
 		if (sbpic == null ) {
-			sbpic="";
+			sbpic="no_image.jpg";
 		}
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude,sbtype,sbcontent);

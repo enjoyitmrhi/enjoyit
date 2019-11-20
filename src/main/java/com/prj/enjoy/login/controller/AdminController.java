@@ -3,6 +3,7 @@ package com.prj.enjoy.login.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class AdminController {
 	private SqlSession sqlSession;
 
 	@RequestMapping("/admin")
-	public String admin() {
+	public String admin(HttpSession session) {
+		session.invalidate();
 		return "admin";
 	}
 
@@ -40,6 +42,7 @@ public class AdminController {
 			return "/admin";
 		} else {
 			System.out.println("login success");
+			request.getSession().setAttribute("session_admin", adid);
 			return "redirect:adminMain";
 		}
 		
