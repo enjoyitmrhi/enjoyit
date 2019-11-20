@@ -20,7 +20,7 @@
 	function onMsgBox() {
 		var url = "message.pop";
 		var name = "Applt confirm";
-		var option = "width = 500, height = 700, top = 50, left = 200, location = no"
+		var option = "width = 650, height = 600, top = 50, left = 200, location = no"
 		window.open(url, name, option);
 	}
 
@@ -28,68 +28,63 @@
 		$(".blinkEle").toggle();
 	}, 500);
 </script>
-<style type="text/css">
-.culeft {
-	width: 200px;
-	text-align: center;
-}
-</style>
+
 </head>
 <body>
 	<div class="container">
 
-		<table class="table">
-			<tr>
-				<td>회원아이디</td>
-				<td>${cu.cuid }</td>
-			</tr>
-			<tr>
-				<td>회원명</td>
-				<td>${cu.cuname }</td>
-			</tr>
-			<tr>
-				<td>회원주소</td>
-				<td>${cu.cuaddr }</td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td>${cu.cuemail }</td>
-			</tr>
-			<tr>
-				<td>생년월일</td>
-				<td>${cu.cubirth }</td>
-			</tr>
-			<tr>
-				<td>성별</td>
-				<td>${cu.cugender }</td>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<td>${cu.cutel }</td>
-			</tr>
-			<tr>
-				<td>가입일</td>
-				<td>${cu.cudate }</td>
-			</tr>
-			<tr>
-				<td>메세지함<c:if test="${newmsg != 0}">
-						<a class="blinkEle" style="color: red;">new</a>
-					</c:if></td>
-				<td><a href="javascript:onMsgBox()">${totmsg }개</a> <-보러가기</td>
-			</tr>
-			<tr>
-				<td>작성한 질문수</td>
-				<td><a href="myQuestion">${qnacnt }개</a> <-보러가기</td>
-			</tr>
-			<tr>
-				<td>작성한 리뷰수</td>
-				<td><a href="myReview">${rvcnt }개</a> <-보러가기</td>
-			</tr>
+<table class ="table">
+		<tr>
+			<td>회원아이디</td>
+			<td>${cu.cuid }</td>
+		</tr>
+		<tr>
+			<td>회원명</td>
+			<td>${cu.cuname }</td>
+		</tr>
+		<tr>
+			<td>회원주소</td>
+			<td>${cu.cuaddr }</td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td>${cu.cuemail }</td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td>${cu.cubirth }</td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td>${cu.cugender }</td>
+		</tr>
+		<tr>
+			<td>연락처</td>
+			<td>${cu.cutel }</td>
+		</tr>
+		<tr>
+			<td>가입일</td>
+			<td>${cu.cudate }</td>
+		</tr>
+		<tr>
+			<td>메세지함<c:if test="${newmsg != 0}"><a class="blinkEle" style="color: red;">new</a></c:if></td>
+			<td><a href="javascript:onMsgBox()">${totmsg }개</a> <-보러가기</td>
+		</tr>
+		<tr>
+			<td>작성한 질문수</td>
+			<td><a href="myQuestion">${qnacnt }개</a> <-보러가기</td>
+		</tr>
+		<tr>
+			<td>작성한 리뷰수</td>
+			<td><a href="myReview">${rvcnt }개</a> <-보러가기</td>
+		</tr>
+		
+	</table>
+		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a>
+		<a href="ch_cupw"><button>비밀번호변경</button></a>	
+		<a href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
 
-		</table>
-		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a> <a
-			href="ch_cupw"><button>비밀번호변경</button></a> <a
-			href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
+		
 
 	</div>
 

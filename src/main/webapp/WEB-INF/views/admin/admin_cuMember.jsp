@@ -17,6 +17,20 @@
 		document.form1.bpage.value = page;
 		document.form1.submit();
 	}
+	
+	/* function show_block(elem) {
+		var div_map = document.getElementById("map");
+		if (elem.className != 'opened') {
+			elem.className = 'opened';
+			div_map.style.display = "block";
+			div_map.style.width = "100%";
+			div_map.style.height = "350px";
+		}  else {
+			elem.className = 'closed';
+			div_map.style.display = "none";
+		}
+
+	} */
 </script>
 </head>
 <body>
@@ -132,6 +146,21 @@
 				</c:if>
 			</div>
 		</form>
+		
+		<!-- <a class="closed"
+			href="javascript:show_block(this)">회원분포도</a> -->
+		
+		<div id="map" style="width:100%;height:350px;" ></div>
+		
+		</div>
+		
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c152ea050e4105950daf9c520e328d4c"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.5186807,126.9929731), // 지도의 중심좌표
+        level: 9 // 지도의 확대 레벨
+    };
 
 
 		<div id="map" style="width: 100%; height: 350px;"></div>

@@ -3,6 +3,7 @@ package com.prj.enjoy.login.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class AdminController {
 	private SqlSession sqlSession;
 
 	@RequestMapping("/admin")
-	public String admin() {
+	public String admin(HttpSession session) {
+		session.invalidate();
 		return "admin";
 	}
 
@@ -34,12 +36,13 @@ public class AdminController {
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
 		if (dao.getAdmin(adid) == null) {
 			System.out.println("no id");
-			return "/admin";
+			return "admin";
 		} else if (!dao.getAdmin(adid).getAdpw().equals(adpw)) {
 			System.out.println("wrong pw");
-			return "/admin";
+			return "admin";
 		} else {
 			System.out.println("login success");
+			request.getSession().setAttribute("session_admin", adid);
 			return "redirect:adminMain";
 		}
 		

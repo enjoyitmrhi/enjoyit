@@ -13,12 +13,11 @@ public interface LoginDao {
 	public void createCustomer(String cuid, String cupw, String cuname, String cuaddr,String culongY, String culatY ,String cuemail, String cugender,
 			String cubirth, String cutel);
 
-	public String chkCid(String cuid);
+	public String chkId(String chkid);
 
 	public void createBusiness(String buid, String bupw, String buname, String buemail, String burenum, String butel,
 			String buaddr, String bulongY, String bulatX);
 
-	public String chkBid(String buid);
 	
 	public ArrayList<String> popupfindCuid(String cuname, String cutel, String cubirth);
 	
