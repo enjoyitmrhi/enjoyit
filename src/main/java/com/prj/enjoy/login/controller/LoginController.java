@@ -179,7 +179,7 @@ public class LoginController {
 		
 		
 		int result = 0;
-		 dao.chkCid(cuid);  ;
+		 /*dao.chkId(cuid);  */
 
 		List<String> errors = new ArrayList();
 		if (result > 0) {

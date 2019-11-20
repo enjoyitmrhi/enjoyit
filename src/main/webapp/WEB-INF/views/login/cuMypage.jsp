@@ -89,11 +89,7 @@
 		<a href="ch_cupw"><button>비밀번호변경</button></a>	
 		<a href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
 
-		</table>
-		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a> <a
-			href="ch_cupw"><button>비밀번호변경</button></a> <a
-			href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
-
+	
 	</div>
 
 </body>
