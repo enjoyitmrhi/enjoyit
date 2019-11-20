@@ -9,10 +9,7 @@
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-	var msg = $
-	{
-		newmsg
-	}
+	var msg = ${newmsg};
 	if (msg != '0') {
 		alert("미확인 메세지 " + msg + "개가 있습니다.");
 	}
