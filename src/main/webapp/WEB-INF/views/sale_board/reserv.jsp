@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>EnjoyIT</title>
 <link href='<c:url value ="/resources/fullcalendar/core/main.css" />'
 	rel='stylesheet' />
 <link href='<c:url value ="/resources/fullcalendar/daygrid/main.css" />'

@@ -6,7 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EnjoyIT</title>
 <script>
 	function moreContent() {
 		$.ajax({
@@ -93,7 +93,7 @@
 									src="resources/upload/${dto.sbpic }" alt="no image"
 									class="img-thumbnail"></a>
 								<div class="caption">
-									<h3> ${dto.sbtitle }</h3>
+									<h3>${dto.sbtitle }</h3>
 									<p>가격 : ${dto.sbprice} 원</p>
 
 								</div>
