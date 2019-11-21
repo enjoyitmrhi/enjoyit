@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EnjoyIT</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style type="text/css">
 .carousel-item img {
@@ -27,30 +27,51 @@
 				<li data-target="#banner" data-slide-to="0" class="active"></li>
 				<li data-target="#banner" data-slide-to="1"></li>
 				<li data-target="#banner" data-slide-to="2"></li>
+				<li data-target="#banner" data-slide-to="3"></li>
+				<li data-target="#banner" data-slide-to="4"></li>
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<!-- 슬라이드 1 시작-->
-				<div class="carousel-item active">
+				<div class="carousel-item active"> <a href="board_list_party">
 					<img class="d-block img-fluid " src="resources/imgs/banner1.jpg"
 						alt="First slide">
+				</a>
 				</div>
 				<!-- 슬라이드 1 끝-->
 
 
+
 				<!-- 슬라이드 2 시작-->
-				<div class="carousel-item">
-					<img class="d-block img-fluid " src="resources/imgs/banner2.jpg"
+				<div class="carousel-item"> <a href="board_list_seminar">
+					<img class="d-block img-fluid " src="resources/imgs/banner2.jpg" 
 						alt="Second slide">
+				</a>
 				</div>
 				<!-- 슬라이드 2 끝-->
 
 				<!-- 슬라이드 3 시작-->
-				<div class="carousel-item">
-					<img class="d-block img-fluid " src="resources/imgs/banner3.jpg"
+				<div class="carousel-item"> <a href="board_list_practice">
+					<img class="d-block img-fluid " src="resources/imgs/banner3.png"
 						alt="Third slide">
+				</a>
 				</div>
 				<!-- 슬라이드 3 끝-->
-
+				
+				<!-- 슬라이드 4 시작-->
+				<div class="carousel-item"> <a href="board_list_party">
+					<img class="d-block img-fluid " src="resources/imgs/banner4.jpg"
+						alt="Third slide">
+				</a>
+				</div>
+				<!-- 슬라이드 4 끝-->
+				
+				<!-- 슬라이드 5 시작-->
+				<div class="carousel-item"> <a href="board_list_party">
+					<img class="d-block img-fluid " src="resources/imgs/banner5.jpg"
+						alt="Third slide">
+				</a>
+				</div>
+				<!-- 슬라이드 5 끝-->
 			</div>
 			<a class="carousel-control-prev" href="#banner" role="button"
 				data-slide="prev"> <span class="carousel-control-prev-icon"

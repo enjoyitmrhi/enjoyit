@@ -8,6 +8,7 @@
 <script type="text/javascript">
 function closeWindow() { 
 	 document.form1.submit();
+	 alert("메세지가 전송되었습니다.");
 	 window.opener.location = "myReserv";
 	 window.close();  
 }
@@ -16,7 +17,7 @@ function closeWindow() {
 <body>
 <div class ="container">
 	<form action="send.do"name="form1">
-	<table>
+	<table class="table">
 		<tr>
 			<th>title</th>
 			<th><input type="text" name="title"></th>

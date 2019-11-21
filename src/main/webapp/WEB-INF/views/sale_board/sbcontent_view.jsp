@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>Insert title here</title>
+<title>EnjoyIT</title>
 <script>
 	function del_sbCont(sbcode) {
 		/* var sbcode = $

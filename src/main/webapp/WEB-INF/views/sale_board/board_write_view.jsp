@@ -9,7 +9,7 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c152ea050e4105950daf9c520e328d4c&libraries=services"></script>
-<title>Insert title here</title>
+<title>EnjoyIT</title>
 <script type="text/javascript">
 	var geocoder = new daum.maps.services.Geocoder();
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
