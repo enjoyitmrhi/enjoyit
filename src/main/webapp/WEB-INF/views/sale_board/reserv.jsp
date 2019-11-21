@@ -68,7 +68,7 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="margin: 20px 0 0 20px;">
 
 		<div id='calendar'
 			style="overflow: hidden; width: 75%; height: auto; text-align: center;"></div>
