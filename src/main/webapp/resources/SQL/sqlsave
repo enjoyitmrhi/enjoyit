@@ -139,8 +139,8 @@ CREATE TABLE  qna  (
 
 -- review
 CREATE TABLE  review  (
-    rvTitle    VARCHAR2(50)  NULL, -- rvTitle
-    rvContent  VARCHAR2(500) NULL, -- rvContent
+    rvTitle    VARCHAR2(100)  NULL, -- rvTitle
+    rvContent  VARCHAR2(1000) NULL, -- rvContent
     rvDate     DATE  default sysdate, -- rvDate
     rvPic      VARCHAR2(500) NULL, -- rvPic
     rvGroup    NUMBER       NULL, -- rvGroup
@@ -315,6 +315,12 @@ values('b001','bguest1','1234','사업자1','email@email','사업자번호','010
 insert into business(bunum,buid,bupw,buname,buemail,burenum,butel,buaddr,BULONGITUDE,BULATITUDE)
 values(lpad(lpad(BU_SEQ.nextval,3,0),4,'b'),'bguest2','1234','사업자2','email@email','사업자번호','010-3245-1363','강남한복판','37.4482232','127.0525448');
 
+insert into business(bunum,buid,bupw,buname,buemail,butel,buaddr,BULONGITUDE,BULATITUDE)values(lpad(lpad(BU_SEQ.nextval,3,0),4,'b'),'bguest3','1234','edithows','dong@naver.com','01034567890','의정부','37.7387337','127.0437021');
+insert into business(bunum,buid,bupw,buname,buemail,butel,buaddr,BULONGITUDE,BULATITUDE)values(lpad(lpad(BU_SEQ.nextval,3,0),4,'b'),'bguest4','1234','블랑3','woong@naver.com','01045678901','양재','37.4838233','127.0353017');
+insert into business(bunum,buid,bupw,buname,buemail,butel,buaddr,BULONGITUDE,BULATITUDE)values(lpad(lpad(BU_SEQ.nextval,3,0),4,'b'),'bguest5','1234','아지트','yuri@naver.com','01056789012','강남','37.4906527','127.0257101');
+insert into business(bunum,buid,bupw,buname,buemail,butel,buaddr,BULONGITUDE,BULATITUDE)values(lpad(lpad(BU_SEQ.nextval,3,0),4,'b'),'bguest6','1234','BBQ엠티','yuri@naver.com','01067890123','강동','37.5359442','127.1299983');
+
+
 
 create sequence cu_seq ;
 
@@ -324,6 +330,15 @@ values ('c001','cguest1','손님1','1234','부산','email@email','1989-05-05','�
 
 insert into customer(cunum,cuid,cuname,cupw,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) 
 values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest2','손님2','1234','부산','email@email','1996-02-07','여자','010-1111-1111','37.4482232','127.0525448');
+
+insert into customer(cunum,cuid,cupw,cuname,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest3','1234','강태영','암사동','taeyoung@naver.com','35137','female','01021057207','37.5497987,127','127.1252853');
+insert into customer(cunum,cuid,cupw,cuname,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest4','1234','고동욱','의정부','dong@naver.com','32952','male','01034567890','37.7387337','127.0437021');
+insert into customer(cunum,cuid,cupw,cuname,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest5','1234','임채웅','양재','woong@naver.com','32509','male','01045678901','37.4838233','127.0353017');
+insert into customer(cunum,cuid,cupw,cuname,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest6','1234','신유리','강남','yuri@naver.com','35065','female','01056789012','37.4906527','127.0257101');
+insert into customer(cunum,cuid,cupw,cuname,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest7','1234','강동현','강동','donghyun@naver.com','33970','male','01067890123','37.5359442','127.1299983');
+insert into customer(cunum,cuid,cupw,cuname,cuaddr,cuemail,cubirth,cugender,cutel,culongitude,culatitude) values ('c'||(lpad(cU_SEQ.nextval,3,0)),'cguest8','1234','조현우','강동','donghyun@naver.com','35431','male','01067890124','37.5949602','127.0739813');
+
+
 
 
 create sequence sbcode_seq ;
@@ -543,8 +558,8 @@ insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE
 - 엘레베이터가 있는 신축건물
 - 댄스플로어, 공기청정기, 요가매트, 발레바 등 안전성과 편의성을 갖춘 공간
 현재 활동하고 있는 배우가 OPEN 한 연습실입니다.
-관리자의 경험을 바탕으로 연습실을 이용하시는 분들이 최대의 효율을 뽑아 낼 수 있게 노력하는 어썸플레이스가 되겠습니다^^
-(새벽 대관은 따로 문의주세요^^)','30000','서울 광진구 구의동 66-73 지하 1층','37.5457341','127.0860069','b001','bguest1',2);
+관리자의 경험을 바탕으로 연습실을 이용하시는 분들이 최대의 효율을 뽑아 낼 수 있게 노력하는 어썸플레이스가 되겠습니다
+(새벽 대관은 따로 문의주세요)','30000','서울 광진구 구의동 66-73 지하 1층','37.5457341','127.0860069','b001','bguest1',2);
 
 
 
@@ -554,8 +569,8 @@ insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE
 - 엘레베이터가 있는 신축건물
 - 댄스플로어, 공기청정기, 요가매트, 발레바 등 안전성과 편의성을 갖춘 공간
 현재 활동하고 있는 배우가 OPEN 한 연습실입니다.
-관리자의 경험을 바탕으로 연습실을 이용하시는 분들이 최대의 효율을 뽑아 낼 수 있게 노력하는 어썸플레이스가 되겠습니다^^
-(새벽 대관은 따로 문의주세요^^)','30000','서울 광진구 구의동 66-73 지하 1층','37.5457341','127.0860069','b001','bguest1',2);
+관리자의 경험을 바탕으로 연습실을 이용하시는 분들이 최대의 효율을 뽑아 낼 수 있게 노력하는 어썸플레이스가 되겠습니다
+(새벽 대관은 따로 문의주세요)','30000','서울 광진구 구의동 66-73 지하 1층','37.5457341','127.0860069','b001','bguest1',2);
 
 
 
@@ -603,7 +618,7 @@ insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE
 ■미세먼지없는연습실-NEW 최신공기청정기설치 ""공기가 깨끗한연습실""■
 ■최고의 입지조건-이수역10번출구 도보1분거리!
 ■전문댄서<무용수,댄서,아크로바틱>전용-최고급 댄스플로어 바닥시공!
-■인터넷 빠른 와이파이-와이파이를 연결해서 마음껏 이용하세요^^
+■인터넷 빠른 와이파이-와이파이를 연결해서 마음껏 이용하세요
 ■NEW 캐리어 냉난방기
 ■전문가용 88건반-피아노시설 완비
 ■전세계 No.1 스피커 JBL설치 , 블루트스가능한 최상급 전용 엠프
@@ -727,7 +742,7 @@ insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE
 insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE,sbLATITUDE,bunum,buid,sbtype)values (sbcode_seq.nextval,'p3-1.jpg','신촌파티룸 블랑3','여심저격 러블리한 인테리어(사진 찍으면 인생샷)
 공간 소개
 *11월 8~9일 금,토 낮타임 예약가능
-*인원추가금은 별도로 카톡으로 안내해드리겠습니다^^
+*인원추가금은 별도로 카톡으로 안내해드리겠습니다
 *신규오픈(여심저격 러블리한 인테리어)
 *모두가 반하는 그 공간
 *소음 걱정 없이 놀아보자(미러볼)
@@ -757,7 +772,7 @@ insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE
 *반드시 사전문의 주셔야지만 적용이 가능합니다!!
 (스케쥴에따라 불가한 날짜가 있을 수 있습니다)
 이벤트 둘!
-퇴실 후 학생증을 인증해주시면 1만원을 바로 쏴드립니다^^
+퇴실 후 학생증을 인증해주시면 1만원을 바로 쏴드립니다
 (단, 정상적인 퇴실상태의 경우에만 해당됩니다)
 ※기준인원(10명) 초과시 1인당 1만원의 추가요금이 발생합니다. (최대 15명)','130000','서울특별시 성동구 행당동 322-195 나늘커피숍 지하1층 아지트스튜디오','37.5572845','127.0281004','b001','bguest1',3);
 
@@ -852,7 +867,7 @@ insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE
 ★이용안내★
 -기준 인원 6명 최대 10명
 -1인추가시 (낮 5천원 / 밤1만원)
-★할인이벤트 中 전화로 문의주세요 ^^★
+★할인이벤트 中 전화로 문의주세요 ★
 도심 속 캠핑 감성을 가득 담은 인테리어 공간에서 즐거운 파티를 즐겨보세요 : )
 강남역 도보 5분거리에 위치하고 있습니다 -!
 (강남 지오다노 뒷편 (1분거리))
@@ -916,10 +931,37 @@ insert into sale_board (sbcode,sbpic,sbtitle,sbcontent,sbprice,sbloc,sbLONGITUDE
 **모든 보증금은 이용후 점검 확인하여 퇴실후24간이내 환불','120000','서울특별시 마포구 상수동 315-3 3층 루프탑','37.5528062','126.9193152','b001','bguest1',3);
 create sequence qna_seq;
 select qna_seq.nextval from dual;
-insert into qna(qatitle,qacontent,sbcode,bunum,buid,cunum,cuid,qanum,qagroup,qastep,qaindent)
-values('QnA제목','QnA내용',1,'b001','bguest1','c001','cguest1',1,1,0,0);
-insert into qna(qatitle,qacontent,sbcode,bunum,buid,cunum,cuid,qanum,qagroup,qastep,qaindent)
-values('QnA제목','QnA내용',2,'b002','bguest2','c002','cguest2',qna_seq.nextval,2,0,0);
+
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('단체 예약 관련','70명정도 예약하고 싶은데요. 낮.밤 중에 시간 조울해서 예약하고싶습니다. 전화드렸더니 호출남겨놓으라고 되어있어서. 뒷번호 8337 입니다. 연락부탁드려요 ','21','c003','cguest3',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('예약 문의','6일 10명 예약가능한가요? 혹시 시간대를 낮3시부터 밤11시까지 사용은 불가능한가요? ㅠ.ㅠ ','21','c004','cguest4',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('보증금 관련 문의','안녕하세요. 8월 16일에 예약했는데요 결제한 금액에 보증금이 포함되어있는건가요? 아니면 따로 보증금을 보내드려야하나요? ','21','c005','cguest5',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('가격 문의','이용요금 적혀 있는건 주말 12만원으로 되어있는데 실제 예약 확인해보니 16만원이네요 어떤게 맞는 요금인가요?','23','c006','cguest6',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('유치원생은 비용 어떻게 되나요 ?','어른7명에 미취학아동(유치원생)2명인데 가능할까요? 가능하면 비용추가는어떻게될까요?~ ','23','c007','cguest7',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('인원 문의','안녕하세요! 혹시 최대인원 20명 미만으로는 예약이 안되는지 궁금합니다. ','24','c008','cguest8',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('예약 문의','안녕하세요~5/12 낮패키지 예약가능한가요?? ','24','c003','cguest3',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('미리 방문 할수 있나요 ?','전화 안되서 추가 질문 미리 방문해 볼수 있나요','25','c004','cguest4',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('바비큐 파티','루프탑 테라스에서 바베큐파티하려고하는데 16명 정도 앉을수있는 공간되나요? ','25','c005','cguest5',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('체크아웃 문의','체크아웃 시간은 언제인가요? ','26','c006','cguest6',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('바비큐 이용','바베큐 이용금액은 대관비와 별도인가요? ','26','c007','cguest7',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('룸시설 문의합니다!','19일 저녁 7시~11시정도까지 사용할까하는데 음식을 해먹을수 있는구조인가요? 냉장고는요? 룸 사진이 너무 없어 정보가 부족하네여 ','27','c008','cguest8',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('대관 시간 문의','20일 18시부터 6시간 지하대관 가능할까요~? ','27','c003','cguest3',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('시설 문의','블루레이 플레이어 혹은 플레이스테이션이 있나요? ','27','c004','cguest4',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('방안에 ','모니터 연결은 어떤거랑 가능한가요?? 숫가락젓가락 이랑 그릇 그리고 냉장고, 전자레인지도 궁금합니다. ','29','c005','cguest5',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('탈의실 있나요 ?','옷을 갈아입을 탈의실이 있나요?없다면 파티룸 내에 CCTV있나요?그리고 난방 잘 되나요? ','29','c006','cguest6',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('이용시간 문의 드려요~','12월21일 13시부터 다음날 10시까지 이용하고 싶은데 금액이 어떻게 될까요? 인원은 6명입니다 ','31','c007','cguest7',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('음식물쓰레기,','음식물쓰레기는 어떻게 처리하나요 ','31','c003','cguest3',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('예약 된건가요？','예약했는데 완료 된건가요? 아직 문자가 안와서용 ','31','c004','cguest4',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('미성년자도 가능한가요?','저희 맴버 9명중 한명이 미성년자 인데 혹시 부모님의 동의가 이루어진 상태면 10시이후로도 가능할까해서요 인터넷에 찾아보니 부모님의 동의가 이뤄져있으면 가능하다들어서요 ','32','c005','cguest5',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('12월 23일 예약','12월 23일날 8명 올나잇으로 예약하고 싶은데 혹시 가능할까요?? ','32','c006','cguest6',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('짐 맡기는것도 가능한가요 ??','2/1 금19시부터 2/2 토 10시까지 머물고 싶습니다 근데 저희가 캐리어 짐이 좀 있어서 혹시 짐 맡기는것도 가능한가요? ','32','c007','cguest7',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('시간 문의 드려요!','12월1일에 7시부터 다음날 올나잇은 어려울지요? 다음날 퇴실시간이 1~2시간 당겨지는건 괜찮습니다. 데이타임 예약이 없어야만 가능하시다할것같은데 저는 한달전에 미리 예약하고 싶어서요 ㅠ아 지금 1관과 2관중에 고민중에 있습니다 ','33','c008','cguest8',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('12월24일','12월24일 가격동일하게진행되나요? ','33','c003','cguest3',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('빔프로젝터','영화 보려는데 빔프로젝터에 소리도 출력되서 크게 나오나요? 그리고 혹시 예약 전날 또는 당일 전 시간에 선물같은거 둘 창고 있나요..? ','34','c004','cguest4',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('브라이덜 샤워 하고싶은데요 :)','브라이덜샤워하려는데 준비 따로 해주시나요?','35','c005','cguest5',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('인원 추가 문의드려요','아직 인원이 미정이라 일단 10명으로 예약해두고 추가인원 있을때 추가로 입금드리면 될까요? ','35','c006','cguest6',qna_seq.nextval, qna_seq.currval ,0,0);
+insert into qna (qatitle,qacontent,sbcode,cunum,cuid,qanum,qagroup,qastep,qaindent)values ('예약관련 문의 드려요~','안녕하세요. 12월21일 토요일 밤타임 패키지로 (14시간짜리) 결제했는데 20시부터 10시로 나와있으니까 다음날 오전까지 예약된 거 맞는거죠? 예약자 이지선입니다. ','35','c007','cguest7',qna_seq.nextval, qna_seq.currval ,0,0);
+
+
 
 create sequence rt_seq;
 select rt_seq.nextval from dual;
@@ -930,13 +972,37 @@ values(rt_seq.nextval,'2019-11-15','2019-11-16',2,'c002','cguest2','false');
 
 create sequence REVIEW_SEQ ;
 select REVIEW_seq.nextval from dual;
-insert into review(rvtitle,rvcontent,rvpic,rvstar,rvnum,rvhit ,sbcode,cunum,cuid,bunum,buid,rvgroup,rvstep,rvindent) 
-values('배송 빨라요','리뷰내용1','리뷰사진1',1,1,0,2,'c001','cguest1','b001','bguest1',1,0,0);
-insert into review(rvtitle,rvcontent,rvpic,rvstar,rvnum,rvhit ,sbcode,cunum,cuid,bunum,buid,rvgroup,rvstep,rvindent) 
-values('배송 빨라요','리뷰내용1','리뷰사진1',2,review_seq.nextval,0,2,'c002','cguest2','b002','bguest2',2,0,0);
+
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('너무 예뻤어요 ㅎㅎ','야외에서 바베큐하는 곳도 따뜻하고, 넓고 앞에 차도라서 시끄럽게해도 티가 많이 안나서 좋았습니다! 다음에 또 가고 싶어요! 위에서 보는 야경도 넘 이뻤습니다! ','p1-4.jpg',1,'21','c003','cguest3',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('워크샵 했어요 ','회사워크샵으로 탁트인을 방문했습니다. 오래된 건물이라 루프탑에 올라가기전까지는 조금 실망을 했지요. 하지만 루프탑에 올라가 경복궁, 북안산을 바라보는순간 그 모든실망은 만족으로 바뀌었습니다. 도심한복판에서 시끄럽게 떠들면서 놀수 있는게 얼마나 좋던지..새벽까지 신나게 놀았습니다. 너무 만족스럽게 잘놀았습니다. ','p1-5.jpg',1,'21','c004','cguest4',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('친구들이랑 ~~','경복궁 보이는 뷰가 정말 좋앗어요~ 프로포즈 하고, 바베큐파티도 햇는데~ 친구들도 다 괜찮다고 정말 잘 빌렷다구 햇어용 인테리어가 세련되서 제일 맘에 들엇습니다. 생맥주 연결하는 거 잇어서, 술좋아하시는 분들은 정말 좋을 것 같아요! ','p1-6.jpg',1,'21','c005','cguest5',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('오프모임 했어요~~','인터넷 커뮤니티 오프모임용으로 예약했어요 모임 참가자 수가 조금 유동적인 상황이었어서 미리 연락을 드렸는데 정말 빠르게 답해주시더라구요 5인으로 갔는데 방 자체도 정말 쾌적하고 깨끗했어요 처음에 문 여는데 룸 번호 까먹어서 연락 드리니까 바로 연락 받아주셔서 문제도 빨리 해결됐고요 방 자체는 정말 깨끗하고 좋습니다 별점 하나는 거짓말탐지기 적동 안돼서 그래 ','',1,'22','c006','cguest6',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('재밌게 잘 놀았습니다 :)','1. 규모 10명이 놀아도 충분할만큼 넓었습니다. 널널하고 쾌적하게 잘 썼습니다. 최대 15명까지는 문제없이 사용할 것 같습니다. 2. 분위기 할로윈이라 풍선과 소품 등을 바꿔주셨는데 팀원들 모두 만족했습니다. 저 또한 가장 만족한 부분입니다 3. 소품 빔프로젝트 덕분에 게임도 잘 진행했습니다. 그외 보드게임과 거짓말 탐지기 등 종류가 많아 좋았습니다. ','p2-4.jpg',1,'22','c007','cguest7',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('좋았어요!','위치도 너무 좋고 파티 할 때 별도의 소품 필요없이 안에 구비된 것만으로도 충분했습니당. 빔프로젝터랑 보드게임도 있어서 시간 보내기 좋았어요~ ','p2-5.jpg',1,'22','c008','cguest8',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('좋았어요 ㅎㅎ','사진 그대로고 주변에 편의점도 가깝고 맛있는 집들도 많고 아주 잘 이용했습니다 ','p3-3.jpg',1,'23','c003','cguest3',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('연말 송년회로 좋아요 !','연말에 동아리 사람들과 송년회 할 장소가 필요했는데 200% 만족스러웠어요!!! 이 가격에 이 정도 시설과 서비스라니.. 최고예요ㅠㅠ 냉장고, 싱크대, 전자레인지, 포크, 나이프 등등 구비되어 있고, 노래방 기기, 다트, 각종 보드게임 + 흥을 살려주는 미러볼까지.. 완벽했습니다. 찾아가기도 편하고 사장님도 무척 친절하셔서 다음에 또 오고 싶어요! ','p4-4.jpg',1,'24','c004','cguest4',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('너무 좋았어요!!','안녕하세요! 5월12일 일요일 낮패키지는 현재 예약이 가능합니다. 스페이스클라우드를 통하 바로 예약가능하시구요! 더 궁금하신부분은 호스트에게 문의주세요:) ','p4-5.jpg',1,'24','c005','cguest5',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('야경 좋았어요!!','서울 시내가 한눈에 보이는 광라사 Pub과 비마이 로즈에서 21명 올나잇 패키지 이용했습니다~ 경치 정말 끝내주구요. 특히 야경이 정말 기억에 남네요. 이태원 파티룸 대여로 최고의 장소인거 같에요. 연말에 친구들과 함께 한 해 마무리 잘 할 수 있게 해주셔서 감사합니다~ ','',1,'26','c006','cguest6',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('친구들이랑 재밌게 놀았습니다~','광라사 펍대여해서 15명이 재미있게 놀았습니다. 안쪽 주방에서 조리시설과 식기류 모두 구비되 있어서 조리하는데 편했구요. 날씨가 추워서 걱정했는데 히터 두대가 빵빵해서 아늑했습니다. 프로젝터로 영화두 보고 멋진 야경까지 라운지 Bar로 최고! 다만 이태원역에서 십분정도 걸어가야하는데 가보니 마을버스 정류장에 위치해 있어서 다음에는 마을버스 이용하려고요. ','',1,'26','c007','cguest7',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('좋았어요!!','10명이서 송년회 기념으로 대관해서 잘 놀았습니다. 테이블은 4인테이블정도 짜리 2개있고 바 스타일로 하나 길게있구요 겨울에 난방기 2개있는데 문이랑 창문서 외풍이약간 세서 좀 추우실수있으니 핫팩 같은거챙겨가시면 좋을것같고 블루투스 스피커 생각보다 소리 빵빵했고 와이파이도 있고요 괜찮았습니다 다만 주차문제가 주변이 너무 빡빡해서 힘드니 대중교통 추천 ','',1,'26','c008','cguest8',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('친절하시고, ','아지트같이 아주 잘이용했어요! 나무 벽면에 빔프로젝트 쏴서 사용했구요. 간단한 게임들이 있어서 더 좋았오요:) ','',1,'27','c003','cguest3',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('친구들이랑 연말파티 했어요 ㅎㅎ','‘비밀기지’라는 말이 정말 잘 어울려요. 특별한 날에 특별한 사람들과 시간 보내기 딱 좋은 곳이에요. 선유기지 덕분에 친구들과 잊지못할 연말을 보낼수 있었어요!감사합니당~~ ','p7-3.jpg',1,'27','c004','cguest4',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('너무 좋았어요 ㅎㅎ!!','양평 코스트코랑 선유기지랑 가까워서 (택시 기본요금) 여기서 와인이랑 음식 장봐왔어요. 데워서 먹어야 하는 라자냐를 사왔는데 사장님이 너무 친절하게 음식 뎁혀주셨어요! 그리고 친구들이랑 사진찍어달라 부탁드렸는데 사장님이 사진을 너무 성의 있게 찍어주셔서 친구들 모두 감덩!!! 사장님이 여러가지로 섬세하게 챙겨주셔서 프라이빗한 지하공간에서 편하게 놀다왔네요 ','p7-4.jpg',1,'27','c005','cguest5',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('친절하셔서 좋았어요!','예약 전부터 상당히 친절하셔서 좋았다. 전체적으로 가성비가 좋다고 생각한다. 티비에 닌텐도도 연결해서 잘 놀고 구비된 보드게임들도 많아서 재밌게 놀았다. 수냉식 에어컨이라 넓은 방 구조에 비해 냉방이 전혀 효과없다시피 해서 너무 더웠던게 아쉬웠다. 샤워기가 있는 화장실이 있지만 좁아서 샤워할 수 없다. 지리적 위치는 아주 좋다. 보증금 언제 입금되나요?? ','p9-4.jpg',1,'29','c006','cguest6',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('조금 아쉬웠어요 ㅜㅜ','보증금은 하루만에 주셨고 2인이 쓰기에 넓은 장소라 좋았습니다. 다만 전 생일 기념 요리목적으로 이용했던건데 취사 가능이라고 되어있지만 칼은 없어서 요리를 가위로 했네요. 도마,뒤집개,가위는 있어도 칼은 없는..티비도 다 깨져서 하나도 보지 못했구요 이전 팀들이 쓰고 여기저기 박아둔 물건들도 그대로 있더라구요 최소한의 관리는 하셔야할 것 같습니다 아쉬웠어요 ','p9-5.jpg',1,'29','c007','cguest7',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('좋았어요!','생각보다 넓은 공간이였어요! 잘 사용하고 갑니다~ ','p11-4.jpg',1,'31','c008','cguest8',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('쉽게 찾아갈 수 있는 부분이 좋았습니다. ','그리고 파티룸 내에 휴지, 물티슈가 많아서 청결하게 이용할 수 있었고, 특히 방 안에 화장실이 있어서 이용하기 매우 편리했습니다. 좁지 않아서 5명이 사용하기에 불편하지 않았고, 호스트 분이 즉시 답장을 주셔서 기분 좋게 이용할 수 있었습니다. ','p11-5.jpg',1,'31','c003','cguest3',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('친절한 대응이 좋았어요','친절한 대응이 좋았어요 속소 정리가 되어있지 않아(ㅎ.. 그럴수있죠 전화받으신분 잘못도 아니구) 연락드렸더니 바로 신속하게 방 옮겨주시고 죄송하다는 말씀 해주시면서 잘 안내해 주셨어요! 즐거운 시간 보냈습니다♥ ','',1,'31','c004','cguest4',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('좋았어요~','방도 따뜻하고 시끄럽게 놀수있어서 좋았습니다. 다만 주변에 주차할공간이 없고 편의점이 없어서 조금 아쉬웠습니다. ','',1,'32','c005','cguest5',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('사진보다 방도 넓었고, ','특히 대로변에 있어서 위치가 좋았어요! 식기류, 일회용품 다 엄청 넉넉히있고 사용하기 편리했습니다 ㅎㅎㅎ 보일러도 나중에는 더워서 끌정도로 빵빵나와서 만족스러웠습니다! 가장좋았던 점은 파티룸 취지상 밤새 떠들고 놀아도 아무문제없다는거였어요! 잘이용하고 갑니다 ~~~ ','',1,'32','c006','cguest6',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('깔끔한 공간, ','여러가지 보드게임과 빔프로젝터, 풍부한 식기류, 세개의 방과 침구류까지 시설적으로 정말 완벽했습니다. 열명정도의 단체가 머무르기에 최고인것 같아요. 다만 방이 외풍이 들어서 정말 춥습니다. 이 점 감안하신다면 좋을것 같습니다. (외풍 차단제를 벽에 발라야할것 같아요ㅜㅜ) 전반적으로 정말 좋았습니다~ ','',1,'32','c007','cguest7',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('너무 예뻐요!!!','파티룸 정말 너무 예뻐서 넘 행복했어요ㅠㅠ 이 가격에 누릴 수 있다는 게 정말 감사합니다ㅠ ','',1,'33','c008','cguest8',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('야경 너무 예뻤어요!!','밝을 때도 예쁘고 저녁에 어두워지면 야경이 진짜 예뻐요 ! 시설도 다 갖추어 있고 편하고 재밌게 잘 놀다 가요 기대 이상입니당 나중에 또 방문할게요~ ','p14-4.jpg',1,'34','c003','cguest3',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('진짜진짜 잊지못할 브라이덜 샤워가 됐습니다  ','음식은 일층 심야식당 케잌은 이층 수제케잌이용하였구요 파티룸 들어가자마자 엄청 예쁘게 셋팅되어있어서 두번반하고.... 베란다 문을 열었는데 너무 예뻐서 또 반하고 ... 정말 너무너무 즐거운 파티였습니다 ! 다음에 또 이용할게요 !!! ','p15-3.jpg',1,'35','c004','cguest4',review_seq.nextval,review_seq.currval,0,0,0);
+insert into review (rvtitle,rvcontent,rvpic,rvstar,sbcode,cunum,cuid,rvnum,rvgroup,rvstep,rvindent,rvhit) values('호스트님!매니저님! 그날 너무너무 감사했어요. ','호스트님!매니저님! 그날 너무너무 감사했어요. 세심하게 챙겨주시는 언니들 덕분에 너무 편안하고 즐겁게 잘 보내고 온것 같아요ㅠㅠ결혼 코앞에 두고 너무 정신없는데 풍선이랑 잔이랑 화관이랑 모두모두 준비해주고, 제가 처음 이용한다고 하니까 참고할만한 링크들도 보내주시고, 아 정말 친절함의 끝판왕을 봤어요. 친구랑 정말 너무 즐겁게 보내고 왔어요!!감사합니다! ','p15-15.jpg',1,'35','c005','cguest5',review_seq.nextval,review_seq.currval,0,0,0);
+
+
 
 insert into administrator values('enjoy','1234');
 
  commit;
- 
- 
