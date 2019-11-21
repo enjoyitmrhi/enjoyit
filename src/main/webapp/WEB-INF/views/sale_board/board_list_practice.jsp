@@ -31,10 +31,6 @@
 		return num
 
 	}
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 	function renderMoreContents(list) {
 		var rows = [];
 		$.each(list, function(index, item) {
