@@ -66,13 +66,13 @@ public class SbController {
 		return addDto;
 
 	}
-	@ResponseBody
+	@ResponseBody	
 	@RequestMapping(value = "/add_list2")
 	public ArrayList<SbDto> jsonBoardList2(HttpServletRequest request, HttpServletResponse response) {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
-		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 4;
 
 		ArrayList<SbDto> addDto = dao.add_list2(sNum, eNum);
 
@@ -85,7 +85,7 @@ public class SbController {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
-		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 4;
 
 		ArrayList<SbDto> addDto = dao.add_list3(sNum, eNum);
 
@@ -149,7 +149,7 @@ public class SbController {
 		String sbtype =req.getParameter("sbtype");
 
 		if (sbpic == null ) {
-			sbpic="";
+			sbpic="no_image.jpg";
 		}
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude,sbtype,sbcontent);

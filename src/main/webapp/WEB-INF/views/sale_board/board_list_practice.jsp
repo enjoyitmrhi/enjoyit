@@ -6,10 +6,9 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EnjoyIT</title>
 <script>
 	function moreContent() {
-
 		$.ajax({
 			type : "get",
 			url : "add_list2",
@@ -32,7 +31,6 @@
 		return num
 
 	}
-
 	function renderMoreContents(list) {
 		var rows = [];
 		$.each(list, function(index, item) {
@@ -56,9 +54,9 @@
 
 		content += "<div class='caption'>";
 
-		content += "<h3>제목 : " + item.sbtitle + " </h3>";
+		content += "<h3>" + item.sbtitle + " </h3>";
 
-		content += "<p>가격 : " + item.sbprice + "</p>";
+		content += "<p>가격 : " + item.sbprice + " 원</p>";
 
 		content += "</div>";
 		content += "</div>";
@@ -95,8 +93,8 @@
 									src="resources/upload/${dto.sbpic }" alt="no image"
 									class="img-thumbnail"></a>
 								<div class="caption">
-									<h3>제목 : ${dto.sbtitle }</h3>
-									<p>가격 : ${dto.sbprice}</p>
+									<h3>${dto.sbtitle }</h3>
+									<p>가격 : ${dto.sbprice} 원</p>
 
 								</div>
 							</div>

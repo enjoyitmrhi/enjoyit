@@ -8,6 +8,7 @@
 <script type="text/javascript">
 function closeWindow() { 
 	 document.form1.submit();
+	 alert("메세지가 전송되었습니다.");
 	 window.opener.location = "myReserv";
 	 window.close();  
 }
@@ -15,19 +16,19 @@ function closeWindow() {
 </head>
 <body>
 <div class ="container">
-	<form action="send"name="form1">
-	<table>
+	<form action="send.do"name="form1">
+	<table class="table">
 		<tr>
 			<th>title</th>
 			<th><input type="text" name="title"></th>
 		</tr>
 		<tr>
 			<th>from</th>
-			<th><input type="text" name="from" value="${session_cname }${session_bname}" readonly></th>
+			<th><input type="text" name="from" value="${session_bname}" readonly></th>
 		</tr>
 		<tr>
 			<th>to</th>
-			<th><input type="text" name="to" value=""></th>
+			<th><input type="text" name="to" value="${cuid }"></th>
 		</tr>
 		<tr>
 			<th>content</th>

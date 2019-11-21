@@ -110,9 +110,9 @@
 
 						<td></td>
 						<td id="${dto.qanum }" style="display: none;" colspan="3"><textarea
-								rows="7" cols="40" id="answer_view${dto.qanum }" readonly>
+								rows="7" cols="40" id="answer_view${dto.qanum }" readonly class="form-control">
 					</textarea></td>
-						<td></td>
+						<!-- <td></td> -->
 					</c:if>
 				</c:forEach>
 				<c:if test="${session_cid != null}">

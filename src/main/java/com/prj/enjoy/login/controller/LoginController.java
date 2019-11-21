@@ -176,9 +176,10 @@ public class LoginController {
 		System.out.println("cuaddr2 >>>> " + cuaddr);
 		System.out.println("longy>>>" + culongY);
 		System.out.println("latx>>>>" + culatX);
-
+		
+		
 		int result = 0;
-		/* dao.chkCid(cuid); */ ;
+	
 
 		List<String> errors = new ArrayList();
 		if (result > 0) {
@@ -198,11 +199,11 @@ public class LoginController {
 
 	}
 
-	@RequestMapping("/chk_cid.do")
-	private @ResponseBody String chkCid(@RequestParam("userid") String cuid) {
+	@RequestMapping("/chk_id.do")
+	private @ResponseBody String chkCid(@RequestParam("userid") String id) {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		System.out.println("cuid >>>>>>" + cuid);
-		String result = dao.chkCid(cuid);
+		System.out.println("cuid >>>>>>" + id);
+		String result = dao.chkId(id);
 		System.out.println(result);
 
 		return result;
@@ -255,16 +256,7 @@ public class LoginController {
 
 	}
 
-	@RequestMapping("/chk_bid.do")
-	private @ResponseBody String chkBid(@RequestParam("userid") String buid) {
-		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		System.out.println("buid >>>>>>" + buid);
-		String result = dao.chkBid(buid);
-		System.out.println(result);
-
-		return result;
-	}
-
+	
 	@RequestMapping("/cuMypage")
 	public String cuMypage(HttpSession session, Model model) {
 		String cuid = (String) session.getAttribute("session_cid");

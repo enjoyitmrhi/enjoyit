@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EnjoyIT</title>
 
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -130,16 +130,24 @@
 							src="resources/upload/${sbcontent_view.sbpic }"> <br /> <textarea
 								class="form-control" rows="15" name="sbcontent" id="sbcontent"> ${sbcontent_view.sbcontent } </textarea></td>
 					</tr>
-
+					<tr>
+						<td>위치</td>
+						<td><input type="text" id="sample4_postcode"
+							placeholder="우편번호" class="form-control"
+							style="width: 30%; float: left;"> <input type="button"
+							onclick="sample4_execDaumPostcode()" value="우편번호 찾기"></td>
+					</tr>
 
 					<tr>
 						<td></td>
 						<td><input type="text" name="addr1" id="sample4_roadAddress"
-							placeholder="도로명주소" class="form-control" style="width: 30%; float: left; "> <input
-							type="text" name="addr2" id="sample4_detailAddress"
-							placeholder="상세주소" class="form-control"style="width: 30%; float: left;"> <input
+							placeholder="도로명주소" class="form-control"
+							style="width: 30%; float: left;"> <input type="text"
+							name="addr2" id="sample4_detailAddress" placeholder="상세주소"
+							class="form-control" style="width: 30%; float: left;"> <input
 							type="text" name="addr3" id="sample4_extraAddress"
-							placeholder="참고항목" class="form-control"style="width: 30%; float: left;"></td>
+							placeholder="참고항목" class="form-control"
+							style="width: 30%; float: left;"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -166,16 +174,19 @@
 
 			</div>
 			<div style="float: left;">
-			<c:if test="${sbtype ==1}">
-				<a href="board_list_seminar" class="btn btn-outline-warning btn-sm"
-					role="btn"> 취소</a></c:if>
+				<c:if test="${sbtype ==1}">
+					<a href="board_list_seminar" class="btn btn-outline-warning btn-sm"
+						role="btn"> 취소</a>
+				</c:if>
 				<c:if test="${sbtype ==2}">
-				<a href="board_list_practice" class="btn btn-outline-warning btn-sm"
-					role="btn"> 취소</a></c:if>
+					<a href="board_list_practice"
+						class="btn btn-outline-warning btn-sm" role="btn"> 취소</a>
+				</c:if>
 				<c:if test="${sbtype ==3}">
-				<a href="board_list_party" class="btn btn-outline-warning btn-sm"
-					role="btn"> 취소</a></c:if>
-			
+					<a href="board_list_party" class="btn btn-outline-warning btn-sm"
+						role="btn"> 취소</a>
+				</c:if>
+
 			</div>
 			<div style="float: right;">
 				<c:if test="${sbcontent_view.buid == session_bid}">
@@ -193,6 +204,6 @@
 
 
 	</div>
-	
+
 </body>
 </html>

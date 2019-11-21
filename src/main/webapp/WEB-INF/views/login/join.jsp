@@ -19,7 +19,7 @@
 		var result;
 		$.ajax({
 			type : "POST",
-			url : "chk_cid.do",
+			url : "chk_id.do",
 			data : {
 				userid : userid
 			},
@@ -39,6 +39,8 @@
 	}
 
 	function checkfield() {
+		 var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	      
 		if (document.addjoin.cuid.value == "") {
 			alert("아이디를 입력하세요");
 			document.addjoin.cuid.focus();
@@ -82,7 +84,10 @@
 			alert("이메일을 입력하세요");
 			document.addjoin.cuemail.focus();
 			exit;
-		} else if (idchk == 0) {
+		} else if (!check(re, cuemail, "적합하지 않은 이메일 형식입니다.")) {
+			document.addjoin.cuemail.focus();
+			exit;
+		}else if (idchk == 0) {
 			alert("아이디 중복체크 바랍니다.");
 			document.addjoin.chk_cid.focus();
 			exit;
@@ -93,10 +98,25 @@
 			document.addjoin.cupw2.focus();
 			exit;
 
+		} else {
+			/* document.addjoin.submit(); */
+			$("#addjoin").submit();
+			alert("회원가입에 성공하셨습니다.");
+		//	setTimeout("close_pop()", 10);
+			window.close();
+
 		}
-		document.addjoin.submit();
-		window.close();
+
 	}
+	
+	function check(re, what, message) {
+	       if(re.test(what.value)) {
+	           return true;
+	       }
+	       alert(message);
+	       what.value = "";
+	       what.focus();
+	   }
 
 	function close_pop() {
 		window.close();
@@ -265,17 +285,15 @@
 
 				<tr>
 					<td colspan="3"><input type="text" id="sample4_postcode"
-						placeholder="우편번호" 
-						style="width: 20%; float: left;"> <input type="button"
-						onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><br></td>
+						placeholder="우편번호" style="width: 20%; float: left;"> <input
+						type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="text" name="addr1"
-						id="sample4_roadAddress" placeholder="도로명주소"
-						style="width: 20%;"> <input
-						type="text" name="addr2" id="sample4_detailAddress"
-						placeholder="상세주소" > <input type="text" name="addr3"
-						id="sample4_extraAddress" placeholder="참고항목" ></td>
+						id="sample4_roadAddress" placeholder="도로명주소" style="width: 20%;">
+						<input type="text" name="addr2" id="sample4_detailAddress"
+						placeholder="상세주소"> <input type="text" name="addr3"
+						id="sample4_extraAddress" placeholder="참고항목"></td>
 				</tr>
 				<tr>
 					<td><input type="hidden" id="sample4_jibunAddress"
@@ -290,19 +308,22 @@
 				</tr>
 				<tr>
 
-					<td><label><strong>연락처*</strong></label></td>
+					<td><label><strong>연락처*</strong>
+					<br><span style="font-size:0.8em">-를 제외하고 입력해주세요</span></label></td>
 					<td colspan="2"><input type="tel" name="cutel" id="cutel"
 						></td>
 				</tr>
 				<tr>
-					<td><label><strong>이메일*</strong></label></td>
+					<td><label><strong>이메일*</strong>
+					<br><span style="font-size:0.8em">ex) ssw1363@naver.com</span></label></td>
 					<td colspan="2"><input type="email" name="cuemail"
 						id="cuemail"></td>
+					
 				</tr>
 			</table>
+			<input type="button" value="회원가입" onclick="checkfield()" class="btn btn-outline-info btn-sm"> <a
+				href="javascript:close_pop()" class="btn btn-outline-info btn-sm">취소</a>
 		</form>
-		<input type="button" value="회원가입" onclick="checkfield()"> <a
-			href="javascript:close_pop()"><button>취소</button></a>
 	</div>
 
 

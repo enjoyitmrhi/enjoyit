@@ -8,7 +8,7 @@ public class SbDto {
 	private String sbpic;
 	private String sbtitle;
 	private String sbcontent;
-	private int sbprice;
+	private long sbprice;
 	private String sbloc;
 	private Timestamp sbdate;
 	private String buid;
@@ -56,11 +56,11 @@ public class SbDto {
 		this.sbtitle = sbtitle;
 	}
 
-	public int getSbprice() {
+	public long getSbprice() {
 		return sbprice;
 	}
 
-	public void setSbprice(int sbprice) {
+	public void setSbprice(long sbprice) {
 		this.sbprice = sbprice;
 	}
 
