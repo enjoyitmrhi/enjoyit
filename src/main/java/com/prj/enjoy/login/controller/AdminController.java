@@ -36,10 +36,10 @@ public class AdminController {
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
 		if (dao.getAdmin(adid) == null) {
 			System.out.println("no id");
-			return "/admin";
+			return "admin";
 		} else if (!dao.getAdmin(adid).getAdpw().equals(adpw)) {
 			System.out.println("wrong pw");
-			return "/admin";
+			return "admin";
 		} else {
 			System.out.println("login success");
 			request.getSession().setAttribute("session_admin", adid);

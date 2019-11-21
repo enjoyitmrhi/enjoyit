@@ -15,7 +15,7 @@ function closeWindow() {
 </head>
 <body>
 <div class ="container">
-	<form action="send"name="form1">
+	<form action="send.do"name="form1">
 	<table>
 		<tr>
 			<th>title</th>
@@ -23,11 +23,11 @@ function closeWindow() {
 		</tr>
 		<tr>
 			<th>from</th>
-			<th><input type="text" name="from" value="${session_cname }${session_bname}" readonly></th>
+			<th><input type="text" name="from" value="${session_bname}" readonly></th>
 		</tr>
 		<tr>
 			<th>to</th>
-			<th><input type="text" name="to" value=""></th>
+			<th><input type="text" name="to" value="${cuid }"></th>
 		</tr>
 		<tr>
 			<th>content</th>

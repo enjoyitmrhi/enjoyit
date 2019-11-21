@@ -19,6 +19,8 @@
 
 </head>
 <body>
+<<<<<<< Updated upstream
+=======
 
 
 	<div class="container">
@@ -36,6 +38,7 @@
 				</div>
 				<!-- 슬라이드 1 끝-->
 
+<<<<<<< Updated upstream
 
 				<!-- 슬라이드 2 시작-->
 				<div class="carousel-item">
