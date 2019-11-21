@@ -26,7 +26,7 @@
 					<td>제목</td>
 					<td><select class="form-control" name="qtitle">
 							<option>상품을 문의합니다</option>
-							<option>배송을 문의합니다</option>
+							<option>예약을 문의합니다</option>
 					</select></td>
 				</tr>
 				<tr>

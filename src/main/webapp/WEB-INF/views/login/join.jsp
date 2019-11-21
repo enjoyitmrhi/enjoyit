@@ -99,11 +99,11 @@
 			exit;
 
 		} else {
-
 			/* document.addjoin.submit(); */
 			$("#addjoin").submit();
-			
+			alert("회원가입에 성공하셨습니다.");
 			setTimeout("close_pop()", 10);
+//			window.close();
 
 		}
 
@@ -321,8 +321,8 @@
 					
 				</tr>
 			</table>
-			<input type="button" value="회원가입" onclick="checkfield()"> <a
-				href="javascript:close_pop()"><button>취소</button></a>
+			<input type="button" value="회원가입" onclick="checkfield()" class="btn btn-outline-info btn-sm"> <a
+				href="javascript:close_pop()" class="btn btn-outline-info btn-sm">취소</a>
 		</form>
 	</div>
 
