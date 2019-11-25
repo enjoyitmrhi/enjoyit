@@ -86,7 +86,7 @@
 
 
 		<div>
-			<p>hit 순서로 가장 조회수 높은 친구 3개 보이게</p>
+			<h3>조회수 순으로 보기</h3>
 			<div>
 				<div class="row text-center" id="more_list">
 					<c:forEach items="${boardlist }" var="dto">
@@ -112,6 +112,7 @@
 		<div class="clearfix"></div>
 
 		<div id="lowprice" class="carousel slide" data-ride="carousel">
+			<h3>낮은 가격순 보기</h3>
 			<ol class="carousel-indicators">
 				<li data-target="#lowprice" data-slide-to="0" class="active"></li>
 				<li data-target="#lowprice" data-slide-to="1"></li>
