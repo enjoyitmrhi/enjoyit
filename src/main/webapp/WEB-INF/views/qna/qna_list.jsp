@@ -21,8 +21,7 @@
 		if (elem.className != 'opened') {
 			elem.className = 'opened';
 			menu.style.display = "block";
-			$
-					.ajax({
+				$.ajax({
 						type : "POST",
 						url : "answer_view.do",
 						data : {
@@ -110,9 +109,9 @@
 
 						<td></td>
 						<td id="${dto.qanum }" style="display: none;" colspan="3"><textarea
-								rows="7" cols="40" id="answer_view${dto.qanum }" readonly>
+								rows="7" cols="40" id="answer_view${dto.qanum }" readonly class="form-control">
 					</textarea></td>
-						<td></td>
+						<!-- <td></td> -->
 					</c:if>
 				</c:forEach>
 				<c:if test="${session_cid != null}">

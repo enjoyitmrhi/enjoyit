@@ -9,10 +9,7 @@
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-	var msg = $
-	{
-		newmsg
-	}
+	var msg = ${newmsg};
 	if (msg != '0') {
 		alert("미확인 메세지 " + msg + "개가 있습니다.");
 	}
@@ -33,59 +30,58 @@
 <body>
 	<div class="container">
 
-		<table class="table">
-			<tr>
-				<td>회원아이디</td>
-				<td>${cu.cuid }</td>
-			</tr>
-			<tr>
-				<td>회원명</td>
-				<td>${cu.cuname }</td>
-			</tr>
-			<tr>
-				<td>회원주소</td>
-				<td>${cu.cuaddr }</td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td>${cu.cuemail }</td>
-			</tr>
-			<tr>
-				<td>생년월일</td>
-				<td>${cu.cubirth }</td>
-			</tr>
-			<tr>
-				<td>성별</td>
-				<td>${cu.cugender }</td>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<td>${cu.cutel }</td>
-			</tr>
-			<tr>
-				<td>가입일</td>
-				<td>${cu.cudate }</td>
-			</tr>
-			<tr>
-				<td>메세지함<c:if test="${newmsg != 0}">
-						<a class="blinkEle" style="color: red;">new</a>
-					</c:if></td>
-				<td><a href="javascript:onMsgBox()">${totmsg }개</a> <-보러가기</td>
-			</tr>
-			<tr>
-				<td>작성한 질문수</td>
-				<td><a href="myQuestion">${qnacnt }개</a> <-보러가기</td>
-			</tr>
-			<tr>
-				<td>작성한 리뷰수</td>
-				<td><a href="myReview">${rvcnt }개</a> <-보러가기</td>
-			</tr>
+<table class ="table">
+		<tr>
+			<td>회원아이디</td>
+			<td>${cu.cuid }</td>
+		</tr>
+		<tr>
+			<td>회원명</td>
+			<td>${cu.cuname }</td>
+		</tr>
+		<tr>
+			<td>회원주소</td>
+			<td>${cu.cuaddr }</td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td>${cu.cuemail }</td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td>${cu.cubirth }</td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td>${cu.cugender }</td>
+		</tr>
+		<tr>
+			<td>연락처</td>
+			<td>${cu.cutel }</td>
+		</tr>
+		<tr>
+			<td>가입일</td>
+			<td>${cu.cudate }</td>
+		</tr>
+		<tr>
+			<td>메세지함<c:if test="${newmsg != 0}"><a class="blinkEle" style="color: red;">new</a></c:if></td>
+			<td><a href="javascript:onMsgBox()">${totmsg }개</a> <-보러가기</td>
+		</tr>
+		<tr>
+			<td>작성한 질문수</td>
+			<td><a href="myQuestion">${qnacnt }개</a> <-보러가기</td>
+		</tr>
+		<tr>
+			<td>작성한 리뷰수</td>
+			<td><a href="myReview">${rvcnt }개</a> <-보러가기</td>
+		</tr>
+		
+	</table>
+		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a>
+		<a href="ch_cupw"><button>비밀번호변경</button></a>	
+		<a href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
 
-		</table>
-		<a href="edit_cuself?cunum=${cu.cunum }"><button>정보수정</button></a> <a
-			href="ch_cupw"><button>비밀번호변경</button></a> <a
-			href="del_cuself?cunum=${cu.cunum }"><button>회원탈퇴</button></a>
-
+	
 	</div>
 
 </body>

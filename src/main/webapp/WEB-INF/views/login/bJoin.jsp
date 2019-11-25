@@ -20,7 +20,7 @@
 		var result;
 		$.ajax({
 			type : "POST",
-			url : "chk_bid.do",
+			url : "chk_id.do",
 			data : {
 				userid : userid
 			},
@@ -40,6 +40,8 @@
 	}
 
 	function checkfield() {
+		var re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
 		if (document.addjoin.buid.value == "") {
 			alert("아이디를 입력하세요");
 			document.addjoin.buid.focus();
@@ -78,6 +80,9 @@
 			alert("이메일을 입력하세요");
 			document.addjoin.buemail.focus();
 			exit;
+		} else if (!check(re, buemail, "적합하지 않은 이메일 형식입니다.")) {
+			document.addjoin.buemail.focus();
+			exit;
 		} else if (idchk == 0) {
 			alert("아이디 중복체크 바랍니다.");
 			document.addjoin.chk_bid.focus();
@@ -92,11 +97,21 @@
 		} else {
 
 			$("#addjoin").submit();
-
-			setTimeout("close_pop()", 10);
+			alert("회원가입에 성공하셨습니다.");
+//			setTimeout("close_pop()", 10);
+			window.close();
 		}
 	}
-
+	
+	function check(re, what, message) {
+	       if(re.test(what.value)) {
+	           return true;
+	       }
+	       alert(message);
+	       what.value = "";
+	       what.focus();
+	   }
+	
 	function close_pop() {
 		window.close();
 
@@ -248,19 +263,21 @@
 					<td colspan="2"><input type="text" name="burenum" id="burenum"></td>
 				</tr>
 				<tr>
-					<td><label><strong>연락처*</strong></label></td>
+					<td><label><strong>연락처*</strong></label>
+					<br><span style="font-size:0.8em">-를 제외하고 입력해주세요</span></td>
 					<td colspan="2"><input type="tel" name="butel" id="butel"></td>
 				</tr>
 				<tr>
-					<td><label><strong>이메일*</strong></label></td>
+					<td><label><strong>이메일*</strong></label>
+					<br><span style="font-size:0.8em">ex) ssw1363@naver.com</span></td>
 					<td colspan="2"><input type="email" name="buemail"
 						id="buemail"></td>
 				</tr>
 			</table>
 
 		</form>
-		<input type="button" value="회원가입" onclick="checkfield()"> <a
-			href="javascript:close_pop()"><button>취소</button></a>
+		<input type="button" value="회원가입" onclick="checkfield()" class="btn btn-outline-info btn-sm"> <a
+			href="javascript:close_pop()" class="btn btn-outline-info btn-sm">취소</a>
 	</div>
 </body>
 </html>

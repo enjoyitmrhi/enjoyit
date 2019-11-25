@@ -25,9 +25,14 @@
 			<li class="nav-item active"><a class="nav-link"
 				href="/enjoyit/admin">Home <span class="sr-only">(current)</span>
 			</a></li>
+			<c:if test="${session_admin != null }">
 			<li class="nav-item "><a class="nav-link" href="admin_cuMember">고객 회원관리</a></li>
 			<li class="nav-item "><a class="nav-link" href="admin_buMember">가맹 회원관리</a></li>
-			
+			</c:if>
+			<c:if test="${session_admin == null }">
+			<li class="nav-item "><a class="nav-link">고객 회원관리</a></li>
+			<li class="nav-item "><a class="nav-link">가맹 회원관리</a></li>
+			</c:if>
 
 		</ul>
 

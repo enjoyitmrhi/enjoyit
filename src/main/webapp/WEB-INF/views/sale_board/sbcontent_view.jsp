@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>Insert title here</title>
+<title>EnjoyIT</title>
 <script>
 	function del_sbCont(sbcode) {
 		/* var sbcode = $
@@ -52,8 +52,10 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><img class="w-75 p-3" alt="no image"
-							src="resources/upload/${sbcontent_view.sbpic }"> <br /> <textarea
+						<td>
+						<c:if test="${sbcontent_view.sbpic !='no_image.jpg'}">
+						<img class="w-75 p-3" alt="no image"
+							src="resources/upload/${sbcontent_view.sbpic }"> <br /> </c:if><textarea
 								class="form-control" rows="15" name="sbcontent" id="sbcontent"> ${sbcontent_view.sbcontent } </textarea></td>
 					</tr>
 					<tr>
@@ -121,7 +123,8 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(${sbcontent_view.sblongitude }, ${sbcontent_view.sblatitude }), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨 
+        
        
     };
 

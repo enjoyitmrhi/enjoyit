@@ -16,6 +16,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.prj.enjoy.login.dao.LoginDao;
 import com.prj.enjoy.login.dto.Business;
+import com.prj.enjoy.review.dao.ReviewDao;
 import com.prj.enjoy.saleboard.dao.SbDao;
 import com.prj.enjoy.saleboard.dto.SbDto;
 
@@ -34,6 +35,7 @@ public class SbController {
 
 		return "sale_board/board_list_seminar";
 	}
+
 	@RequestMapping(value = "/board_list_practice")
 	public String boardList_practice(HttpServletRequest request, Model model) {
 
@@ -43,6 +45,7 @@ public class SbController {
 
 		return "sale_board/board_list_practice";
 	}
+
 	@RequestMapping(value = "/board_list_party")
 	public String boardList_party(HttpServletRequest request, Model model) {
 
@@ -66,26 +69,28 @@ public class SbController {
 		return addDto;
 
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/add_list2")
 	public ArrayList<SbDto> jsonBoardList2(HttpServletRequest request, HttpServletResponse response) {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
-		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 4;
 
 		ArrayList<SbDto> addDto = dao.add_list2(sNum, eNum);
 
 		return addDto;
 
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/add_list3")
 	public ArrayList<SbDto> jsonBoardList3(HttpServletRequest request, HttpServletResponse response) {
 
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		int sNum = Integer.parseInt(request.getParameter("num")) + 1;
-		int eNum = Integer.parseInt(request.getParameter("num")) + 6;
+		int eNum = Integer.parseInt(request.getParameter("num")) + 4;
 
 		ArrayList<SbDto> addDto = dao.add_list3(sNum, eNum);
 
@@ -105,8 +110,9 @@ public class SbController {
 			avgstar = "1";
 		}
 
+		hitUp(sbcode);
 		Business dto = logindao.getBusiness(wid);
-		
+
 		model.addAttribute("wid", wid);
 		model.addAttribute("avgstar", avgstar);
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
@@ -114,11 +120,16 @@ public class SbController {
 		return "sale_board/sbcontent_view";
 	}
 
+	public void hitUp(String sbcode) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+		dao.hitUp(sbcode);
+	}
+
 	@RequestMapping(value = "/board_write_view")
 	public String board_write_view(HttpServletRequest request, Model model) {
 		String strId = request.getParameter("buid");
-		String sbtype =request.getParameter("sbtype");
-		model.addAttribute("sbtype",sbtype);
+		String sbtype = request.getParameter("sbtype");
+		model.addAttribute("sbtype", sbtype);
 		model.addAttribute("id", strId);
 
 		return "sale_board/board_write_view";
@@ -146,39 +157,39 @@ public class SbController {
 		String sbloc = String.format("%s %s %s", addr1, addr2, addr3);
 		String sblongitude = req.getParameter("longy");
 		String sblatitude = req.getParameter("latx");
-		String sbtype =req.getParameter("sbtype");
+		String sbtype = req.getParameter("sbtype");
 
-		if (sbpic == null ) {
-			sbpic="";
+		if (sbpic == null) {
+			sbpic = "no_image.jpg";
 		}
 		SbDao dao = sqlSession.getMapper(SbDao.class);
-		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc,sblongitude,sblatitude,sbtype,sbcontent);
+		dao.board_write(buid, sbpic, sbtitle, sbprice, sbloc, sblongitude, sblatitude, sbtype, sbcontent);
 		if (sbtype.equals("1")) {
 			return "redirect:board_list_seminar";
-		}else if (sbtype.equals("2")) {
+		} else if (sbtype.equals("2")) {
 			return "redirect:board_list_practice";
-		}else {
+		} else {
 			return "redirect:board_list_party";
 		}
-			
+
 	}
 
 	@RequestMapping(value = "/sbdelete")
 	public String sbdelete(HttpServletRequest request) {
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		String sbcode = request.getParameter("sbcode");
-		System.out.println("sbcode >>>>>>> "+sbcode);
+		System.out.println("sbcode >>>>>>> " + sbcode);
 		String sbtype = dao.getType(sbcode);
 		dao.del_reserv(sbcode);
 		dao.del_Qna(sbcode);
 		dao.del_Review(sbcode);
 		dao.delete(sbcode);
-		
+
 		if (sbtype.equals("1")) {
 			return "redirect:board_list_seminar";
-		}else if (sbtype.equals("2")) {
+		} else if (sbtype.equals("2")) {
 			return "redirect:board_list_practice";
-		}else {
+		} else {
 			return "redirect:board_list_party";
 		}
 
@@ -214,15 +225,15 @@ public class SbController {
 		if (sbpic == null || sbpic == "") {
 			sbpic = dao.getSbPic(sbcode);
 		}
-		
-		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent,sbpic,sbloc,sblongitude,sblatitude,sbtype);
+
+		dao.sbmodify(sbcode, sbprice, sbtitle, sbcontent, sbpic, sbloc, sblongitude, sblatitude, sbtype);
 		String sbtype2 = dao.getType(sbcode);
 
 		if (sbtype2.equals("1")) {
 			return "redirect:board_list_seminar";
-		}else if (sbtype2.equals("2")) {
+		} else if (sbtype2.equals("2")) {
 			return "redirect:board_list_practice";
-		}else {
+		} else {
 			return "redirect:board_list_party";
 		}
 	}
@@ -235,7 +246,7 @@ public class SbController {
 		SbDao dao = sqlSession.getMapper(SbDao.class);
 		model.addAttribute("sbcontent_view", dao.sb_content(sbcode));
 		model.addAttribute("wid", wid);
-		model.addAttribute("sbtype",sbtype);
+		model.addAttribute("sbtype", sbtype);
 		return "sale_board/sbmodify_view";
 
 	}

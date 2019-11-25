@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.prj.enjoy.login.dao.AdminDao;
 import com.prj.enjoy.login.dao.LoginDao;
@@ -31,6 +30,7 @@ import com.prj.enjoy.message.dao.MsgDao;
 import com.prj.enjoy.qna.dao.QnaDao;
 import com.prj.enjoy.reserve.dao.ReservDao;
 import com.prj.enjoy.review.dao.ReviewDao;
+import com.prj.enjoy.saleboard.dao.SbDao;
 
 @Controller
 public class LoginController {
@@ -39,36 +39,50 @@ public class LoginController {
 
 	@Autowired
 	private JavaMailSender mailSender;
+
 	@RequestMapping("/")
-	public ModelAndView indexpage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
-		return mav;
+	public String indexpage(Model model) {
+
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+
+		model.addAttribute("boardlist", dao.board_list_top3());
+		model.addAttribute("boardlist_p1", dao.board_list_price1());
+		model.addAttribute("boardlist_p2", dao.board_list_price2());
+		model.addAttribute("boardlist_p3", dao.board_list_price3());
+
+		return "index";
 	}
 
 	@RequestMapping("/index")
-	public ModelAndView index() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
-		return mav;
+	public String index(Model model) {
+		SbDao dao = sqlSession.getMapper(SbDao.class);
+
+		model.addAttribute("boardlist", dao.board_list_top3());
+		model.addAttribute("boardlist_p1", dao.board_list_price1());
+		model.addAttribute("boardlist_p2", dao.board_list_price2());
+		model.addAttribute("boardlist_p3", dao.board_list_price3());
+		
+		return "index";
 	}
+
 	@RequestMapping("/about")
 	public String about() {
 
 		return "about/about";
 	}
-	
+
 	@RequestMapping("/terms.pop")
 	public String terms() {
 
 		return "about/terms";
 	}
+
 	@RequestMapping("/htu.pop")
 	public String howtouse() {
-		
+
 		return "about/howtouse";
 	}
-	
+
 	@RequestMapping("/login.pop")
 	public String login(HttpSession session) {
 		// 세션 삭제
@@ -79,12 +93,12 @@ public class LoginController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		
+
 		session.invalidate();
 		Cookie[] cookies = request.getCookies();
-		
-		if(cookies != null) {
-			for(int i =0; i< cookies.length; i++) {
+
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
 				cookies[i].setMaxAge(0);
 				response.addCookie(cookies[i]);
 			}
@@ -94,26 +108,27 @@ public class LoginController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/loginProc.do")
 	@ResponseBody
-	public String loginProc(@RequestParam("userid") String cuid, @RequestParam("userpw") String cupw,
-		Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
-		
+	public String loginProc(@RequestParam("userid") String cuid, @RequestParam("userpw") String cupw, Model model,
+			HttpServletResponse response, HttpServletRequest request) throws Exception {
+
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
 		Customer dto = dao.getCustomer(cuid);
 		if (dto == null) {
 			System.out.println("check id");
-			model.addAttribute("alert","check id");
+			model.addAttribute("alert", "check id");
 			return "false: check id";
 		} else if (!dto.getCupw().equals(cupw)) {
 			System.out.println("check pw");
-			model.addAttribute("alert","check id");
+			model.addAttribute("alert", "check id");
 			return "false: check pw";
 		} else {
 			model.addAttribute("customer", dto);
 			System.out.println("로그인 성공");
-//			request.setAttribute("session_cid", cuid);
-			Cookie cookie1 = new Cookie("cid",cuid);
-			Cookie cookie2 = new Cookie("cname",dto.getCuname());
-            response.addCookie(cookie1);response.addCookie(cookie2);
+			// request.setAttribute("session_cid", cuid);
+			Cookie cookie1 = new Cookie("cid", cuid);
+			Cookie cookie2 = new Cookie("cname", dto.getCuname());
+			response.addCookie(cookie1);
+			response.addCookie(cookie2);
 			return "true";
 		}
 
@@ -127,19 +142,20 @@ public class LoginController {
 		Business dto = dao.getBusiness(buid);
 		if (dto == null) {
 			System.out.println("check id");
-			model.addAttribute("alert","check id");
+			model.addAttribute("alert", "check id");
 			return "false: check id";
 		} else if (!dto.getBupw().equals(bupw)) {
 			System.out.println("check pw");
-			model.addAttribute("alert","check id");
+			model.addAttribute("alert", "check id");
 			return "false: check pw";
 		} else {
 			model.addAttribute("business", dto);
 			System.out.println("로그인 성공");
-			Cookie cookie1 = new Cookie("bid",buid);
-			Cookie cookie2 = new Cookie("bname",dto.getBuname());
-            response.addCookie(cookie1);response.addCookie(cookie2);
-            
+			Cookie cookie1 = new Cookie("bid", buid);
+			Cookie cookie2 = new Cookie("bname", dto.getBuname());
+			response.addCookie(cookie1);
+			response.addCookie(cookie2);
+
 			return "true";
 		}
 
@@ -176,10 +192,8 @@ public class LoginController {
 		System.out.println("cuaddr2 >>>> " + cuaddr);
 		System.out.println("longy>>>" + culongY);
 		System.out.println("latx>>>>" + culatX);
-		
-		
+
 		int result = 0;
-		 dao.chkCid(cuid);  ;
 
 		List<String> errors = new ArrayList();
 		if (result > 0) {
@@ -199,11 +213,11 @@ public class LoginController {
 
 	}
 
-	@RequestMapping("/chk_cid.do")
-	private @ResponseBody String chkCid(@RequestParam("userid") String cuid) {
+	@RequestMapping("/chk_id.do")
+	private @ResponseBody String chkCid(@RequestParam("userid") String id) {
 		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		System.out.println("cuid >>>>>>" + cuid);
-		String result = dao.chkCid(cuid);
+		System.out.println("cuid >>>>>>" + id);
+		String result = dao.chkId(id);
 		System.out.println(result);
 
 		return result;
@@ -256,16 +270,6 @@ public class LoginController {
 
 	}
 
-	@RequestMapping("/chk_bid.do")
-	private @ResponseBody String chkBid(@RequestParam("userid") String buid) {
-		LoginDao dao = sqlSession.getMapper(LoginDao.class);
-		System.out.println("buid >>>>>>" + buid);
-		String result = dao.chkBid(buid);
-		System.out.println(result);
-
-		return result;
-	}
-
 	@RequestMapping("/cuMypage")
 	public String cuMypage(HttpSession session, Model model) {
 		String cuid = (String) session.getAttribute("session_cid");
@@ -277,8 +281,8 @@ public class LoginController {
 		model.addAttribute("cu", logdao.getCustomer(cuid));
 		model.addAttribute("qnacnt", qnadao.qnaboardQcount(cuid));
 		model.addAttribute("rvcnt", rvdao.reviewcount(cuid));
-		model.addAttribute("newmsg",msgdao.chkMsg(cuid,1));
-		model.addAttribute("totmsg",msgdao.chkMsg(cuid,2));
+		model.addAttribute("newmsg", msgdao.chkMsg(cuid, 1));
+		model.addAttribute("totmsg", msgdao.chkMsg(cuid, 2));
 
 		return "login/cuMypage";
 	}
@@ -552,8 +556,8 @@ public class LoginController {
 	public String myQuestion(HttpSession session, Model model) {
 		String cuid = (String) session.getAttribute("session_cid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
-		
-		model.addAttribute("qnalist",dao.myqnaclist(cuid));
+
+		model.addAttribute("qnalist", dao.myqnaclist(cuid));
 		return "login//myQuestion";
 	}
 
@@ -570,17 +574,17 @@ public class LoginController {
 	public String myAnswer(HttpSession session, Model model) {
 		String buid = (String) session.getAttribute("session_bid");
 		QnaDao dao = sqlSession.getMapper(QnaDao.class);
-		model.addAttribute("qnalist",dao.myqnablist(buid));
+		model.addAttribute("qnalist", dao.myqnablist(buid));
 		return "login/myAnswer";
 	}
 
 	@RequestMapping("/myReply")
 	public String myReply(HttpSession session, Model model) {
 		String buid = (String) session.getAttribute("session_bid");
-		
+
 		return "login/myReply";
 	}
-	
+
 	@RequestMapping("/myReserv")
 	public String myReserv(HttpSession session, Model model) {
 		String buid = (String) session.getAttribute("session_bid");
@@ -588,6 +592,5 @@ public class LoginController {
 		model.addAttribute("rtlist", dao.getReserv(buid));
 		return "login/myReserv";
 	}
-	
-	
+
 }

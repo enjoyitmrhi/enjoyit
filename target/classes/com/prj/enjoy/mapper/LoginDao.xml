@@ -20,9 +20,9 @@
 		,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},#{param10})
 	</insert>
 
-	<select id="chkCid" resultType="String">
+	<select id="chkId" resultType="String">
 	<![CDATA[
-	SELECT DECODE(COUNT(*),0,'true','false') FROM CUSTOMER WHERE CUID=#{param1}
+	SELECT DECODE(COUNT(*),0,'true','false') FROM BUSINESS, CUSTOMER WHERE CUID=#{param1} OR BUID=#{param1}
 	]]>
 	</select>
 	
@@ -31,9 +31,6 @@
 		BUEMAIL,BURENUM, BUTEL,BUADDR,BULONGITUDE,BULATITUDE) VALUES
 		('b'||(LPAD(BU_SEQ.nextval,3,0)),#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9})
 	</insert>
-	<select id="chkBid" resultType="String">
-		SELECT DECODE(COUNT(*),0,'true','false') FROM BUSINESS WHERE BUID=#{param1}
-	</select>
 	
 	<select id="popupfindCuid" resultType="com.prj.enjoy.login.dto.Customer">
 		SELECT CUID FROM CUSTOMER WHERE CUNAME=#{param1} AND CUTEL=#{param2} AND CUBIRTH=#{param3}

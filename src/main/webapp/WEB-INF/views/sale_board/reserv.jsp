@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>EnjoyIT</title>
 <link href='<c:url value ="/resources/fullcalendar/core/main.css" />'
 	rel='stylesheet' />
 <link href='<c:url value ="/resources/fullcalendar/daygrid/main.css" />'
@@ -68,7 +69,7 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="margin: 20px 0 0 20px;">
 
 		<div id='calendar'
 			style="overflow: hidden; width: 75%; height: auto; text-align: center;"></div>

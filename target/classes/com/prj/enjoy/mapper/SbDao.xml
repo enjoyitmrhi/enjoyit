@@ -35,6 +35,46 @@
 		
 
 	</select>
+	<select id="board_list_top3" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+		SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT,
+		ROW_NUMBER() OVER(ORDER BY SBHIT DESC) 
+		SBHIT_SEQ FROM SALE_BOARD) WHERE SBHIT_SEQ BETWEEN 1 AND 3 
+		
+
+	</select>
+	<select id="board_list_price1" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+		SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT,
+		ROW_NUMBER() OVER(ORDER BY SBPRICE ASC) 
+		SBHIT_SEQ FROM SALE_BOARD) WHERE SBHIT_SEQ BETWEEN 1 AND 3 
+		
+
+	</select>
+	<select id="board_list_price2" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+		SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT,
+		ROW_NUMBER() OVER(ORDER BY SBPRICE ASC) 
+		SBHIT_SEQ FROM SALE_BOARD) WHERE SBHIT_SEQ BETWEEN 4 AND 6 
+		
+
+	</select>
+	<select id="board_list_price3" resultType="com.prj.enjoy.saleboard.dto.SbDto">
+		SELECT
+		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT 
+		FROM (
+		SELECT SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID , SBTYPE,SBHIT,
+		ROW_NUMBER() OVER(ORDER BY SBPRICE ASC) 
+		SBHIT_SEQ FROM SALE_BOARD) WHERE SBHIT_SEQ BETWEEN 7 AND 9 
+		
+
+	</select>
 	<select id="add_list1" resultType="com.prj.enjoy.saleboard.dto.SbDto">
 	SELECT
 		SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBDATE,BUID 
@@ -67,9 +107,9 @@
 
 	<insert id="board_write">
 		INSERT INTO
-		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBLONGITUDE,SBLATITUDE,BUID,SBTYPE,SBCONTENT)
+		SALE_BOARD(SBCODE,BUNUM,SBPIC,SBTITLE,SBPRICE,SBLOC,SBLONGITUDE,SBLATITUDE,BUID,SBTYPE,SBCONTENT,SBHIT)
 		VALUES(SBCODE_SEQ.NEXTVAL,(SELECT BUNUM FROM BUSINESS WHERE BUID =
-		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param1},#{param8},#{param9} )
+		#{param1}),#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param1},#{param8},#{param9},0 )
 
 	</insert>
 	
@@ -125,6 +165,10 @@
 		SBCODE=#{param1 }
 	</select>
 	
+	<update id="hitUp">
+		UPDATE SALE_BOARD SET SBHIT=SBHIT+1 WHERE
+		SBCODE=#{param1}
+	</update>
 	
 	<select id="getType" resultType="String">
 		SELECT SBTYPE FROM SALE_BOARD WHERE SBCODE = #{param1}
