@@ -98,7 +98,7 @@
 
 			$("#addjoin").submit();
 			alert("회원가입에 성공하셨습니다.");
-			//setTimeout("close_pop()", 10);
+//			setTimeout("close_pop()", 10);
 			window.close();
 		}
 	}
