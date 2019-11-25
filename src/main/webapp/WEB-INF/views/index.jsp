@@ -86,7 +86,7 @@
 
 
 		<div>
-			<h3>조회수 순으로 보기</h3>
+			<h3>조회수 순으로 보기1</h3>
 			<div>
 				<div class="row text-center" id="more_list">
 					<c:forEach items="${boardlist }" var="dto">
